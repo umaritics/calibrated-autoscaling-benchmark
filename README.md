@@ -1,10 +1,11 @@
 # Calibrated Autoscaling Benchmark
 
-**When Does a Calibrated Reactive Baseline Beat a Predictive Autoscaler?**
+**When Does a Conservatively Tuned Reactive Baseline Beat a Predictive Autoscaler?**
 
 Course research (FAST-NUCES Cloud Computing): reproduce the online core of
-Duman & Eken (*J. Systems & Software*, 2026), then measure how much of a
-Holt–Winters predictive advantage disappears once Kubernetes HPA is fairly tuned.
+Duman & Eken (*J. Systems & Software*, 2026), then measure how a lightweight
+Holt–Winters predictor compares to a soft 50% HPA and to a **conservatively tuned**
+70% HPA on capacity (pod-seconds).
 
 | | |
 |---|---|
@@ -12,10 +13,16 @@ Holt–Winters predictive advantage disappears once Kubernetes HPA is fairly tun
 | Paper | https://doi.org/10.1016/j.jss.2026.112861 |
 | Upstream harness | https://github.com/syswe/workloads-predictional-scaling-operators |
 
+## Submit these documents
+
+- [`docs/reproduction_report.md`](docs/reproduction_report.md)
+- [`docs/methodology.md`](docs/methodology.md)
+- [`results/results.md`](results/results.md) — tables with mean ± SD, paired diffs, Cohen’s d
+
 ## Repository layout
 
 ```
-policies/          Strawman HPA, calibrated HPA (ours), Holt–Winters PHPA
+policies/          Strawman HPA, tuned HPA (ours), Holt–Winters PHPA
 manifests/         Sample app, load generator, metrics-server
 scripts/           Experiment wrapper, analysis, upstream setup
 results/           Measured CSVs (18 runs) + summary tables
@@ -24,18 +31,22 @@ docs/course/       Proposal, development plan, literature matrix
 upstream/          Instructions only (clone is gitignored)
 ```
 
-## Main finding (3 repeats, Docker Desktop Kubernetes)
+## Main finding (3 repeats, cost/capacity only)
 
-Holt–Winters beats the authors' **50% HPA** on pod-seconds, but a **70% calibrated HPA**
-uses even fewer pod-seconds than Holt–Winters on both seasonal and burst patterns.
-The predictive advantage was largely a weak-baseline artifact.
+Holt–Winters uses **fewer pod-seconds** than the authors’ **50% HPA**.
+A **70% conservatively tuned HPA** uses even fewer pod-seconds than Holt–Winters
+on seasonal (all 3 repeats). Burst shows the same direction on average but high variance.
+The tuned arm is also more **saturated** (higher hot fraction) — so this is **not**
+an SLA / latency claim.
 
-| Pattern | Strawman HPA | Holt–Winters | Calibrated HPA | Calibration gap |
-|---|---:|---:|---:|---:|
-| seasonal | 978.92 | 800.11 | 608.54 | 370.38 |
-| burst | 1122.98 | 735.51 | 668.09 | 454.89 |
+| Pattern | Strawman HPA | Holt–Winters | Tuned HPA 70% | HW adv. vs strawman | HW adv. vs tuned |
+|---|---:|---:|---:|---:|---:|
+| seasonal | 943 ± 94 | 767 ± 40 | 583 ± 80 | +176 ± 92 | −184 ± 42 |
+| burst | 1088 ± 275 | 728 ± 46 | 653 ± 25 | +360 ± 265 | −75 ± 62 |
 
-Units: mean pod-seconds (lower = less capacity used). Full tables: [`results/results.md`](results/results.md).
+Units: pod-seconds (mean ± SD). Lower = less capacity held.
+
+Paper / Kaggle online early-detection (HW vs HPA, not re-measured by us): seasonal 30.8 s, burst 20.5 s earlier.
 
 ## Quick start (reproduce)
 
@@ -49,17 +60,9 @@ Units: mean pod-seconds (lower = less capacity used). Full tables: [`results/res
 cd upstream/workloads-predictional-scaling-operators
 python3 -m venv .venv && source .venv/bin/activate
 pip install numpy pandas matplotlib
-# ensure metrics-server + sample app (make bootstrap, or apply manifests/)
 ./scripts/run_our_arm.sh 1 seasonal strawman_hpa
-./scripts/run_our_arm.sh 1 seasonal holtwinters
-./scripts/run_our_arm.sh 1 seasonal calibrated_hpa
 python scripts/analyze_our_results.py
 ```
-
-## Deliverable documents
-
-- [`docs/reproduction_report.md`](docs/reproduction_report.md)
-- [`docs/methodology.md`](docs/methodology.md)
 
 ## License
 
