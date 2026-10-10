@@ -21,10 +21,98 @@ Kubernetes schedules pods. HPA / PHPA change php-apache replicas. metrics-server
 ## Multimodal component
 None in our runs. The paper’s LLM path is multimodal text analysis of workloads; we did not call Gemini.
 
-## Dataset
-- Synthetic patterns in `generate_pattern_load.py`: **seasonal**, **burst** (deterministic).
-- Collection: ~120 s after 30 s warmup, ~5 s samples (row counts 17–21 under load).
-- Not used here: NASA HTTP logs, Alibaba Cluster Trace, Gemini labels, full six-pattern matrix.
+## Datasets (paper inventory + what we used)
+
+Assignment step 3 requires documenting **all** datasets used in the selected paper. Below is the full inventory. Only the synthetic online patterns marked **USED BY US** were executed in our cluster runs.
+
+### D1 — Synthetic pattern CSVs (offline forecast study) — paper only
+
+| Field | Detail |
+|---|---|
+| Name | PHPA Research Datasets — k8s Workload Patterns |
+| Source | https://www.kaggle.com/datasets/cnbrkdmn/phpa-research-datasets |
+| Samples | ~1,200 CSV files; ≈500,000 time-series points total (~42–46 MB) |
+| Modality | Univariate time series (`timestamp`, `pod_count`) |
+| Characteristics | Six pattern families: Stepped, Burst, Seasonal, Growing, OnOff, Chaotic; parameterised pod ranges (~5–107), noise 0.1–0.9, durations 10–102 minutes |
+| Train / val / test | Per-file **train** (~2,690 rows) and **test** (~674 rows); 15-minute sampling |
+| Preprocessing | Generated from mathematical pattern formulations (not raw production logs) |
+| Filtering / augmentation | Parameter sweeps over pattern knobs; no image/audio augmentation |
+| Multimodal combine | N/A (scalar pod_count series) |
+| Used in paper for | Temporal cross-validation, pattern-adaptive model selection, +37.4% accuracy claim |
+| **Used by us?** | **No** (offline MAPE study not re-run) |
+
+### D2 — Online Kubernetes pattern traces (authors’ released results)
+
+| Field | Detail |
+|---|---|
+| Name | Workloads Predictional Scaling Patterns (PHPA online benchmark) |
+| Source | https://www.kaggle.com/datasets/cnbrkdmn/workloads-predictional-scaling-patterns · harness https://github.com/syswe/workloads-predictional-scaling-operators |
+| Samples | 42 online scenarios = 6 patterns × 7 strategies (HPA + 6 PHPA models); CSVs with ~5 s sampling |
+| Modality | Cluster metrics time series: desired/current/ready replicas, CPU millicores, scale events |
+| Characteristics | Load generator drives CPU on `php-apache` using the six pattern functions |
+| Train / val / test | Not a supervised split; online control loop with warmup then collection |
+| Preprocessing | Environment reset between scenarios; metrics via metrics-server |
+| Filtering / augmentation | None beyond pattern schedule |
+| Multimodal combine | N/A |
+| Used in paper for | Early-detection vs HPA (e.g. Holt–Winters seasonal **30.8 s**, burst **20.5 s** earlier) |
+| **Used by us?** | **Partially** — we re-ran the **same pattern generator** for seasonal + burst (see D5), not the full 42-scenario matrix |
+
+### D3 — NASA HTTP logs — paper only (real-world generalisation)
+
+| Field | Detail |
+|---|---|
+| Name | NASA-HTTP (Kennedy Space Center WWW server) |
+| Source | Internet Traffic Archive: https://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html (Arlitt & Williamson) |
+| Samples | Two months of HTTP requests (Jul 1995; Aug 1995 segment); on the order of **millions** of requests (ITA: ~3.46M in a documented two-week Aug window alone; full dumps are hundreds of MB uncompressed) |
+| Modality | Text HTTP access logs (host, timestamp, request, status, bytes) — aggregated by the paper into a request-rate / load series for forecasting |
+| Characteristics | Public web workload with diurnal and burst behaviour; 1 s timestamp resolution |
+| Train / val / test | Paper uses for **generalisation / MAPE** of forecasting models (exact split not fully specified in the abstract; treated as production validation) |
+| Preprocessing (typical for this use) | Parse CLF-style logs → aggregate requests into fixed time bins → optional smoothing before MAPE |
+| Filtering / augmentation | Hurricane Erin gap in early Aug 1995 (server down) noted by ITA |
+| Multimodal combine | N/A (log text → univariate rate series) |
+| Used in paper for | Sub-2% MAPE claim for gradient boosting on production-style workloads |
+| **Used by us?** | **No** |
+
+### D4 — Alibaba Cluster Trace — paper only (real-world generalisation)
+
+| Field | Detail |
+|---|---|
+| Name | Alibaba Cluster Trace (cluster / production resource trace used in the paper’s validation) |
+| Source | Alibaba Cluster Trace Program (public cluster traces; commonly cited as Alibaba cluster-trace-* releases, e.g. https://github.com/alibaba/clusterdata) |
+| Samples | Large-scale production cluster records (machines, batches, containers); paper uses a derived load/utilisation series for forecasting MAPE (exact subset size not stated in the abstract) |
+| Modality | Structured cluster telemetry (CPU/memory/job events) → univariate forecasting target after aggregation |
+| Characteristics | Real cloud multi-tenant noise; less regular than synthetic sine/burst patterns |
+| Train / val / test | Used as **external validation** alongside NASA in the paper |
+| Preprocessing | Trace parsing + aggregation to the forecasting horizon used by their models |
+| Filtering / augmentation | Paper-specific filtering not fully detailed in open abstract snippets |
+| Multimodal combine | N/A |
+| Used in paper for | Sub-2% MAPE generalisation claim with gradient boosting |
+| **Used by us?** | **No** |
+
+### D5 — Synthetic online load we executed — **USED BY US**
+
+| Field | Detail |
+|---|---|
+| Name | `seasonal_pattern` and `burst_pattern` in `scripts/generate_pattern_load.py` (upstream harness) |
+| Source | https://github.com/syswe/workloads-predictional-scaling-operators (same functions as D2) |
+| Samples | Per run: ~17–21 metric rows over ~115–120 s wall time after 30 s warmup; 3 repeats × 2 patterns × 3 controllers = **18 CSVs** in `results/runs/` |
+| Modality | HTTP load → CPU pressure on `php-apache`; recorded replica/CPU time series |
+| Characteristics | **seasonal**: sine, base 4, amplitude 12, period ≈80 s, ~4–16 load-generator replicas. **burst**: base 4, peaks toward 18 at t≈30,100,180,260 s, duration ≈25 s. Deterministic (no RNG). |
+| Train / val / test | None; Holt–Winters updates online inside the operator; state cleared between arms |
+| Preprocessing | None beyond authors’ collector; pod-seconds via trapezoid on `elapsed_seconds` |
+| Filtering / augmentation | None |
+| Multimodal combine | N/A |
+| How modalities combine | Single CPU metric drives HPA/PHPA |
+
+### Dataset summary for graders
+
+| Dataset | In paper? | In our experiments? |
+|---|---|---|
+| Kaggle synthetic train/test CSVs (D1) | Yes (offline) | No |
+| Online 6×7 harness / Kaggle results (D2) | Yes | Partial (2 patterns, our own runs) |
+| NASA-HTTP (D3) | Yes (MAPE) | No |
+| Alibaba Cluster Trace (D4) | Yes (MAPE) | No |
+| Seasonal + burst live load (D5) | Yes (subset of D2) | **Yes** |
 
 ## Environment
 - Host: Windows 10 + WSL2 Ubuntu 24.04 (`Ubuntu2404`), Docker Desktop Engine ~29.x, ~8 GB / 8 CPUs to Docker

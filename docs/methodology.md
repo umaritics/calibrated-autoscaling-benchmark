@@ -11,6 +11,8 @@ The cluster runs `php-apache` (CPU request 200 millicores, limit 500 millicores)
 
 We evaluate the seasonal pattern and the burst pattern. We do not re-implement their LLM classifier (Gemini 2.5 Pro, reported 96.7% pattern-classification accuracy) or their 600-scenario offline forecast study (+37.4% accuracy; sub-2% MAPE on NASA/Alibaba). Those are paper claims outside our cost-focused online core.
 
+Full documentation of every dataset in the paper (synthetic Kaggle CSVs, online harness traces, NASA-HTTP, Alibaba Cluster Trace) and which ones we executed is in [`docs/reproduction_report.md`](reproduction_report.md) § Datasets.
+
 ## 2. Research gap
 
 The authors’ reactive baseline targets 50% CPU and can remove pods after 60 seconds. That baseline holds spare capacity, so a forecaster’s capacity advantage can look large against a soft controller. The paper’s published headline numbers evaluate forecast accuracy, LLM classification, and (in their Kaggle online release) early-detection time versus HPA. They do not answer when a more conservatively tuned reactive controller is already competitive on capacity, separately on a repeating pattern and on a spike pattern.
