@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-script
+data:
+  main.py: |
+    import time
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+    
+    class RequestHandler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            # Simulate CPU work
+            end_time = time.time() + 0.05
+            while time.time() < end_time:
+                pass
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"Hello World\n")
+            
+    def run(port=8080):
+        server_address = ('', port)
+        httpd = HTTPServer(server_address, RequestHandler)
+        print(f"Starting server on port {port}")
+        httpd.serve_forever()
+        
+    if __name__ == '__main__':
+        run()
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workload-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workload
+  template:
+    metadata:
+      labels:
+        app: workload
+    spec:
+      containers:
+      - name: app
+        image: python:3.10-slim
+        command: ["python", "/app/main.py"]
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 200m
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: script-volume
+          mountPath: /app
+      volumes:
+      - name: script-volume
+        configMap:
+          name: app-script
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workload-service
+spec:
+  selector:
+    app: workload
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort

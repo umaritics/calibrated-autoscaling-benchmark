@@ -1,0 +1,16 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: hybrid-scaledobject
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: workload-app
+  minReplicaCount: 1
+  maxReplicaCount: 20
+  triggers:
+  - type: metrics-api
+    metadata:
+      targetValue: "1"
+      url: "http://scaler-api-service.default.svc.cluster.local:5000/metrics"
+      valueLocation: "hybrid_desired_replicas"

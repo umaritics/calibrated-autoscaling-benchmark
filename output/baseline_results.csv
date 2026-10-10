@@ -1,0 +1,9 @@
+Regime,Policy,SLA Violation Rate,Wasted Capacity
+spike,Calibrated Reactive,0.004,3087.5
+spike,Predictive (SMA),0.004,4612.5
+ramp,Calibrated Reactive,0.0,6116.4189189189165
+ramp,Predictive (SMA),0.0,6209.999999999998
+periodic,Calibrated Reactive,0.0,4931.250401830365
+periodic,Predictive (SMA),0.0,5094.555946667194
+chaotic,Calibrated Reactive,0.017,15328.843399814306
+chaotic,Predictive (SMA),0.002,12631.756010081164
