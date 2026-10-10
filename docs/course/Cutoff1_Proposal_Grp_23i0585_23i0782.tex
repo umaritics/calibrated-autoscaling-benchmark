@@ -1,0 +1,151 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{cite}
+
+\hyphenation{auto-scaling Kuber-netes hori-zontal}
+
+\begin{document}
+
+\title{When Does a Calibrated Reactive Baseline Beat a Predictive Autoscaler? A Reproducible, Regime-Stratified Benchmark on Real Cloud Traces}
+
+\author{Muhammad Usman Al Haq, Muhammad Umar%
+\thanks{Muhammad Usman Al Haq (23i-0585, Primary Researcher) and Muhammad Umar (23i-0782, Co-Researcher) are undergraduate students in the Department of Computer Science, FAST-NUCES, Islamabad, Pakistan. Section~A. Correspondence: 23i-0585@nu.edu.pk.}%
+}
+
+\markboth{Cloud Computing 100-Day Research Assignment, Cutoff 1 --- Research Proposal}%
+{Al Haq \MakeLowercase{\textit{et al.}}: Calibrated Reactive vs.\ Predictive Autoscaling}
+
+\maketitle
+
+\begin{abstract}
+Cloud platforms rely on autoscaling to match capacity to fluctuating demand. Most production systems still use reactive threshold-based controllers such as Kubernetes Horizontal Pod Autoscaler (HPA), while a large literature reports that machine-learning predictive autoscalers outperform HPA. Recent evidence suggests that this conclusion often depends on a weakly tuned reactive baseline and on aggregate metrics that hide workload-regime differences. This study proposes a fully reproducible, regime-stratified benchmark on Azure public traces: a lightweight KEDA-based Holt--Winters / moving-average predictor is compared with a realistically calibrated HPA, per burst regime, and the same comparison is repeated against a strawman HPA to quantify the calibration gap --- how much of the reported predictive advantage disappears once the reactive baseline is properly tuned. The contribution is empirical and methodological, not a new deep-learning algorithm. Reproducibility: The code and reproducibility materials for this study are publicly available at: https://github.com/umaritics/calibrated-autoscaling-benchmark
+\end{abstract}
+
+\begin{IEEEkeywords}
+Cloud computing, autoscaling, Kubernetes HPA, KEDA, workload characterization, burst regime, calibrated baseline, reproducibility.
+\end{IEEEkeywords}
+
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+\IEEEPARstart{C}{loud} platforms must continuously match compute capacity to fluctuating workload demand. The dominant production mechanism remains reactive, threshold-based autoscaling --- most prominently Kubernetes HPA --- which scales resources only after a monitored metric crosses a configured threshold. This lag can cause under-provisioning (SLA violations) or over-provisioning (wasted spend).
+
+Machine-learning-based predictive autoscaling has been widely proposed as a superior alternative, and many papers report that predictive policies outperform a reactive HPA baseline. Three independent lines of recent evidence, however, show a methodological problem with this conclusion. First, RLScale-Bench~\cite{rlscale2026} finds that a properly calibrated rule-based controller can match or beat sophisticated learned policies on cost, and that weakly tuned baselines inflate reported gains. Second, studies commonly report a single aggregate metric over an entire trace, concealing whether prediction wins uniformly or only on easy periodic segments; ADAPT~\cite{adapt2026} shows that per-archetype rankings differ substantially. Third, a 2026 survey of 60 studies~\cite{mca2026} notes that evaluation frameworks are fragmented and difficult to reproduce.
+
+This proposal therefore asks a practitioner-relevant question: under which workload conditions does a well-calibrated reactive HPA actually lose to a lightweight predictive approach, and by how much? The answer guides whether predictive infrastructure is worthwhile for a given workload mix.
+
+\section{Group and Roles}
+This project is undertaken by a two-student group from Section~A.
+
+\textbf{Primary Researcher:} Muhammad Usman Al Haq (23i-0585) coordinates the Overleaf manuscript, leads the Kubernetes/KEDA implementation, scripts the CI-based experimental pipeline, and is the main point of contact with the instructor.
+
+\textbf{Co-Researcher:} Muhammad Umar (23i-0782) leads the literature synthesis and gap analysis, the workload-characterization pipeline, the GitHub repository and reproducibility setup, and dataset preprocessing.
+
+Both students contribute to experiment design, results analysis, and manuscript writing, and both can defend any part of the study.
+
+\section{Approved Research Area and Title}
+\textbf{Approved direction:} AI-Driven Cloud Resource Optimization. The study also intersects Autonomous / Self-Adaptive Cloud Computing, because the evaluation follows a Monitor--Analyse--Plan--Execute measurement loop over live cluster metrics.
+
+\textbf{Working title:} ``When Does a Calibrated Reactive Baseline Beat a Predictive Autoscaler? A Reproducible, Regime-Stratified Benchmark on Real Cloud Traces.'' The title may be refined slightly at Cutoff~2 as the gap is sharpened.
+
+\section{Research Gap}
+Several recent works resemble this study and are distinguished as follows.
+
+\textbf{ARAScaler}~\cite{arascaler2025} segments workloads into burst/nonburst/dynamic/static states and builds a deep ETimeMixer scaler, but does not test whether a carefully tuned HPA can match it per state, and does not release a reproducible harness.
+
+\textbf{Pattern-aware PHPA}~\cite{duman2026} proposes six workload-pattern categories and a 600-scenario evaluation, but compares forecasting accuracy of ML models, not the policy-level question of when a simpler reactive controller is competitive.
+
+\textbf{RLScale-Bench}~\cite{rlscale2026} benchmarks reinforcement-learning agents against a calibrated HPA, but targets RL versus HPA specifically, not lightweight non-deep-learning predictors, and does not stratify results by burst regime.
+
+\textbf{ADAPT}~\cite{adapt2026} evaluates deep MPC-based predictors against HPA over six archetypes in a simulator and focuses on cold-start planning horizons, not a calibrated-baseline comparison against a lightweight forecaster on live infrastructure.
+
+\textbf{Residual gap.} There is no published, fully reproducible, CI-automated study that (a)~stratifies real Azure public-trace workloads into interpretable burst regimes using transparent features (coefficient of variation, autocorrelation, FFT); (b)~evaluates a realistically calibrated HPA against a lightweight KEDA Holt--Winters / moving-average scaler per regime rather than only in aggregate; and (c)~quantifies the \emph{calibration gap} --- how much the predictive advantage shrinks or disappears once the reactive baseline is properly tuned. This gap is methodological and empirical, not a claim of a novel algorithm. It will be narrowed further after the full literature synthesis at Cutoff~2.
+
+\section{Primary Research Question}
+Under which workload burst regimes, measured on real Azure public-trace data, does a lightweight predictive autoscaler (KEDA with Holt--Winters / moving-average forecasting) outperform a realistically calibrated Kubernetes HPA --- and how much of the advantage reported in prior work disappears when the reactive baseline is properly tuned?
+
+\section{Objectives}
+\begin{enumerate}
+\item \textbf{O1 --- Characterize.} Segment Azure Public Dataset VM CPU-utilization traces and classify each segment into interpretable burst regimes (sudden spike, gradual ramp, periodic/diurnal, chaotic) using transparent features: coefficient of variation, periodicity (autocorrelation and FFT), amplitude, and trend slope. This characterization does not depend on live-cluster experiments.
+\item \textbf{O2 --- Calibrate.} Implement a reactive baseline with realistic HPA thresholds and stabilization/cool-down windows, and a predictive KEDA external scaler using Holt--Winters or moving-average forecasting. The predictor is intentionally lightweight so any difference is attributable to the reactive-versus-predictive distinction rather than model complexity.
+\item \textbf{O3 --- Benchmark per regime.} Evaluate both calibrated policies on a kind-based Kubernetes cluster across each burst regime, measuring SLA violation rate, over-provisioning ratio, p95 latency, and scaling stability, to produce a regime-to-policy performance matrix.
+\item \textbf{O4 --- Quantify the calibration gap.} Repeat the experiments with an un-tuned (strawman) HPA to measure how much of the predictive advantage is an artifact of an unfair baseline.
+\end{enumerate}
+
+\section{Proposed Methodology}
+
+\subsection{Dataset}
+The Azure Public Dataset~\cite{cortez2017,azuredataset} provides 5-minute VM CPU-utilization traces from production workloads. Trace windows will be sampled to construct representative examples of each burst regime. The Azure Functions Trace 2019 is a secondary validation source.
+
+\subsection{Workload Regime Characterization}
+A Python (pandas / scikit-learn) pipeline extracts coefficient of variation, one-hour-lag autocorrelation, FFT spectral entropy, amplitude, and trend. A rule-based labelling is the primary, interpretable method; $k$-means clustering is used only as secondary validation. This phase requires no cluster infrastructure.
+
+\subsection{Cluster, Policies, and Load Generation}
+A kind (Kubernetes-in-Docker) cluster hosts a simple CPU-bound HTTP service. The reactive baseline is Kubernetes HPA with realistic thresholds and stabilization windows. The predictive policy is a KEDA external scaler using Holt--Winters forecasting. Locust replays trace-derived demand while Prometheus collects resource and latency metrics. The full experiment --- provisioning, deployment, load replay, collection, and teardown --- is scripted in GitHub Actions. The study does not rely on RAPL/Kepler power metering, which is unreliable inside virtualized/kind environments.
+
+\subsection{Calibration-Gap Experiment}
+Each regime is tested under three conditions: (A)~calibrated HPA versus predictive; (B)~strawman HPA versus predictive; (C)~calibrated HPA versus predictive with a short prediction horizon. The difference between (A) and (B) is the calibration gap.
+
+\subsection{Statistical Rigour and Fallback}
+Experiments are repeated across 3--5 seeds / trace selections. Results report mean $\pm$ standard deviation and Cohen's $d$. A null result --- for example, that a properly calibrated HPA matches the predictive policy on most regimes --- is treated as a valid finding. If live-cluster measurements prove unreliable, an offline trace-replay simulator answers the same research question. Phase-1 characterization remains a complete result in all cases.
+
+\section{Expected Metrics and Outcomes}
+The study reports, per regime: SLA violation rate; over-provisioning ratio and wasted pod-hours; p95/p99 latency and error rate; number of scaling events and thrashing; forecast MAE/RMSE; and calibration-gap magnitude (predictive advantage under strawman HPA minus that under calibrated HPA).
+
+Hypotheses to be tested, not assumed: (H1)~the predictive-versus-reactive gap is smaller or reverses when HPA is properly calibrated, especially on chaotic/spike regimes; (H2)~the predictive advantage is largest on periodic/gradual-ramp regimes and smallest on chaotic/spike regimes; (H3)~the calibration gap is statistically significant and regime-dependent. All measured results will be reported, including any regime in which the predictive policy is uniformly superior.
+
+\section{Responsible AI Use}
+Agent-assisted tools (Google Antigravity and Claude Code) are used to accelerate boilerplate such as Kubernetes manifests, CI configuration, and Python scaffolding. They are not used to fabricate results, references, or experiments. All references in this proposal have been individually verified to resolve. Both students remain responsible for understanding, running, debugging, and defending every part of the study.
+
+\section{Overleaf, GitHub, and Google Sheet Setup}
+One Overleaf project is maintained from the instructor template at \url{https://www.overleaf.com/project/6aa6e371376c6146a41a2778}, named \texttt{[Grp\#FromExcel\_23i0585\_23i0782\_calibrated\_autoscaling\_benchmark]}. The Co-Researcher is an Editor. The instructor (\texttt{basharat.hussain.v@isb.nu.edu.pk}) must remain an Editor with continuous access.
+
+A public GitHub repository is available at \url{https://github.com/umaritics/calibrated-autoscaling-benchmark}. It will contain a README with reproduction instructions, license, characterization pipeline, HPA and KEDA manifests, per-regime Locust scripts, a GitHub Actions workflow that provisions kind and uploads metrics artifacts, and figure-generation scripts. No credentials or private data will be committed. The public URL is also the last line of the abstract.
+
+The official Google Sheet records Group ID, both students' details, Section~A, research area, title, problem, research question, keywords (cloud computing; autoscaling; Kubernetes HPA; KEDA; workload characterization; benchmark; reproducibility; burst regime; calibrated baseline), topic status Proposed / C1, Overleaf and GitHub URLs, and a target journal with impact factor $\geq 1.0$ (e.g., Journal of Cloud Computing, Cluster Computing, or IEEE Access).
+
+\begin{thebibliography}{12}
+
+\bibitem{cortez2017}
+E. Cortez, A. Bonde, A. Muzio, M. Russinovich, M. Fontoura, and R. Bianchini, ``Resource Central: Understanding and Predicting Workloads for Improved Resource Management in Large Cloud Platforms,'' in \emph{Proc. ACM SOSP}, 2017, pp. 153--167.
+
+\bibitem{azuredataset}
+Microsoft Azure, ``AzurePublicDataset,'' GitHub repository, 2019--2024. [Online]. Available: \url{https://github.com/Azure/AzurePublicDataset}
+
+\bibitem{abdullah2022}
+M. Abdullah, W. Iqbal, J. L. Berral, J. Polo, and D. Carrera, ``Burst-Aware Predictive Autoscaling for Containerized Microservices,'' \emph{IEEE Trans. Services Comput.}, vol. 15, no. 3, pp. 1448--1460, 2022.
+
+\bibitem{kumar2026}
+B. Kumar, A. Verma, and R. Buyya, ``Predictive Autoscaling in Cloud-Native and Federated Cloud-Edge Computing Environments: A Taxonomy and Future Directions,'' arXiv:2606.07046, 2026.
+
+\bibitem{bacc2026}
+F. Liu, G. Li, B. Farkiani, and P. Crowley, ``BACC: Budget-Aware Calibration and Control for Horizontal Autoscaling,'' arXiv:2606.20575, 2026.
+
+\bibitem{pahpa2026}
+``PAHPA: Revolutionizing Kubernetes Autoscaling with Integrated Predictive Analytics and Real-Time Monitoring,'' \emph{IEEE Trans. Services Comput.}, 2026.
+
+\bibitem{mca2026}
+V. S. Machiraju, V. Kumar, and S. Sharma, ``ML-Based Autoscaling for Elastic Cloud Applications: Taxonomy, Frameworks, and Evaluation,'' \emph{Math. Comput. Appl.}, vol. 31, no. 2, art. 49, 2026.
+
+\bibitem{schroder2023}
+C. Schr\"oder, R. B\"ohm, and A. Lampe, ``Comparison of Autoscaling Frameworks for Containerised Machine-Learning Applications in a Local and Cloud Environment,'' arXiv:2311.18659, 2023.
+
+\bibitem{rlscale2026}
+G. Zhang, C. Sun, K. Zhao, X. Chu, S. Sarkani, and J. Fossaceca, ``When Does Deep RL Beat Calibrated Baselines? A Benchmark Study on Adaptive Resource Control,'' arXiv:2605.26418, 2026.
+
+\bibitem{adapt2026}
+H. S. Baghel, ``ADAPT: A Self-Calibrating Proactive Autoscaler for Container Orchestration,'' arXiv:2605.15788, 2026.
+
+\bibitem{arascaler2025}
+B. Jeong and Y.-S. Jeong, ``ARAScaler: Adaptive Resource Autoscaling Scheme Using ETimeMixer for Efficient Cloud-Native Computing,'' \emph{IEEE Trans. Services Comput.}, vol. 18, no. 1, pp. 72--84, 2025.
+
+\bibitem{duman2026}
+C. Duman and S. Eken, ``From Reactive to Predictive: A Pattern-Aware Framework for Kubernetes Autoscaling with Large Language Model Integration,'' \emph{J. Syst. Softw.}, 2026.
+
+\end{thebibliography}
+
+\end{document}

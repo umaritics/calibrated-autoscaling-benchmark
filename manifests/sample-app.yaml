@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: php-apache-config
+data:
+  index.php: |
+    <?php
+      // HPA example - CPU intensive operation (moderate)
+      $x = 0.0001;
+      for ($i = 0; $i <= 500000; $i++) {
+        $x += sqrt($x);
+      }
+      echo "OK!";
+    ?>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-apache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: php-apache
+  template:
+    metadata:
+      labels:
+        run: php-apache
+    spec:
+      containers:
+        - name: php-apache
+          # Multi-arch image (ARM64 + AMD64 destekli)
+          image: php:8.2-apache
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 200m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi
+          volumeMounts:
+            - name: php-config
+              mountPath: /var/www/html
+          readinessProbe:
+            httpGet:
+              path: /index.php
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /index.php
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 5
+      volumes:
+        - name: php-config
+          configMap:
+            name: php-apache-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-apache
+spec:
+  selector:
+    run: php-apache
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP

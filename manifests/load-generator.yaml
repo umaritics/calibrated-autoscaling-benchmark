@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: load-generator
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: load-generator
+  template:
+    metadata:
+      labels:
+        app: load-generator
+    spec:
+      containers:
+        - name: load-generator
+          # Multi-arch image (ARM64 + AMD64 destekli)
+          image: busybox:1.36
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Load generator started - ultra aggressive"
+              # Servisin hazır olmasını bekle
+              sleep 3
+              # Sonsuz döngüde sürekli istek gönder
+              while true; do
+                wget -q -O- http://php-apache.phpa-lab.svc.cluster.local/ > /dev/null 2>&1
+                wget -q -O- http://php-apache.phpa-lab.svc.cluster.local/ > /dev/null 2>&1
+                wget -q -O- http://php-apache.phpa-lab.svc.cluster.local/ > /dev/null 2>&1
+              done
+          resources:
+            requests:
+              cpu: 20m
+              memory: 16Mi
+            limits:
+              cpu: 50m
+              memory: 32Mi

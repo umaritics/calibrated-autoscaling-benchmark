@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+Thumbs.db
+*.log
+upstream/workloads-predictional-scaling-operators/
+output/
+*.docx
+.idea/
+.vscode/
