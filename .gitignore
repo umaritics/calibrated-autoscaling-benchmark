@@ -11,3 +11,7 @@ output/
 *.docx
 .idea/
 .vscode/
+# Supplied datasets stay local; checksums and derived results are versioned.
+/data.zip
+/data/*
+!/data/README.md

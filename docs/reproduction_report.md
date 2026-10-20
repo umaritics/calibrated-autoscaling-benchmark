@@ -13,7 +13,7 @@
 Kubernetes HPA adds pods only after CPU is already high. The paper adds predictive autoscaling (PHPA) with pattern-aware forecasting and LLM-based pattern recognition.
 
 ## Core method we implemented
-We did **not** re-run the LLM classifier, the 600-scenario offline accuracy study, or all 42 online scenarios. We ran the **online core**: `php-apache` (CPU request 200m), busybox load generator, metrics-server, the authors’ HPA settings (CPU target 50%, scale-down stabilization 60s, max 20), and Holt–Winters with the paper’s coefficients (α=0.9, β=0.2, γ=0.3, seasonalPeriods 6, syncPeriod 10s).
+The original live phase did **not** re-run the LLM classifier or all 42 online scenarios. The dataset phase now evaluates all 600 supplied synthetic scenarios under our own documented forecast protocol and audits all 42 released online traces. The original live phase ran the **online core**: `php-apache` (CPU request 200m), busybox load generator, metrics-server, the authors’ HPA settings (CPU target 50%, scale-down stabilization 60s, max 20), and Holt–Winters with the paper’s coefficients (α=0.9, β=0.2, γ=0.3, seasonalPeriods 6, syncPeriod 10s).
 
 ## Cloud computing component
 Kubernetes schedules pods. HPA / PHPA change php-apache replicas. metrics-server is the metric pipeline. Docker Desktop Kubernetes (kind, 1 node, v1.36.1). No commercial cloud account.
@@ -23,23 +23,23 @@ None in our runs. The paper’s LLM path is multimodal text analysis of workload
 
 ## Datasets (paper inventory + what we used)
 
-Assignment step 3 requires documenting **all** datasets used in the selected paper. Below is the full inventory. Only the synthetic online patterns marked **USED BY US** were executed in our cluster runs.
+Assignment step 3 requires documenting **all** datasets used in the selected paper. Below is the full inventory. D1 is now evaluated offline, D2 is independently analysed from released traces, and D5 contains our own cluster runs. These are distinct evidence sources.
 
-### D1 — Synthetic pattern CSVs (offline forecast study) — paper only
+### D1 — Synthetic pattern CSVs — evaluated offline
 
 | Field | Detail |
 |---|---|
 | Name | PHPA Research Datasets — k8s Workload Patterns |
 | Source | https://www.kaggle.com/datasets/cnbrkdmn/phpa-research-datasets |
-| Samples | ~1,200 CSV files; ≈500,000 time-series points total (~42–46 MB) |
+| Samples | Measured: 1,200 CSV files, 600 paired scenarios, 2,016,000 observations (the supplied README’s ≈500,000 estimate is incorrect) |
 | Modality | Univariate time series (`timestamp`, `pod_count`) |
-| Characteristics | Six pattern families: Stepped, Burst, Seasonal, Growing, OnOff, Chaotic; parameterised pod ranges (~5–107), noise 0.1–0.9, durations 10–102 minutes |
-| Train / val / test | Per-file **train** (~2,690 rows) and **test** (~674 rows); 15-minute sampling |
+| Characteristics | Six pattern families: Stepped, Burst, Seasonal, Growing, OnOff, Chaotic; 100 scenarios each; every combined train/test series spans 35 days at 15-minute sampling. Filename parameters describe the generator, not the observed file duration. |
+| Train / val / test | Per scenario: **train** 2,688 rows and **test** 672 rows; verified contiguous 15-minute sampling |
 | Preprocessing | Generated from mathematical pattern formulations (not raw production logs) |
 | Filtering / augmentation | Parameter sweeps over pattern knobs; no image/audio augmentation |
 | Multimodal combine | N/A (scalar pod_count series) |
 | Used in paper for | Temporal cross-validation, pattern-adaptive model selection, +37.4% accuracy claim |
-| **Used by us?** | **No** (offline MAPE study not re-run) |
+| **Used by us?** | **Yes** — all 600 scenarios, five forecast variants, 15/60-minute rolling horizons; a separate protocol, not an exact replication of the paper |
 
 ### D2 — Online Kubernetes pattern traces (authors’ released results)
 
@@ -55,7 +55,7 @@ Assignment step 3 requires documenting **all** datasets used in the selected pap
 | Filtering / augmentation | None beyond pattern schedule |
 | Multimodal combine | N/A |
 | Used in paper for | Early-detection vs HPA (e.g. Holt–Winters seasonal **30.8 s**, burst **20.5 s** earlier) |
-| **Used by us?** | **Partially** — we re-ran the **same pattern generator** for seasonal + burst (see D5), not the full 42-scenario matrix |
+| **Used by us?** | **Yes, released-data analysis** of all 42 traces plus 36 timing summaries; our own live runs still cover only seasonal + burst (D5) |
 
 ### D3 — NASA HTTP logs — paper only (real-world generalisation)
 
@@ -108,8 +108,8 @@ Assignment step 3 requires documenting **all** datasets used in the selected pap
 
 | Dataset | In paper? | In our experiments? |
 |---|---|---|
-| Kaggle synthetic train/test CSVs (D1) | Yes (offline) | No |
-| Online 6×7 harness / Kaggle results (D2) | Yes | Partial (2 patterns, our own runs) |
+| Kaggle synthetic train/test CSVs (D1) | Yes (offline) | Yes, all 600 scenarios under our protocol |
+| Online 6×7 harness / Kaggle results (D2) | Yes | All 42 released traces audited; own live runs remain 2 patterns |
 | NASA-HTTP (D3) | Yes (MAPE) | No |
 | Alibaba Cluster Trace (D4) | Yes (MAPE) | No |
 | Seasonal + burst live load (D5) | Yes (subset of D2) | **Yes** |
@@ -126,10 +126,10 @@ Paper abstract / body emphasise forecast accuracy and LLM classification. Online
 
 | Result | Original / published | Our result | Notes |
 |---|---|---|---|
-| HW early detection vs HPA, seasonal | **30.8 s** earlier (Kaggle online release) | NOT RECOMPUTED | Shortened window; we report capacity instead |
-| HW early detection vs HPA, burst | **20.5 s** earlier (Kaggle) | NOT RECOMPUTED | Same |
+| HW early detection vs HPA, seasonal | **30.8 s** earlier (rounded Kaggle release) | **30.77 s**, recomputed from released traces | Difference from exact release: 0; not a new live replication |
+| HW early detection vs HPA, burst | **20.5 s** earlier (rounded Kaggle) | **20.48 s**, recomputed from released traces | Difference from exact release: 0; not a new live replication |
 | Gemini pattern classification | **96.7%** (paper abstract) | NOT MEASURED | No LLM API call |
-| Pattern-specific vs single-model forecast accuracy | **+37.4%** (paper abstract) | NOT MEASURED | Offline 600-scenario study not re-run |
+| Pattern-specific vs single-model forecast accuracy | **+37.4%** (paper abstract) | NOT MEASURED | Our 600-scenario evaluation uses a different protocol; the paper’s improvement denominator and exact comparison are not replicated |
 | Gradient boosting MAPE on NASA / Alibaba | **sub-2%** (paper abstract) | NOT MEASURED | Datasets not downloaded |
 | seasonal pod-seconds, strawman HPA | not in abstract | **943.01 ± 94.07** | Our metric |
 | seasonal pod-seconds, Holt–Winters | not in abstract | **766.80 ± 39.61** | Our metric |
@@ -141,7 +141,7 @@ Paper abstract / body emphasise forecast accuracy and LLM classification. Online
 Full tables, paired differences, Cohen’s d: [`results/results.md`](../results/results.md).
 
 ## Possible explanations for differences
-Online early-detection was not recomputed (different window/hardware). Pod-seconds are our evaluation addition for the capacity gap question. Holt–Winters state starts empty each arm; `seasonalPeriods=6` implies a 60 s season vs ~80 s seasonal load period — cold-start / mismatch risk.
+Online early-detection is now recomputed on the authors’ released traces; it remains unmeasured in our shorter live runs. Pod-seconds are our evaluation addition for the capacity gap question. Holt–Winters state starts empty each arm; `seasonalPeriods=6` implies a 60 s season vs ~80 s seasonal load period — cold-start / mismatch risk.
 
 ## Installation problems
 1. `docker pull syswe/predictive-horizontal-pod-autoscaler:latest` failed (image not public). Installed `jthomperoo/predictive-horizontal-pod-autoscaler:v0.13.2` via Helm; adapted CR to `jamiethompson.me/v1alpha1` with the same HW coefficients.
@@ -155,14 +155,18 @@ syswe Docker Hub image; Gemini API (not used); NASA/Alibaba (not used for this d
 `quick_test.sh` is interactive and does not write CSVs — unused. Wrapper uses `run_pattern_tests.sh`.
 
 ## Dataset problems
-None for seasonal/burst (deterministic).
+D1’s README understates total observations: actual count is 2,016,000, with 77,633 zero targets across train and test. D2 has 183 rows with ready replicas exceeding current replicas; these are flagged without altering raw data. Original live seasonal/burst inputs are deterministic.
 
 ## Computational limitations
-18 arms ≈ 70 minutes. Did not run 6×7 matrix or offline 600 scenarios.
+Original live phase: 18 arms ≈ 70 minutes. Dataset phase: all 600 offline scenarios and all 42 authors’ traces; no additional cluster runs. The available v1.32.2 cluster has a controller-manager CreateContainerError, unrelated active workloads, and no PHPA CRD; it is not the original Docker Desktop environment.
 
 ## Deviations from the original experiment
-- 2 patterns (not 6); 3 controllers including our tuned HPA.
+- Live: 2 patterns (not 6); 3 controllers including our tuned HPA. Offline/released-data analysis now covers all six patterns.
 - 120 s / 30 s warmup (not 300 / 60).
 - jthomperoo operator instead of missing syswe image.
-- No LLM, no offline MAPE, no NASA/Alibaba.
+- No LLM or NASA/Alibaba; offline MAPE now measured using our separate rolling-origin protocol.
 - Primary metric: pod-seconds + hot fraction (cost/capacity), not early-detection or forecast MAPE.
+
+## Dataset extension artifacts
+
+See [offline results](../results/dataset_phase/offline_results.md), [online trace audit](../results/dataset_phase/online_results.md), and [dataset phase status](STATUS_DATASET_PHASE.md). File-level SHA-256 hashes, exact row counts, per-scenario metrics, paired comparisons, and package versions are committed under `results/dataset_phase/`. Raw data remain local under `data/`. Earlier live results are preserved.

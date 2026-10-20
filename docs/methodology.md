@@ -9,7 +9,7 @@ The cluster runs `php-apache` (CPU request 200 millicores, limit 500 millicores)
 - Strawman HPA, file `policies/hpa-baseline.yaml` (unchanged): target average CPU utilization 50%, scale-up stabilization 0 seconds, scale-down stabilization 60 seconds, minimum 1 replica, maximum 20 replicas.
 - Holt–Winters predictive autoscaler: alpha 0.9, beta 0.2, gamma 0.3, seasonalPeriods 6, storedSeasons 4, additive trend, additive season, sync period 10 seconds, CPU target 50%, minimum 1, maximum 20. The YAML API group is `jamiethompson.me/v1alpha1` to match the installed operator; the algorithm parameters match the authors’ published configuration.
 
-We evaluate the seasonal pattern and the burst pattern. We do not re-implement their LLM classifier (Gemini 2.5 Pro, reported 96.7% pattern-classification accuracy) or their 600-scenario offline forecast study (+37.4% accuracy; sub-2% MAPE on NASA/Alibaba). Those are paper claims outside our cost-focused online core.
+Our live experiments evaluate the seasonal pattern and the burst pattern. We do not re-implement their LLM classifier (Gemini 2.5 Pro, reported 96.7% pattern-classification accuracy) or their exact offline protocol (+37.4% accuracy; sub-2% MAPE on NASA/Alibaba). Our dataset extension evaluates the supplied synthetic scenarios independently; NASA/Alibaba remain unmeasured.
 
 Full documentation of every dataset in the paper (synthetic Kaggle CSVs, online harness traces, NASA-HTTP, Alibaba Cluster Trace) and which ones we executed is in [`docs/reproduction_report.md`](reproduction_report.md) § Datasets.
 
@@ -100,3 +100,17 @@ This is a **cost/capacity** comparison (pod-seconds), not a latency or SLA evalu
 | Original + Component A | tuned HPA vs always-on Holt–Winters | tuned HPA vs always-on Holt–Winters | measured calibrated_hpa, holtwinters |
 | Original + Component B | Holt–Winters | strawman HPA | derived B_switch_strawman |
 | Original + A + B | Holt–Winters | tuned HPA | derived AB_switch_tuned |
+
+## 10. Dataset extension protocol
+
+All 600 D1 scenarios (100 each of burst, chaotic, growing, onoff, seasonal, stepped) are used. Each supplied chronological split has 2,688 training and 672 test samples at 15-minute intervals. The pipeline rejects missing pairs, invalid targets, or noncontiguous timestamps rather than silently dropping them. A file manifest records SHA-256, byte size, row count, and zero targets.
+
+Forecast horizons are 1 and 4 samples (15 and 60 minutes). Forecast origins begin after all training observations are available. Hence horizon 4 scores test indices 3–671 (669 targets); horizon 1 scores all 672. Models see only observations preceding each origin, including earlier test observations as they arrive. This is rolling-origin forecasting, not a fixed-origin forecast of the entire test block.
+
+Five variants are compared: persistence, trailing six-sample mean, additive Holt–Winters with period 6, Holt–Winters with period selected on the final 20% of training data, and histogram gradient boosting with 24 lag features. HW uses alpha .9, beta .2, gamma .3; candidate periods are 6/12/24/48/96. Period selection minimizes validation MAE separately for each scenario and horizon. Initialization uses two training seasons. GBDT uses 60 iterations, 15 leaves, learning rate .1, seed 0, no early stopping; it fits direct horizon-specific targets once on training data. Negative forecasts are clipped to zero. Neither filenames nor known pattern labels are model features. Period 6 is a sensitivity baseline, not a claim that six offline samples correspond to the live 60-second season.
+
+MAE/RMSE include zero-demand observations. MAPE is explicitly nonzero-only; WAPE uses the sum of absolute targets. Results macro-average scenario metrics, with SD across scenarios (not repeated runs). Paired MAE differences and win counts use the same scenarios. No test-driven hyperparameter search or claim of statistical significance is made. Forecast accuracy alone cannot establish the tuned HPA’s cost or QoS performance on the four additional patterns.
+
+D2 analysis integrates the released ready-replica column over actual elapsed timestamps and reports duration-normalized capacity, saturation, and inconsistent ready/current counts. Timing uses first observed desired-replica increases; ready-replica timing is separate. Released summaries remain identifiable as author-reported values. These are independent runs with warmup and differing windows, not paired repetitions. No synthetic tuned-HPA outcome is inferred from them.
+
+Reproduce with `python scripts/evaluate_datasets.py`; see `requirements-datasets.txt` and `results/dataset_phase/environment.json`. Tests in `tests/test_dataset_evaluation.py` check future-data isolation, horizon alignment, constant-series HW behavior, and zero handling.

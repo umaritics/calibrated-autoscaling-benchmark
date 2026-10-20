@@ -105,3 +105,28 @@ Authors’ Kaggle online release reports Holt–Winters early-detection vs HPA (
 - ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\burst\strawman_hpa.csv`
 - ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\burst\holtwinters.csv`
 - ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\burst\calibrated_hpa.csv`
+
+## Dataset phase extension (separate evidence)
+
+The live tables above remain unchanged. New [offline results](dataset_phase/offline_results.md) cover all 600 supplied scenarios across six patterns, five forecast variants, and two horizons. [Released online trace analysis](dataset_phase/online_results.md) audits all 42 authors’ traces and 36 early-detection summaries. Per-scenario values, manifests, package versions and full model tables are under `results/dataset_phase/`.
+
+These analyses extend pattern coverage without assigning unmeasured tuned-HPA outcomes to growing, onoff, chaotic or stepped. The released online runs are not extra repetitions of our local study. NASA/Alibaba and additional live trials remain unmeasured; see [phase status](../docs/STATUS_DATASET_PHASE.md).
+
+### Lowest mean MAE among the five evaluated variants
+
+| pattern | horizon_steps | model | mae |
+|---|---|---|---|
+| burst | 1 | persistence | 1.0375 |
+| burst | 4 | gbdt | 2.2975 |
+| chaotic | 1 | persistence | 2.67 |
+| chaotic | 4 | persistence | 4.1074 |
+| growing | 1 | persistence | 0.3659 |
+| growing | 4 | persistence | 0.6371 |
+| onoff | 1 | gbdt | 5.5859 |
+| onoff | 4 | gbdt | 7.6591 |
+| seasonal | 1 | gbdt | 0.5326 |
+| seasonal | 4 | gbdt | 0.6243 |
+| stepped | 1 | persistence | 0.6099 |
+| stepped | 4 | persistence | 0.9876 |
+
+These are descriptive test-set rankings, not a deployed pattern-switch policy. At 15 minutes, persistence leads four of six patterns; GBDT leads seasonal and onoff. A forecasting gain is not a measured pod-second or latency gain. Full MAE/RMSE/MAPE/WAPE tables, scenario variability and paired wins are in the linked offline report.

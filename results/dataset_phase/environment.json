@@ -1,0 +1,14 @@
+{
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "sklearn": "1.9.1",
+  "horizons": [
+    1,
+    4
+  ],
+  "seed": 0,
+  "scenarios": 600,
+  "total_rows": 2016000,
+  "source_archive_sha256": "5450464603a867356500124331469539a1df66711e5ed3e2127e98418b032082"
+}

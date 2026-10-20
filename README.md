@@ -67,3 +67,24 @@ python scripts/analyze_our_results.py
 ## License
 
 MIT. Upstream harness and operator retain their original licenses.
+
+## Dataset extension
+
+Both supplied Kaggle datasets are retained locally under `data/` (raw files and ZIP excluded from Git). The extension evaluates **all 600 synthetic scenarios across six patterns**, using five forecast variants at 15- and 60-minute horizons, and audits **all 42 authors’ online traces**. The original 18 live runs above remain separate evidence.
+
+- [Offline metrics and paired comparisons](results/dataset_phase/offline_results.md)
+- [Released online trace audit](results/dataset_phase/online_results.md)
+- [Data layout and acquisition](data/README.md)
+- [Status and remaining live/production-data work](docs/STATUS_DATASET_PHASE.md)
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-datasets.txt
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python scripts/evaluate_datasets.py
+.venv/bin/python scripts/verify_dataset_results.py
+```
+
+The authors’ released early-detection arithmetic is reproducible, but earlier scaling does not imply lower capacity: their HW trace holds more time-averaged ready replicas than their HPA trace on every pattern. The release contains inconsistent ready/current counts and only one run per condition, so this is descriptive evidence. No new live trials, NASA/Alibaba evaluation, or latency measurements are claimed.
+
+Offline result: at 15 minutes, persistence has the lowest mean MAE on burst, chaotic, growing and stepped; gradient boosting leads seasonal and onoff. See the [computed pattern/horizon rankings](results/results.md#lowest-mean-mae-among-the-five-evaluated-variants). Forecast rankings alone do not establish autoscaling cost or QoS.
