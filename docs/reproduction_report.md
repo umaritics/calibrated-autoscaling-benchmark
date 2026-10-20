@@ -170,3 +170,7 @@ Original live phase: 18 arms ≈ 70 minutes. Dataset phase: all 600 offline scen
 ## Dataset extension artifacts
 
 See [offline results](../results/dataset_phase/offline_results.md), [online trace audit](../results/dataset_phase/online_results.md), and [dataset phase status](STATUS_DATASET_PHASE.md). File-level SHA-256 hashes, exact row counts, per-scenario metrics, paired comparisons, and package versions are committed under `results/dataset_phase/`. Raw data remain local under `data/`. Earlier live results are preserved.
+
+### Independent source verification
+
+Initial computations used the supplied ZIP. Subsequent direct Kaggle downloads matched all 1,288 supplied files byte-for-byte (1,201 D1 and 87 D2), including all 1,249 CSVs. Source URLs, archive hashes and per-file comparisons are recorded in `results/dataset_phase/kaggle_source_verification.json`. The independent output verifier and all three temporal/metric tests passed again. Source identity does not imply equivalence to the paper’s experimental protocol.

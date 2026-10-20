@@ -19,3 +19,7 @@ Next live milestone: a healthy dedicated cluster with PHPA and metrics-server, t
 NASA and Alibaba files were not supplied. Acquisition details are in `data/README.md`; preprocessing and paper comparability must be specified before testing the production MAPE claim. No Gemini classifier or exact +37.4% paper comparison was reproduced. No performance/SLA claim is supported by CPU saturation alone.
 
 See `results/dataset_phase/offline_results.md` and `online_results.md` for computed tables, and `docs/reproduction_report.md` for the original-versus-ours comparison. Historical handoff text describes the pre-extension state.
+
+## Source provenance follow-up
+
+The original evaluation used the supplied `data.zip`, not a new web download. Following the provenance review, both Kaggle archives were independently downloaded: all 1,288 files match the original supplied inputs byte-for-byte. See `results/dataset_phase/kaggle_source_verification.json` and `scripts/verify_kaggle_sources.py`. This closes the source-identity gap; the live, production-data, and exact-paper-protocol gaps above remain open. This phase is a completed offline milestone, not a completed reproduction of every paper claim.

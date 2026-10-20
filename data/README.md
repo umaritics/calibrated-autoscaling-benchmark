@@ -23,3 +23,15 @@ The pipeline requires all 600 scenario pairs; it does not silently sample. Outpu
 - Alibaba: use the [2018 trace documentation](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-v2018), obtain `container_usage.csv` through its download instructions/survey, and place it in `data/alibaba/`. A documented time/container subset is acceptable. The original paper’s exact release, subset, aggregation and split must be established before claiming reproduction of its MAPE.
 
 Neither production dataset is in the supplied archive or evaluated by this pipeline. Do not substitute synthetic errors for production errors.
+
+## Independent Kaggle source verification
+
+After the initial experiments on the user-supplied ZIP, both datasets were independently downloaded from Kaggle's public download API into `data/source_verification/`. All 1,201 D1 files (1,200 CSVs) and all 87 D2 files (49 CSVs) are byte-identical to the supplied files. This verifies the experimental inputs against the downloaded releases; it does not establish that our forecasting protocol matches the paper.
+
+```bash
+curl -fL https://www.kaggle.com/api/v1/datasets/download/cnbrkdmn/phpa-research-datasets -o data/source_verification/phpa-kaggle.zip
+curl -fL https://www.kaggle.com/api/v1/datasets/download/cnbrkdmn/workloads-predictional-scaling-patterns -o data/source_verification/online-kaggle.zip
+python3 scripts/verify_kaggle_sources.py
+```
+
+Create `data/source_verification/` first if needed. Downloaded archives remain local. The committed `results/dataset_phase/kaggle_source_verification.json` records the verification timestamp, source URLs, archive hashes, and every member's downloaded/local hash. A future release may differ; the verifier fails rather than silently accepting changed inputs.
