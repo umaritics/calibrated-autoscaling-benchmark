@@ -122,3 +122,29 @@ MAE/RMSE include zero-demand observations. MAPE is explicitly nonzero-only; WAPE
 D2 analysis integrates the released ready-replica column over actual elapsed timestamps and reports duration-normalized capacity, saturation, and inconsistent ready/current counts. Timing uses first observed desired-replica increases; ready-replica timing is separate. Released summaries remain identifiable as author-reported values. These are independent runs with warmup and differing windows, not paired repetitions. No synthetic tuned-HPA outcome is inferred from them.
 
 Reproduce with `python scripts/evaluate_datasets.py`; see `requirements-datasets.txt` and `results/dataset_phase/environment.json`. Tests in `tests/test_dataset_evaluation.py` check future-data isolation, horizon alignment, constant-series HW behavior, and zero handling.
+
+## 11. Real-world forecast-accuracy protocol
+
+Task 11 is separate from every live controller run. NASA uses the raw July 1995
+HTTP log, fixed UTC−04:00 timestamps, complete five-minute calendar bins, and
+request count as the target. The incomplete trailing bin is excluded; covered
+bins without requests remain zero. Alibaba uses the raw v2018 container-usage
+prefix and `cpu_util_percent`. Individual containers are too sparse for honest
+native-cadence forecasting, so the deterministic target is the arithmetic mean
+of valid observations from completed named container blocks at each exact
+timestamp. The selected window is the earliest longest exact 10-second run
+having at least 20 contributors at every timestamp. The boundary-truncated
+container is excluded; no missing observation becomes zero or is imputed.
+
+Each dataset uses a chronological 60/20/20 train/validation/test split and
+rolling origins. Horizons are 5 and 60 minutes for NASA and 10 and 60 seconds
+for Alibaba. Models are persistence, trailing moving average, validation-tuned
+exponential smoothing, and fixed-hyperparameter histogram GBDT with past-target
+lags only. NASA smoothing has a fixed daily season; Alibaba uses nonseasonal
+Holt linear smoothing because the retained 9.7-hour window cannot establish a
+season. MAPE excludes and counts zero actuals explicitly; MAE, RMSE, WAPE, and
+sMAPE include every forecast pair. Exact boundaries, parameters, and rules are
+frozen in `results/real_world_forecasting/evaluation_protocol.json`.
+
+Forecast accuracy does not imply improved pod-seconds, service quality, or
+scale timing. NASA request counts and Alibaba CPU percentages are never pooled.

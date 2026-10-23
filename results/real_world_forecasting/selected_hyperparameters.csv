@@ -1,0 +1,5 @@
+dataset,horizon_steps,model,alpha,beta,gamma,seasonal_period,selection_dataset,selection_metric
+nasa,1,exponential_smoothing,0.2,0.0,0.1,288.0,nasa,validation MAE
+nasa,12,exponential_smoothing,0.2,0.0,0.3,288.0,nasa,validation MAE
+alibaba,1,exponential_smoothing,0.2,0.0,,,alibaba,validation MAE
+alibaba,6,exponential_smoothing,0.2,0.0,,,alibaba,validation MAE

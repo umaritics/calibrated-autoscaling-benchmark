@@ -4,6 +4,16 @@ Audit date: 2026-10-24. This document evaluates the requirements in
 `HANDOFF_Dataset_Phase.md` against committed evidence. No workload was launched
 for this audit.
 
+## Task 11 update — real-world forecasting complete
+
+The later Task 11 forecast-accuracy milestone is **VERIFIED COMPLETE under its
+independent protocol**. It adds real held-out NASA and Alibaba predictions for
+four models and two horizons per dataset, 7 focused tests, and an independent
+51-check verifier. The result is not an exact paper reproduction: the accessible
+sources do not disclose the real-world split, horizon, feature construction,
+zero-target rule, or Alibaba machine identifiers. Evidence is under
+`results/real_world_forecasting/`; source data remain local and ignored.
+
 ## Completion rule and result
 
 The four allowed dispositions are:
@@ -80,6 +90,7 @@ claims are already documented as NOT RECOMPUTED.
 | Stepped replay | `results/live_trace_phase/stepped_first_comparison/RESULTS.md`; `WORKLOAD_TRANSFORMATION.md`; `comparison.csv`; `independent_verification.json`; `evidence_manifest.json` |
 | Chaotic safety checkpoint | `results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md`; `safety_checkpoint.json`; `evidence_manifest.json`; `interrupted_runs/` |
 | Integrated live interpretation | `results/live_trace_phase/results.md` |
+| Real-world forecasting | `results/real_world_forecasting/RESULTS.md`; `metrics.csv`; `predictions.csv`; `evaluation_protocol.json`; `independent_verification.json`; `PAPER_COMPARISON.md`; `evidence_manifest.json` |
 | Local evidence policy | `docs/LOCAL_EVIDENCE_RETENTION.md` |
 
 Raw data and failed/interrupted attempts are evidence and must not be cleaned,

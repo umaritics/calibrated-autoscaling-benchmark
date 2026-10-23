@@ -1,0 +1,141 @@
+{
+  "protocol_version": 1,
+  "frozen_before_model_fit": true,
+  "random_seed": 20261024,
+  "split": "chronological 60% train / 20% validation / 20% held-out test; integer floor boundaries",
+  "evaluation": "rolling origin; observations earlier in the test partition become available after their timestamps",
+  "models": {
+    "persistence": "last observed target",
+    "moving_average": "unweighted trailing window; 12 NASA samples, 6 Alibaba samples",
+    "exponential_smoothing": "NASA additive seasonal Holt-Winters with fixed daily period 288; Alibaba nonseasonal Holt linear; alpha/beta/gamma chosen only by validation MAE from documented grid",
+    "gbdt": "direct horizon-specific histogram gradient boosting with past-target lags only; fixed hyperparameters; trained on train+validation labels, never test labels"
+  },
+  "gbdt_hyperparameters": {
+    "max_iter": 80,
+    "max_leaf_nodes": 15,
+    "learning_rate": 0.05,
+    "min_samples_leaf": 20,
+    "early_stopping": false
+  },
+  "exponential_smoothing_grid": {
+    "alpha": [
+      0.2,
+      0.5,
+      0.8
+    ],
+    "beta": [
+      0.0,
+      0.2
+    ],
+    "gamma_nasa": [
+      0.1,
+      0.3
+    ]
+  },
+  "metrics": [
+    "MAE",
+    "RMSE",
+    "MAPE on nonzero actuals",
+    "WAPE",
+    "sMAPE"
+  ],
+  "zero_rule": "MAE/RMSE/WAPE/sMAPE include zero targets. MAPE excludes them as mathematically undefined and reports both defined and undefined pair counts.",
+  "negative_prediction_rule": "exponential-smoothing and GBDT forecasts clipped to zero",
+  "missing_rule": "No imputation. NASA complete covered calendar bins without records are valid zero request counts; Alibaba requires exact contiguous source timestamps and never treats absent containers as zero.",
+  "combination_rule": "No cross-dataset aggregation. Alibaba combines valid simultaneous CPU percentages by arithmetic mean after limiting each container to one contribution per timestamp.",
+  "datasets": {
+    "nasa": {
+      "target": "HTTP request count per complete 5-minute bin",
+      "units": "requests/5 minutes",
+      "interval_seconds": 300,
+      "horizons": [
+        1,
+        12
+      ],
+      "moving_average_window": 12,
+      "seasonal_period": 288,
+      "gbdt_lags": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        288,
+        289,
+        576
+      ],
+      "observations": 7938,
+      "train_indices": [
+        0,
+        4761
+      ],
+      "validation_indices": [
+        4762,
+        6349
+      ],
+      "test_indices": [
+        6350,
+        7937
+      ],
+      "train_start_timestamp": "1995-07-01T04:00:00+00:00",
+      "train_end_timestamp": "1995-07-17T16:45:00+00:00",
+      "validation_start_timestamp": "1995-07-17T16:50:00+00:00",
+      "validation_end_timestamp": "1995-07-23T05:05:00+00:00",
+      "test_start_timestamp": "1995-07-23T05:10:00+00:00",
+      "test_end_timestamp": "1995-07-28T17:25:00+00:00"
+    },
+    "alibaba": {
+      "target": "mean cpu_util_percent among valid observed complete-prefix containers at each exact source timestamp",
+      "units": "percent",
+      "interval_seconds": 10,
+      "horizons": [
+        1,
+        6
+      ],
+      "moving_average_window": 6,
+      "seasonal_period": null,
+      "gbdt_lags": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        60,
+        120
+      ],
+      "observations": 3489,
+      "train_indices": [
+        0,
+        2092
+      ],
+      "validation_indices": [
+        2093,
+        2790
+      ],
+      "test_indices": [
+        2791,
+        3488
+      ],
+      "train_start_timestamp": 547190,
+      "train_end_timestamp": 568110,
+      "validation_start_timestamp": 568120,
+      "validation_end_timestamp": 575090,
+      "test_start_timestamp": 575100,
+      "test_end_timestamp": 582070
+    }
+  }
+}

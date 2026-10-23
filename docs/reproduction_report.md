@@ -71,7 +71,7 @@ Assignment step 3 requires documenting **all** datasets used in the selected pap
 | Filtering / augmentation | Hurricane Erin gap in early Aug 1995 (server down) noted by ITA |
 | Multimodal combine | N/A (log text → univariate rate series) |
 | Used in paper for | Sub-2% MAPE claim for gradient boosting on production-style workloads |
-| **Used by us?** | **Yes, live demand replay** — one fixed July window; 8/9 accepted controller matrix, not the paper's forecast-MAPE protocol |
+| **Used by us?** | **Yes** — one fixed July window in the live replay, plus an independent raw-log forecast evaluation on 7,938 complete five-minute bins |
 
 ### D4 — Alibaba Cluster Trace — bounded production-derived live replay
 
@@ -87,7 +87,7 @@ Assignment step 3 requires documenting **all** datasets used in the selected pap
 | Filtering / augmentation | Paper-specific filtering not fully detailed in open abstract snippets |
 | Multimodal combine | N/A |
 | Used in paper for | Sub-2% MAPE generalisation claim with gradient boosting |
-| **Used by us?** | **Yes, with severe limitations** — first 42 `c_1` observations from a 16 MiB nonrepresentative archive prefix, transformed into HTTP demand; one accepted run per controller |
+| **Used by us?** | **Yes, with severe limitations** — live replay uses 42 `c_1` observations; the separate forecast evaluation uses a native-cadence 3,489-point observed-container mean with at least 20 contributors per timestamp from the same nonrepresentative prefix |
 
 ### D5 — Synthetic online load we executed — **USED BY US**
 
@@ -110,8 +110,8 @@ Assignment step 3 requires documenting **all** datasets used in the selected pap
 |---|---|---|
 | Kaggle synthetic train/test CSVs (D1) | Yes (offline) | Yes, all 600 scenarios under our protocol |
 | Online 6×7 harness / Kaggle results (D2) | Yes | All 42 released traces audited; own live runs remain 2 patterns |
-| NASA-HTTP (D3) | Yes (MAPE) | Yes, fixed-window live demand replay; not MAPE reproduction |
-| Alibaba Cluster Trace (D4) | Yes (MAPE) | Yes, one-container observation-sequence live replay; not full dataset |
+| NASA-HTTP (D3) | Yes (MAPE) | Yes, live replay plus held-out raw-log forecasting under our protocol |
+| Alibaba Cluster Trace (D4) | Yes (MAPE) | Yes, live replay plus native-timestamp held-out forecasting on a bounded prefix |
 | Seasonal + burst live load (D5) | Yes (subset of D2) | **Yes** |
 
 ## Environment
@@ -130,7 +130,7 @@ Paper abstract / body emphasise forecast accuracy and LLM classification. Online
 | HW early detection vs HPA, burst | **20.5 s** earlier (rounded Kaggle) | **20.48 s**, recomputed from released traces | Difference from exact release: 0; not a new live replication |
 | Gemini pattern classification | **96.7%** (paper abstract) | NOT MEASURED | No LLM API call |
 | Pattern-specific vs single-model forecast accuracy | **+37.4%** (paper abstract) | NOT MEASURED | Our 600-scenario evaluation uses a different protocol; the paper’s improvement denominator and exact comparison are not replicated |
-| Gradient boosting MAPE on NASA / Alibaba | **sub-2%** (paper abstract) | NOT MEASURED | Our live demand-replay protocol does not reproduce the paper's forecasting protocol |
+| Gradient boosting MAPE on NASA / Alibaba | GBDT **1.36% / 0.75%** in the public repository; abstract says sub-2% | NASA **41.6072% / 65.2408%** at 5/60 min; Alibaba **15.2773% / 15.2691%** at 10/60 s (nonzero-target MAPE) | **NOT DIRECTLY COMPARABLE**: different source subset/target, split, horizon, features, and zero rule; no numerical difference is valid |
 | D1 rolling one-step MAE | not published in a directly matching table | burst 1.0375 persistence; chaotic 2.6700 persistence; growing 0.3659 persistence; on/off 5.5859 GBDT; seasonal 0.5326 GBDT; stepped 0.6099 persistence | Our protocol and metric; no paper difference computed |
 | New live request error / successful-request p95 | not supported as matching paper metrics | Measured for bounded NASA-, Alibaba-, on/off-, growing-, stepped-, and partial chaotic replays | NOT COMPARABLE to forecast MAPE or released early-detection seconds; see `results/live_trace_phase/results.md` |
 | seasonal pod-seconds, strawman HPA | not in abstract | **943.01 ± 94.07** | Our metric |
@@ -170,7 +170,7 @@ Original live phase: 18 arms ≈ 70 minutes. Dataset phase: all 600 offline scen
   covers all six patterns.
 - 120 s / 30 s warmup (not 300 / 60).
 - jthomperoo operator instead of missing syswe image.
-- No LLM and no NASA/Alibaba forecast-MAPE reproduction; later live work maps bounded production observations into benchmark HTTP demand.
+- No LLM or exact NASA/Alibaba paper-protocol reproduction. Task 11 adds an independent raw-source forecast evaluation; later live work remains a separate benchmark HTTP-demand mapping.
 - Primary metric: pod-seconds + hot fraction (cost/capacity), not early-detection or forecast MAPE.
 
 ## Dataset extension artifacts
@@ -180,3 +180,13 @@ See [offline results](../results/dataset_phase/offline_results.md), [online trac
 ### Independent source verification
 
 Initial computations used the supplied ZIP. Subsequent direct Kaggle downloads matched all 1,288 supplied files byte-for-byte (1,201 D1 and 87 D2), including all 1,249 CSVs. Source URLs, archive hashes and per-file comparisons are recorded in `results/dataset_phase/kaggle_source_verification.json`. The independent output verifier and all three temporal/metric tests passed again. Source identity does not imply equivalence to the paper’s experimental protocol.
+
+### Real-world forecast artifacts
+
+The Task 11 protocol, preprocessed series, 18,224 held-out prediction rows, 16
+metric groups, paper comparison, and independent verification are under
+[`results/real_world_forecasting/`](../results/real_world_forecasting/). Seven
+focused tests cover parsing, aggregation, duplicate/missing handling,
+chronological splits, leakage, alignment, and metric arithmetic. The independent
+verifier recomputes metrics without importing the evaluator and checks source
+hashes, boundaries, native continuity, common targets, and row alignment.

@@ -1,0 +1,5 @@
+Dataset,Original model,Original metric/value,Our model,Our metric/value,Protocol comparable?,Explanation
+NASA,GBDT,MAPE 1.36%,HistGradientBoostingRegressor,MAPE(nonzero) 41.6072% at 300s,NO — NOT DIRECTLY COMPARABLE,"Different target/subset, split, features, horizon and zero handling; no numerical difference is valid."
+NASA,GBDT,MAPE 1.36%,HistGradientBoostingRegressor,MAPE(nonzero) 65.2408% at 3600s,NO — NOT DIRECTLY COMPARABLE,"Different target/subset, split, features, horizon and zero handling; no numerical difference is valid."
+ALIBABA,GBDT,MAPE 0.75%,HistGradientBoostingRegressor,MAPE(nonzero) 15.2773% at 10s,NO — NOT DIRECTLY COMPARABLE,"Different target/subset, split, features, horizon and zero handling; no numerical difference is valid."
+ALIBABA,GBDT,MAPE 0.75%,HistGradientBoostingRegressor,MAPE(nonzero) 15.2691% at 60s,NO — NOT DIRECTLY COMPARABLE,"Different target/subset, split, features, horizon and zero handling; no numerical difference is valid."

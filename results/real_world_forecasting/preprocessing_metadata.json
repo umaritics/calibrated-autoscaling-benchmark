@@ -1,0 +1,78 @@
+{
+  "nasa": {
+    "source_path": "data/nasa/NASA_access_log_Jul95.gz",
+    "sha256": "199109ed0f273e095da6ccd5fc9dc4cd8bb58daa06d62135e62090fea9d27488",
+    "bytes": 20676672,
+    "parsed_requests": 1891714,
+    "unparsed_records": 1,
+    "invalid_timestamp_records": 0,
+    "timestamp_interpretation": "fixed UTC-04:00 offset recorded in the log; output timestamps are UTC",
+    "timezone_offsets": {
+      "-0400": 1891714
+    },
+    "first_request_local": "1995-07-01T00:00:01-04:00",
+    "last_request_local": "1995-07-28T13:32:25-04:00",
+    "aggregation_seconds": 300,
+    "complete_bins": 7938,
+    "nonempty_bins_including_trailing_partial": 7933,
+    "zero_request_bins": 6,
+    "excluded_trailing_partial_bin_requests": 209,
+    "duplicate_policy": "Each valid log record is one request. Equal timestamps are concurrent requests and are not deduplicated.",
+    "missing_policy": "All complete calendar bins between the first and final partial bin are retained; bins without records are zero requests. No interpolation.",
+    "target": "HTTP request count per complete 5-minute bin",
+    "units": "requests/5 minutes",
+    "paper_protocol_clue": {
+      "july_plus_august_parsed_requests": 3461612,
+      "july_plus_august_nonempty_5_minute_bins": 16364,
+      "interpretation": "These equal the public repository's approximately 3.46 million requests and exactly 16,364 samples, suggesting nonempty-bin aggregation. We do not adopt that irregular-gap sequence because exact paper split/horizon/zero handling remain unknown."
+    }
+  },
+  "nasa_august_companion_inventory": {
+    "source_path": "data/nasa/NASA_access_log_Aug95.gz",
+    "sha256": "14995aed0ba4558ab832613ebea9a3ef2d87cb4297fc67f5694e0032bbb6b788",
+    "bytes": 16633316,
+    "parsed_requests": 1569898,
+    "unparsed_or_invalid_records": 0,
+    "nonempty_5_minute_bins_including_boundary_bins": 8431
+  },
+  "alibaba": {
+    "source_path": "data/alibaba/container_usage.prefix.tar.gz",
+    "sha256": "726e6240926dc2d7ba53cdfb88a91be8564d124d88d4dec1391e9f745e0a2988",
+    "bytes": 16777216,
+    "source_is_bounded_prefix": true,
+    "member": "container_usage.csv",
+    "stream_termination": "ReadError: unexpected end of data",
+    "decoded_complete_rows": 2308039,
+    "malformed_rows": 0,
+    "empty_identifier_rows_excluded": 3503,
+    "named_identifier_blocks_seen": 2430,
+    "unique_named_identifiers_seen": 2430,
+    "repeated_named_identifier_blocks": 0,
+    "complete_named_container_blocks_used": 2429,
+    "truncated_final_identifier_excluded": "c_12304",
+    "invalid_measurements_excluded": 0,
+    "duplicate_container_timestamps": 0,
+    "native_interval_seconds": 10,
+    "minimum_contributors_per_timestamp": 20,
+    "selection_rule": "Earliest longest exact 10-second run for which every timestamp has at least 20 valid observations from complete named container blocks.",
+    "selected_start_seconds": 547190,
+    "selected_end_seconds": 582070,
+    "selected_observations": 3489,
+    "selected_duration_seconds": 34880,
+    "contributors_min": 20,
+    "contributors_median": 36.0,
+    "contributors_max": 59,
+    "missing_policy": "No missing timestamp is filled and no absent container is treated as zero. Only exact source timestamps are averaged.",
+    "duplicate_policy": "At most one contribution per container/timestamp; duplicate rows would be averaged before the cross-container mean.",
+    "target": "mean cpu_util_percent among valid observed complete-prefix containers at each exact source timestamp",
+    "units": "percent",
+    "scope_limitation": "Observed-container mean from a nonrandom prefix, not whole-cluster CPU demand and not an individual-container series."
+  },
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit_learn": "1.9.1",
+    "cpu_thread_limit": 1
+  }
+}

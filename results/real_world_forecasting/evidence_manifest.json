@@ -1,0 +1,84 @@
+{
+  "source_hashes": {
+    "nasa_july": "199109ed0f273e095da6ccd5fc9dc4cd8bb58daa06d62135e62090fea9d27488",
+    "nasa_august_companion": "14995aed0ba4558ab832613ebea9a3ef2d87cb4297fc67f5694e0032bbb6b788",
+    "alibaba_prefix": "726e6240926dc2d7ba53cdfb88a91be8564d124d88d4dec1391e9f745e0a2988"
+  },
+  "files": [
+    {
+      "path": "results/real_world_forecasting/PAPER_COMPARISON.md",
+      "bytes": 2325,
+      "sha256": "462313dcadf30d8521ce6c276207ab811686a947f37056a212e751fd089853b9"
+    },
+    {
+      "path": "results/real_world_forecasting/PREFLIGHT.md",
+      "bytes": 707,
+      "sha256": "b1ed3c4e11d41a28067089f8477f8241a4e795338b06625cb57d003b5413400f"
+    },
+    {
+      "path": "results/real_world_forecasting/REPRODUCE.md",
+      "bytes": 578,
+      "sha256": "b75ca965133e699545e381bb3fa9fab738ba6df5903e02a48fe5a19ab50cb538"
+    },
+    {
+      "path": "results/real_world_forecasting/RESULTS.md",
+      "bytes": 4555,
+      "sha256": "a982ba01e69d93bf16fdb3589ccecf7089c741345ec9d4338d9ead26fc8a11e4"
+    },
+    {
+      "path": "results/real_world_forecasting/SOURCE_INVENTORY.md",
+      "bytes": 1715,
+      "sha256": "462c47ad504417cbac62d9926a4520e1230bbe0348fe2e9bd8bb01a8cdb2191b"
+    },
+    {
+      "path": "results/real_world_forecasting/TESTS.md",
+      "bytes": 1238,
+      "sha256": "2455d42de810b9ef6861c2c7345c18f9249ba91c7edf3bff37b73b04045c17f8"
+    },
+    {
+      "path": "results/real_world_forecasting/alibaba_series.csv",
+      "bytes": 91471,
+      "sha256": "8856d50ce36f2ecbffe9c932b3cd54fe82aea43d861607adf77775ad7db4b644"
+    },
+    {
+      "path": "results/real_world_forecasting/evaluation_protocol.json",
+      "bytes": 3941,
+      "sha256": "f56145de80430b61315d6617e77aab3508f5cf8d8688b87853a7b3d30ab7ee58"
+    },
+    {
+      "path": "results/real_world_forecasting/independent_verification.json",
+      "bytes": 9591,
+      "sha256": "a4620f5a95acbc4b19f3aa4516739ed092634d35ee9fa344e024f0017ca203bd"
+    },
+    {
+      "path": "results/real_world_forecasting/metrics.csv",
+      "bytes": 4130,
+      "sha256": "4bfa142b2dd656622769e718f27a707f6a2db8304098e061347b963df969bc6d"
+    },
+    {
+      "path": "results/real_world_forecasting/nasa_series.csv",
+      "bytes": 252835,
+      "sha256": "dd38233c8818df31155657c3b799829d65c2876bb80aff470bb27f76a7612e78"
+    },
+    {
+      "path": "results/real_world_forecasting/paper_comparison.csv",
+      "bytes": 982,
+      "sha256": "9bf9f1c8ee6d07d9d2b604412f7b912a422835a12116a44e51f95425eda4998b"
+    },
+    {
+      "path": "results/real_world_forecasting/predictions.csv",
+      "bytes": 1834997,
+      "sha256": "456e10b089a1224413840dc18e160f728ea561583c649183b9798a8831e725b8"
+    },
+    {
+      "path": "results/real_world_forecasting/preprocessing_metadata.json",
+      "bytes": 3830,
+      "sha256": "b30519df029da3ff9ab48ebd5412f2a63add198eed5436dae10b411d4f95cea8"
+    },
+    {
+      "path": "results/real_world_forecasting/selected_hyperparameters.csv",
+      "bytes": 361,
+      "sha256": "ba7374b2a7b09bacb2eef5811d4db0ff8fdd478f719657af37ba1a22a7a04163"
+    }
+  ]
+}

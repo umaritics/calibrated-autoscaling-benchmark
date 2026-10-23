@@ -135,3 +135,24 @@ chaotic attempt; they use a different protocol and remain consolidated in
 | stepped | 4 | persistence | 0.9876 |
 
 These are descriptive test-set rankings, not a deployed pattern-switch policy. At 15 minutes, persistence leads four of six patterns; GBDT leads seasonal and onoff. A forecasting gain is not a measured pod-second or latency gain. Full MAE/RMSE/MAPE/WAPE tables, scenario variability and paired wins are in the linked offline report.
+
+## Real-world forecast-accuracy extension
+
+Task 11 evaluates genuine raw-source observations independently of the live
+replays. NASA uses request counts in 7,938 complete five-minute bins. Alibaba
+uses 3,489 consecutive native 10-second timestamps, averaging only genuinely
+observed CPU percentages from at least 20 completed-prefix containers per
+timestamp. The two targets and their error magnitudes are not comparable.
+
+| Dataset | Horizon | Best held-out MAE model | MAE | RMSE | WAPE | Pairs |
+|---|---:|---|---:|---:|---:|---:|
+| NASA requests/5 min | 5 min | GBDT | 36.3206 | 47.8176 | 18.5139% | 1,588 |
+| NASA requests/5 min | 60 min | GBDT | 50.8335 | 66.6083 | 25.8498% | 1,577 |
+| Alibaba CPU percent | 10 s | GBDT | 1.7249 | 2.1295 | 14.4921% | 698 |
+| Alibaba CPU percent | 60 s | GBDT | 1.7271 | 2.1328 | 14.5218% | 693 |
+
+Exponential smoothing beats persistence and moving average at every horizon;
+GBDT leads but improves on smoothing by only 0.60% MAE for NASA at 60 minutes
+and 3.25% for Alibaba at 60 seconds. Full metrics and exact predictions are in
+[the real-world report](real_world_forecasting/RESULTS.md). The paper comparison
+is explicitly [not directly comparable](real_world_forecasting/PAPER_COMPARISON.md).

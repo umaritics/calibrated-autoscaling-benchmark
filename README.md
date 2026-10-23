@@ -118,6 +118,27 @@ and [dataset audit](results/live_trace_phase/alibaba_first_comparison/DATASET_VA
 
 Offline result: at 15 minutes, persistence has the lowest mean MAE on burst, chaotic, growing and stepped; gradient boosting leads seasonal and onoff. See the [computed pattern/horizon rankings](results/results.md#lowest-mean-mae-among-the-five-evaluated-variants). Forecast rankings alone do not establish autoscaling cost or QoS.
 
+## Genuine NASA/Alibaba forecasting evaluation
+
+The raw July NASA log and the bounded Alibaba container-usage prefix now have a
+separate leakage-safe forecasting evaluation. NASA contributes 7,938 complete
+5-minute request-count bins; Alibaba contributes a deterministic 3,489-point
+native 10-second CPU series formed only where at least 20 complete-prefix
+containers have real observations. No Alibaba gap is filled or mapped to an
+artificial interval.
+
+Across persistence, moving average, exponential smoothing, and histogram GBDT,
+GBDT has the lowest held-out MAE at both horizons. NASA GBDT MAE is 36.3206 at
+5 minutes and 50.8335 at 60 minutes (requests/5 minutes). Alibaba GBDT MAE is
+1.7249 at 10 seconds and 1.7271 at 60 seconds (CPU percentage points). These
+targets are not comparable to each other. The authors' real-world MAPE values
+are also not directly comparable because their exact split, horizon, features,
+zero rule, and Alibaba machine selection are unavailable.
+
+See the [full forecast results](results/real_world_forecasting/RESULTS.md),
+[paper comparison](results/real_world_forecasting/PAPER_COMPARISON.md), and
+[independent verification](results/real_world_forecasting/independent_verification.json).
+
 ## Growing-pattern live checkpoint
 
 One frozen D1-derived growing replay was executed once per controller, with all
