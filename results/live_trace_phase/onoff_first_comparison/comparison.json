@@ -1,0 +1,745 @@
+{
+  "generated_utc": "2026-10-23T18:49:54.195572+00:00",
+  "status": "COMPLETE",
+  "scope": "one accepted experimental repeat per controller; descriptive, not statistical",
+  "experiment_label": "D1 synthetic on/off pod-demand-proxy replay on a benchmark Kubernetes service",
+  "arms": {
+    "strawman_hpa": {
+      "dataset": "onoff_d1_s81",
+      "arm": "strawman_hpa",
+      "repeat": 1,
+      "category": "onoff_first_comparison",
+      "warmup": 120,
+      "duration": 420,
+      "decision": "ACCEPT",
+      "decision_scope": "single-repeat live controller comparison",
+      "source_directory": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa",
+      "sources": {
+        "requests.csv": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/requests.csv",
+        "metrics.jsonl": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/metrics.jsonl",
+        "metadata.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/metadata.json",
+        "events.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/events.json",
+        "initial_objects.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/initial_objects.json",
+        "final_objects.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/final_objects.json",
+        "operator.log": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/operator.log"
+      },
+      "source_sha256": {
+        "requests.csv": "8adcad26377a132c3df8729103bf7e697b5ee7bae8618d4ce52a8a8dd37f921a",
+        "metrics.jsonl": "8d0e90f4fb2918a31bfd85a557faea3077a49a4f067b4541a0606653a8f90234",
+        "metadata.json": "811052d4caf2120f0e8b0b188da4755974d59c1bd53d5ed925aec3ad68f824b9",
+        "events.json": "a869bcb5276dd0e8a298a429f5b0603370c3d76b487817466c0949df134c6f31",
+        "initial_objects.json": "9af8620a23caa8f98ba4554883fdea0ecf25e826c491f2489bacdec57bc19d3d",
+        "final_objects.json": "88def71d8af8b479ddd24d941ded68696cf1aa9de20423e65d9ce36bbd5e7dcc",
+        "operator.log": "28a7de916dbd024e70bdb03bd005d87dc549268c492d82c53735bd0d987c29b1"
+      },
+      "scheduled_requests": 30410,
+      "scheduled_measurement_requests": 29930,
+      "request_records": 30410,
+      "measurement_request_records": 29930,
+      "successful_requests": 14951,
+      "success_requests": 14951,
+      "recorded_failures": 14979,
+      "errors": 14979,
+      "http_failures_by_status": {},
+      "client_exceptions_by_class": {
+        "ClientOSError": 1,
+        "ServerDisconnectedError": 15,
+        "TimeoutError": 14963
+      },
+      "client_exceptions_by_message": {
+        "ClientOSError: [Errno 104] Connection reset by peer": 1,
+        "ServerDisconnectedError: Server disconnected": 15,
+        "TimeoutError: ": 14963
+      },
+      "timeouts": 14963,
+      "connection_failures": 16,
+      "disconnections": 16,
+      "cancellations": 0,
+      "other_failures": 0,
+      "generator_drops": 0,
+      "missing_records": 0,
+      "unexpected_records": 0,
+      "duplicate_records": 0,
+      "invalid_timestamp_records": 0,
+      "inconsistent_latency_records": 0,
+      "error_rate_scheduled_denominator": 0.5004677581022385,
+      "error_rate": 0.5004677581022385,
+      "recorded_error_rate": 0.5004677581022385,
+      "dispatch_delay_s": {
+        "p50": 0.0007086862511300751,
+        "p95": 0.0015993271421592679,
+        "p99": 0.0022341756003092426
+      },
+      "successful_request_latency_s": {
+        "p50": 0.0078476680027961,
+        "p95": 1.4562457420015562,
+        "p99": 4.307083562502157
+      },
+      "p50_latency_s": 0.0078476680027961,
+      "p95_latency_s": 1.4562457420015562,
+      "p99_latency_s": 4.307083562502157,
+      "p95_scheduled_latency_s": 1.4568671303726362,
+      "p99_dispatch_delay_s": 0.0022341756003092426,
+      "intended_replay_duration_s": 420.0,
+      "actual_request_activity_duration_s": 419.9960627299988,
+      "runner_elapsed_s": 540.3069171609968,
+      "offered_request_rate_rps": 71.26190476190476,
+      "actual_dispatch_rate_rps": 71.26381715969478,
+      "achieved_success_rps": 35.59761904761905,
+      "max_client_inflight": 600,
+      "pod_seconds": 1612.499015186515,
+      "desired_pod_seconds": 1837.4990253330216,
+      "mean_ready": 3.839283369491702,
+      "max_ready": 10,
+      "final_observed_ready": 10,
+      "cpu_hot_sample_fraction": 0.5769230769230769,
+      "mean_cpu_m": 270.51935766666656,
+      "max_cpu_m": 500.591938,
+      "mean_metric_pod_coverage": 0.8276785714285714,
+      "sample_count": 84,
+      "cpu_sample_count": 78,
+      "cpu_coverage": 0.9285714285714286,
+      "metric_availability_counts": {
+        "available": 78,
+        "empty_response": 6
+      },
+      "max_sample_gap_s": 5.000050655999075,
+      "malformed_metric_records": 0,
+      "max_workload_restarts": 3,
+      "readiness_deficit_samples": 33,
+      "events": {
+        "readiness_probe_failures": 19,
+        "liveness_probe_failures": 6,
+        "container_kill_events": 3
+      },
+      "active_controller": "HorizontalPodAutoscaler",
+      "controller_conflict_observed": false,
+      "scaling_events": [
+        {
+          "elapsed_s": 320.00010672200006,
+          "utc": "2026-10-23T18:25:43.493754+00:00",
+          "from_replicas": 1,
+          "to_replicas": 5
+        },
+        {
+          "elapsed_s": 350.00009896999836,
+          "utc": "2026-10-23T18:26:13.493747+00:00",
+          "from_replicas": 5,
+          "to_replicas": 10
+        },
+        {
+          "elapsed_s": 425.0000856229999,
+          "utc": "2026-10-23T18:27:28.493733+00:00",
+          "from_replicas": 10,
+          "to_replicas": 5
+        },
+        {
+          "elapsed_s": 440.0000833369995,
+          "utc": "2026-10-23T18:27:43.493731+00:00",
+          "from_replicas": 5,
+          "to_replicas": 3
+        },
+        {
+          "elapsed_s": 470.00009295400014,
+          "utc": "2026-10-23T18:28:13.493741+00:00",
+          "from_replicas": 3,
+          "to_replicas": 6
+        },
+        {
+          "elapsed_s": 485.0001026109967,
+          "utc": "2026-10-23T18:28:28.493750+00:00",
+          "from_replicas": 6,
+          "to_replicas": 8
+        },
+        {
+          "elapsed_s": 530.0000818629997,
+          "utc": "2026-10-23T18:29:13.493729+00:00",
+          "from_replicas": 8,
+          "to_replicas": 10
+        }
+      ],
+      "scaling_changes": 7,
+      "checks": {
+        "trace_hash_matches": true,
+        "metadata_schedule_count_exact": true,
+        "all_schedule_records_present": true,
+        "no_unexpected_or_duplicate_records": true,
+        "request_timestamps_valid": true,
+        "complete_marker": true,
+        "no_generator_drops": true,
+        "dispatch_p99_below_100ms": true,
+        "metrics_present": true,
+        "controller_exclusive": true,
+        "metrics_coverage_above_90pct": true,
+        "sample_gap_below_15s": true,
+        "window_bracketed": true,
+        "metric_timestamps_consistent": true,
+        "scaling_response_observed": true
+      },
+      "check_severity": {
+        "reject_if_false": [
+          "trace_hash_matches",
+          "metadata_schedule_count_exact",
+          "all_schedule_records_present",
+          "no_unexpected_or_duplicate_records",
+          "request_timestamps_valid",
+          "no_generator_drops",
+          "dispatch_p99_below_100ms"
+        ],
+        "inconclusive_if_false": [
+          "complete_marker",
+          "metrics_present",
+          "metrics_coverage_above_90pct",
+          "sample_gap_below_15s",
+          "window_bracketed",
+          "metric_timestamps_consistent",
+          "scaling_response_observed",
+          "controller_exclusive"
+        ]
+      },
+      "valid": true
+    },
+    "calibrated_hpa": {
+      "dataset": "onoff_d1_s81",
+      "arm": "calibrated_hpa",
+      "repeat": 1,
+      "category": "onoff_first_comparison",
+      "warmup": 120,
+      "duration": 420,
+      "decision": "ACCEPT",
+      "decision_scope": "single-repeat live controller comparison",
+      "source_directory": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/calibrated_hpa",
+      "sources": {
+        "requests.csv": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/calibrated_hpa/requests.csv",
+        "metrics.jsonl": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/calibrated_hpa/metrics.jsonl",
+        "metadata.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/calibrated_hpa/metadata.json",
+        "events.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/calibrated_hpa/events.json",
+        "initial_objects.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/calibrated_hpa/initial_objects.json",
+        "final_objects.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/calibrated_hpa/final_objects.json",
+        "operator.log": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/calibrated_hpa/operator.log"
+      },
+      "source_sha256": {
+        "requests.csv": "4fd3245f4196df17522bb5e58afc082e9d3610759f0105c562c1ba16021d4060",
+        "metrics.jsonl": "3d6f5acba80efd0541b350048c11df2664feb5d759e3695c498a80407be078e0",
+        "metadata.json": "12e1bd7e673fd8d2976a87ef275d748d01155c37c5d440ab71597d64197b5f54",
+        "events.json": "536585002247e0ec9ddb300513046da15a4841f9ffb9eba7235b19df0a57f710",
+        "initial_objects.json": "b69f0b1b57838b541c18cd5f21ef8cd77a53e0cd4d6149e0b0c4e8cd4e9a21e2",
+        "final_objects.json": "74766c5c39bbc739ee5dbe801f4d789440bcd3d3c39cbcb48ab60b45db823eef",
+        "operator.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "scheduled_requests": 30410,
+      "scheduled_measurement_requests": 29930,
+      "request_records": 30410,
+      "measurement_request_records": 29930,
+      "successful_requests": 15398,
+      "success_requests": 15398,
+      "recorded_failures": 14532,
+      "errors": 14532,
+      "http_failures_by_status": {},
+      "client_exceptions_by_class": {
+        "ClientOSError": 3,
+        "ServerDisconnectedError": 26,
+        "TimeoutError": 14503
+      },
+      "client_exceptions_by_message": {
+        "ClientOSError: [Errno 104] Connection reset by peer": 3,
+        "ServerDisconnectedError: Server disconnected": 26,
+        "TimeoutError: ": 14503
+      },
+      "timeouts": 14503,
+      "connection_failures": 29,
+      "disconnections": 29,
+      "cancellations": 0,
+      "other_failures": 0,
+      "generator_drops": 0,
+      "missing_records": 0,
+      "unexpected_records": 0,
+      "duplicate_records": 0,
+      "invalid_timestamp_records": 0,
+      "inconsistent_latency_records": 0,
+      "error_rate_scheduled_denominator": 0.48553291012362176,
+      "error_rate": 0.48553291012362176,
+      "recorded_error_rate": 0.48553291012362176,
+      "dispatch_delay_s": {
+        "p50": 0.0007039085849669391,
+        "p95": 0.0016140394166967553,
+        "p99": 0.0022185172881719947
+      },
+      "successful_request_latency_s": {
+        "p50": 0.00776831599978315,
+        "p95": 1.0688913427000437,
+        "p99": 4.346010902941391
+      },
+      "p50_latency_s": 0.00776831599978315,
+      "p95_latency_s": 1.0688913427000437,
+      "p99_latency_s": 4.346010902941391,
+      "p95_scheduled_latency_s": 1.0697727152632877,
+      "p99_dispatch_delay_s": 0.0022185172881719947,
+      "intended_replay_duration_s": 420.0,
+      "actual_request_activity_duration_s": 419.9967818679979,
+      "runner_elapsed_s": 540.3218139519995,
+      "offered_request_rate_rps": 71.26190476190476,
+      "actual_dispatch_rate_rps": 71.26389295579946,
+      "achieved_success_rps": 36.661904761904765,
+      "max_client_inflight": 601,
+      "pod_seconds": 1332.4981319379986,
+      "desired_pod_seconds": 1502.4994333305003,
+      "mean_ready": 3.1726145998523774,
+      "max_ready": 6,
+      "final_observed_ready": 6,
+      "cpu_hot_sample_fraction": 0.5,
+      "mean_cpu_m": 246.79436012414538,
+      "max_cpu_m": 499.747462,
+      "mean_metric_pod_coverage": 0.8886904761904763,
+      "sample_count": 84,
+      "cpu_sample_count": 78,
+      "cpu_coverage": 0.9285714285714286,
+      "metric_availability_counts": {
+        "available": 78,
+        "empty_response": 6
+      },
+      "max_sample_gap_s": 5.0025728680011525,
+      "malformed_metric_records": 0,
+      "max_workload_restarts": 3,
+      "readiness_deficit_samples": 31,
+      "events": {
+        "readiness_probe_failures": 19,
+        "liveness_probe_failures": 6,
+        "container_kill_events": 3
+      },
+      "active_controller": "HorizontalPodAutoscaler",
+      "controller_conflict_observed": false,
+      "scaling_events": [
+        {
+          "elapsed_s": 305.00012336000145,
+          "utc": "2026-10-23T18:35:03.527806+00:00",
+          "from_replicas": 1,
+          "to_replicas": 4
+        },
+        {
+          "elapsed_s": 350.0000988280008,
+          "utc": "2026-10-23T18:35:48.527781+00:00",
+          "from_replicas": 4,
+          "to_replicas": 5
+        },
+        {
+          "elapsed_s": 365.00010932999794,
+          "utc": "2026-10-23T18:36:03.527791+00:00",
+          "from_replicas": 5,
+          "to_replicas": 6
+        }
+      ],
+      "scaling_changes": 3,
+      "checks": {
+        "trace_hash_matches": true,
+        "metadata_schedule_count_exact": true,
+        "all_schedule_records_present": true,
+        "no_unexpected_or_duplicate_records": true,
+        "request_timestamps_valid": true,
+        "complete_marker": true,
+        "no_generator_drops": true,
+        "dispatch_p99_below_100ms": true,
+        "metrics_present": true,
+        "controller_exclusive": true,
+        "metrics_coverage_above_90pct": true,
+        "sample_gap_below_15s": true,
+        "window_bracketed": true,
+        "metric_timestamps_consistent": true,
+        "scaling_response_observed": true
+      },
+      "check_severity": {
+        "reject_if_false": [
+          "trace_hash_matches",
+          "metadata_schedule_count_exact",
+          "all_schedule_records_present",
+          "no_unexpected_or_duplicate_records",
+          "request_timestamps_valid",
+          "no_generator_drops",
+          "dispatch_p99_below_100ms"
+        ],
+        "inconclusive_if_false": [
+          "complete_marker",
+          "metrics_present",
+          "metrics_coverage_above_90pct",
+          "sample_gap_below_15s",
+          "window_bracketed",
+          "metric_timestamps_consistent",
+          "scaling_response_observed",
+          "controller_exclusive"
+        ]
+      },
+      "valid": true
+    },
+    "holtwinters": {
+      "dataset": "onoff_d1_s81",
+      "arm": "holtwinters",
+      "repeat": 1,
+      "category": "onoff_first_comparison",
+      "warmup": 120,
+      "duration": 420,
+      "decision": "ACCEPT",
+      "decision_scope": "single-repeat live controller comparison",
+      "source_directory": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/holtwinters",
+      "sources": {
+        "requests.csv": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/holtwinters/requests.csv",
+        "metrics.jsonl": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/holtwinters/metrics.jsonl",
+        "metadata.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/holtwinters/metadata.json",
+        "events.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/holtwinters/events.json",
+        "initial_objects.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/holtwinters/initial_objects.json",
+        "final_objects.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/holtwinters/final_objects.json",
+        "operator.log": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/holtwinters/operator.log"
+      },
+      "source_sha256": {
+        "requests.csv": "7387242623345fff20ff7a53f1ae4bd7c062ccdbe7f114956914cc60df945695",
+        "metrics.jsonl": "fc18ce38cfe1cbd55fcbe61b2ab5fa9196e7d180348fb8f3bdce77c8b13a89e3",
+        "metadata.json": "e404d1e394ba9fb8c3c8fd6a63b98f7d9a63f5a8f34621d870b87b8744338813",
+        "events.json": "7651d435e5c7be1eb662309c51845d51c76b52d81b0fe22ac990f996bf714770",
+        "initial_objects.json": "a22d21e12ab1790bedc55503cdbd89641e526cadbed5e0da1b1a28605edeef52",
+        "final_objects.json": "b9ab2130381346124264c71d248c83b12957d3955837fab2ee8f90ded5696b45",
+        "operator.log": "f602d905cff553b62272bb63c890addde6239776c17d47fb352226505ec25bb2"
+      },
+      "scheduled_requests": 30410,
+      "scheduled_measurement_requests": 29930,
+      "request_records": 30410,
+      "measurement_request_records": 29930,
+      "successful_requests": 25951,
+      "success_requests": 25951,
+      "recorded_failures": 3979,
+      "errors": 3979,
+      "http_failures_by_status": {},
+      "client_exceptions_by_class": {
+        "ClientOSError": 7,
+        "ServerDisconnectedError": 20,
+        "TimeoutError": 3952
+      },
+      "client_exceptions_by_message": {
+        "ClientOSError: [Errno 104] Connection reset by peer": 7,
+        "ServerDisconnectedError: Server disconnected": 20,
+        "TimeoutError: ": 3952
+      },
+      "timeouts": 3952,
+      "connection_failures": 27,
+      "disconnections": 27,
+      "cancellations": 0,
+      "other_failures": 0,
+      "generator_drops": 0,
+      "missing_records": 0,
+      "unexpected_records": 0,
+      "duplicate_records": 0,
+      "invalid_timestamp_records": 0,
+      "inconsistent_latency_records": 0,
+      "error_rate_scheduled_denominator": 0.1329435349148012,
+      "error_rate": 0.1329435349148012,
+      "recorded_error_rate": 0.1329435349148012,
+      "dispatch_delay_s": {
+        "p50": 0.000689462099117577,
+        "p95": 0.001361790938776152,
+        "p99": 0.0022357830417627147
+      },
+      "successful_request_latency_s": {
+        "p50": 0.0082194419992447,
+        "p95": 0.0502620854986162,
+        "p99": 3.4313271534992964
+      },
+      "p50_latency_s": 0.0082194419992447,
+      "p95_latency_s": 0.0502620854986162,
+      "p99_latency_s": 3.4313271534992964,
+      "p95_scheduled_latency_s": 0.0521940204185114,
+      "p99_dispatch_delay_s": 0.0022357830417627147,
+      "intended_replay_duration_s": 420.0,
+      "actual_request_activity_duration_s": 419.9962100090015,
+      "runner_elapsed_s": 540.3756903419999,
+      "offered_request_rate_rps": 71.26190476190476,
+      "actual_dispatch_rate_rps": 71.26398687570071,
+      "achieved_success_rps": 61.78809523809524,
+      "max_client_inflight": 601,
+      "pod_seconds": 3542.498873471808,
+      "desired_pod_seconds": 3687.4988722520084,
+      "mean_ready": 8.434521127313829,
+      "max_ready": 13,
+      "final_observed_ready": 13,
+      "cpu_hot_sample_fraction": 0.17857142857142858,
+      "mean_cpu_m": 104.70865260935113,
+      "max_cpu_m": 400.84715620000003,
+      "mean_metric_pod_coverage": 0.9138153513153513,
+      "sample_count": 84,
+      "cpu_sample_count": 84,
+      "cpu_coverage": 1.0,
+      "metric_availability_counts": {
+        "available": 84
+      },
+      "max_sample_gap_s": 5.000132474000566,
+      "malformed_metric_records": 0,
+      "max_workload_restarts": 3,
+      "readiness_deficit_samples": 17,
+      "events": {
+        "readiness_probe_failures": 26,
+        "liveness_probe_failures": 9,
+        "container_kill_events": 3
+      },
+      "active_controller": "PredictiveHorizontalPodAutoscaler",
+      "controller_conflict_observed": false,
+      "scaling_events": [
+        {
+          "elapsed_s": 145.0000802930008,
+          "utc": "2026-10-23T18:41:35.523403+00:00",
+          "from_replicas": 1,
+          "to_replicas": 3
+        },
+        {
+          "elapsed_s": 165.0000796639979,
+          "utc": "2026-10-23T18:41:55.523402+00:00",
+          "from_replicas": 3,
+          "to_replicas": 5
+        },
+        {
+          "elapsed_s": 205.00008725799853,
+          "utc": "2026-10-23T18:42:35.523410+00:00",
+          "from_replicas": 5,
+          "to_replicas": 7
+        },
+        {
+          "elapsed_s": 225.000091635,
+          "utc": "2026-10-23T18:42:55.523416+00:00",
+          "from_replicas": 7,
+          "to_replicas": 10
+        },
+        {
+          "elapsed_s": 505.0000817839973,
+          "utc": "2026-10-23T18:47:35.523405+00:00",
+          "from_replicas": 10,
+          "to_replicas": 11
+        },
+        {
+          "elapsed_s": 515.0000862939996,
+          "utc": "2026-10-23T18:47:45.523409+00:00",
+          "from_replicas": 11,
+          "to_replicas": 12
+        },
+        {
+          "elapsed_s": 525.0001204920009,
+          "utc": "2026-10-23T18:47:55.523445+00:00",
+          "from_replicas": 12,
+          "to_replicas": 13
+        },
+        {
+          "elapsed_s": 535.0000955199976,
+          "utc": "2026-10-23T18:48:05.523420+00:00",
+          "from_replicas": 13,
+          "to_replicas": 14
+        }
+      ],
+      "scaling_changes": 8,
+      "checks": {
+        "trace_hash_matches": true,
+        "metadata_schedule_count_exact": true,
+        "all_schedule_records_present": true,
+        "no_unexpected_or_duplicate_records": true,
+        "request_timestamps_valid": true,
+        "complete_marker": true,
+        "no_generator_drops": true,
+        "dispatch_p99_below_100ms": true,
+        "metrics_present": true,
+        "controller_exclusive": true,
+        "metrics_coverage_above_90pct": true,
+        "sample_gap_below_15s": true,
+        "window_bracketed": true,
+        "metric_timestamps_consistent": true,
+        "scaling_response_observed": true
+      },
+      "check_severity": {
+        "reject_if_false": [
+          "trace_hash_matches",
+          "metadata_schedule_count_exact",
+          "all_schedule_records_present",
+          "no_unexpected_or_duplicate_records",
+          "request_timestamps_valid",
+          "no_generator_drops",
+          "dispatch_p99_below_100ms"
+        ],
+        "inconclusive_if_false": [
+          "complete_marker",
+          "metrics_present",
+          "metrics_coverage_above_90pct",
+          "sample_gap_below_15s",
+          "window_bracketed",
+          "metric_timestamps_consistent",
+          "scaling_response_observed",
+          "controller_exclusive"
+        ]
+      },
+      "valid": true
+    }
+  },
+  "independent_checks": {
+    "strawman_hpa": {
+      "source_trace_hash_frozen": true,
+      "schedule_exact": true,
+      "counts_agree": true,
+      "success_population_agrees": true,
+      "error_rate_agrees": true,
+      "timeout_rate_agrees": true,
+      "latencies_agree": true,
+      "dispatch_agrees": true,
+      "pod_seconds_agree": true,
+      "controller_exclusive": true
+    },
+    "calibrated_hpa": {
+      "source_trace_hash_frozen": true,
+      "schedule_exact": true,
+      "counts_agree": true,
+      "success_population_agrees": true,
+      "error_rate_agrees": true,
+      "timeout_rate_agrees": true,
+      "latencies_agree": true,
+      "dispatch_agrees": true,
+      "pod_seconds_agree": true,
+      "controller_exclusive": true
+    },
+    "holtwinters": {
+      "source_trace_hash_frozen": true,
+      "schedule_exact": true,
+      "counts_agree": true,
+      "success_population_agrees": true,
+      "error_rate_agrees": true,
+      "timeout_rate_agrees": true,
+      "latencies_agree": true,
+      "dispatch_agrees": true,
+      "pod_seconds_agree": true,
+      "controller_exclusive": true
+    }
+  },
+  "transition_metrics": {
+    "strawman_hpa": {
+      "high_to_low": {
+        "measurement_second": 160,
+        "desired_scale_down_delay_s": null,
+        "ready_scale_down_delay_s": 0.00010011799895437434,
+        "excess_ready_pod_seconds_above_minimum": 799.9996988036153,
+        "request_error_rate": 0.24492694805194806
+      },
+      "low_to_high": {
+        "measurement_second": 320,
+        "desired_scale_up_delay_s": 30.000092954000138,
+        "ready_scale_up_delay_s": 35.00007617299707,
+        "first_60s_request_error_rate": 0.0,
+        "first_60s_success_p95_s": 0.010399539548961848,
+        "first_60s_hot_cpu_fraction": 0.6666666666666666
+      }
+    },
+    "calibrated_hpa": {
+      "high_to_low": {
+        "measurement_second": 160,
+        "desired_scale_down_delay_s": null,
+        "ready_scale_down_delay_s": 5.000098635999166,
+        "excess_ready_pod_seconds_above_minimum": 527.4981342284991,
+        "request_error_rate": 0.14772727272727273
+      },
+      "low_to_high": {
+        "measurement_second": 320,
+        "desired_scale_up_delay_s": null,
+        "ready_scale_up_delay_s": null,
+        "first_60s_request_error_rate": 0.0,
+        "first_60s_success_p95_s": 0.009922981350791792,
+        "first_60s_hot_cpu_fraction": 0.0
+      }
+    },
+    "holtwinters": {
+      "high_to_low": {
+        "measurement_second": 160,
+        "desired_scale_down_delay_s": null,
+        "ready_scale_down_delay_s": null,
+        "excess_ready_pod_seconds_above_minimum": 1440.0,
+        "request_error_rate": 0.0
+      },
+      "low_to_high": {
+        "measurement_second": 320,
+        "desired_scale_up_delay_s": 65.0000817839973,
+        "ready_scale_up_delay_s": 70.00007982799798,
+        "first_60s_request_error_rate": 0.0,
+        "first_60s_success_p95_s": 0.013029435851058185,
+        "first_60s_hot_cpu_fraction": 0.0
+      }
+    }
+  },
+  "rows": [
+    {
+      "arm": "strawman_hpa",
+      "label": "Soft HPA (50%)",
+      "decision": "ACCEPT",
+      "scheduled_measurement_requests": 29930,
+      "successful_requests": 14951,
+      "error_rate": 0.5004677581022385,
+      "timeout_rate": 0.4999331774139659,
+      "disconnection_rate": 0.0005011693952555964,
+      "p50_latency_s": 0.0078476680027961,
+      "p95_latency_s": 1.4562457420015562,
+      "p99_latency_s": 4.307083562502157,
+      "success_rps": 35.59761904761905,
+      "pod_seconds": 1612.499015186515,
+      "pod_seconds_per_success": 0.10785225170132533,
+      "mean_ready": 3.839283369491702,
+      "max_ready": 10,
+      "scaling_changes": 7,
+      "cpu_coverage": 0.9285714285714286,
+      "mean_cpu_m": 270.51935766666656,
+      "max_cpu_m": 500.591938,
+      "readiness_deficit_samples": 33,
+      "restarts": 3,
+      "dispatch_p99_s": 0.0022341756003092426,
+      "generator_drops": 0
+    },
+    {
+      "arm": "calibrated_hpa",
+      "label": "Tuned HPA (70%)",
+      "decision": "ACCEPT",
+      "scheduled_measurement_requests": 29930,
+      "successful_requests": 15398,
+      "error_rate": 0.48553291012362176,
+      "timeout_rate": 0.48456398262612765,
+      "disconnection_rate": 0.0008686936184430338,
+      "p50_latency_s": 0.00776831599978315,
+      "p95_latency_s": 1.0688913427000437,
+      "p99_latency_s": 4.346010902941391,
+      "success_rps": 36.661904761904765,
+      "pod_seconds": 1332.4981319379986,
+      "pod_seconds_per_success": 0.08653709130653323,
+      "mean_ready": 3.1726145998523774,
+      "max_ready": 6,
+      "scaling_changes": 3,
+      "cpu_coverage": 0.9285714285714286,
+      "mean_cpu_m": 246.79436012414538,
+      "max_cpu_m": 499.747462,
+      "readiness_deficit_samples": 31,
+      "restarts": 3,
+      "dispatch_p99_s": 0.0022185172881719947,
+      "generator_drops": 0
+    },
+    {
+      "arm": "holtwinters",
+      "label": "Holt-Winters PHPA",
+      "decision": "ACCEPT",
+      "scheduled_measurement_requests": 29930,
+      "successful_requests": 25951,
+      "error_rate": 0.1329435349148012,
+      "timeout_rate": 0.13204143000334112,
+      "disconnection_rate": 0.0006682258603407952,
+      "p50_latency_s": 0.0082194419992447,
+      "p95_latency_s": 0.0502620854986162,
+      "p99_latency_s": 3.4313271534992964,
+      "success_rps": 61.78809523809524,
+      "pod_seconds": 3542.498873471808,
+      "pod_seconds_per_success": 0.13650722027944234,
+      "mean_ready": 8.434521127313829,
+      "max_ready": 13,
+      "scaling_changes": 8,
+      "cpu_coverage": 1.0,
+      "mean_cpu_m": 104.70865260935113,
+      "max_cpu_m": 400.84715620000003,
+      "readiness_deficit_samples": 17,
+      "restarts": 3,
+      "dispatch_p99_s": 0.0022357830417627147,
+      "generator_drops": 0
+    }
+  ]
+}

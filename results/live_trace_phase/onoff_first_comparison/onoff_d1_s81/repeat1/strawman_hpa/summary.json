@@ -1,0 +1,195 @@
+{
+  "dataset": "onoff_d1_s81",
+  "arm": "strawman_hpa",
+  "repeat": 1,
+  "category": "onoff_first_comparison",
+  "warmup": 120,
+  "duration": 420,
+  "decision": "ACCEPT",
+  "decision_scope": "single-repeat live controller comparison",
+  "source_directory": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa",
+  "sources": {
+    "requests.csv": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/requests.csv",
+    "metrics.jsonl": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/metrics.jsonl",
+    "metadata.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/metadata.json",
+    "events.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/events.json",
+    "initial_objects.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/initial_objects.json",
+    "final_objects.json": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/final_objects.json",
+    "operator.log": "results/live_trace_phase/onoff_first_comparison/onoff_d1_s81/repeat1/strawman_hpa/operator.log"
+  },
+  "source_sha256": {
+    "requests.csv": "8adcad26377a132c3df8729103bf7e697b5ee7bae8618d4ce52a8a8dd37f921a",
+    "metrics.jsonl": "8d0e90f4fb2918a31bfd85a557faea3077a49a4f067b4541a0606653a8f90234",
+    "metadata.json": "811052d4caf2120f0e8b0b188da4755974d59c1bd53d5ed925aec3ad68f824b9",
+    "events.json": "a869bcb5276dd0e8a298a429f5b0603370c3d76b487817466c0949df134c6f31",
+    "initial_objects.json": "9af8620a23caa8f98ba4554883fdea0ecf25e826c491f2489bacdec57bc19d3d",
+    "final_objects.json": "88def71d8af8b479ddd24d941ded68696cf1aa9de20423e65d9ce36bbd5e7dcc",
+    "operator.log": "28a7de916dbd024e70bdb03bd005d87dc549268c492d82c53735bd0d987c29b1"
+  },
+  "scheduled_requests": 30410,
+  "scheduled_measurement_requests": 29930,
+  "request_records": 30410,
+  "measurement_request_records": 29930,
+  "successful_requests": 14951,
+  "success_requests": 14951,
+  "recorded_failures": 14979,
+  "errors": 14979,
+  "http_failures_by_status": {},
+  "client_exceptions_by_class": {
+    "ClientOSError": 1,
+    "ServerDisconnectedError": 15,
+    "TimeoutError": 14963
+  },
+  "client_exceptions_by_message": {
+    "ClientOSError: [Errno 104] Connection reset by peer": 1,
+    "ServerDisconnectedError: Server disconnected": 15,
+    "TimeoutError: ": 14963
+  },
+  "timeouts": 14963,
+  "connection_failures": 16,
+  "disconnections": 16,
+  "cancellations": 0,
+  "other_failures": 0,
+  "generator_drops": 0,
+  "missing_records": 0,
+  "unexpected_records": 0,
+  "duplicate_records": 0,
+  "invalid_timestamp_records": 0,
+  "inconsistent_latency_records": 0,
+  "error_rate_scheduled_denominator": 0.5004677581022385,
+  "error_rate": 0.5004677581022385,
+  "recorded_error_rate": 0.5004677581022385,
+  "dispatch_delay_s": {
+    "p50": 0.0007086862511300751,
+    "p95": 0.0015993271421592679,
+    "p99": 0.0022341756003092426
+  },
+  "successful_request_latency_s": {
+    "p50": 0.0078476680027961,
+    "p95": 1.4562457420015562,
+    "p99": 4.307083562502157
+  },
+  "p50_latency_s": 0.0078476680027961,
+  "p95_latency_s": 1.4562457420015562,
+  "p99_latency_s": 4.307083562502157,
+  "p95_scheduled_latency_s": 1.4568671303726362,
+  "p99_dispatch_delay_s": 0.0022341756003092426,
+  "intended_replay_duration_s": 420.0,
+  "actual_request_activity_duration_s": 419.9960627299988,
+  "runner_elapsed_s": 540.3069171609968,
+  "offered_request_rate_rps": 71.26190476190476,
+  "actual_dispatch_rate_rps": 71.26381715969478,
+  "achieved_success_rps": 35.59761904761905,
+  "max_client_inflight": 600,
+  "pod_seconds": 1612.499015186515,
+  "desired_pod_seconds": 1837.4990253330216,
+  "mean_ready": 3.839283369491702,
+  "max_ready": 10,
+  "final_observed_ready": 10,
+  "cpu_hot_sample_fraction": 0.5769230769230769,
+  "mean_cpu_m": 270.51935766666656,
+  "max_cpu_m": 500.591938,
+  "mean_metric_pod_coverage": 0.8276785714285714,
+  "sample_count": 84,
+  "cpu_sample_count": 78,
+  "cpu_coverage": 0.9285714285714286,
+  "metric_availability_counts": {
+    "available": 78,
+    "empty_response": 6
+  },
+  "max_sample_gap_s": 5.000050655999075,
+  "malformed_metric_records": 0,
+  "max_workload_restarts": 3,
+  "readiness_deficit_samples": 33,
+  "events": {
+    "readiness_probe_failures": 19,
+    "liveness_probe_failures": 6,
+    "container_kill_events": 3
+  },
+  "active_controller": "HorizontalPodAutoscaler",
+  "controller_conflict_observed": false,
+  "scaling_events": [
+    {
+      "elapsed_s": 320.00010672200006,
+      "utc": "2026-10-23T18:25:43.493754+00:00",
+      "from_replicas": 1,
+      "to_replicas": 5
+    },
+    {
+      "elapsed_s": 350.00009896999836,
+      "utc": "2026-10-23T18:26:13.493747+00:00",
+      "from_replicas": 5,
+      "to_replicas": 10
+    },
+    {
+      "elapsed_s": 425.0000856229999,
+      "utc": "2026-10-23T18:27:28.493733+00:00",
+      "from_replicas": 10,
+      "to_replicas": 5
+    },
+    {
+      "elapsed_s": 440.0000833369995,
+      "utc": "2026-10-23T18:27:43.493731+00:00",
+      "from_replicas": 5,
+      "to_replicas": 3
+    },
+    {
+      "elapsed_s": 470.00009295400014,
+      "utc": "2026-10-23T18:28:13.493741+00:00",
+      "from_replicas": 3,
+      "to_replicas": 6
+    },
+    {
+      "elapsed_s": 485.0001026109967,
+      "utc": "2026-10-23T18:28:28.493750+00:00",
+      "from_replicas": 6,
+      "to_replicas": 8
+    },
+    {
+      "elapsed_s": 530.0000818629997,
+      "utc": "2026-10-23T18:29:13.493729+00:00",
+      "from_replicas": 8,
+      "to_replicas": 10
+    }
+  ],
+  "scaling_changes": 7,
+  "checks": {
+    "trace_hash_matches": true,
+    "metadata_schedule_count_exact": true,
+    "all_schedule_records_present": true,
+    "no_unexpected_or_duplicate_records": true,
+    "request_timestamps_valid": true,
+    "complete_marker": true,
+    "no_generator_drops": true,
+    "dispatch_p99_below_100ms": true,
+    "metrics_present": true,
+    "controller_exclusive": true,
+    "metrics_coverage_above_90pct": true,
+    "sample_gap_below_15s": true,
+    "window_bracketed": true,
+    "metric_timestamps_consistent": true,
+    "scaling_response_observed": true
+  },
+  "check_severity": {
+    "reject_if_false": [
+      "trace_hash_matches",
+      "metadata_schedule_count_exact",
+      "all_schedule_records_present",
+      "no_unexpected_or_duplicate_records",
+      "request_timestamps_valid",
+      "no_generator_drops",
+      "dispatch_p99_below_100ms"
+    ],
+    "inconclusive_if_false": [
+      "complete_marker",
+      "metrics_present",
+      "metrics_coverage_above_90pct",
+      "sample_gap_below_15s",
+      "window_bracketed",
+      "metric_timestamps_consistent",
+      "scaling_response_observed",
+      "controller_exclusive"
+    ]
+  },
+  "valid": true
+}

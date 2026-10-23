@@ -1,0 +1,29 @@
+[
+  {
+    "sequence": 1,
+    "dataset": "onoff_d1_s81",
+    "arm": "strawman_hpa",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "onoff_first_comparison"
+  },
+  {
+    "sequence": 2,
+    "dataset": "onoff_d1_s81",
+    "arm": "calibrated_hpa",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "onoff_first_comparison"
+  },
+  {
+    "sequence": 3,
+    "dataset": "onoff_d1_s81",
+    "arm": "holtwinters",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "onoff_first_comparison"
+  }
+]

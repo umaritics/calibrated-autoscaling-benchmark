@@ -1,0 +1,234 @@
+{
+  "generated_utc": "2026-10-23T18:19:41.182407+00:00",
+  "decision": "PASS",
+  "experiment_label": "D1 synthetic on/off pod-demand-proxy replay on a benchmark Kubernetes service",
+  "online_release_assessment": {
+    "path": "data/workloads-predictional-scaling-patterns/kaggle/kaggle/data/patterns/onoff",
+    "files": 7,
+    "contains_incoming_demand": false,
+    "columns_by_file": {
+      "baseline_hpa.csv": [
+        "timestamp",
+        "elapsed_seconds",
+        "resource_type",
+        "resource_name",
+        "desired_replicas",
+        "current_replicas",
+        "ready_replicas",
+        "cpu_millicores_total",
+        "cpu_millicores_avg",
+        "scale_up_events",
+        "scale_down_events",
+        "scale_up_history_len",
+        "scale_down_history_len",
+        "current_metrics_json"
+      ],
+      "phpa_catboost.csv": [
+        "timestamp",
+        "elapsed_seconds",
+        "resource_type",
+        "resource_name",
+        "desired_replicas",
+        "current_replicas",
+        "ready_replicas",
+        "cpu_millicores_total",
+        "cpu_millicores_avg",
+        "scale_up_events",
+        "scale_down_events",
+        "scale_up_history_len",
+        "scale_down_history_len",
+        "current_metrics_json"
+      ],
+      "phpa_gbdt.csv": [
+        "timestamp",
+        "elapsed_seconds",
+        "resource_type",
+        "resource_name",
+        "desired_replicas",
+        "current_replicas",
+        "ready_replicas",
+        "cpu_millicores_total",
+        "cpu_millicores_avg",
+        "scale_up_events",
+        "scale_down_events",
+        "scale_up_history_len",
+        "scale_down_history_len",
+        "current_metrics_json"
+      ],
+      "phpa_holtwinters.csv": [
+        "timestamp",
+        "elapsed_seconds",
+        "resource_type",
+        "resource_name",
+        "desired_replicas",
+        "current_replicas",
+        "ready_replicas",
+        "cpu_millicores_total",
+        "cpu_millicores_avg",
+        "scale_up_events",
+        "scale_down_events",
+        "scale_up_history_len",
+        "scale_down_history_len",
+        "current_metrics_json"
+      ],
+      "phpa_linear.csv": [
+        "timestamp",
+        "elapsed_seconds",
+        "resource_type",
+        "resource_name",
+        "desired_replicas",
+        "current_replicas",
+        "ready_replicas",
+        "cpu_millicores_total",
+        "cpu_millicores_avg",
+        "scale_up_events",
+        "scale_down_events",
+        "scale_up_history_len",
+        "scale_down_history_len",
+        "current_metrics_json"
+      ],
+      "phpa_var.csv": [
+        "timestamp",
+        "elapsed_seconds",
+        "resource_type",
+        "resource_name",
+        "desired_replicas",
+        "current_replicas",
+        "ready_replicas",
+        "cpu_millicores_total",
+        "cpu_millicores_avg",
+        "scale_up_events",
+        "scale_down_events",
+        "scale_up_history_len",
+        "scale_down_history_len",
+        "current_metrics_json"
+      ],
+      "phpa_xgboost.csv": [
+        "timestamp",
+        "elapsed_seconds",
+        "resource_type",
+        "resource_name",
+        "desired_replicas",
+        "current_replicas",
+        "ready_replicas",
+        "cpu_millicores_total",
+        "cpu_millicores_avg",
+        "scale_up_events",
+        "scale_down_events",
+        "scale_up_history_len",
+        "scale_down_history_len",
+        "current_metrics_json"
+      ]
+    },
+    "reason": "The files are observed controller/replica/CPU outputs, not incoming workload observations."
+  },
+  "source": {
+    "path": "data/phpa/phpa-datasets/onoff_81_min_pods20_max_pods60_on_duration4_off_duration4_transition_typesharp_transition_noise0.3_test.csv",
+    "sha256": "f0e97b4b9713de7c9e565f0a702ad6068c83c02f11d58492d5247cd59526736b",
+    "rows": 672,
+    "columns": [
+      "timestamp",
+      "pod_count"
+    ],
+    "units": {
+      "timestamp": "UTC-like naive datetime at 15-minute intervals",
+      "pod_count": "synthetic pod-count demand proxy"
+    },
+    "duration_seconds": 604800
+  },
+  "selection_rule": "Use test split; select scenario 81 because it is the lowest numeric ID in the shortest balanced (4 h on / 4 h off), sharp-transition subgroup; use its first 42 chronological observations. This rule was fixed before controller outcomes.",
+  "selected_window": {
+    "rows": 42,
+    "source_start": "2024-01-29 00:00:00",
+    "source_end_exclusive": "2024-01-29 10:30:00",
+    "source_duration_seconds": 37800,
+    "segments": [
+      {
+        "state": "high",
+        "start_index": 0,
+        "end_index_exclusive": 16,
+        "count": 16,
+        "minimum": 40,
+        "maximum": 78,
+        "median": 59.0,
+        "unique_values": [
+          40,
+          44,
+          46,
+          52,
+          54,
+          56,
+          62,
+          64,
+          66,
+          67,
+          68,
+          71,
+          75,
+          78
+        ]
+      },
+      {
+        "state": "low",
+        "start_index": 16,
+        "end_index_exclusive": 32,
+        "count": 16,
+        "minimum": 20,
+        "maximum": 20,
+        "median": 20.0,
+        "unique_values": [
+          20
+        ]
+      },
+      {
+        "state": "high",
+        "start_index": 32,
+        "end_index_exclusive": 42,
+        "count": 10,
+        "minimum": 57,
+        "maximum": 77,
+        "median": 68.0,
+        "unique_values": [
+          57,
+          60,
+          66,
+          67,
+          69,
+          72,
+          75,
+          77
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "source_index": 16,
+        "source_timestamp": "2024-01-29 04:00:00",
+        "measurement_second": 160,
+        "from": "high",
+        "to": "low"
+      },
+      {
+        "source_index": 32,
+        "source_timestamp": "2024-01-29 08:00:00",
+        "measurement_second": 320,
+        "from": "low",
+        "to": "high"
+      }
+    ],
+    "source_maximum": 78.0,
+    "replay_trace_path": "data/live_traces/onoff_d1_s81.csv",
+    "replay_trace_sha256": "22a26e62ff26d2f8511e30313dd7d07498053e17eb496dbb7ff1982be0a4c3e3",
+    "scheduled_measurement_requests": 29930
+  },
+  "transformation": {
+    "time": "Each 900-second source interval becomes one 10-second replay interval (constant 90x compression).",
+    "amplitude": "target_rps = 120 * pod_count / max(pod_count in the frozen 42-row window)",
+    "peak_rps": 120.0,
+    "warmup_seconds": 120,
+    "warmup_rps": 4,
+    "measurement_seconds": 420,
+    "request_timeout_seconds": 5,
+    "maximum_in_flight": 2048
+  }
+}
