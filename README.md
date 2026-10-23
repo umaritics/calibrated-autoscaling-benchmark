@@ -193,15 +193,24 @@ independent transient cgroup with a verified one-CPU quota, 768 MiB RAM, zero
 swap, and 512-task limits, while an independent watchdog sampled host pressure
 every two seconds and could stop the generator process group.
 
-The low-intensity smoke delivered all 90 measurement requests successfully and
-kept the host responsive, but the transient user scope did not expose the
-predeclared CPU-affinity value needed to verify every requested limit. The
-safety gate therefore failed and no tuned-HPA, Holt–Winters, or soft-HPA
-research arm was started. No QoS, capacity, or scaling comparison is claimed.
-This variant remains scientifically separate from the hazardous 20–120 RPS
-run.
+Task 12's low-intensity smoke delivered all 90 measurement requests but remains
+failed because the user scope did not expose its predeclared cpuset file. A
+prospective v2 protocol established why: the user slice delegates memory and
+PID controllers, not cpuset. The corrected mechanism uses scheduler affinity
+with independent `sched_getaffinity` and per-thread `/proc` read-back while
+retaining every cgroup budget and watchdog threshold. A fresh smoke passed
+90/90 requests and 1,671 affinity observations.
+
+The frozen matrix then ran exactly once in its predeclared order. All three
+arms were independently verified `ACCEPT` with 12,532/12,532 successes, zero
+timeouts/drops, and 100% CPU coverage. Tuned HPA used 990.000 pod-seconds, soft
+HPA 1185.000, and Holt–Winters 1342.499. The watchdog completed 809 samples
+without an abort. This single-repeat 10–45 RPS variant remains scientifically
+separate from the hazardous 20–120 RPS run; CPUs 4–5 are logical siblings of
+kind CPUs 0–1, so physical-core isolation is not claimed.
 
 See the [guarded findings](results/live_trace_phase/guarded_chaotic_comparison/FINDINGS.md),
 [resource budget](results/live_trace_phase/guarded_chaotic_comparison/resource_budget.json),
 [frozen plan](results/live_trace_phase/guarded_chaotic_comparison/frozen_plan.json),
+[safety protocol v2](results/live_trace_phase/guarded_chaotic_comparison/affinity_revision_v2/SAFETY_PROTOCOL_V2.md),
 and [independent verification](results/live_trace_phase/guarded_chaotic_comparison/independent_verification.json).

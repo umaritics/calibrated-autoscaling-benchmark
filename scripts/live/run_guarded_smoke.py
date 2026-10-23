@@ -2,6 +2,7 @@
 """Low-intensity infrastructure smoke test; never interpreted as controller evidence."""
 
 import csv
+import hashlib
 import json
 import subprocess
 import sys
@@ -13,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "results/live_trace_phase/guarded_chaotic_comparison"
 CONFIG = ROOT / "configs/guarded_chaotic_safety.json"
+PROTOCOL = OUT / "affinity_revision_v2/SAFETY_PROTOCOL_V2.md"
 K = [str(ROOT / ".tools/kubectl"), "--kubeconfig", str(ROOT / "live-kubeconfig"), "--request-timeout=10s"]
 
 
@@ -37,6 +39,8 @@ def block_is_active():
 
 
 def main():
+    if not PROTOCOL.exists():
+        raise RuntimeError("prospective safety protocol v2 must exist before smoke launch")
     if block_is_active():
         raise RuntimeError("unresolved watchdog block prevents smoke launch")
     attempt = 1
@@ -46,6 +50,7 @@ def main():
     session = OUT / f"smoke_watchdog_session_attempt{attempt}"
     runtime_path = session / "active_run.json"
     session.mkdir(parents=True)
+    affinity_evidence = session / "generator_enforcement.json"
     runtime_path.write_text(json.dumps({"active": False, "in_flight": 0}) + "\n")
     watchdog = subprocess.Popen([sys.executable, "scripts/live/safety_watchdog.py", "--config", str(CONFIG),
         "--session-dir", str(session), "--runtime-state", str(runtime_path)], cwd=ROOT, start_new_session=True)
@@ -55,7 +60,9 @@ def main():
         "--runtime-state", str(runtime_path)]
     command = ["systemd-run", "--user", "--scope", "--quiet", "-p", "AllowedCPUs=4-5",
         "-p", "CPUQuota=100%", "-p", "MemoryMax=768M", "-p", "MemorySwapMax=0",
-        "-p", "TasksMax=512"] + generator
+        "-p", "TasksMax=512", "taskset", "--cpu-list", "4-5", str(ROOT / ".venv/bin/python"),
+        "scripts/live/guarded_exec.py", "--evidence", str(affinity_evidence),
+        "--expected-cpus", "4-5", "--"] + generator
     process = subprocess.Popen(command, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                text=True, start_new_session=True)
     cgroup_values = {}
@@ -87,15 +94,22 @@ def main():
     successes = [row for row in measurement if row["status"] == "200" and not row["error"]]
     telemetry = [json.loads(line) for line in (session / "host_pressure.jsonl").read_text().splitlines()]
     metrics = (run / "metrics.jsonl").read_text().splitlines() if (run / "metrics.jsonl").exists() else []
-    expected_limits = {"cpuset.cpus.effective": "4-5", "cpu.max": "100000 100000",
-                       "memory.max": "805306368", "memory.swap.max": "0", "pids.max": "512"}
+    enforcement = read_json(affinity_evidence)
+    expected_limits = {"cpu.max": "100000 100000", "memory.max": "805306368",
+                       "memory.swap.max": "0", "pids.max": "512"}
+    scope_limits = enforcement.get("cgroup_files", {})
     checks = {"generator_completed": process.returncode == 0 and (run / "COMPLETE").exists(),
               "actual_requests_reached_service": len(successes) > 0,
               "all_measurement_requests_recorded": len(measurement) == 90,
               "metrics_collected": len(metrics) >= 6,
               "watchdog_collected_host_pressure": len(telemetry) >= 10,
               "watchdog_did_not_abort": not (session / "safety_abort.json").exists(),
-              "generator_cgroup_limits_actual_match": cgroup_values == expected_limits,
+              "generator_scheduler_affinity_actual_match": enforcement.get("decision") == "PASS" and
+                  enforcement.get("wrapper_affinity") == [4, 5] and
+                  enforcement.get("explicit_child_probe", {}).get("allowed_cpus") == [4, 5] and
+                  enforcement.get("observed_thread_records", 0) > 0,
+              "generator_cgroup_limits_actual_match": all(scope_limits.get(name) == value
+                                                            for name, value in expected_limits.items()),
               "dispatch_timing_healthy": bool(measurement) and
                   max(float(row["dispatch_s"]) - float(row["planned_s"])
                       for row in measurement) < .1,
@@ -106,13 +120,15 @@ def main():
               "checks": checks, "successful_measurement_requests": len(successes),
               "measurement_records": len(measurement), "watchdog_samples": len(telemetry),
               "actual_generator_cgroup": cgroup_values,
+              "protocol_sha256": hashlib.sha256(PROTOCOL.read_bytes()).hexdigest(),
+              "kernel_affinity_evidence": str(affinity_evidence.relative_to(ROOT)),
               "stdout": stdout.replace(str(ROOT) + "/", ""),
               "stderr": stderr.replace(str(ROOT) + "/", "")}
     (OUT / f"smoke_test_attempt{attempt}.json").write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))
     if not all(checks.values()):
         (OUT / "SAFETY_GATE_BLOCK.json").write_text(json.dumps({
-            "blocked_utc": now(), "reason": "SMOKE_RESOURCE_LIMIT_VERIFICATION_FAILED",
+            "blocked_utc": now(), "reason": "SMOKE_V2_SAFETY_GATE_FAILED",
             "failed_checks": [name for name, passed in checks.items() if not passed],
             "effect": "The research orchestrator must not launch any guarded chaotic controller arm.",
             "research_arms_started": False}, indent=2) + "\n")

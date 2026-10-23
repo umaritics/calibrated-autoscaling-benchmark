@@ -55,7 +55,7 @@ Assignment step 3 requires documenting **all** datasets used in the selected pap
 | Filtering / augmentation | None beyond pattern schedule |
 | Multimodal combine | N/A |
 | Used in paper for | Early-detection vs HPA (e.g. Holt–Winters seasonal **30.8 s**, burst **20.5 s** earlier) |
-| **Used by us?** | **Yes, released-data analysis** of all 42 traces plus 36 timing summaries. Separate newer local replays cover growing, on/off, stepped, and a safety-stopped chaotic attempt; these are not repetitions of the released D2 runs. |
+| **Used by us?** | **Yes, released-data analysis** of all 42 traces plus 36 timing summaries. Separate newer local replays cover growing, on/off, stepped, a safety-stopped 20–120 RPS chaotic attempt, and a completed n=1 guarded 10–45 RPS chaotic matrix; these are not repetitions of the released D2 runs. |
 
 ### D3 — NASA HTTP logs — production-derived live replay
 
@@ -165,8 +165,10 @@ Original live phase: 18 arms ≈ 70 minutes. Dataset phase: all 600 offline scen
 ## Deviations from the original experiment
 - Historical live protocol: 2 patterns and 3 controllers. Later QoS-capable
   replays cover growing and on/off with complete single-run matrices, stepped
-  with two accepted arms and one rejected arm, and chaotic with only one
-  accepted arm before the host-safety stop. Offline/released-data analysis
+  with two accepted arms and one rejected arm. The hazardous chaotic attempt
+  has only one accepted arm before the host-safety stop; a scientifically
+  separate guarded 10–45 RPS variant has one accepted run per controller.
+  Offline/released-data analysis
   covers all six patterns.
 - 120 s / 30 s warmup (not 300 / 60).
 - jthomperoo operator instead of missing syswe image.

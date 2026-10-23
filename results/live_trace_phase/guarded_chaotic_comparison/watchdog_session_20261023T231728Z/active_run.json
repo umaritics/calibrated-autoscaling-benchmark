@@ -1,0 +1,1 @@
+{"active": false, "phase": "finished", "pid": 62092, "pgid": 62088, "cgroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/run-raa33651620384768acae9fb1cd15fa8c.scope", "in_flight": 0, "run_directory": "results/live_trace_phase/guarded_chaotic_comparison/chaotic_guarded_d1_s1/repeat1/strawman_hpa", "updated_utc": "2026-10-23T23:45:01.236708+00:00"}

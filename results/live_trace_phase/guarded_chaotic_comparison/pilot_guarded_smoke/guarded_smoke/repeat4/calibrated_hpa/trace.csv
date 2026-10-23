@@ -1,0 +1,4 @@
+replay_second,source_time,source_value,target_rps
+0,synthetic-smoke-0,1,2
+10,synthetic-smoke-1,2,3
+20,synthetic-smoke-2,3,4

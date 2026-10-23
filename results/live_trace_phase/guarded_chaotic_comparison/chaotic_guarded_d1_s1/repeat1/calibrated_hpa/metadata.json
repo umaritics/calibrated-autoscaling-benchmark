@@ -1,0 +1,18 @@
+{
+  "dataset": "chaotic_guarded_d1_s1",
+  "arm": "calibrated_hpa",
+  "repeat": 1,
+  "warmup": 120,
+  "duration": 420,
+  "category": "guarded_chaotic_comparison",
+  "max_inflight": 256,
+  "runtime_state": "results/live_trace_phase/guarded_chaotic_comparison/watchdog_session_20261023T231728Z/active_run.json",
+  "started_utc": "2026-10-23T23:17:28.480920+00:00",
+  "runner_sha256": "06a7257b7ed5a2c1e6bb8d583ec4d7065443a76285e2165cbd31148183fd3032",
+  "trace_sha256": "3e8d234b021e53446b9c9d8b2891bd3bce5205724cf4c3ef2c6c9d57e6043ed0",
+  "policy_sha256": "edeac58288e2b49cf8e0d5ca954f450501f7370a694d6552a257ee70308f5fa2",
+  "workload_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2",
+  "finished_utc": "2026-10-23T23:26:38.366387+00:00",
+  "scheduled_requests": 13012,
+  "elapsed_seconds": 540.4859141500001
+}

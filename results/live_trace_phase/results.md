@@ -35,13 +35,17 @@ while single-run rows report the observed integer.
 | Stepped | Tuned HPA | 1 | 17.58% | 17.54% | 0.011 | 5872.50 | 0.08424 | 6 |
 | Stepped | Holt–Winters | 1 | 1.01% | 1.00% | 0.016 | 13025.00 | 0.15557 | 14 |
 | Chaotic | Soft HPA | 1 | 85.47% | 85.07% | 4.482 | 685.00 | 0.14646 | 3 |
+| Guarded chaotic 10–45 RPS | Tuned HPA | 1 | 0.00% | 0.00% | 0.011 | 990.00 | 0.07900 | 2 |
+| Guarded chaotic 10–45 RPS | Holt–Winters | 1 | 0.00% | 0.00% | 0.012 | 1342.50 | 0.10713 | 5 |
+| Guarded chaotic 10–45 RPS | Soft HPA | 1 | 0.00% | 0.00% | 0.012 | 1185.00 | 0.09456 | 1 |
 
 Traceable sources: `nasa_three_repeat/mean_sd.csv`,
 `alibaba_first_comparison/comparison.csv`,
 `onoff_first_comparison/comparison.csv`,
 `growing_first_comparison/comparison.csv`,
 `stepped_first_comparison/comparison.csv`, and
-`chaotic_first_comparison/safety_checkpoint.json`.
+`chaotic_first_comparison/safety_checkpoint.json`, and
+`guarded_chaotic_comparison/comparison.csv`.
 
 ### Scaling behaviour
 
@@ -69,6 +73,10 @@ Traceable sources: `nasa_three_repeat/mean_sd.csv`,
 - **Chaotic:** the accepted soft arm saturated badly and host load reached
   106.35. Two Holt–Winters attempts ended in host freezes and tuned HPA was never
   started. No controller comparison is permissible.
+- **Guarded chaotic:** all three arms served every request. Tuned used 16.46%
+  fewer pod-seconds than soft and 26.26% fewer than Holt–Winters. This is one
+  fixed-order run at 10–45 RPS, not a repetition or repair of the 20–120 RPS
+  safety-stopped experiment.
 
 ## Historical live capacity-only results
 

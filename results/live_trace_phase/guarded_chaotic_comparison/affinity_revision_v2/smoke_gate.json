@@ -1,0 +1,38 @@
+{
+  "generated_utc": "2026-10-23T23:48:28.923271+00:00",
+  "decision": "PASS",
+  "protocol_sha256": "79a2cc3d40c4dd22198d4da95a04dda97a47427f9165b6828be9cd5e391c19fe",
+  "affinity_monitor_sha256": "3926c87fe577153f4800be5e7a880a37d31b122c2fdd65069ffcd3cd4cc03cc8",
+  "checks": {
+    "smoke_runner_reported_pass": true,
+    "protocol_hash_frozen": true,
+    "affinity_monitor_hash_frozen": true,
+    "complete_successful_measurement_schedule": true,
+    "metrics_complete_marker_present": true,
+    "scheduler_wrapper_affinity": true,
+    "scheduler_child_inheritance": true,
+    "every_observed_thread_affinity": true,
+    "scope_limits": true,
+    "watchdog_independent_and_complete": true,
+    "host_thresholds_held": true,
+    "controllers_cleaned": true,
+    "no_generator_survived": true,
+    "task12_failed_result_preserved": true
+  },
+  "independent_counts": {
+    "measurement": 90,
+    "success": 90,
+    "thread_observations": 1671
+  },
+  "host_pressure": {
+    "samples": 25,
+    "max_load1": 2.05810546875,
+    "max_cpu_utilization_percent": 17.45431632010082,
+    "min_memory_available_bytes": 11762851840,
+    "max_swap_used_bytes": 0,
+    "max_cpu_psi_some_avg10": 1.33,
+    "max_memory_psi_full_avg10": 0.0,
+    "max_io_psi_full_avg10": 0.0,
+    "min_disk_free_bytes": 5767278592
+  }
+}

@@ -1,0 +1,948 @@
+{
+  "schema_version": 1,
+  "started_utc": "2026-10-23T23:14:37.862699+00:00",
+  "expected_cpus": [
+    4,
+    5
+  ],
+  "enforcement": "Linux scheduler affinity via taskset/sched_setaffinity",
+  "wrapper_pid": 46048,
+  "wrapper_affinity": [
+    4,
+    5
+  ],
+  "explicit_child_probe": {
+    "returncode": 0,
+    "allowed_cpus": [
+      4,
+      5
+    ],
+    "stderr": ""
+  },
+  "cgroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/run-r321071f498564c50b3909d4fd864d820.scope",
+  "cgroup_files": {
+    "cpuset.cpus.effective": {
+      "unavailable": "FileNotFoundError",
+      "errno": 2
+    },
+    "cpu.max": "100000 100000",
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "pids.max": "512"
+  },
+  "systemd_scope": {
+    "unit": "run-r321071f498564c50b3909d4fd864d820.scope",
+    "returncode": 0,
+    "stdout": "EffectiveCPUs=\nCPUQuotaPerSecUSec=1s\nAllowedCPUs=4-5\nMemoryMax=805306368\nMemorySwapMax=0\nTasksMax=512",
+    "stderr": ""
+  },
+  "samples": [
+    {
+      "utc": "2026-10-23T23:14:37.867742+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:37.981553+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:38.095833+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:38.209286+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:38.322937+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:38.437294+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:38.551221+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:38.665063+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:38.782111+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:38.895942+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:39.011250+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:39.130343+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:39.244424+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:39.358286+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:39.477343+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:39.591228+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:39.705221+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    },
+    {
+      "utc": "2026-10-23T23:14:39.818881+00:00",
+      "processes": [
+        {
+          "pid": 46065,
+          "tid": 46065,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46066,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46067,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46068,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        },
+        {
+          "pid": 46065,
+          "tid": 46069,
+          "allowed_cpus": [
+            4,
+            5
+          ],
+          "proc_status_cpus_allowed_list": "4-5"
+        }
+      ]
+    }
+  ],
+  "violations": [],
+  "finished_utc": "2026-10-23T23:14:39.933028+00:00",
+  "command_returncode": 0,
+  "observed_samples": 18,
+  "observed_thread_records": 90,
+  "decision": "PASS",
+  "stop_requested": false
+}

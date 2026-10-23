@@ -1,0 +1,29 @@
+{
+  "generated_utc": "2026-10-23T23:48:28.830498+00:00",
+  "decision": "PASS",
+  "checks": {
+    "focused_tests_pass": true,
+    "protocol_hash_matches": true,
+    "affinity_monitor_hash_matches_freeze": true,
+    "resource_policy_hash_matches_freeze": true,
+    "old_smoke_remains_failed": true,
+    "scheduler_affinity_probe_passed": true,
+    "all_probe_threads_restricted": true,
+    "probe_child_inherited_affinity": true,
+    "quota_memory_swap_pid_limits": true,
+    "cpuset_absence_recorded_not_fabricated": true,
+    "kind_limits_and_cluster_preflight_pass": true
+  },
+  "test_command": [
+    ".venv/bin/python",
+    "-m",
+    "unittest",
+    "tests.test_guarded_exec",
+    "tests.test_safety_watchdog",
+    "tests.test_guarded_matrix_gate",
+    "-v"
+  ],
+  "tests_returncode": 0,
+  "tests_stdout": "",
+  "tests_stderr": "test_affinity_snapshot_checks_every_thread (tests.test_guarded_exec.GuardedExecTests.test_affinity_snapshot_checks_every_thread) ... ok\ntest_parse_cpu_list (tests.test_guarded_exec.GuardedExecTests.test_parse_cpu_list) ... ok\ntest_subprocess_inherits_scheduler_affinity (tests.test_guarded_exec.GuardedExecTests.test_subprocess_inherits_scheduler_affinity) ... ok\ntest_atomic_json_preserves_abort_diagnostic (tests.test_safety_watchdog.SafetyWatchdogTests.test_atomic_json_preserves_abort_diagnostic) ... ok\ntest_independent_watchdog_triggers_latches_and_stops_target (tests.test_safety_watchdog.SafetyWatchdogTests.test_independent_watchdog_triggers_latches_and_stops_target) ... ok\ntest_termination_stops_benchmark_process_group (tests.test_safety_watchdog.SafetyWatchdogTests.test_termination_stops_benchmark_process_group) ... ok\ntest_threshold_evaluation_names_exact_reasons (tests.test_safety_watchdog.SafetyWatchdogTests.test_threshold_evaluation_names_exact_reasons) ... ok\ntest_unhealthy_workload_only_matters_during_active_run (tests.test_safety_watchdog.SafetyWatchdogTests.test_unhealthy_workload_only_matters_during_active_run) ... ok\ntest_matrix_latch_requires_resolution_of_exact_block (tests.test_guarded_matrix_gate.GuardedMatrixGateTests.test_matrix_latch_requires_resolution_of_exact_block) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.254s\n\nOK\n"
+}

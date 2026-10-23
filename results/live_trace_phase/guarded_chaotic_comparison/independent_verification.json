@@ -1,46 +1,171 @@
 {
-  "status": "BLOCKED",
-  "reason": "SMOKE_RESOURCE_LIMIT_VERIFICATION_FAILED",
-  "generated_utc": "2026-10-23T23:01:00.198669+00:00",
+  "status": "COMPLETE",
+  "generated_utc": "2026-10-23T23:48:31.750103+00:00",
   "checks": {
+    "source_hash_matches_frozen": true,
     "replay_hash_matches_frozen": true,
     "schedule_hash_matches_frozen": true,
     "measurement_count_matches_frozen": true,
-    "maximum_rate_is_45_rps": true,
-    "maximum_in_flight_is_256": true,
-    "balanced_order_frozen": true,
-    "kind_hard_limits_verified": true,
-    "preflight_passed": true,
-    "smoke_requests_independently_recomputed": true,
-    "smoke_watchdog_stayed_active": true,
-    "smoke_gate_failed_as_recorded": true,
-    "failed_smoke_latches_orchestrator_block": true,
-    "research_matrix_not_started_after_failed_gate": true,
+    "controller_order_matches_frozen": true,
+    "smoke_v2_gate_passed": true,
+    "protocol_components_match_freeze": true,
+    "watchdog_completed_without_abort": true,
+    "every_run_independently_matches": true,
+    "every_affinity_monitor_passed": true,
     "full_test_suite_passed": true
   },
-  "host_pressure_smoke_attempt3": {
-    "samples": 25,
-    "max_load1": 1.95703125,
-    "max_cpu_utilization_percent": 11.834690043832186,
-    "min_memory_available_bytes": 11930963968,
+  "per_run_checks": {
+    "calibrated_hpa": {
+      "request_denominator": true,
+      "success_and_error_counts": true,
+      "latency_population": true,
+      "capacity_integration": true,
+      "cpu_coverage": true,
+      "controller_exclusive": true,
+      "acceptance_checks": true
+    },
+    "holtwinters": {
+      "request_denominator": true,
+      "success_and_error_counts": true,
+      "latency_population": true,
+      "capacity_integration": true,
+      "cpu_coverage": true,
+      "controller_exclusive": true,
+      "acceptance_checks": true
+    },
+    "strawman_hpa": {
+      "request_denominator": true,
+      "success_and_error_counts": true,
+      "latency_population": true,
+      "capacity_integration": true,
+      "cpu_coverage": true,
+      "controller_exclusive": true,
+      "acceptance_checks": true
+    }
+  },
+  "affinity_checks": {
+    "calibrated_hpa": {
+      "monitor_pass": true,
+      "wrapper_and_child": true,
+      "all_observed_threads": true,
+      "thread_observations": 11349,
+      "scope_limits": true
+    },
+    "holtwinters": {
+      "monitor_pass": true,
+      "wrapper_and_child": true,
+      "all_observed_threads": true,
+      "thread_observations": 11263,
+      "scope_limits": true
+    },
+    "strawman_hpa": {
+      "monitor_pass": true,
+      "wrapper_and_child": true,
+      "all_observed_threads": true,
+      "thread_observations": 11265,
+      "scope_limits": true
+    }
+  },
+  "host_pressure_research_matrix": {
+    "samples": 809,
+    "max_load1": 3.59423828125,
+    "max_cpu_utilization_percent": 33.60450563204005,
+    "min_memory_available_bytes": 11600592896,
     "max_swap_used_bytes": 0,
-    "max_cpu_psi_some_avg10": 1.25,
+    "max_cpu_psi_some_avg10": 6.96,
     "max_memory_psi_full_avg10": 0.0,
-    "max_io_psi_full_avg10": 0.0,
-    "min_disk_free_bytes": 5767966720
+    "max_io_psi_full_avg10": 4.63,
+    "min_disk_free_bytes": 5754138624
   },
+  "rows": [
+    {
+      "arm": "calibrated_hpa",
+      "decision": "ACCEPT",
+      "scheduled_requests": 12532,
+      "successful_requests": 12532,
+      "errors": 0,
+      "timeouts": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "p50_latency_s": 0.007516275500165599,
+      "p95_latency_s": 0.011187544850190493,
+      "p99_latency_s": 0.013587438790054824,
+      "throughput_rps": 29.83809523809524,
+      "pod_seconds": 989.9997998634999,
+      "pod_seconds_per_success": 0.07899774974972071,
+      "mean_ready": 2.357142380627381,
+      "max_ready": 3,
+      "cpu_coverage": 1.0,
+      "mean_cpu_m": 98.4865261547619,
+      "max_cpu_m": 199.932902,
+      "scale_up_events": 2,
+      "scale_down_events": 0,
+      "replica_oscillations": 0,
+      "dispatch_p99_s": 0.0022605945212859527,
+      "generator_drops": 0
+    },
+    {
+      "arm": "holtwinters",
+      "decision": "ACCEPT",
+      "scheduled_requests": 12532,
+      "successful_requests": 12532,
+      "errors": 0,
+      "timeouts": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "p50_latency_s": 0.007842123000045751,
+      "p95_latency_s": 0.01169178989994176,
+      "p99_latency_s": 0.014680567400564462,
+      "throughput_rps": 29.83809523809524,
+      "pod_seconds": 1342.4994849340005,
+      "pod_seconds_per_success": 0.10712571695930423,
+      "mean_ready": 3.1964273450809535,
+      "max_ready": 6,
+      "cpu_coverage": 1.0,
+      "mean_cpu_m": 84.50198670833332,
+      "max_cpu_m": 203.260167,
+      "scale_up_events": 5,
+      "scale_down_events": 0,
+      "replica_oscillations": 0,
+      "dispatch_p99_s": 0.0022939099677557807,
+      "generator_drops": 0
+    },
+    {
+      "arm": "strawman_hpa",
+      "decision": "ACCEPT",
+      "scheduled_requests": 12532,
+      "successful_requests": 12532,
+      "errors": 0,
+      "timeouts": 0,
+      "success_rate": 1.0,
+      "error_rate": 0.0,
+      "p50_latency_s": 0.0078019459997449,
+      "p95_latency_s": 0.011678266500257353,
+      "p99_latency_s": 0.01449931786043633,
+      "throughput_rps": 29.83809523809524,
+      "pod_seconds": 1184.9998152929993,
+      "pod_seconds_per_success": 0.0945579169560325,
+      "mean_ready": 2.8214281316499985,
+      "max_ready": 3,
+      "cpu_coverage": 1.0,
+      "mean_cpu_m": 84.68353245238096,
+      "max_cpu_m": 202.218243,
+      "scale_up_events": 1,
+      "scale_down_events": 0,
+      "replica_oscillations": 0,
+      "dispatch_p99_s": 0.0022409381167557284,
+      "generator_drops": 0
+    }
+  ],
   "run_dispositions": {
-    "calibrated_hpa": "NOT_RUN_SAFETY_GATE",
-    "holtwinters": "NOT_RUN_SAFETY_GATE",
-    "strawman_hpa": "NOT_RUN_SAFETY_GATE"
+    "calibrated_hpa": "ACCEPT",
+    "holtwinters": "ACCEPT",
+    "strawman_hpa": "ACCEPT"
   },
-  "smoke_attempts": {
-    "attempt1": "SAFETY_ABORTED_FALSE_POSITIVE_DURING_RESET",
-    "attempt2": "FAIL_CPU_AFFINITY_NOT_OBSERVED_ALL_OTHER_CHECKS_PASS",
-    "attempt3": "FAIL_SAME_LIMIT_VERIFICATION_AFTER_ATTEMPT2_COMPLETION_WAS_NOT_YET_VISIBLE_TO_CALLER"
-  },
-  "independent_smoke": {
-    "measurement_records": 90,
-    "successful_requests": 90
-  }
+  "limitations": [
+    "one run per controller; no variance or causal significance estimate",
+    "fixed controller order permits time/order confounding",
+    "CPUs 4-5 are SMT siblings of kind CPUs 0-1; no physical-core isolation",
+    "10-45 RPS guarded variant is separate from and must not be pooled with the hazardous 20-120 RPS run"
+  ]
 }

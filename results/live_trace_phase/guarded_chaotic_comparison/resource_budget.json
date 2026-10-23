@@ -13,36 +13,36 @@
     "no_active_benchmark_runner": true
   },
   "host": {
-    "captured_utc": "2026-10-23T23:00:57.299994+00:00",
+    "captured_utc": "2026-10-23T23:15:40.867278+00:00",
     "platform": "Linux-7.0.11-76070011-generic-x86_64-with-glibc2.39",
     "physical_cores": 4,
     "logical_cpus": 8,
     "load_average": [
-      2.23388671875,
-      1.92626953125,
-      1.58251953125
+      1.87109375,
+      1.53955078125,
+      1.34814453125
     ],
     "disk": {
       "total_bytes": 101831528448,
-      "used_bytes": 90844725248,
-      "free_bytes": 5766733824
+      "used_bytes": 90843557888,
+      "free_bytes": 5767901184
     },
     "MemTotal": 20648255488,
-    "MemAvailable": 11970449408,
+    "MemAvailable": 11868467200,
     "SwapTotal": 17179865088,
     "SwapFree": 17179865088,
     "pressure": {
       "cpu": [
-        "some avg10=0.50 avg60=0.36 avg300=0.32 total=48061426",
+        "some avg10=0.31 avg60=0.18 avg300=0.27 total=55707128",
         "full avg10=0.00 avg60=0.00 avg300=0.00 total=0"
       ],
       "memory": [
-        "some avg10=0.00 avg60=0.00 avg300=0.00 total=2920",
-        "full avg10=0.00 avg60=0.00 avg300=0.00 total=2675"
+        "some avg10=0.00 avg60=0.00 avg300=0.00 total=2933",
+        "full avg10=0.00 avg60=0.00 avg300=0.00 total=2688"
       ],
       "io": [
-        "some avg10=0.00 avg60=0.00 avg300=0.00 total=21702912",
-        "full avg10=0.00 avg60=0.00 avg300=0.00 total=18506065"
+        "some avg10=0.00 avg60=0.00 avg300=0.00 total=25078401",
+        "full avg10=0.00 avg60=0.00 avg300=0.00 total=21616617"
       ]
     }
   },
@@ -243,12 +243,12 @@
   "metrics_query": {
     "nodes": {
       "returncode": 0,
-      "stdout": "NAME                            CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   \ncalibrated-live-control-plane   65m          0%       1193Mi          6%",
+      "stdout": "NAME                            CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   \ncalibrated-live-control-plane   65m          0%       1191Mi          6%",
       "stderr": ""
     },
     "pods": {
       "returncode": 0,
-      "stdout": "NAMESPACE            NAME                                                    CPU(cores)   MEMORY(bytes)   \nkube-system          coredns-668d6bf9bc-dl7gp                                1m           56Mi            \nkube-system          coredns-668d6bf9bc-j4xps                                1m           15Mi            \nkube-system          etcd-calibrated-live-control-plane                      10m          84Mi            \nkube-system          kindnet-dft7r                                           1m           15Mi            \nkube-system          kube-apiserver-calibrated-live-control-plane            19m          296Mi           \nkube-system          kube-controller-manager-calibrated-live-control-plane   9m           118Mi           \nkube-system          kube-proxy-lnz9m                                        1m           67Mi            \nkube-system          kube-scheduler-calibrated-live-control-plane            4m           74Mi            \nkube-system          metrics-server-75696c7b58-rmvbh                         2m           23Mi            \nlocal-path-storage   local-path-provisioner-7dc846544d-whsf5                 1m           9Mi             \nphpa-system          predictive-horizontal-pod-autoscaler-9f5756764-9kxf4    1m           90Mi            \ntrace-benchmark      php-apache-68fd8fb4cf-q74kk                             2m           12Mi",
+      "stdout": "NAMESPACE            NAME                                                    CPU(cores)   MEMORY(bytes)   \nkube-system          coredns-668d6bf9bc-dl7gp                                1m           57Mi            \nkube-system          coredns-668d6bf9bc-j4xps                                1m           15Mi            \nkube-system          etcd-calibrated-live-control-plane                      11m          84Mi            \nkube-system          kindnet-dft7r                                           1m           15Mi            \nkube-system          kube-apiserver-calibrated-live-control-plane            18m          291Mi           \nkube-system          kube-controller-manager-calibrated-live-control-plane   9m           118Mi           \nkube-system          kube-proxy-lnz9m                                        1m           67Mi            \nkube-system          kube-scheduler-calibrated-live-control-plane            4m           74Mi            \nkube-system          metrics-server-75696c7b58-rmvbh                         2m           23Mi            \nlocal-path-storage   local-path-provisioner-7dc846544d-whsf5                 1m           9Mi             \nphpa-system          predictive-horizontal-pod-autoscaler-9f5756764-9kxf4    1m           90Mi            \ntrace-benchmark      php-apache-68fd8fb4cf-q74kk                             3m           13Mi",
       "stderr": ""
     }
   },

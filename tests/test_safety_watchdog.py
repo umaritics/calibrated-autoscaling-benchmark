@@ -64,6 +64,34 @@ class SafetyWatchdogTests(unittest.TestCase):
             watchdog.atomic_json(target, {"decision": "SAFETY_ABORTED", "reasons": ["disk_free_low"]})
             self.assertEqual(json.loads(target.read_text())["reasons"], ["disk_free_low"])
 
+    def test_independent_watchdog_triggers_latches_and_stops_target(self):
+        child = subprocess.Popen(["sleep", "60"], start_new_session=True)
+        try:
+            with tempfile.TemporaryDirectory() as temp:
+                root = Path(temp)
+                session = root / "session"
+                session.mkdir()
+                runtime = session / "active.json"
+                runtime.write_text(json.dumps({"active": False, "pid": child.pid,
+                                               "pgid": child.pid, "in_flight": 0}))
+                config = root / "config.json"
+                thresholds = self.thresholds()
+                thresholds["disk_free_bytes_min"] = 10**30
+                config.write_text(json.dumps({"thresholds": thresholds,
+                                              "sample_interval_seconds": 0.01,
+                                              "sustained_samples": 1,
+                                              "graceful_stop_seconds": 1}))
+                args = type("Args", (), {"config": config, "session_dir": session,
+                    "runtime_state": runtime, "root": root, "kubectl": ["/bin/true"]})
+                self.assertEqual(watchdog.run(args), 75)
+                child.wait(timeout=2)
+                self.assertEqual(json.loads((session / "safety_abort.json").read_text())["decision"],
+                                 "SAFETY_ABORTED")
+                self.assertTrue((root / "BLOCK_NEW_RUNS").exists())
+        finally:
+            if child.poll() is None:
+                os.killpg(child.pid, signal.SIGKILL)
+
 
 if __name__ == "__main__":
     unittest.main()

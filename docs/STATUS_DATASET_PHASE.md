@@ -43,18 +43,18 @@ This is an audit heuristic, not a measured experimental percentage.
 | 6 | On/off live experiments | **PARTIALLY COMPLETE** | One accepted run per controller: `results/live_trace_phase/onoff_first_comparison/RESULTS.md`, `comparison.csv`, `evidence_manifest.json`. No repeat variance; 90× compression and fixed order limit inference. |
 | 7 | Growing live experiments | **PARTIALLY COMPLETE** | One accepted run per controller with independent verification: `results/live_trace_phase/growing_first_comparison/RESULTS.md`, `comparison.csv`, `independent_verification.json`. No repeat variance. |
 | 8 | Stepped live experiments | **PARTIALLY COMPLETE** | Tuned HPA and Holt–Winters accepted; soft HPA retained as REJECT after dispatch p99 exceeded the frozen threshold: `results/live_trace_phase/stepped_first_comparison/RESULTS.md`, `comparison.csv`, `independent_verification.json`. This is not a complete three-controller matrix. |
-| 9 | Chaotic live experiments | **BLOCKED** | The original 20–120 RPS variant retains one accepted soft-HPA run and two incomplete/excluded Holt–Winters attempts after host freezes. A separate 10–45 RPS resource-guarded variant passed host/kind preflight and served all 90 smoke requests, but failed the frozen actual-limit gate because the transient generator scope did not expose the requested CPU-affinity value. No research arms were launched for the guarded variant: `results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md`; `results/live_trace_phase/guarded_chaotic_comparison/FINDINGS.md`. No chaotic cross-controller conclusion is valid. |
+| 9 | Chaotic live experiments | **PARTIALLY COMPLETE** | The original hazardous 20–120 RPS variant remains safety-stopped. A separate prospectively corrected 10–45 RPS guarded variant has one independently accepted run per controller: all arms served 12,532/12,532 requests; tuned/PHPA/soft used 990.000/1342.499/1185.000 pod-seconds. Task 12's failed smoke remains failed; protocol v2 documents scheduler-affinity enforcement after diagnosing absent cpuset delegation: `results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md`; `results/live_trace_phase/guarded_chaotic_comparison/FINDINGS.md`; `affinity_revision_v2/SAFETY_PROTOCOL_V2.md`. No repeat variance and no pooling across intensities. |
 | 10 | Comparison with the original paper | **PARTIALLY COMPLETE** | Supported early-detection values are recomputed from released traces and the paper's headline claims are marked NOT MEASURED/NOT COMPARABLE in `docs/reproduction_report.md`. Exact +37.4%, Gemini 96.7%, and NASA/Alibaba sub-2% MAPE protocols were not recomputed. |
 | 11 | Mean/SD and statistical comparisons | **PARTIALLY COMPLETE** | Sample SD and paired descriptive differences exist for historical seasonal/burst (`results/results.md`) and accepted NASA repetitions (`nasa_three_repeat/mean_sd.csv`, `paired_differences.csv`). Single-run live patterns have no SD or significance claims. |
-| 12 | Reproducibility documentation and GitHub status | **PARTIALLY COMPLETE** | Plans, transformations, raw evidence, manifests, and reproduce files are indexed below. Before the guarded milestone, local `main` and `origin/main` both pointed to `3861522`; the guarded safety commit and publication status are reported separately. |
+| 12 | Reproducibility documentation and GitHub status | **PARTIALLY COMPLETE** | Plans, transformations, raw evidence, manifests, and reproduce files are indexed below. Task 12 was published at `73c59b9`; Task 13's publication status is reported in its final handoff. |
 
 ## What is complete and what is not
 
 Complete: exhaustive D1 evaluation, exhaustive audit of the supplied D2 release,
 and the original repeated seasonal/burst capacity study. The bounded NASA,
-Alibaba, on/off, growing, and stepped milestones produced valid evidence but do
-not constitute a repeated six-pattern QoS matrix. Chaotic remains deliberately
-incomplete for host safety. Paper forecasting MAPE and LLM classification were
+Alibaba, on/off, growing, stepped, and guarded chaotic milestones produced valid evidence but do
+not constitute a repeated six-pattern QoS matrix. The hazardous chaotic variant
+remains stopped; the lower-intensity guarded matrix is complete at n=1. Paper forecasting MAPE and LLM classification were
 not reproduced and must never be inferred from the live HTTP replays.
 
 The documentation handoff can be finalized with these limitations. The wider
@@ -64,11 +64,12 @@ experimental programme cannot honestly be called complete.
 
 1. **Only recommended milestone — controlled repeated live-matrix completion on
    a resource-isolated host.** Preserve all current evidence as-is; add accepted
-   repetitions for on/off, growing, and stepped, and only then retry the frozen
-   chaotic three-controller protocol with hard host load, RAM, swap, disk-I/O,
-   temperature, and client-concurrency abort guards. The target is at least
+   repetitions for on/off, growing, stepped, and the guarded chaotic variant
+   with the existing hard host load, RAM, swap, disk-I/O, and client-concurrency
+   abort guards. The target is at least
    three accepted runs per controller/pattern without changing acceptance rules.
-   A different intensity must be labelled a new protocol, not a replacement.
+   The guarded chaotic n=1 result may be extended prospectively but must remain
+   separate from the hazardous intensity.
 
 Exact-paper offline/LLM reproduction would extend scope, but it is not required
 to answer the calibrated-HPA research question because the unmatched headline
@@ -89,7 +90,7 @@ claims are already documented as NOT RECOMPUTED.
 | Growing replay | `results/live_trace_phase/growing_first_comparison/RESULTS.md`; `WORKLOAD_TRANSFORMATION.md`; `comparison.csv`; `independent_verification.json`; `evidence_manifest.json` |
 | Stepped replay | `results/live_trace_phase/stepped_first_comparison/RESULTS.md`; `WORKLOAD_TRANSFORMATION.md`; `comparison.csv`; `independent_verification.json`; `evidence_manifest.json` |
 | Chaotic safety checkpoint | `results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md`; `safety_checkpoint.json`; `evidence_manifest.json`; `interrupted_runs/` |
-| Guarded chaotic variant | `results/live_trace_phase/guarded_chaotic_comparison/FINDINGS.md`; `resource_budget.json`; `frozen_plan.json`; `independent_verification.json`; `evidence_manifest.json` |
+| Guarded chaotic variant | `results/live_trace_phase/guarded_chaotic_comparison/FINDINGS.md`; `affinity_revision_v2/SAFETY_PROTOCOL_V2.md`; `affinity_revision_v2/smoke_gate.json`; `comparison.csv`; `independent_verification.json`; `evidence_manifest.json` |
 | Integrated live interpretation | `results/live_trace_phase/results.md` |
 | Real-world forecasting | `results/real_world_forecasting/RESULTS.md`; `metrics.csv`; `predictions.csv`; `evaluation_protocol.json`; `independent_verification.json`; `PAPER_COMPARISON.md`; `evidence_manifest.json` |
 | Local evidence policy | `docs/LOCAL_EVIDENCE_RETENTION.md` |

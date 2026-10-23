@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "results/live_trace_phase/guarded_chaotic_comparison"
 CONFIG = ROOT / "configs/guarded_chaotic_safety.json"
+PROTOCOL = OUT / "affinity_revision_v2/SAFETY_PROTOCOL_V2.md"
 K = [str(ROOT / ".tools/kubectl"), "--kubeconfig", str(ROOT / "live-kubeconfig"), "--request-timeout=15s"]
 
 
@@ -38,9 +39,15 @@ def block_is_active(block):
 
 
 def main():
-    safety_gate = OUT / "SAFETY_GATE_BLOCK.json"
-    if safety_gate.exists():
-        raise RuntimeError(f"failed smoke safety gate prevents research execution: {safety_gate}")
+    smoke_gate = OUT / "affinity_revision_v2/smoke_gate.json"
+    smoke = json.loads(smoke_gate.read_text()) if smoke_gate.exists() else {}
+    if smoke.get("decision") != "PASS":
+        raise RuntimeError("prospective v2 smoke gate did not pass")
+    if smoke.get("protocol_sha256") != hashlib.sha256(PROTOCOL.read_bytes()).hexdigest():
+        raise RuntimeError("safety protocol changed after the v2 smoke")
+    if smoke.get("affinity_monitor_sha256") != hashlib.sha256(
+            (ROOT / "scripts/live/guarded_exec.py").read_bytes()).hexdigest():
+        raise RuntimeError("affinity monitor changed after the v2 smoke")
     plan = json.loads((OUT / "frozen_plan.json").read_text())
     preflight = json.loads((OUT / "resource_budget.json").read_text())
     if preflight.get("decision") != "PASS":
@@ -56,8 +63,9 @@ def main():
     session.mkdir(parents=True)
     runtime = session / "active_run.json"
     runtime.write_text(json.dumps({"active": False, "in_flight": 0, "updated_utc": now()}) + "\n")
-    watchdog_command = [sys.executable, "scripts/live/safety_watchdog.py", "--config", str(CONFIG),
-                        "--session-dir", str(session), "--runtime-state", str(runtime)]
+    watchdog_command = [".venv/bin/python", "scripts/live/safety_watchdog.py", "--config",
+                        str(CONFIG.relative_to(ROOT)), "--session-dir", str(session.relative_to(ROOT)),
+                        "--runtime-state", str(runtime.relative_to(ROOT))]
     watchdog = subprocess.Popen(watchdog_command, cwd=ROOT, start_new_session=True)
     append({"event": "watchdog_started", "utc": now(), "pid": watchdog.pid,
             "session": str(session.relative_to(ROOT)), "command": watchdog_command})
@@ -75,18 +83,24 @@ def main():
                 "--warmup", str(run["warmup"]), "--duration", str(run["duration"]),
                 "--category", run["category"], "--max-inflight", str(run["max_inflight"]),
                 "--runtime-state", str(runtime)]
+            affinity_evidence = session / f"generator_enforcement_{run['sequence']}_{run['arm']}.json"
             command = ["systemd-run", "--user", "--scope", "--quiet",
                 "-p", "AllowedCPUs=4-5", "-p", "CPUQuota=100%", "-p", "MemoryMax=768M",
-                "-p", "MemorySwapMax=0", "-p", "TasksMax=512"] + generator
+                "-p", "MemorySwapMax=0", "-p", "TasksMax=512", "taskset", "--cpu-list", "4-5",
+                str(ROOT / ".venv/bin/python"), "scripts/live/guarded_exec.py", "--evidence",
+                str(affinity_evidence), "--expected-cpus", "4-5", "--"] + generator
             started = now()
             process = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, start_new_session=True)
             append({"event": "collection", "sequence": run["sequence"], "run": run,
                     "started_utc": started, "finished_utc": now(), "returncode": process.returncode,
                     "stdout": process.stdout.replace(str(ROOT) + "/", ""),
                     "stderr": process.stderr.replace(str(ROOT) + "/", "")})
-            if block_is_active(block) or (session / "safety_abort.json").exists() or process.returncode == 75:
+            enforcement = json.loads(affinity_evidence.read_text()) if affinity_evidence.exists() else {}
+            enforcement_failed = enforcement.get("decision") != "PASS"
+            if block_is_active(block) or (session / "safety_abort.json").exists() or process.returncode == 75 or enforcement_failed:
                 aborted = True
                 disposition = {"decision": "SAFETY_ABORTED", "arm": run["arm"],
+                               "affinity_enforcement_failed": enforcement_failed,
                                "finished_utc": now(), "remaining_arms_not_run": [
                                    item["arm"] for item in plan["runs"] if item["sequence"] > run["sequence"]]}
                 (OUT / "matrix_disposition.json").write_text(json.dumps(disposition, indent=2) + "\n")

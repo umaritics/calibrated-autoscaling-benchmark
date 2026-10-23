@@ -1,0 +1,71 @@
+{
+  "captured_utc": "2026-10-23T23:14:37.784416+00:00",
+  "conclusion": "Task 12 read the correct live scope; cpuset.cpus.effective was absent because the cpuset controller was not instantiated in that user scope. AllowedCPUs alone therefore lacked the required read-back proof.",
+  "current_process_cgroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/app-cursor-19472.scope",
+  "unified_mount": {
+    "command": [
+      "findmnt",
+      "-no",
+      "FSTYPE,OPTIONS",
+      "/sys/fs/cgroup"
+    ],
+    "returncode": 0,
+    "stdout": "cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot",
+    "stderr": ""
+  },
+  "root_controllers": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+  "root_subtree_control": "cpuset cpu io memory hugetlb pids rdma misc dmem",
+  "current_parent_controllers": "memory pids",
+  "current_parent_subtree_control": "",
+  "cpu_topology": {
+    "command": [
+      "lscpu",
+      "-e=CPU,CORE,SOCKET,NODE,ONLINE"
+    ],
+    "returncode": 0,
+    "stdout": "CPU CORE SOCKET NODE ONLINE\n  0    0      0    0    yes\n  1    1      0    0    yes\n  2    2      0    0    yes\n  3    3      0    0    yes\n  4    0      0    0    yes\n  5    1      0    0    yes\n  6    2      0    0    yes\n  7    3      0    0    yes",
+    "stderr": ""
+  },
+  "online_cpus": "0-7",
+  "task12_scope_evidence": {
+    "scope": "infrastructure smoke only; not controller research evidence",
+    "attempt": 3,
+    "started_or_finished_utc": "2026-10-23T22:57:03.942189+00:00",
+    "decision": "FAIL",
+    "checks": {
+      "generator_completed": true,
+      "actual_requests_reached_service": true,
+      "all_measurement_requests_recorded": true,
+      "metrics_collected": true,
+      "watchdog_collected_host_pressure": true,
+      "watchdog_did_not_abort": true,
+      "generator_cgroup_limits_actual_match": false,
+      "dispatch_timing_healthy": true,
+      "host_memory_stayed_above_threshold": true,
+      "disk_stayed_above_threshold": true
+    },
+    "successful_measurement_requests": 90,
+    "measurement_records": 90,
+    "watchdog_samples": 25,
+    "actual_generator_cgroup": {
+      "cpu.max": "100000 100000",
+      "memory.max": "805306368",
+      "memory.swap.max": "0",
+      "pids.max": "512"
+    },
+    "stdout": "results/live_trace_phase/guarded_chaotic_comparison/pilot_guarded_smoke/guarded_smoke/repeat3/calibrated_hpa\n",
+    "stderr": ""
+  },
+  "kind_host_config": {
+    "command": [
+      "docker",
+      "inspect",
+      "calibrated-live-control-plane",
+      "--format",
+      "{{json .HostConfig}}"
+    ],
+    "returncode": 0,
+    "stdout": "{\"Binds\":[\"/lib/modules:/lib/modules:ro\"],\"ContainerIDFile\":\"\",\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{}},\"NetworkMode\":\"kind\",\"PortBindings\":{\"30080/tcp\":[{\"HostIp\":\"127.0.0.1\",\"HostPort\":\"18080\"}],\"6443/tcp\":[{\"HostIp\":\"127.0.0.1\",\"HostPort\":\"33717\"}]},\"RestartPolicy\":{\"Name\":\"on-failure\",\"MaximumRetryCount\":1},\"AutoRemove\":false,\"VolumeDriver\":\"\",\"VolumesFrom\":null,\"ConsoleSize\":[0,0],\"CapAdd\":null,\"CapDrop\":null,\"CgroupnsMode\":\"private\",\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IpcMode\":\"private\",\"Cgroup\":\"\",\"Links\":null,\"OomScoreAdj\":0,\"PidMode\":\"\",\"Privileged\":true,\"PublishAllPorts\":false,\"ReadonlyRootfs\":false,\"SecurityOpt\":[\"seccomp=unconfined\",\"apparmor=unconfined\",\"label=disable\"],\"Tmpfs\":{\"/run\":\"\",\"/tmp\":\"\"},\"UTSMode\":\"\",\"UsernsMode\":\"\",\"ShmSize\":67108864,\"Runtime\":\"runc\",\"Isolation\":\"\",\"CpuShares\":0,\"Memory\":8589934592,\"NanoCpus\":0,\"CgroupParent\":\"\",\"BlkioWeight\":0,\"BlkioWeightDevice\":[],\"BlkioDeviceReadBps\":[],\"BlkioDeviceWriteBps\":[],\"BlkioDeviceReadIOps\":[],\"BlkioDeviceWriteIOps\":[],\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpusetCpus\":\"0-3\",\"CpusetMems\":\"\",\"Devices\":[],\"DeviceCgroupRules\":null,\"DeviceRequests\":null,\"MemoryReservation\":0,\"MemorySwap\":8589934592,\"MemorySwappiness\":null,\"OomKillDisable\":null,\"PidsLimit\":4096,\"Ulimits\":[],\"CpuCount\":0,\"CpuPercent\":0,\"IOMaximumIOps\":0,\"IOMaximumBandwidth\":0,\"MaskedPaths\":null,\"ReadonlyPaths\":null,\"Init\":false}",
+    "stderr": ""
+  }
+}

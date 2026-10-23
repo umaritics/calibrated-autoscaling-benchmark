@@ -1,0 +1,14 @@
+{
+  "schema_version": 2,
+  "frozen_before_smoke_attempt": 4,
+  "protocol_path": "results/live_trace_phase/guarded_chaotic_comparison/affinity_revision_v2/SAFETY_PROTOCOL_V2.md",
+  "protocol_sha256": "79a2cc3d40c4dd22198d4da95a04dda97a47427f9165b6828be9cd5e391c19fe",
+  "resource_policy_path": "configs/guarded_chaotic_safety.json",
+  "resource_policy_sha256": "7a9c1987f9efb10a71ab7e6983309ae058cda2047dab4b3995a3604cb2aa319a",
+  "affinity_monitor_path": "scripts/live/guarded_exec.py",
+  "affinity_monitor_sha256_at_freeze": "3926c87fe577153f4800be5e7a880a37d31b122c2fdd65069ffcd3cd4cc03cc8",
+  "task12_smoke_attempt3_disposition": "FAIL_UNCHANGED",
+  "mechanism": "taskset plus independent sched_getaffinity and per-thread /proc read-back",
+  "scientific_thresholds_changed": false,
+  "host_safety_thresholds_changed": false
+}
