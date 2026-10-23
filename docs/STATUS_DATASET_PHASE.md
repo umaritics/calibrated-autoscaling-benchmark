@@ -11,23 +11,32 @@
   soft-HPA runs, three accepted Holt–Winters runs, and two accepted tuned-HPA
   runs. Two additional tuned-HPA attempts are retained as `INCONCLUSIVE` under
   the unchanged 90% CPU-telemetry rule.
+- Validated the bounded Alibaba v2018 prefix and executed one accepted live run
+  for each controller on one frozen `c_1`-derived observation-sequence replay.
 
-## Live extension limitation
+## Current live extension status
 
-The available context `kind-research-cluster` is Kubernetes v1.32.2, not the original Docker Desktop v1.36.1 environment. Read-only inspection found `kube-controller-manager-research-cluster-control-plane` in `CreateContainerError`, no PHPA CRD, and existing unrelated KEDA/scaler workloads. No new controller runs were attempted on this unhealthy, occupied environment. No existing workloads were changed. Offline evaluation and released-data analysis provide the six-pattern extension instead.
+The dedicated `calibrated-live` kind cluster (Kubernetes v1.32.2) was healthy
+for the NASA and Alibaba-derived milestones. It is not the original Docker
+Desktop v1.36.1 environment. The Alibaba comparison reused the same application,
+resources, probes, replica bounds, timeout, controllers, and asynchronous
+generator. Its collector adds explicit command/availability diagnostics, so
+availability classifications are not assumed directly comparable to older NASA
+fields without qualification.
 
-Next live milestone: a healthy dedicated cluster with PHPA and metrics-server, then growing/onoff/chaotic/stepped × three controllers × at least three repeats. Use longer windows, record latency, and retain the original HW configuration alongside any corrected-period variant. Offline forecast rankings do not settle the tuned-HPA comparison on these four patterns.
+Recommended next milestone: predeclare and execute two additional Alibaba-derived
+repetitions per controller using the unchanged frozen transformation, with a
+balanced controller order and no tuning after this first outcome.
 
 ## Remaining evidence gaps
 
-The local NASA and bounded Alibaba inputs were acquired after the offline phase.
-The NASA live replay is a benchmark demand transformation, not a reproduction
-of the paper's forecast-MAPE protocol. Alibaba validation and any live execution
-must remain separately reported. No Gemini classifier or exact +37.4% paper
-comparison was reproduced.
+The NASA and Alibaba live replays are benchmark demand transformations, not a
+reproduction of the paper's forecast-MAPE protocol. The Alibaba prefix is not a
+full or representative dataset sample, and its irregular source timing is not
+preserved. No Gemini classifier or exact +37.4% paper comparison was reproduced.
 
 See `results/dataset_phase/offline_results.md` and `online_results.md` for computed tables, and `docs/reproduction_report.md` for the original-versus-ours comparison. Historical handoff text describes the pre-extension state.
 
 ## Source provenance follow-up
 
-The original evaluation used the supplied `data.zip`, not a new web download. Following the provenance review, both Kaggle archives were independently downloaded: all 1,288 files match the original supplied inputs byte-for-byte. See `results/dataset_phase/kaggle_source_verification.json` and `scripts/verify_kaggle_sources.py`. This closes the source-identity gap; the live, production-data, and exact-paper-protocol gaps above remain open. This phase is a completed offline milestone, not a completed reproduction of every paper claim.
+The original evaluation used the supplied `data.zip`, not a new web download. Following the provenance review, both Kaggle archives were independently downloaded: all 1,288 files match the original supplied inputs byte-for-byte. See `results/dataset_phase/kaggle_source_verification.json` and `scripts/verify_kaggle_sources.py`. This closes the Kaggle source-identity gap. Production-derived live replay now exists, but full-dataset representativeness and exact-paper-protocol gaps remain open. The broader project is not complete.

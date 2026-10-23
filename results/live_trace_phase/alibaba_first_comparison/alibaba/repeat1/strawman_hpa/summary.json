@@ -1,0 +1,186 @@
+{
+  "dataset": "alibaba",
+  "arm": "strawman_hpa",
+  "repeat": 1,
+  "category": "alibaba_first_comparison",
+  "warmup": 120,
+  "duration": 420,
+  "decision": "ACCEPT",
+  "decision_scope": "single-repeat live controller comparison",
+  "source_directory": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa",
+  "sources": {
+    "requests.csv": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/requests.csv",
+    "metrics.jsonl": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/metrics.jsonl",
+    "metadata.json": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/metadata.json",
+    "events.json": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/events.json",
+    "initial_objects.json": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/initial_objects.json",
+    "final_objects.json": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/final_objects.json",
+    "operator.log": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/operator.log"
+  },
+  "source_sha256": {
+    "requests.csv": "04506dd048641994cb971841aac59acffa2b1d79b6c370eb94c3fde09d6fb7b0",
+    "metrics.jsonl": "b9cbc3e6f43ea0d584ea16bef9a047741ea8fb7854af4a8409a489e8673ead95",
+    "metadata.json": "5a75e315fba92ad15dfd3af51e868f1d28ff3eb493d91acba8ea83dd722d937b",
+    "events.json": "40d517e638ae3f5dc9d6f7cfcb3783ac206acc8a9edcfe0f2799230721629d45",
+    "initial_objects.json": "28553727699a4a3074238b38ebea71dd98f959591146ff846afb82e5449411c0",
+    "final_objects.json": "2944c4dda7a6c978b6892a9e1e93ca8b13a4ff4d22d80670b05fe344cfb56084",
+    "operator.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "scheduled_requests": 14900,
+  "scheduled_measurement_requests": 14420,
+  "request_records": 14900,
+  "measurement_request_records": 14420,
+  "successful_requests": 14420,
+  "success_requests": 14420,
+  "recorded_failures": 0,
+  "errors": 0,
+  "http_failures_by_status": {},
+  "client_exceptions_by_class": {},
+  "client_exceptions_by_message": {},
+  "timeouts": 0,
+  "connection_failures": 0,
+  "disconnections": 0,
+  "cancellations": 0,
+  "other_failures": 0,
+  "generator_drops": 0,
+  "missing_records": 0,
+  "unexpected_records": 0,
+  "duplicate_records": 0,
+  "invalid_timestamp_records": 0,
+  "inconsistent_latency_records": 0,
+  "error_rate_scheduled_denominator": 0.0,
+  "error_rate": 0.0,
+  "recorded_error_rate": 0.0,
+  "dispatch_delay_s": {
+    "p50": 0.0007655917687543479,
+    "p95": 0.0017647255743980827,
+    "p99": 0.0021657438413825504
+  },
+  "successful_request_latency_s": {
+    "p50": 0.0072960095003509,
+    "p95": 0.009097654399374645,
+    "p99": 0.01175188696990507
+  },
+  "p50_latency_s": 0.0072960095003509,
+  "p95_latency_s": 0.009097654399374645,
+  "p99_latency_s": 0.01175188696990507,
+  "p95_scheduled_latency_s": 0.009973976388032213,
+  "p99_dispatch_delay_s": 0.0021657438413825504,
+  "intended_replay_duration_s": 420.0,
+  "actual_request_activity_duration_s": 419.9843580050001,
+  "runner_elapsed_s": 540.3605204609994,
+  "offered_request_rate_rps": 34.333333333333336,
+  "actual_dispatch_rate_rps": 34.335459823354974,
+  "achieved_success_rps": 34.333333333333336,
+  "max_client_inflight": 4,
+  "pod_seconds": 1277.4998180685006,
+  "desired_pod_seconds": 1317.4999163700004,
+  "mean_ready": 3.04166623349643,
+  "max_ready": 6,
+  "final_observed_ready": 4,
+  "cpu_hot_sample_fraction": 0.05952380952380952,
+  "mean_cpu_m": 76.82719492658731,
+  "max_cpu_m": 199.41791066666667,
+  "mean_metric_pod_coverage": 0.9285714285714286,
+  "sample_count": 84,
+  "cpu_sample_count": 84,
+  "cpu_coverage": 1.0,
+  "metric_availability_counts": {
+    "available": 84
+  },
+  "max_sample_gap_s": 5.003031715001271,
+  "malformed_metric_records": 0,
+  "max_workload_restarts": 0,
+  "readiness_deficit_samples": 6,
+  "events": {
+    "readiness_probe_failures": 0,
+    "liveness_probe_failures": 0,
+    "container_kill_events": 0
+  },
+  "active_controller": "HorizontalPodAutoscaler",
+  "controller_conflict_observed": false,
+  "scaling_events": [
+    {
+      "elapsed_s": 150.00004012700083,
+      "utc": "2026-10-23T15:45:43.263331+00:00",
+      "from_replicas": 1,
+      "to_replicas": 2
+    },
+    {
+      "elapsed_s": 215.00004932999946,
+      "utc": "2026-10-23T15:46:48.263341+00:00",
+      "from_replicas": 2,
+      "to_replicas": 3
+    },
+    {
+      "elapsed_s": 290.00005725200026,
+      "utc": "2026-10-23T15:48:03.263348+00:00",
+      "from_replicas": 3,
+      "to_replicas": 6
+    },
+    {
+      "elapsed_s": 365.0000467150003,
+      "utc": "2026-10-23T15:49:18.263339+00:00",
+      "from_replicas": 6,
+      "to_replicas": 3
+    },
+    {
+      "elapsed_s": 380.00006374199984,
+      "utc": "2026-10-23T15:49:33.263356+00:00",
+      "from_replicas": 3,
+      "to_replicas": 2
+    },
+    {
+      "elapsed_s": 440.0000521589991,
+      "utc": "2026-10-23T15:50:33.263346+00:00",
+      "from_replicas": 2,
+      "to_replicas": 3
+    },
+    {
+      "elapsed_s": 530.000072113,
+      "utc": "2026-10-23T15:52:03.263364+00:00",
+      "from_replicas": 3,
+      "to_replicas": 4
+    }
+  ],
+  "scaling_changes": 7,
+  "checks": {
+    "trace_hash_matches": true,
+    "metadata_schedule_count_exact": true,
+    "all_schedule_records_present": true,
+    "no_unexpected_or_duplicate_records": true,
+    "request_timestamps_valid": true,
+    "complete_marker": true,
+    "no_generator_drops": true,
+    "dispatch_p99_below_100ms": true,
+    "metrics_present": true,
+    "controller_exclusive": true,
+    "metrics_coverage_above_90pct": true,
+    "sample_gap_below_15s": true,
+    "window_bracketed": true,
+    "metric_timestamps_consistent": true,
+    "scaling_response_observed": true
+  },
+  "check_severity": {
+    "reject_if_false": [
+      "trace_hash_matches",
+      "metadata_schedule_count_exact",
+      "all_schedule_records_present",
+      "no_unexpected_or_duplicate_records",
+      "request_timestamps_valid",
+      "no_generator_drops",
+      "dispatch_p99_below_100ms"
+    ],
+    "inconclusive_if_false": [
+      "complete_marker",
+      "metrics_present",
+      "metrics_coverage_above_90pct",
+      "sample_gap_below_15s",
+      "window_bracketed",
+      "metric_timestamps_consistent",
+      "scaling_response_observed",
+      "controller_exclusive"
+    ]
+  },
+  "valid": true
+}

@@ -247,11 +247,11 @@ def write_report(r,destination):
     scaling=', '.join(f"{x['from_replicas']}→{x['to_replicas']} at {x['elapsed_s']:.3f}s ({x['utc']})" for x in r['scaling_events']) or 'none'
     classes=', '.join(f"`{k}`: {v}" for k,v in r['client_exceptions_by_class'].items()) or 'none'
     http=', '.join(f"HTTP {k}: {v}" for k,v in r['http_failures_by_status'].items()) or 'none'
-    text=f"""# Asynchronous NASA pilot validation
+    text=f"""# Per-run live validation
 
 ## Purpose and provenance
 
-This pilot tested whether the corrected asynchronous, open-loop replay and five-second Kubernetes collector could retain a deterministic NASA schedule while observing one Holt–Winters PHPA arm. It does not validate the planned three-controller comparison. Raw evidence is retained in `{r['source_directory']}`; source paths and SHA-256 hashes are recorded in `summary.json`, with run-time input hashes also retained in the run's `metadata.json`.
+This report validates one asynchronous, open-loop trace-derived demand replay. It does not by itself validate or compare other controller arms. Raw evidence is retained in `{r['source_directory']}`; source paths and SHA-256 hashes are recorded in `summary.json`, with run-time input hashes also retained in the run's `metadata.json`.
 
 ## Recomputed request measurements
 
@@ -265,19 +265,19 @@ This pilot tested whether the corrected asynchronous, open-loop replay and five-
 
 ## Autoscaling observations
 
-The collector saw exactly one `{r['active_controller']}` and no conflicting HPA in every measurement sample. There were {r['sample_count']} samples, {r['cpu_sample_count']} with CPU data, a {r['max_sample_gap_s']:.6f} s maximum gap, and {r['mean_metric_pod_coverage']:.6f} mean per-pod CPU coverage. Mean observed pod CPU was {r['mean_cpu_m']:.6f} mCPU and {r['cpu_hot_sample_fraction']:.6f} of CPU samples exceeded the protocol's original 160 mCPU threshold. Desired transitions were {scaling}. Maximum and final ready replicas were {r['max_ready']} and {r['final_observed_ready']}. Thus “five replicas” is the intermediate 3→5 transition; ten ready replicas is the later/final state. The collector saw {r['max_workload_restarts']} restart and {r['readiness_deficit_samples']} readiness-deficit samples. Events retain {r['events']['readiness_probe_failures']} readiness-probe and {r['events']['liveness_probe_failures']} liveness-probe failures.
+The collector saw exactly one `{r['active_controller']}` and no conflicting controller in every measurement sample. There were {r['sample_count']} samples, {r['cpu_sample_count']} with CPU data, a {r['max_sample_gap_s']:.6f} s maximum gap, and {r['mean_metric_pod_coverage']:.6f} mean per-pod CPU coverage. Mean observed pod CPU was {r['mean_cpu_m']:.6f} mCPU and {r['cpu_hot_sample_fraction']:.6f} of CPU samples exceeded the protocol's original 160 mCPU threshold. Desired transitions were {scaling}. Maximum and final ready replicas were {r['max_ready']} and {r['final_observed_ready']}. The collector saw {r['max_workload_restarts']} restart and {r['readiness_deficit_samples']} readiness-deficit samples. Events retain {r['events']['readiness_probe_failures']} readiness-probe and {r['events']['liveness_probe_failures']} liveness-probe failures.
 
 ## Failure diagnosis and limitations
 
 The generator was not demonstrably overloaded: it retained the complete schedule, had no capacity drops, stayed below the dispatch threshold, and peaked at {r['max_client_inflight']} in flight versus its 2,048 limit. The five-second `TimeoutError` outcomes and short `ServerDisconnectedError` outcomes coincide with readiness/liveness failures and a workload restart while the service was underscaled. This supports service-side overload/unavailability rather than generator queueing as the proximate cause. Requests lack endpoint/pod identity and host telemetry is limited, so ultimate attribution of every timeout remains partly **UNKNOWN**.
 
-CPU samples existed at every collector time, but not every current pod had a metrics-server value (mean per-pod coverage {r['mean_metric_pod_coverage']:.6f}). The PHPA log also records transient missing/unknown-pod metrics during startup and scaling. This limits controller-performance inference but does not demonstrate silent loss by the instrumentation.
+CPU availability and per-pod coverage are reported above without imputation. Missing metrics limit controller-performance inference even when other request and replica streams remain valid.
 
 ## Criteria and decision
 
 Predetermined criteria in `docs/LIVE_TRACE_PROTOCOL.md` are deterministic schedule retention, no drops, p99 dispatch delay below 100 ms, gaps below 15 s, above-90% CPU-sample availability, controller exclusivity, a bracketed window, and observed scaling. Timestamp, duplicate, and UTC checks are integrity checks added here, not retroactively claimed numeric thresholds. Failed checks: {', '.join(fail) if fail else 'none'}.
 
-**Decision: {r['decision']}.** The retained evidence is sufficient for the pilot's instrumentation purpose. This is not a NASA performance result or evidence that the three-controller campaign ran.
+**Decision: {r['decision']}.** This decision applies only to this run's instrumentation validity. Poor service performance is not itself a rejection criterion.
 """
     destination.write_text(text)
 

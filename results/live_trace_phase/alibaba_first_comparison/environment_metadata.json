@@ -1,0 +1,48 @@
+{
+  "captured_utc": "2026-10-23T15:42:58.272281+00:00",
+  "cluster": "calibrated-live",
+  "checks": {
+    "node_ready": true,
+    "all_existing_pods_running": true,
+    "metrics_api_available": true,
+    "phpa_operator_ready": true,
+    "no_active_benchmark_controller": true,
+    "workload_endpoint_idle_healthy": true,
+    "free_disk_above_1_gib": true
+  },
+  "ready_nodes": 1,
+  "node_count": 1,
+  "unready_pods": [],
+  "metrics_api_condition": [
+    {
+      "lastTransitionTime": "2026-10-23T12:52:51Z",
+      "message": "all checks passed",
+      "reason": "Passed",
+      "status": "True",
+      "type": "Available"
+    }
+  ],
+  "node_metrics_items": 1,
+  "endpoint": {
+    "status": 200,
+    "body": "OK!"
+  },
+  "filesystem": {
+    "total_bytes": 101831528448,
+    "used_bytes": 90336215040,
+    "free_bytes": 6275244032
+  },
+  "memory": {
+    "MemTotal": "20164312 kB",
+    "MemAvailable": "5938488 kB",
+    "SwapTotal": "16777212 kB",
+    "SwapFree": "16360272 kB"
+  },
+  "host_loadavg": [
+    1.68017578125,
+    1.86669921875,
+    2.18896484375
+  ],
+  "platform": "Linux-7.0.11-76070011-generic-x86_64-with-glibc2.39",
+  "instrumentation_difference_from_nasa": "The collector now records explicit per-command availability diagnostics. NASA accepted runs used the earlier payload-only collector; Alibaba interpretation uses the same acceptance threshold but richer diagnostics and is not assumed field-for-field comparable for availability classifications."
+}

@@ -1,35 +1,46 @@
-# Live Kubernetes trace replay results
+# Live Kubernetes production-trace-derived replay results
 
-Collected 0/18 planned production-trace runs and 0/3 exploratory PHPA runs. These are new HTTP requests and real Kubernetes scaling events. Raw logs are retained; failed pilots are separate.
+Two bounded milestones are retained separately:
 
-Protocol: [fixed live protocol](../../docs/LIVE_TRACE_PROTOCOL.md). Inputs and caveats: [provenance](data_provenance.json). NASA is a fixed July 1 window; Alibaba is a single container’s relative CPU-demand shape with irregular source intervals compressed into equal replay bins. These are workload-replay experiments, not production-system recreations or proof of generalization across the entire datasets.
+- NASA-derived replay: 8/9 accepted matrix, with 3 soft-HPA, 2 tuned-HPA,
+  and 3 Holt–Winters accepted runs. Two tuned-HPA attempts remain
+  `INCONCLUSIVE`; see `nasa_three_repeat/FINDINGS.md`.
+- Alibaba-derived replay: one accepted run per controller; see
+  `alibaba_first_comparison/RESULTS.md`.
 
-## Per-run measurements
+These are demand replays against the benchmark Kubernetes service, not
+reproductions of either production service or the paper's forecast-MAPE
+protocol.
 
-NOT MEASURED yet.
+## Alibaba first comparison
 
-Error rate includes HTTP failures, unexpected bodies, timeouts and any generator drops. Latency percentiles use successful requests only; read together with errors. Capacity integrates ready replicas over the exact measurement window, including boundary interpolation from bracketing samples. CPU hot fraction is sample-based, not an SLA.
+All arms used the same frozen 120-second warmup and 420-second measurement
+schedule. Each scheduled and recorded 14,420 measurement requests with zero
+errors, zero generator drops, exact schedule retention, 84/84 CPU samples,
+exclusive controller ownership, and independently reproduced pod-seconds.
 
-## Across-repeat means and sample SD
+| Controller | Error | Success p95 / p99 (s) | Pod-s | Pod-s / success | Mean / max ready | Scaling changes |
+|---|---:|---:|---:|---:|---:|---:|
+| Soft HPA (50%) | 0.00% | 0.009 / 0.012 | 1277.50 | 0.08859 | 3.04 / 6 | 7 |
+| Tuned HPA (70%) | 0.00% | 0.008 / 0.012 | 1317.50 | 0.09137 | 3.14 / 4 | 3 |
+| Holt–Winters PHPA | 0.00% | 0.015 / 0.283 | 1422.50 | 0.09865 | 3.39 / 5 | 5 |
 
-All collected measured runs remain in these tables, including any validity flags. Do not interpret an invalid run as a clean comparison. No statistical significance is claimed with three repeats. SD is across repeated executions of the same trace, not across independent production workloads.
+In this single execution, soft HPA used the fewest pod-seconds. Tuned HPA used
+40.00 more (+3.13%) and Holt–Winters used 145.00 more (+11.35%) than soft HPA.
+Holt–Winters also had the highest successful-request p95/p99. These are
+descriptive observations from one fixed, time-warped sequence; no variance or
+significance claim is possible.
 
-## Paired capacity advantage of Holt–Winters
+## Scope and limitations
 
-Positive means HW held fewer ready-pod-seconds than that reactive controller. Negative means the reactive controller held fewer. This is not a latency advantage, and we do not subtract advantages in a way that cancels the predictor.
+The Alibaba input is a 16 MiB byte-range prefix, not a representative sample of
+the full archive. The selected first 42 `c_1` observations span 33,120 irregular
+source seconds and are mapped by observation index to equal ten-second replay
+bins. This changes temporal structure; normalization from CPU percent to HTTP
+request rate changes units and absolute amplitude. See
+`alibaba_first_comparison/DATASET_VALIDATION.md` and
+`alibaba_first_comparison/WORKLOAD_TRANSFORMATION.md`.
 
-## Exploratory supplied-PHPA trace replay
-
-NOT MEASURED yet.
-
-## Instrumentation validation
-
-| dataset | repeat | arm | pod_seconds | p95_latency_s | error_rate | p99_dispatch_delay_s | generator_drops | valid | category |
-|---|---|---|---|---|---|---|---|---|---|
-| nasa | 1 | holtwinters | 562.49903 | 1.75236 | 0.18537 | 4.38366 | 1954 | False | pilot |
-
-The original thread-pool pilot was rejected for queueing/drops. Async-generator validation is retained separately. Check each run’s `summary.json` for individual validity checks and `requests.csv`/`metrics.jsonl` for raw evidence. No failed or incomplete run is silently substituted.
-
-## Limits
-
-Single local kind node, shared host, CPU-bound PHP endpoint, fixed amplitude normalization and time compression, one selected window/container, and three repeats per production condition. Baseline tuning changes several HPA parameters together. No isolated causal attribution to one parameter. These measurements do not reproduce the paper’s NASA/Alibaba forecast-MAPE claim or evaluate its LLM. The existing offline and historical live findings remain separate.
+Latency percentiles include successful requests only; failures remain in the
+scheduled-request denominator. No production SLA is defined. Single-node kind,
+fixed run order, host contention, and one repetition are additional threats.

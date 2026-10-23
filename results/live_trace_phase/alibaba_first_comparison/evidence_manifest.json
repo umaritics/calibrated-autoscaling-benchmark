@@ -1,0 +1,335 @@
+{
+  "generated_utc": "2026-10-23T18:10:09.533214+00:00",
+  "runs": {
+    "strawman_hpa": {
+      "COMPLETE": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/COMPLETE",
+        "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+        "bytes": 64
+      },
+      "controller.yaml": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/controller.yaml",
+        "sha256": "b783216b4a26d7fb9303f4bc01ceb711f3a901f4340e98c8d2c247f65e1f8d1c",
+        "bytes": 476
+      },
+      "events.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/events.json",
+        "sha256": "40d517e638ae3f5dc9d6f7cfcb3783ac206acc8a9edcfe0f2799230721629d45",
+        "bytes": 261777
+      },
+      "final_objects.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/final_objects.json",
+        "sha256": "2944c4dda7a6c978b6892a9e1e93ca8b13a4ff4d22d80670b05fe344cfb56084",
+        "bytes": 52152
+      },
+      "initial_objects.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/initial_objects.json",
+        "sha256": "28553727699a4a3074238b38ebea71dd98f959591146ff846afb82e5449411c0",
+        "bytes": 20258
+      },
+      "metadata.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/metadata.json",
+        "sha256": "5a75e315fba92ad15dfd3af51e868f1d28ff3eb493d91acba8ea83dd722d937b",
+        "bytes": 672
+      },
+      "metrics.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/metrics.csv",
+        "sha256": "e33606afc9174c97fc0bff5b3a054b3e022a41ccf5fecbedb2e6f0e02f90bc06",
+        "bytes": 15788
+      },
+      "metrics.jsonl": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/metrics.jsonl",
+        "sha256": "b9cbc3e6f43ea0d584ea16bef9a047741ea8fb7854af4a8409a489e8673ead95",
+        "bytes": 1968021
+      },
+      "operator.log": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/operator.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "requests.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/requests.csv",
+        "sha256": "04506dd048641994cb971841aac59acffa2b1d79b6c370eb94c3fde09d6fb7b0",
+        "bytes": 1386375
+      },
+      "run_summary.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/run_summary.csv",
+        "sha256": "160cf2ce10a814bc533f02ab0ec7cbf3f4865da718b25d6150f429a1f03c0d92",
+        "bytes": 1772
+      },
+      "summary.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/summary.json",
+        "sha256": "3a1ec59c46df4aa2462fcf199268c33b1c5f499be23470c47fb85e9181bdc6c6",
+        "bytes": 6453
+      },
+      "trace.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/trace.csv",
+        "sha256": "5bc5d7705562b791602824bc8498866cef92db0a726b48c7c9aeeecccb850e47",
+        "bytes": 1559
+      },
+      "validation_report.md": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/strawman_hpa/validation_report.md",
+        "sha256": "54d2f0e0a2f12f28bac08484ae68d1866ade6b3928cc83195e8a2428a09f1753",
+        "bytes": 3719
+      }
+    },
+    "calibrated_hpa": {
+      "COMPLETE": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/COMPLETE",
+        "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+        "bytes": 64
+      },
+      "controller.yaml": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/controller.yaml",
+        "sha256": "edeac58288e2b49cf8e0d5ca954f450501f7370a694d6552a257ee70308f5fa2",
+        "bytes": 697
+      },
+      "events.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/events.json",
+        "sha256": "59b37b74a2bf60235d93f012d37ede9d53c54966172f5119a0fabc1e5a3e9b64",
+        "bytes": 265051
+      },
+      "final_objects.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/final_objects.json",
+        "sha256": "eed7d797dcc1c56a48e182f152b55cb8e3896189cc417a061818f83ee8198d78",
+        "bytes": 52171
+      },
+      "initial_objects.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/initial_objects.json",
+        "sha256": "5c74816ee24d95d06b9b8e1e9ae402871e9eae97675053049e79a0b0e44f227b",
+        "bytes": 20239
+      },
+      "metadata.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/metadata.json",
+        "sha256": "b45238df8078c09c2a1662c03d28ec2c6014561218dcdcee12cca15f5518ec11",
+        "bytes": 674
+      },
+      "metrics.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/metrics.csv",
+        "sha256": "0bd562a3040ebf088cfff616f1c8b8670c44d81e31aa4a44cc91fc41554291af",
+        "bytes": 15702
+      },
+      "metrics.jsonl": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/metrics.jsonl",
+        "sha256": "acc9b491bf2af1475e97cfbd834e8c2c1cc9755d704121354dbade853563eac5",
+        "bytes": 2011456
+      },
+      "operator.log": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/operator.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "requests.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/requests.csv",
+        "sha256": "dca8118b7a2b14c57669d64269d4b6a911850b07d50406232dad079d20e0f972",
+        "bytes": 1385598
+      },
+      "run_summary.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/run_summary.csv",
+        "sha256": "d2882b5a363ed0f2a266c5960194412596a36a4e67ae2a8550d6d3b352ddcfac",
+        "bytes": 1765
+      },
+      "summary.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/summary.json",
+        "sha256": "732b00e6ae629689470ec2f46b61a7908197ef7a6fd4773637fc770c9d5397f7",
+        "bytes": 5867
+      },
+      "trace.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/trace.csv",
+        "sha256": "5bc5d7705562b791602824bc8498866cef92db0a726b48c7c9aeeecccb850e47",
+        "bytes": 1559
+      },
+      "validation_report.md": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/calibrated_hpa/validation_report.md",
+        "sha256": "2e293aea94f25e7445714493c4bc7278061fb45826ecf58c7940dbeab8352eb8",
+        "bytes": 3505
+      }
+    },
+    "holtwinters": {
+      "COMPLETE": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/COMPLETE",
+        "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+        "bytes": 64
+      },
+      "controller.yaml": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/controller.yaml",
+        "sha256": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8",
+        "bytes": 692
+      },
+      "events.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/events.json",
+        "sha256": "c15e86ab400818663f1d27fa0c55baa7cf4b04f554012a656660888a2d718165",
+        "bytes": 266110
+      },
+      "final_objects.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/final_objects.json",
+        "sha256": "fce987f9703176d71aa31181c714150dc51719023747927bc347797abba90b7c",
+        "bytes": 75372
+      },
+      "initial_objects.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/initial_objects.json",
+        "sha256": "d6f127129857e52179f923d7aede8b3f9c5c50818ea01fb0ad16af463abbf705",
+        "bytes": 20101
+      },
+      "metadata.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/metadata.json",
+        "sha256": "8f7c2dbac24e2d6f5002cbbbb245d76c9c2c22d0b64b92eec44c7006d1b4253d",
+        "bytes": 671
+      },
+      "metrics.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/metrics.csv",
+        "sha256": "7738c71373876d6ec3dd230513368a42b82face22a8aad47d5a8f0fc0cce36b4",
+        "bytes": 16955
+      },
+      "metrics.jsonl": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/metrics.jsonl",
+        "sha256": "8975b10bdd35ccbff2240ce137039c28e7af9e1c07082550693c4889c2b8bb41",
+        "bytes": 2150360
+      },
+      "operator.log": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/operator.log",
+        "sha256": "c3eceb7113b12bb212c901963139a09950cd718cc12f72b28aead75c2b70fb92",
+        "bytes": 121824
+      },
+      "requests.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/requests.csv",
+        "sha256": "1b6d8f8c8e2ff44eb2ed1e59461d3d55b0a0ce43daf468c66fba97df3666053c",
+        "bytes": 1384626
+      },
+      "run_summary.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/run_summary.csv",
+        "sha256": "0b815f071142abaad8e32eddedfa21d3b58f5ffd4fbce8285753b73444e84b66",
+        "bytes": 1775
+      },
+      "summary.json": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/summary.json",
+        "sha256": "c98ef708078716be4fb9550395b5422c1df5d26b096970bf373a39d4f5291d01",
+        "bytes": 6150
+      },
+      "trace.csv": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/trace.csv",
+        "sha256": "5bc5d7705562b791602824bc8498866cef92db0a726b48c7c9aeeecccb850e47",
+        "bytes": 1559
+      },
+      "validation_report.md": {
+        "path": "results/live_trace_phase/alibaba_first_comparison/alibaba/repeat1/holtwinters/validation_report.md",
+        "sha256": "578a5e8d1d480f747abb800a9a47ead5f2bdd20f7438119bc876b038291cd3ae",
+        "bytes": 3622
+      }
+    }
+  },
+  "artifacts": {
+    "DATASET_VALIDATION.md": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/DATASET_VALIDATION.md",
+      "sha256": "8a7749ea85a7d3ee6695c2cfdc662db6b9a19c6e5fef9c486a81979028aa8142",
+      "bytes": 3084
+    },
+    "WORKLOAD_TRANSFORMATION.md": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/WORKLOAD_TRANSFORMATION.md",
+      "sha256": "7ef85729d5c5ba7e8bf277aebc43f5fd37057ff8104abf68c159d67f24d4870a",
+      "bytes": 2402
+    },
+    "dataset_validation.json": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/dataset_validation.json",
+      "sha256": "fd5a93ef3aada1516dfb062234ec52d1b93168b65dda73feedfbb584cedc328c",
+      "bytes": 9124
+    },
+    "available_container_ids.txt": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/available_container_ids.txt",
+      "sha256": "4886af2ae298dcb56bca9dd251f1bb6117cf76368706dac3a107d043a96a9f5b",
+      "bytes": 19157
+    },
+    "run_plan.json": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/run_plan.json",
+      "sha256": "9abe68dd89039d15c8a0c44352e39c278bd67069f791cd24d46823a1c053ff20",
+      "bytes": 547
+    },
+    "execution_ledger.jsonl": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/execution_ledger.jsonl",
+      "sha256": "efce2662c6c8aa7d3a6f8300194c3e02260a0d5ba48c64fa04cc5061d8b1b6ca",
+      "bytes": 3859
+    },
+    "PREFLIGHT.md": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/PREFLIGHT.md",
+      "sha256": "96437ea37e064d445df9a0c8d8be2f11f4468f3b4299d34f0dc22f542fb46d44",
+      "bytes": 788
+    },
+    "environment_metadata.json": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/environment_metadata.json",
+      "sha256": "8ff8c2afb733e212b660cd8a461f25b80c9a1fe26ff92a0fd86f398afe4d84b0",
+      "bytes": 1470
+    },
+    "REPRODUCE.md": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/REPRODUCE.md",
+      "sha256": "6d22d94f743cbf1bff80acd7f4696a3d3a6c24ed764de6bd43521a50594800c5",
+      "bytes": 708
+    },
+    "comparison.csv": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/comparison.csv",
+      "sha256": "41223d0accd0ea83bea4002734115e073d2baf9bf060adf19c0f3cf568bc1255",
+      "bytes": 1024
+    },
+    "comparison.json": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/comparison.json",
+      "sha256": "38f08377656ef6d7d086e92bf8c6decaa6a39cc6f07adab94e61959b9064cef1",
+      "bytes": 24466
+    },
+    "RESULTS.md": {
+      "path": "results/live_trace_phase/alibaba_first_comparison/RESULTS.md",
+      "sha256": "9fcbd782146630f377b5a57ff4849a2b14444fd3e8efda9dd60f47f2220b4dde",
+      "bytes": 2032
+    }
+  },
+  "code_and_configuration": {
+    "scripts/live/validate_alibaba_subset.py": {
+      "path": "scripts/live/validate_alibaba_subset.py",
+      "sha256": "c8bff8fbbd8128529ea6624dcfc3b9e0466fc0793f93425aa1f4507ab7e012b7",
+      "bytes": 9281
+    },
+    "scripts/live/preflight_alibaba.py": {
+      "path": "scripts/live/preflight_alibaba.py",
+      "sha256": "4996a24dabc9493a55e7fcbb5f49a6c6b76f3a72d39bfb4f78065fd4e81e28b9",
+      "bytes": 5338
+    },
+    "scripts/live/run_alibaba_comparison.py": {
+      "path": "scripts/live/run_alibaba_comparison.py",
+      "sha256": "94ed4338cecc49a4a22b1e6353afc246e74e83500e45c39bd665ca0fc452db9e",
+      "bytes": 3224
+    },
+    "scripts/live/run_trace.py": {
+      "path": "scripts/live/run_trace.py",
+      "sha256": "90f759c13b96bba19fb57357c428acd1d9749d855ecd94ea8a1d3311192b7afd",
+      "bytes": 9724
+    },
+    "scripts/live/analyze_runs.py": {
+      "path": "scripts/live/analyze_runs.py",
+      "sha256": "718dcb0a16052613b8a31b5b0107157821672dee300aa02f1aae42b7f6a94236",
+      "bytes": 22724
+    },
+    "scripts/live/verify_alibaba_comparison.py": {
+      "path": "scripts/live/verify_alibaba_comparison.py",
+      "sha256": "268fd2e008b5ad41f578d23cedaba40ab1605d60fffd38a535639e55b44a896c",
+      "bytes": 12571
+    },
+    "policies/hpa-baseline.yaml": {
+      "path": "policies/hpa-baseline.yaml",
+      "sha256": "b783216b4a26d7fb9303f4bc01ceb711f3a901f4340e98c8d2c247f65e1f8d1c",
+      "bytes": 476
+    },
+    "policies/hpa-calibrated.yaml": {
+      "path": "policies/hpa-calibrated.yaml",
+      "sha256": "edeac58288e2b49cf8e0d5ca954f450501f7370a694d6552a257ee70308f5fa2",
+      "bytes": 697
+    },
+    "policies/phpa-holtwinters.yaml": {
+      "path": "policies/phpa-holtwinters.yaml",
+      "sha256": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8",
+      "bytes": 692
+    },
+    "manifests/sample-app.yaml": {
+      "path": "manifests/sample-app.yaml",
+      "sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2",
+      "bytes": 1583
+    }
+  }
+}

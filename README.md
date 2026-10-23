@@ -101,4 +101,19 @@ See [NASA findings](results/live_trace_phase/nasa_three_repeat/FINDINGS.md),
 [independent verification](results/live_trace_phase/nasa_three_repeat/independent_verification.json),
 and the [evidence manifest](results/live_trace_phase/nasa_three_repeat/evidence_manifest.json).
 
+## Alibaba-derived live checkpoint
+
+One frozen, three-controller comparison is complete and all arms passed the
+acceptance framework. The input is the first 42 observations of `c_1` found in
+a 16 MiB byte-range prefix of Alibaba Cluster Trace v2018. It is neither random
+nor representative. The transformation maps irregular CPU-utilization samples
+to equal ten-second HTTP-demand bins, so this is an explicitly time-warped
+benchmark replay, not Alibaba workload reproduction.
+
+All arms recorded 14,420/14,420 successful measurement requests. Pod-seconds
+were 1277.50 (soft HPA), 1317.50 (tuned HPA), and 1422.50 (Holt–Winters).
+With one repetition, these values are descriptive only. See the
+[comparison report](results/live_trace_phase/alibaba_first_comparison/RESULTS.md)
+and [dataset audit](results/live_trace_phase/alibaba_first_comparison/DATASET_VALIDATION.md).
+
 Offline result: at 15 minutes, persistence has the lowest mean MAE on burst, chaotic, growing and stepped; gradient boosting leads seasonal and onoff. See the [computed pattern/horizon rankings](results/results.md#lowest-mean-mae-among-the-five-evaluated-variants). Forecast rankings alone do not establish autoscaling cost or QoS.

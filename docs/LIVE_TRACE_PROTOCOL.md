@@ -18,6 +18,12 @@ Dedicated kind cluster `calibrated-live`, Kubernetes v1.32.2, separate kubeconfi
 
 NASA and Alibaba: three repeats × three arms = 18 measured runs. Each run has 120 seconds of constant 4 requests/s warmup followed by 420 seconds of trace replay. This exceeds the tuned baseline’s 300-second scale-down window. Rotate arm order across repeats using a Latin square; alternate dataset order. Exploratory PHPA seasonal check: one run per arm, 120-second warmup and 180-second replay; report separately without SD.
 
+Task 5 deliberately stops before that broader Alibaba campaign. Its bounded
+milestone executes exactly one Alibaba-derived run per controller in the fixed
+order soft HPA, tuned HPA, Holt–Winters. It reports no between-repeat variance.
+The pre-existing three-repeat paragraph remains a future-campaign design, not a
+claim about completed Alibaba runs.
+
 Between arms, delete controllers and deployment, wait for old pods to disappear, redeploy at one replica. Restart PHPA process before each predictive arm and create a fresh CR UID. Never install both controllers on the same deployment. Use identical request schedules within each dataset, independent of responses. A pilot is kept outside measured runs; any pilot-driven intensity change must be documented before the main matrix begins.
 
 ## Measurement and verification

@@ -1,0 +1,16 @@
+{
+  "dataset": "alibaba",
+  "arm": "strawman_hpa",
+  "repeat": 1,
+  "warmup": 120,
+  "duration": 420,
+  "category": "alibaba_first_comparison",
+  "started_utc": "2026-10-23T15:43:03.945327+00:00",
+  "runner_sha256": "90f759c13b96bba19fb57357c428acd1d9749d855ecd94ea8a1d3311192b7afd",
+  "trace_sha256": "5bc5d7705562b791602824bc8498866cef92db0a726b48c7c9aeeecccb850e47",
+  "policy_sha256": "b783216b4a26d7fb9303f4bc01ceb711f3a901f4340e98c8d2c247f65e1f8d1c",
+  "workload_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2",
+  "finished_utc": "2026-10-23T15:52:13.623795+00:00",
+  "scheduled_requests": 14900,
+  "elapsed_seconds": 540.3605204609994
+}

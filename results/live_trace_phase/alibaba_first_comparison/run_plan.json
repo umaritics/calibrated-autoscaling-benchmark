@@ -1,0 +1,29 @@
+[
+  {
+    "sequence": 1,
+    "dataset": "alibaba",
+    "arm": "strawman_hpa",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "alibaba_first_comparison"
+  },
+  {
+    "sequence": 2,
+    "dataset": "alibaba",
+    "arm": "calibrated_hpa",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "alibaba_first_comparison"
+  },
+  {
+    "sequence": 3,
+    "dataset": "alibaba",
+    "arm": "holtwinters",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "alibaba_first_comparison"
+  }
+]
