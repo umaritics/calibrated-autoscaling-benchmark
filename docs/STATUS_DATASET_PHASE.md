@@ -1,58 +1,86 @@
-# Dataset phase status
+# Research consolidation and handoff-completion audit
 
-## Completed
+Audit date: 2026-10-24. This document evaluates the requirements in
+`HANDOFF_Dataset_Phase.md` against committed evidence. No workload was launched
+for this audit.
 
-- Preserved the original 18 live seasonal/burst runs and their capacity conclusions.
-- Extracted both supplied Kaggle datasets under `data/`; excluded raw downloads from Git.
-- Added complete offline evaluation: 600 scenarios, six patterns, five forecast variants, two horizons, train-only period selection, per-scenario errors and paired comparisons.
-- Added all-42-trace online capacity/data-quality analysis and all-36-entry early-detection comparison. These are authors’ runs, not newly executed live trials.
-- Added reproducibility manifests, package versions, methodological documentation and temporal-leakage tests.
-- Executed and independently verified a NASA-derived live replay: three accepted
-  soft-HPA runs, three accepted Holt–Winters runs, and two accepted tuned-HPA
-  runs. Two additional tuned-HPA attempts are retained as `INCONCLUSIVE` under
-  the unchanged 90% CPU-telemetry rule.
-- Validated the bounded Alibaba v2018 prefix and executed one accepted live run
-  for each controller on one frozen `c_1`-derived observation-sequence replay.
-- Executed one accepted run per controller on a frozen D1 growing-pattern
-  replay. Independent verification passed exact schedule/request accounting,
-  source/replay hashes, controller exclusivity, CPU coverage, latency
-  populations, failure denominators, and pod-second integration.
-- Executed the predeclared D1 stepped-pattern comparison in tuned HPA,
-  Holt–Winters, soft-HPA order. Tuned HPA and Holt–Winters were accepted. The
-  soft-HPA evidence was retained as `REJECT` because dispatch p99 exceeded the
-  frozen generator-integrity threshold; it was not rerun. Independent
-  reconstruction passed schedule accounting, hashes, denominators, transition
-  timing, controller exclusivity, CPU coverage, and pod-second integration.
-- Froze a deterministic D1 chaotic-pattern replay and completed one accepted
-  soft-HPA arm. The host became unresponsive during two separate Holt–Winters
-  attempts, which are retained as incomplete evidence. Tuned HPA was not
-  started, the PHPA was removed during safety cleanup, and no three-controller
-  chaotic comparison is claimed.
+## Completion rule and result
 
-## Current live extension status
+The four allowed dispositions are:
 
-The dedicated `calibrated-live` kind cluster (Kubernetes v1.32.2) was healthy
-for the NASA and Alibaba-derived milestones. It is not the original Docker
-Desktop v1.36.1 environment. The Alibaba comparison reused the same application,
-resources, probes, replica bounds, timeout, controllers, and asynchronous
-generator. Its collector adds explicit command/availability diagnostics, so
-availability classifications are not assumed directly comparable to older NASA
-fields without qualification.
+- **VERIFIED COMPLETE**: the stated bounded requirement is supported by
+  repository evidence and its verification checks.
+- **PARTIALLY COMPLETE**: useful verified evidence exists, but planned coverage,
+  repetitions, representativeness, or protocol equivalence is incomplete.
+- **NOT MEASURED**: no applicable measurement exists.
+- **BLOCKED**: completion is unsafe or prevented by an identified external
+  condition.
 
-Recommended next milestone: reproduce the already frozen chaotic protocol on
-a resource-isolated host with explicit host load/memory/I/O abort guards,
-retaining the current accepted and interrupted evidence as a separate safety
-checkpoint.
+Approximate task-based completion is **58%**: VERIFIED COMPLETE = 1 point,
+PARTIALLY COMPLETE = 0.5, and NOT MEASURED/BLOCKED = 0. The matrix below has
+3 complete, 8 partial, and 1 blocked requirement: `(3 + 8×0.5) / 12 = 7/12`.
+This is an audit heuristic, not a measured experimental percentage.
 
-## Remaining evidence gaps
+## Requirement matrix
 
-The NASA and Alibaba live replays are benchmark demand transformations, not a
-reproduction of the paper's forecast-MAPE protocol. The Alibaba prefix is not a
-full or representative dataset sample, and its irregular source timing is not
-preserved. No Gemini classifier or exact +37.4% paper comparison was reproduced.
+| # | Requirement | Disposition | Evidence and boundary |
+|---:|---|---|---|
+| 1 | D1 Kaggle offline forecasting, six patterns | **VERIFIED COMPLETE** | All 600 scenarios, five models, and 1/4-step horizons: `results/dataset_phase/offline_results.md`, `offline_summary.csv`, `offline_per_scenario.csv`. Direct Kaggle identity: `kaggle_source_verification.json`. This is our rolling-origin protocol, not the paper's exact protocol. |
+| 2 | D2 online-trace audit and early detection | **VERIFIED COMPLETE** | All 42 traces and 36 timing entries: `results/dataset_phase/online_results.md`, `online_trace_metrics.csv`, `online_early_detection_audit.csv`. These are authors' released runs, not new live repetitions. |
+| 3 | Historical seasonal and burst experiments | **VERIFIED COMPLETE** | Three repeats × three controllers × two patterns: `results/results.md` and `results/runs/`. They measure capacity/CPU only; request QoS was not instrumented. |
+| 4 | NASA live workload experiments | **PARTIALLY COMPLETE** | 3 accepted soft, 3 accepted Holt–Winters, 2 accepted tuned-HPA runs: `results/live_trace_phase/nasa_three_repeat/FINDINGS.md`, `mean_sd.csv`, `independent_verification.json`. Two repeat-3 tuned attempts were inconclusive under the unchanged 90% CPU-coverage rule, creating telemetry-based selection bias. This is an HTTP demand replay, not NASA forecast-MAPE reproduction. |
+| 5 | Alibaba-derived workload experiments | **PARTIALLY COMPLETE** | One accepted run per controller: `results/live_trace_phase/alibaba_first_comparison/RESULTS.md`, `comparison.csv`, `evidence_manifest.json`. The first 42 observations of one container from a 16 MiB archive prefix are non-random and nonrepresentative; irregular source timing was replaced with equal replay bins. |
+| 6 | On/off live experiments | **PARTIALLY COMPLETE** | One accepted run per controller: `results/live_trace_phase/onoff_first_comparison/RESULTS.md`, `comparison.csv`, `evidence_manifest.json`. No repeat variance; 90× compression and fixed order limit inference. |
+| 7 | Growing live experiments | **PARTIALLY COMPLETE** | One accepted run per controller with independent verification: `results/live_trace_phase/growing_first_comparison/RESULTS.md`, `comparison.csv`, `independent_verification.json`. No repeat variance. |
+| 8 | Stepped live experiments | **PARTIALLY COMPLETE** | Tuned HPA and Holt–Winters accepted; soft HPA retained as REJECT after dispatch p99 exceeded the frozen threshold: `results/live_trace_phase/stepped_first_comparison/RESULTS.md`, `comparison.csv`, `independent_verification.json`. This is not a complete three-controller matrix. |
+| 9 | Chaotic live experiments | **BLOCKED** | One accepted soft-HPA run, two incomplete/excluded Holt–Winters attempts after host freezes, tuned HPA not run: `results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md`, `safety_checkpoint.json`, `interrupted_runs/`. No chaotic cross-controller conclusion is valid. |
+| 10 | Comparison with the original paper | **PARTIALLY COMPLETE** | Supported early-detection values are recomputed from released traces and the paper's headline claims are marked NOT MEASURED/NOT COMPARABLE in `docs/reproduction_report.md`. Exact +37.4%, Gemini 96.7%, and NASA/Alibaba sub-2% MAPE protocols were not recomputed. |
+| 11 | Mean/SD and statistical comparisons | **PARTIALLY COMPLETE** | Sample SD and paired descriptive differences exist for historical seasonal/burst (`results/results.md`) and accepted NASA repetitions (`nasa_three_repeat/mean_sd.csv`, `paired_differences.csv`). Single-run live patterns have no SD or significance claims. |
+| 12 | Reproducibility documentation and GitHub status | **PARTIALLY COMPLETE** | Plans, transformations, raw evidence, manifests, and reproduce files are indexed below. At audit start `main` was clean and two evidence commits (`0512669`, `b1fb564`) were local-only relative to `origin/main`; publication must be checked after the consolidation commit. |
 
-See `results/dataset_phase/offline_results.md` and `online_results.md` for computed tables, and `docs/reproduction_report.md` for the original-versus-ours comparison. Historical handoff text describes the pre-extension state.
+## What is complete and what is not
 
-## Source provenance follow-up
+Complete: exhaustive D1 evaluation, exhaustive audit of the supplied D2 release,
+and the original repeated seasonal/burst capacity study. The bounded NASA,
+Alibaba, on/off, growing, and stepped milestones produced valid evidence but do
+not constitute a repeated six-pattern QoS matrix. Chaotic remains deliberately
+incomplete for host safety. Paper forecasting MAPE and LLM classification were
+not reproduced and must never be inferred from the live HTTP replays.
 
-The original evaluation used the supplied `data.zip`, not a new web download. Following the provenance review, both Kaggle archives were independently downloaded: all 1,288 files match the original supplied inputs byte-for-byte. See `results/dataset_phase/kaggle_source_verification.json` and `scripts/verify_kaggle_sources.py`. This closes the Kaggle source-identity gap. Production-derived live replay now exists, but full-dataset representativeness and exact-paper-protocol gaps remain open. The broader project is not complete.
+The documentation handoff can be finalized with these limitations. The wider
+experimental programme cannot honestly be called complete.
+
+## Strictly necessary remaining work
+
+1. **Only recommended milestone — controlled repeated live-matrix completion on
+   a resource-isolated host.** Preserve all current evidence as-is; add accepted
+   repetitions for on/off, growing, and stepped, and only then retry the frozen
+   chaotic three-controller protocol with hard host load, RAM, swap, disk-I/O,
+   temperature, and client-concurrency abort guards. The target is at least
+   three accepted runs per controller/pattern without changing acceptance rules.
+   A different intensity must be labelled a new protocol, not a replacement.
+
+Exact-paper offline/LLM reproduction would extend scope, but it is not required
+to answer the calibrated-HPA research question because the unmatched headline
+claims are already documented as NOT RECOMPUTED.
+
+## Reproducibility and evidence-location index
+
+| Evidence class | Primary locations |
+|---|---|
+| Authoritative handoff and methods | `HANDOFF_Dataset_Phase.md`; `docs/methodology.md`; `docs/reproduction_report.md`; `docs/LIVE_TRACE_PROTOCOL.md` |
+| D1 offline forecast results | `results/dataset_phase/offline_results.md`; `offline_summary.csv`; `offline_per_scenario.csv`; `offline_paired_vs_persistence.csv`; `dataset_manifest.csv` |
+| D2 released-trace audit | `results/dataset_phase/online_results.md`; `online_trace_metrics.csv`; `online_early_detection_audit.csv`; `online_manifest.csv` |
+| Kaggle source identity | `results/dataset_phase/kaggle_source_verification.json`; `scripts/verify_kaggle_sources.py` |
+| Historical seasonal/burst | `results/results.md`; `results/runs/repeat{1,2,3}/{seasonal,burst}/` |
+| NASA replay | `results/live_trace_phase/nasa_three_repeat/FINDINGS.md`; `mean_sd.csv`; `paired_differences.csv`; `evidence_manifest.json`; `independent_verification.json` |
+| Alibaba replay | `results/live_trace_phase/alibaba_first_comparison/RESULTS.md`; `DATASET_VALIDATION.md`; `WORKLOAD_TRANSFORMATION.md`; `comparison.csv`; `evidence_manifest.json` |
+| On/off replay | `results/live_trace_phase/onoff_first_comparison/RESULTS.md`; `WORKLOAD_TRANSFORMATION.md`; `comparison.csv`; `evidence_manifest.json` |
+| Growing replay | `results/live_trace_phase/growing_first_comparison/RESULTS.md`; `WORKLOAD_TRANSFORMATION.md`; `comparison.csv`; `independent_verification.json`; `evidence_manifest.json` |
+| Stepped replay | `results/live_trace_phase/stepped_first_comparison/RESULTS.md`; `WORKLOAD_TRANSFORMATION.md`; `comparison.csv`; `independent_verification.json`; `evidence_manifest.json` |
+| Chaotic safety checkpoint | `results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md`; `safety_checkpoint.json`; `evidence_manifest.json`; `interrupted_runs/` |
+| Integrated live interpretation | `results/live_trace_phase/results.md` |
+| Local evidence policy | `docs/LOCAL_EVIDENCE_RETENTION.md` |
+
+Raw data and failed/interrupted attempts are evidence and must not be cleaned,
+rewritten, or silently promoted into accepted statistics.

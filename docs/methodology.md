@@ -9,7 +9,15 @@ The cluster runs `php-apache` (CPU request 200 millicores, limit 500 millicores)
 - Strawman HPA, file `policies/hpa-baseline.yaml` (unchanged): target average CPU utilization 50%, scale-up stabilization 0 seconds, scale-down stabilization 60 seconds, minimum 1 replica, maximum 20 replicas.
 - Holt–Winters predictive autoscaler: alpha 0.9, beta 0.2, gamma 0.3, seasonalPeriods 6, storedSeasons 4, additive trend, additive season, sync period 10 seconds, CPU target 50%, minimum 1, maximum 20. The YAML API group is `jamiethompson.me/v1alpha1` to match the installed operator; the algorithm parameters match the authors’ published configuration.
 
-Our live experiments evaluate the seasonal pattern and the burst pattern. We do not re-implement their LLM classifier (Gemini 2.5 Pro, reported 96.7% pattern-classification accuracy) or their exact offline protocol (+37.4% accuracy; sub-2% MAPE on NASA/Alibaba). Our dataset extension evaluates the supplied synthetic scenarios independently; NASA/Alibaba remain unmeasured.
+The original live experiments evaluated seasonal and burst. Later bounded work
+added NASA-, Alibaba-, on/off-, growing-, stepped-, and chaotic-derived demand
+replays; see `results/live_trace_phase/results.md`. Those later runs use a
+different QoS-capable harness and are not pooled with this historical protocol.
+We do not re-implement the paper's LLM classifier (Gemini 2.5 Pro, reported
+96.7% pattern-classification accuracy) or its exact offline protocol (+37.4%
+accuracy; sub-2% MAPE on NASA/Alibaba). The dataset extension evaluates the
+supplied synthetic scenarios independently. NASA/Alibaba HTTP replays are not
+forecast-MAPE reproduction.
 
 Full documentation of every dataset in the paper (synthetic Kaggle CSVs, online harness traces, NASA-HTTP, Alibaba Cluster Trace) and which ones we executed is in [`docs/reproduction_report.md`](reproduction_report.md) § Datasets.
 

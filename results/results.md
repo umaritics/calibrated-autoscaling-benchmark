@@ -110,7 +110,12 @@ Authors’ Kaggle online release reports Holt–Winters early-detection vs HPA (
 
 The live tables above remain unchanged. New [offline results](dataset_phase/offline_results.md) cover all 600 supplied scenarios across six patterns, five forecast variants, and two horizons. [Released online trace analysis](dataset_phase/online_results.md) audits all 42 authors’ traces and 36 early-detection summaries. Per-scenario values, manifests, package versions and full model tables are under `results/dataset_phase/`.
 
-These analyses extend pattern coverage without assigning unmeasured tuned-HPA outcomes to growing, onoff, chaotic or stepped. The released online runs are not extra repetitions of our local study. NASA/Alibaba and additional live trials remain unmeasured; see [phase status](../docs/STATUS_DATASET_PHASE.md).
+These analyses extend pattern coverage without treating authors' released runs
+as extra repetitions of our local study. Subsequent QoS-capable live replays
+exist for NASA, Alibaba-derived, growing, on/off, stepped, and a safety-stopped
+chaotic attempt; they use a different protocol and remain consolidated in
+[the live report](live_trace_phase/results.md). See the
+[phase status](../docs/STATUS_DATASET_PHASE.md) for exact dispositions.
 
 ### Lowest mean MAE among the five evaluated variants
 

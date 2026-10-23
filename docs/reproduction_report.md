@@ -55,7 +55,7 @@ Assignment step 3 requires documenting **all** datasets used in the selected pap
 | Filtering / augmentation | None beyond pattern schedule |
 | Multimodal combine | N/A |
 | Used in paper for | Early-detection vs HPA (e.g. Holt–Winters seasonal **30.8 s**, burst **20.5 s** earlier) |
-| **Used by us?** | **Yes, released-data analysis** of all 42 traces plus 36 timing summaries; our own live runs still cover only seasonal + burst (D5) |
+| **Used by us?** | **Yes, released-data analysis** of all 42 traces plus 36 timing summaries. Separate newer local replays cover growing, on/off, stepped, and a safety-stopped chaotic attempt; these are not repetitions of the released D2 runs. |
 
 ### D3 — NASA HTTP logs — production-derived live replay
 
@@ -124,13 +124,15 @@ Assignment step 3 requires documenting **all** datasets used in the selected pap
 
 Paper abstract / body emphasise forecast accuracy and LLM classification. Online early-detection numbers appear in the authors’ **Kaggle** release (not as pod-seconds in the abstract). Our primary reproduced metric is **pod-seconds** (capacity), mean ± SD over 3 repeats.
 
-| Result | Original / published | Our result | Notes |
+| Result | Original / published | Ours | Difference / comparability |
 |---|---|---|---|
 | HW early detection vs HPA, seasonal | **30.8 s** earlier (rounded Kaggle release) | **30.77 s**, recomputed from released traces | Difference from exact release: 0; not a new live replication |
 | HW early detection vs HPA, burst | **20.5 s** earlier (rounded Kaggle) | **20.48 s**, recomputed from released traces | Difference from exact release: 0; not a new live replication |
 | Gemini pattern classification | **96.7%** (paper abstract) | NOT MEASURED | No LLM API call |
 | Pattern-specific vs single-model forecast accuracy | **+37.4%** (paper abstract) | NOT MEASURED | Our 600-scenario evaluation uses a different protocol; the paper’s improvement denominator and exact comparison are not replicated |
 | Gradient boosting MAPE on NASA / Alibaba | **sub-2%** (paper abstract) | NOT MEASURED | Our live demand-replay protocol does not reproduce the paper's forecasting protocol |
+| D1 rolling one-step MAE | not published in a directly matching table | burst 1.0375 persistence; chaotic 2.6700 persistence; growing 0.3659 persistence; on/off 5.5859 GBDT; seasonal 0.5326 GBDT; stepped 0.6099 persistence | Our protocol and metric; no paper difference computed |
+| New live request error / successful-request p95 | not supported as matching paper metrics | Measured for bounded NASA-, Alibaba-, on/off-, growing-, stepped-, and partial chaotic replays | NOT COMPARABLE to forecast MAPE or released early-detection seconds; see `results/live_trace_phase/results.md` |
 | seasonal pod-seconds, strawman HPA | not in abstract | **943.01 ± 94.07** | Our metric |
 | seasonal pod-seconds, Holt–Winters | not in abstract | **766.80 ± 39.61** | Our metric |
 | seasonal pod-seconds, tuned HPA 70% | N/A (our addition) | **583.25 ± 79.59** | Our metric |
@@ -161,7 +163,11 @@ D1’s README understates total observations: actual count is 2,016,000, with 77
 Original live phase: 18 arms ≈ 70 minutes. Dataset phase: all 600 offline scenarios and all 42 authors’ traces. Later production-derived work used a healthy dedicated v1.32.2 kind cluster for the partial NASA matrix and one three-controller Alibaba comparison; it is not the original Docker Desktop environment.
 
 ## Deviations from the original experiment
-- Live: 2 patterns (not 6); 3 controllers including our tuned HPA. Offline/released-data analysis now covers all six patterns.
+- Historical live protocol: 2 patterns and 3 controllers. Later QoS-capable
+  replays cover growing and on/off with complete single-run matrices, stepped
+  with two accepted arms and one rejected arm, and chaotic with only one
+  accepted arm before the host-safety stop. Offline/released-data analysis
+  covers all six patterns.
 - 120 s / 30 s warmup (not 300 / 60).
 - jthomperoo operator instead of missing syswe image.
 - No LLM and no NASA/Alibaba forecast-MAPE reproduction; later live work maps bounded production observations into benchmark HTTP demand.
