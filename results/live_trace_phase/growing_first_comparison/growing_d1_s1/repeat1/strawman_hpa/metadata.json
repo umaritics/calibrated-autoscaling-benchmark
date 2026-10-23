@@ -1,0 +1,16 @@
+{
+  "dataset": "growing_d1_s1",
+  "arm": "strawman_hpa",
+  "repeat": 1,
+  "warmup": 120,
+  "duration": 420,
+  "category": "growing_first_comparison",
+  "started_utc": "2026-10-23T19:03:30.587092+00:00",
+  "runner_sha256": "90f759c13b96bba19fb57357c428acd1d9749d855ecd94ea8a1d3311192b7afd",
+  "trace_sha256": "2eff7038f6ae6b6bb2ee60e4d5a0aad13e77f425b48b5f06e8fd33fd0f123d6d",
+  "policy_sha256": "b783216b4a26d7fb9303f4bc01ceb711f3a901f4340e98c8d2c247f65e1f8d1c",
+  "workload_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2",
+  "finished_utc": "2026-10-23T19:12:39.524017+00:00",
+  "scheduled_requests": 31213,
+  "elapsed_seconds": 540.3453954759971
+}

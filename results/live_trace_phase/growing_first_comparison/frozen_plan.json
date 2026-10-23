@@ -1,0 +1,124 @@
+{
+  "frozen_utc": "2026-10-23T19:02:47.997656+00:00",
+  "source_path": "data/phpa/phpa-datasets/growing_1_growth_rate0.08_seasonality_strength0.6_cyclic_growthFalse_base_level20_noise_level0.3_test.csv",
+  "source_sha256": "7906881e6b7967b1fbad62864d8b5889e55a502ff5aa37aec77b4afc46eaa66f",
+  "selected_indices_inclusive": [
+    463,
+    504
+  ],
+  "replay_path": "data/live_traces/growing_d1_s1.csv",
+  "replay_sha256": "2eff7038f6ae6b6bb2ee60e4d5a0aad13e77f425b48b5f06e8fd33fd0f123d6d",
+  "expected_schedule_sha256": "c6a23cdcdf7658fd6b93bb7ae70d52d1c9418c370df38dfc0aef43ce2b524647",
+  "mapping": {
+    "time": "Each observed 900-second source interval becomes one constant 10-second replay bin (90x acceleration).",
+    "amplitude": "target_rps = 20 + 100 * (pod_count - 90) / (99 - 90)",
+    "minimum_rps": 20.0,
+    "maximum_rps": 120.0,
+    "mapping_interpretation": "controller-independent experimental demand proxy, not reconstructed HTTP traffic",
+    "interpolation": "none; observed values are held constant within each replay bin",
+    "warmup_seconds": 120,
+    "warmup_rps": 4,
+    "measurement_seconds": 420,
+    "request_timeout_seconds": 5,
+    "maximum_in_flight": 2048,
+    "scheduled_measurement_requests": 30733
+  },
+  "growth_response_definition": {
+    "sustained_growth_threshold_rps": 70.0,
+    "consecutive_bins": 3,
+    "onset_measurement_second": 200,
+    "response_baseline_window_seconds": [
+      170,
+      200
+    ],
+    "response": "first observed desired/ready replica count above the last pre-onset telemetry value",
+    "early_window_seconds": [
+      0,
+      140
+    ],
+    "late_window_seconds": [
+      280,
+      420
+    ],
+    "failure_concentration_window_seconds": [
+      200,
+      420
+    ],
+    "proactivity_rule": "A pre-onset scale-up is reported descriptively only if it follows the start of the rising replay; replica count alone is not evidence of causal prediction."
+  },
+  "application": {
+    "image": "php:8.2-apache",
+    "cpu_request": "200m",
+    "cpu_limit": "500m",
+    "memory_request": "64Mi",
+    "memory_limit": "128Mi",
+    "replica_bounds": [
+      1,
+      20
+    ],
+    "manifest": "manifests/sample-app.yaml",
+    "manifest_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2"
+  },
+  "controllers": {
+    "strawman_hpa": {
+      "kind": "HorizontalPodAutoscaler",
+      "cpu_target_percent": 50,
+      "scale_down_stabilization_seconds": 60
+    },
+    "calibrated_hpa": {
+      "kind": "HorizontalPodAutoscaler",
+      "cpu_target_percent": 70,
+      "scale_down_stabilization_seconds": 300,
+      "scale_up_policy": "4 pods per 60 seconds"
+    },
+    "holtwinters": {
+      "kind": "PredictiveHorizontalPodAutoscaler",
+      "cpu_target_percent": 50,
+      "sync_period_seconds": 10,
+      "seasonal_periods": 6,
+      "stored_seasons": 4,
+      "alpha": 0.9,
+      "beta": 0.2,
+      "gamma": 0.3
+    }
+  },
+  "acceptance_thresholds": {
+    "complete_schedule": true,
+    "generator_drops": 0,
+    "p99_dispatch_delay_below_seconds": 0.1,
+    "cpu_coverage_at_least": 0.9,
+    "max_metric_gap_below_seconds": 15,
+    "controller_exclusive": true,
+    "measurement_window_bracketed": true,
+    "scaling_response_observed": true
+  },
+  "runs": [
+    {
+      "sequence": 1,
+      "dataset": "growing_d1_s1",
+      "arm": "strawman_hpa",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "growing_first_comparison"
+    },
+    {
+      "sequence": 2,
+      "dataset": "growing_d1_s1",
+      "arm": "calibrated_hpa",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "growing_first_comparison"
+    },
+    {
+      "sequence": 3,
+      "dataset": "growing_d1_s1",
+      "arm": "holtwinters",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "growing_first_comparison"
+    }
+  ]
+}

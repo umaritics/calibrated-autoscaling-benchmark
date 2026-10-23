@@ -1,0 +1,101 @@
+{
+  "generated_utc": "2026-10-23T19:02:47.996073+00:00",
+  "decision": "PASS",
+  "experiment_label": "accelerated D1 synthetic growing pod-demand-proxy replay on a benchmark Kubernetes service",
+  "source": {
+    "path": "data/phpa/phpa-datasets/growing_1_growth_rate0.08_seasonality_strength0.6_cyclic_growthFalse_base_level20_noise_level0.3_test.csv",
+    "sha256": "7906881e6b7967b1fbad62864d8b5889e55a502ff5aa37aec77b4afc46eaa66f",
+    "scenario_id": 1,
+    "rows": 672,
+    "columns": [
+      "timestamp",
+      "pod_count"
+    ],
+    "sampling_interval_seconds": 900,
+    "start": "2024-01-29 00:00:00",
+    "end": "2024-02-04 23:45:00",
+    "value_range": [
+      79,
+      100
+    ],
+    "units": {
+      "timestamp": "UTC-like naive datetime at 15-minute intervals",
+      "pod_count": "synthetic pod-count demand proxy"
+    }
+  },
+  "selection_rule": "Use the test split and the lowest numeric non-cyclic growing scenario ID. Within that scenario, select the earliest 42-observation contiguous window attaining the maximum positive ordinary least-squares pod_count slope. Ties resolve to the earliest start. The rule and result were frozen before any controller outcome was observed.",
+  "selected_window": {
+    "observation_indices_inclusive": [
+      463,
+      504
+    ],
+    "rows": 42,
+    "source_start": "2024-02-02 19:45:00",
+    "source_end": "2024-02-03 06:00:00",
+    "source_end_exclusive": "2024-02-03 06:15:00",
+    "source_duration_seconds": 37800,
+    "value_range": [
+      90,
+      99
+    ],
+    "first_value": 91,
+    "last_value": 99,
+    "ols_slope_pods_per_observation": 0.20395429867919967,
+    "ols_slope_pods_per_source_hour": 0.8158171947167987,
+    "early_third_mean": 91.85714285714286,
+    "late_third_mean": 97.57142857142857,
+    "late_minus_early_mean": 5.714285714285708,
+    "decreasing_steps": 4,
+    "replay_trace_path": "data/live_traces/growing_d1_s1.csv",
+    "replay_trace_sha256": "2eff7038f6ae6b6bb2ee60e4d5a0aad13e77f425b48b5f06e8fd33fd0f123d6d"
+  },
+  "transformation": {
+    "time": "Each observed 900-second source interval becomes one constant 10-second replay bin (90x acceleration).",
+    "amplitude": "target_rps = 20 + 100 * (pod_count - 90) / (99 - 90)",
+    "minimum_rps": 20.0,
+    "maximum_rps": 120.0,
+    "mapping_interpretation": "controller-independent experimental demand proxy, not reconstructed HTTP traffic",
+    "interpolation": "none; observed values are held constant within each replay bin",
+    "warmup_seconds": 120,
+    "warmup_rps": 4,
+    "measurement_seconds": 420,
+    "request_timeout_seconds": 5,
+    "maximum_in_flight": 2048,
+    "scheduled_measurement_requests": 30733
+  },
+  "time_scale_assessment": {
+    "source_interval_seconds": 900,
+    "replay_bin_seconds": 10,
+    "acceleration_factor": 90,
+    "metrics_server_resolution_seconds": 15,
+    "phpa_sync_seconds": 10,
+    "nominal_hpa_reconciliation_seconds": 15,
+    "measurement_metric_resolutions": 28.0,
+    "measurement_phpa_sync_periods": 42.0,
+    "interpretation": "Individual 10-second source bins are not reliably separable by 15-second CPU metrics/HPA cycles. The 420-second window nevertheless contains 28 metric resolutions and 42 PHPA sync periods, so only response to the sustained overall rise is interpreted. Native 10.5-hour timing is not claimed."
+  },
+  "growth_response_definition": {
+    "sustained_growth_threshold_rps": 70.0,
+    "consecutive_bins": 3,
+    "onset_measurement_second": 200,
+    "response_baseline_window_seconds": [
+      170,
+      200
+    ],
+    "response": "first observed desired/ready replica count above the last pre-onset telemetry value",
+    "early_window_seconds": [
+      0,
+      140
+    ],
+    "late_window_seconds": [
+      280,
+      420
+    ],
+    "failure_concentration_window_seconds": [
+      200,
+      420
+    ],
+    "proactivity_rule": "A pre-onset scale-up is reported descriptively only if it follows the start of the rising replay; replica count alone is not evidence of causal prediction."
+  },
+  "expected_schedule_sha256": "c6a23cdcdf7658fd6b93bb7ae70d52d1c9418c370df38dfc0aef43ce2b524647"
+}

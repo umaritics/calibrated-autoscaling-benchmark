@@ -117,3 +117,17 @@ With one repetition, these values are descriptive only. See the
 and [dataset audit](results/live_trace_phase/alibaba_first_comparison/DATASET_VALIDATION.md).
 
 Offline result: at 15 minutes, persistence has the lowest mean MAE on burst, chaotic, growing and stepped; gradient boosting leads seasonal and onoff. See the [computed pattern/horizon rankings](results/results.md#lowest-mean-mae-among-the-five-evaluated-variants). Forecast rankings alone do not establish autoscaling cost or QoS.
+
+## Growing-pattern live checkpoint
+
+One frozen D1-derived growing replay was executed once per controller, with all
+three arms accepted by the established analyzer and independent verifier. All
+92,199 measurement requests succeeded. Pod-seconds were 1,927.50 (soft HPA),
+1,572.50 (tuned HPA), and 2,897.50 (Holt–Winters). Holt–Winters responded
+earliest at the predeclared sustained-growth threshold, but held substantially
+more capacity; this is descriptive evidence from one 90×-accelerated synthetic
+pod-demand-proxy replay, not native-timing traffic or a significance result.
+
+See the [growing comparison report](results/live_trace_phase/growing_first_comparison/RESULTS.md),
+[frozen plan](results/live_trace_phase/growing_first_comparison/frozen_plan.json),
+and [independent verification](results/live_trace_phase/growing_first_comparison/independent_verification.json).

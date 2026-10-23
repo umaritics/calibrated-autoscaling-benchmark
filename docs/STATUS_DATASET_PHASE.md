@@ -13,6 +13,10 @@
   the unchanged 90% CPU-telemetry rule.
 - Validated the bounded Alibaba v2018 prefix and executed one accepted live run
   for each controller on one frozen `c_1`-derived observation-sequence replay.
+- Executed one accepted run per controller on a frozen D1 growing-pattern
+  replay. Independent verification passed exact schedule/request accounting,
+  source/replay hashes, controller exclusivity, CPU coverage, latency
+  populations, failure denominators, and pod-second integration.
 
 ## Current live extension status
 
@@ -24,9 +28,9 @@ generator. Its collector adds explicit command/availability diagnostics, so
 availability classifications are not assumed directly comparable to older NASA
 fields without qualification.
 
-Recommended next milestone: predeclare and execute two additional Alibaba-derived
-repetitions per controller using the unchanged frozen transformation, with a
-balanced controller order and no tuning after this first outcome.
+Recommended next milestone: predeclare and execute the stepped-pattern
+three-controller comparison using the unchanged application, policies,
+acceptance thresholds, and independent-verification framework.
 
 ## Remaining evidence gaps
 

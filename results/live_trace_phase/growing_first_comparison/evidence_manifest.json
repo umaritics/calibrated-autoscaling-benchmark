@@ -1,0 +1,222 @@
+{
+  "generated_utc": "2026-10-23T19:32:36.599527+00:00",
+  "algorithm": "sha256",
+  "files": {
+    "results/live_trace_phase/growing_first_comparison/PREFLIGHT.md": {
+      "sha256": "65c1f66a2620681f259e6af81ffab86693cf6f83e27582078484c42cc4cb823d",
+      "bytes": 629
+    },
+    "results/live_trace_phase/growing_first_comparison/REPRODUCE.md": {
+      "sha256": "260d0d91194f44193dec69194dba7ffde3f892c42c53448031e2f729354b7bd8",
+      "bytes": 589
+    },
+    "results/live_trace_phase/growing_first_comparison/RESULTS.md": {
+      "sha256": "62992c8dcefac56735e29a27344869c6d867e96744d8ff47f6db484dfa3d5efd",
+      "bytes": 3694
+    },
+    "results/live_trace_phase/growing_first_comparison/WORKLOAD_TRANSFORMATION.md": {
+      "sha256": "e1a4c98b2d5be94527c0b89fbfe242efa5b985e36e10e6c487de6c0f2217b57d",
+      "bytes": 1986
+    },
+    "results/live_trace_phase/growing_first_comparison/comparison.csv": {
+      "sha256": "20b210e1725fbab6b265af787e61ec806819cc577e73ab7644f9b2e134e87c39",
+      "bytes": 1509
+    },
+    "results/live_trace_phase/growing_first_comparison/comparison.json": {
+      "sha256": "12fe03f0b93e0f304bd5bec044126f8ad56bd03e46aeb854e3063c1b53cd00dd",
+      "bytes": 30673
+    },
+    "results/live_trace_phase/growing_first_comparison/dataset_validation.json": {
+      "sha256": "048f3c29f8b9e679f5e4768074ce2bc8cf878c4ebbfd1f8b8c7fd26b84c288c5",
+      "bytes": 4107
+    },
+    "results/live_trace_phase/growing_first_comparison/environment_metadata.json": {
+      "sha256": "0ba6a010a42fcdc24a41cdc6d6e567e2af1dd3cf5b66c0a34de9a1646819a122",
+      "bytes": 1315
+    },
+    "results/live_trace_phase/growing_first_comparison/execution_ledger.jsonl": {
+      "sha256": "69cc28af770f9eda04996d251fa1529df64cfc8b372254d44054d4b914c25cab",
+      "bytes": 4264
+    },
+    "results/live_trace_phase/growing_first_comparison/frozen_plan.json": {
+      "sha256": "2dd46c26000b550d6a13c806d1e081ec1e9d629d35a788eefa353d7fb5226ada",
+      "bytes": 3863
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/COMPLETE": {
+      "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+      "bytes": 64
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/controller.yaml": {
+      "sha256": "edeac58288e2b49cf8e0d5ca954f450501f7370a694d6552a257ee70308f5fa2",
+      "bytes": 697
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/events.json": {
+      "sha256": "0f41be75ca081db6cf0474fea8d2d8e542c12faa687aedd510d8d58b8393d0dd",
+      "bytes": 536716
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/final_objects.json": {
+      "sha256": "a29d067dad061c72609a6e931aa6a069fc9a0104a79fbcc394665c6b6887a77a",
+      "bytes": 72283
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/initial_objects.json": {
+      "sha256": "4caa8c352766e07d1cf0811817cb686c973eb6c7285bcebc97128eb1af8ff6e9",
+      "bytes": 20241
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/metadata.json": {
+      "sha256": "8754d5e7dc7789019a745d47475eef5845bcfe5c4a78cb819e7c9665fc2f184a",
+      "bytes": 680
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/metrics.csv": {
+      "sha256": "f0ee9d337519976999b1dde934a425ecab235c56aafcb81abe8d91852287a9ef",
+      "bytes": 15884
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/metrics.jsonl": {
+      "sha256": "c44b76635bb47a46bf9c71f5dacf2a72349a516ad923487f1dac311426ea0e14",
+      "bytes": 2251124
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/operator.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/requests.csv": {
+      "sha256": "75aa9d8f3981c1d575458bd481e3fd550230a869e32d077fe6abb431d12b98d0",
+      "bytes": 2918278
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/run_summary.csv": {
+      "sha256": "469465ef739f7b00a2977425d584ba9c68981d6f533b6c10018094eec66fd85d",
+      "bytes": 1783
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/summary.json": {
+      "sha256": "5da611d24cf2add661e7ea38d2847fb14612b144666ffa2b3c73032680a6e2b8",
+      "bytes": 6222
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/trace.csv": {
+      "sha256": "2eff7038f6ae6b6bb2ee60e4d5a0aad13e77f425b48b5f06e8fd33fd0f123d6d",
+      "bytes": 1959
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/calibrated_hpa/validation_report.md": {
+      "sha256": "88d8be6595833e17e464f998b6eec02ad4636fb3375e9ab5e6804862605b9393",
+      "bytes": 3621
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/COMPLETE": {
+      "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+      "bytes": 64
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/controller.yaml": {
+      "sha256": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8",
+      "bytes": 692
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/events.json": {
+      "sha256": "b000d64c2f6defcd239fbef800afcd75898458f6e5f47a97d5c13d6afa5f428d",
+      "bytes": 475400
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/final_objects.json": {
+      "sha256": "f837c1450fc0f63b5ee47f97b9bf900c41cf2865654a25276c5c667bcef8f433",
+      "bytes": 136025
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/initial_objects.json": {
+      "sha256": "1336ab936da50f638041674fc338079eeb30f3d956966bd11fdbc2d125dd45dc",
+      "bytes": 20103
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/metadata.json": {
+      "sha256": "37477ca49638389c433175774ddd7e1d3981e7463408b8d47910220b343af240",
+      "bytes": 673
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/metrics.csv": {
+      "sha256": "e0564a913aab834eb316856876c679852e3db7c31a8f79b6e54e1058eae61727",
+      "bytes": 17034
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/metrics.jsonl": {
+      "sha256": "ce02bef74e762eddf9530407ef2421a805bc7a146789042594a291bd55eb03d8",
+      "bytes": 3487864
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/operator.log": {
+      "sha256": "087b6e103441d62ec8bea030c8a141004ee437f64acf956d51b998c1c17e3e12",
+      "bytes": 123118
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/requests.csv": {
+      "sha256": "300fe0c989f0c883aca5559fa9a2f53d892b7d9ee175babc3abf7a32d237ed89",
+      "bytes": 2918518
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/run_summary.csv": {
+      "sha256": "de8fb7d6590e17b730acdeac63b39b4c95a958f74216d716d337bb1de32ddff7",
+      "bytes": 1784
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/summary.json": {
+      "sha256": "605938749dff526f68a54e576c312a763371cac11354c13d252b22067ccff645",
+      "bytes": 7101
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/trace.csv": {
+      "sha256": "2eff7038f6ae6b6bb2ee60e4d5a0aad13e77f425b48b5f06e8fd33fd0f123d6d",
+      "bytes": 1959
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/holtwinters/validation_report.md": {
+      "sha256": "72f9933b7654d691242343be8eb46e4e98a9b8c818380c28ec9bbe1511bb7bb6",
+      "bytes": 3960
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/COMPLETE": {
+      "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+      "bytes": 64
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/controller.yaml": {
+      "sha256": "b783216b4a26d7fb9303f4bc01ceb711f3a901f4340e98c8d2c247f65e1f8d1c",
+      "bytes": 476
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/events.json": {
+      "sha256": "8087617ac751a351d9febd42ae8cdd2baee2c67651a0e6d455f0537117507e8e",
+      "bytes": 463346
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/final_objects.json": {
+      "sha256": "ccc2fc60953570068f97944860ed1f9bca9945c924ea362dbfa73270d8d1af92",
+      "bytes": 92466
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/initial_objects.json": {
+      "sha256": "526ed35c77d7fe4fd0ffbcfb59b6fdc3ce1126321aaa6a358324869ec4b63991",
+      "bytes": 20260
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/metadata.json": {
+      "sha256": "a65d3e9f7aa768be883eeac49b88ba90cc3dcc5e23e90be1e62aa4cfe109f19c",
+      "bytes": 678
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/metrics.csv": {
+      "sha256": "24210eb6e4f2dd553f4b34326d70c652777743ed3d5f24e74d04f5a2f325537e",
+      "bytes": 15899
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/metrics.jsonl": {
+      "sha256": "150820a98d6e649ab86fdd8516cf005754ed4074d2931170a6a934ac8293e77c",
+      "bytes": 2535952
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/operator.log": {
+      "sha256": "d52c5ac9c37f66a63ba0a67a69ea63c4ef690366466c0d5ef43e3dba9773fc75",
+      "bytes": 56605
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/requests.csv": {
+      "sha256": "661cdfcffd7ad4076fc64bf328da5bd61f9281bf7f4a19744b1c759b957112c4",
+      "bytes": 2920468
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/run_summary.csv": {
+      "sha256": "55ba1613197b919bb255e7b15eb22dbe448cbbd58663524c7599cfd52aeabc86",
+      "bytes": 1773
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/summary.json": {
+      "sha256": "eec0c60bf5e4166d5dcb700fd85a586c7aca99bb32e4f5ecad597e4e6696daa7",
+      "bytes": 6494
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/trace.csv": {
+      "sha256": "2eff7038f6ae6b6bb2ee60e4d5a0aad13e77f425b48b5f06e8fd33fd0f123d6d",
+      "bytes": 1959
+    },
+    "results/live_trace_phase/growing_first_comparison/growing_d1_s1/repeat1/strawman_hpa/validation_report.md": {
+      "sha256": "24b632c511051b229655669974a7d28355f34d784bc5a35dea11b6d3600f91ac",
+      "bytes": 3728
+    },
+    "results/live_trace_phase/growing_first_comparison/independent_verification.json": {
+      "sha256": "eaefde6ab0b523e8395a2520bfc4e7c5a02b14d3651d66ebb7d2513c5af1c27d",
+      "bytes": 1497
+    },
+    "results/live_trace_phase/growing_first_comparison/run_plan.json": {
+      "sha256": "720f390b708e38b2967dc1366398dc842640a09066cee2e8ccfe7235eafbc616",
+      "bytes": 565
+    }
+  }
+}

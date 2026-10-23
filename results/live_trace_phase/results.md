@@ -1,16 +1,41 @@
 # Live Kubernetes production-trace-derived replay results
 
-Two bounded milestones are retained separately:
+Four bounded milestones are retained separately:
 
 - NASA-derived replay: 8/9 accepted matrix, with 3 soft-HPA, 2 tuned-HPA,
   and 3 Holt–Winters accepted runs. Two tuned-HPA attempts remain
   `INCONCLUSIVE`; see `nasa_three_repeat/FINDINGS.md`.
 - Alibaba-derived replay: one accepted run per controller; see
   `alibaba_first_comparison/RESULTS.md`.
+- On/off D1-derived replay: one accepted run per controller; see
+  `onoff_first_comparison/RESULTS.md`.
+- Growing D1-derived replay: one accepted run per controller; see
+  `growing_first_comparison/RESULTS.md`.
 
 These are demand replays against the benchmark Kubernetes service, not
 reproductions of either production service or the paper's forecast-MAPE
 protocol.
+
+## Growing first comparison
+
+The frozen 420-second replay maps a deterministically selected 42-observation
+growing window from synthetic pod-count proxy values to 20–120 HTTP requests/s.
+All three arms passed the unchanged acceptance criteria and independently
+verified exact accounting. Each completed all 30,733 measurement requests with
+zero failures and zero generator drops.
+
+| Controller | Error | Success p95 / p99 (s) | Pod-s | Mean / max ready | CPU coverage | Scale changes |
+|---|---:|---:|---:|---:|---:|---:|
+| Soft HPA (50%) | 0.00% | 0.009 / 0.012 | 1927.50 | 4.59 / 8 | 100.00% | 7 |
+| Tuned HPA (70%) | 0.00% | 0.010 / 0.013 | 1572.50 | 3.74 / 6 | 100.00% | 5 |
+| Holt–Winters PHPA | 0.00% | 0.012 / 0.021 | 2897.50 | 6.90 / 12 | 100.00% | 11 |
+
+Holt–Winters reacted earliest at the frozen growth threshold but used 50.32%
+more pod-seconds than soft HPA and 84.26% more than tuned HPA. Tuned HPA used
+18.42% fewer pod-seconds than soft HPA with the same observed success rate.
+These are single-run descriptive comparisons; see
+`growing_first_comparison/RESULTS.md` for growth-response definitions and
+limitations.
 
 ## Alibaba first comparison
 
