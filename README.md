@@ -146,3 +146,17 @@ post-step failures, and tuned HPA was competitive at that transition.
 See the [stepped comparison report](results/live_trace_phase/stepped_first_comparison/RESULTS.md),
 [frozen plan](results/live_trace_phase/stepped_first_comparison/frozen_plan.json),
 and [independent verification](results/live_trace_phase/stepped_first_comparison/independent_verification.json).
+
+## Chaotic-pattern safety checkpoint
+
+A deterministic D1 scenario-1 window (indices 284–325) was frozen before
+execution and mapped to the established 20–120 RPS, 420-second protocol. The
+soft-HPA arm completed and passed the evidence-integrity analyzer, but 85.47%
+of scheduled requests failed and host one-minute load reached 106.35. The host
+then became unresponsive during two separate Holt–Winters attempts. Both
+partial attempts are retained and excluded; tuned HPA was not started. No
+three-controller chaotic comparison or scaling conclusion is claimed.
+
+See the [safety-stop report](results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md),
+[frozen plan](results/live_trace_phase/chaotic_first_comparison/frozen_plan.json),
+and [checkpoint](results/live_trace_phase/chaotic_first_comparison/safety_checkpoint.json).

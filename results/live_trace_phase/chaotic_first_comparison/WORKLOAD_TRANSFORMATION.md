@@ -1,0 +1,7 @@
+# Chaotic dataset provenance and frozen replay
+
+Frozen before controller execution. The source is `data/phpa/phpa-datasets/chaotic_1_base_pods35_chaos_level1.2_seasonality_strength0.4_trend_changes8_noise_level0.7_test.csv` (SHA-256 `0cfb88afe566dd590b5b79ca78c80cc21c7790e25a61a371fb31d48096dca70c`), containing synthetic `pod_count` demand proxies at 15-minute cadence—not observed HTTP arrivals. The deterministic rule in `dataset_validation.json` selects scenario 1, indices 284–325; observed values range from 11 to 100 with CV 0.297014, peak/mean 1.627907, 18 material direction reversals, 15 major changes, lag-1 autocorrelation 0.304058, and linear-time R² 0.023808.
+
+Each observation is held for 10 seconds (90× acceleration) and mapped by `target_rps = 20 + 100 * (pod_count - 11) / (100 - 11)`. The established 120-second warmup and 420-second measurement are retained; no longer run is scientifically needed because this window is intended as aggregate irregular forcing, not a resolvable step-response study. No controller receives future values. Replay SHA-256: `7ab422c4af78eb721df5a366ea8d6c2f2cef22f254b1f772b8024c6b284704d7`. Canonical schedule SHA-256: `9fd1dc67dae6fb66f190fbbca352e10fd7115b58ea82e9a4c07c6edbf6f6c30f`. Scheduled measurement requests: 32198.
+
+Individual changes can occur faster than Kubernetes CPU metrics and HPA reconciliation. Results therefore do not support fine-grained reaction-time or correct-prediction claims.

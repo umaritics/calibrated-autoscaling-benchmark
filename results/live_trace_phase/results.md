@@ -1,6 +1,6 @@
 # Live Kubernetes production-trace-derived replay results
 
-Five bounded milestones are retained separately:
+Six bounded milestones are retained separately:
 
 - NASA-derived replay: 8/9 accepted matrix, with 3 soft-HPA, 2 tuned-HPA,
   and 3 Holt–Winters accepted runs. Two tuned-HPA attempts remain
@@ -14,6 +14,10 @@ Five bounded milestones are retained separately:
 - Stepped D1-derived replay: tuned HPA and Holt–Winters accepted; soft HPA
   rejected on frozen generator-dispatch integrity; see
   `stepped_first_comparison/RESULTS.md`.
+- Chaotic D1-derived replay: safety-stopped after two host freezes. Soft HPA
+  completed and was accepted as an individual run; two incomplete Holt–Winters
+  attempts are excluded and tuned HPA was not run. No three-controller result
+  exists; see `chaotic_first_comparison/SAFETY_STOP.md`.
 
 These are demand replays against the benchmark Kubernetes service, not
 reproductions of either production service or the paper's forecast-MAPE
@@ -60,6 +64,23 @@ consistent with its 300-second stabilization. Holt–Winters reduced after 15
 seconds but entered with much more capacity and accumulated more excess
 ready-pod-seconds. The rejected soft result is retained descriptively but is
 not used for causal controller comparison.
+
+## Chaotic safety-stopped checkpoint
+
+The frozen 420-second replay maps D1 chaotic scenario 1 observations 284–325
+to 20–120 requests/s. Its controller-independent selection rule required
+material variation, reversals distributed through the window, weak linear
+trend, and limited lag-1 persistence. The soft-HPA arm completed and passed the
+unchanged evidence-integrity analyzer, but QoS was poor: 4,677/32,198 requests
+succeeded (85.47% errors), p95 successful latency was 4.482 seconds, and the
+run used 685.00 ready-pod-seconds. Host one-minute load reached 106.35.
+
+The machine became unresponsive twice during Holt–Winters attempts. Both
+partial directories are retained and excluded, tuned HPA was never started,
+and the active PHPA was removed during safety cleanup. Therefore no chaotic
+cross-controller, oscillation, or cost/QoS conclusion is reported. See
+`chaotic_first_comparison/SAFETY_STOP.md` and
+`chaotic_first_comparison/safety_checkpoint.json`.
 
 ## Alibaba first comparison
 

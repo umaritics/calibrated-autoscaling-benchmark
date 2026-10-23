@@ -1,0 +1,43 @@
+{
+  "generated_utc": "2026-10-23T22:07:49.247337+00:00",
+  "status": "BLOCKED_HOST_SAFETY",
+  "comparison_complete": false,
+  "run_dispositions": {
+    "strawman_hpa": "ACCEPT",
+    "holtwinters": "INCOMPLETE_EXCLUDED_TWO_HOST_FREEZES",
+    "calibrated_hpa": "NOT_RUN"
+  },
+  "safety_observations": {
+    "soft_hpa_max_host_load1": 106.3515625,
+    "post_recovery_filesystem_percent_used": 94,
+    "post_recovery_free_bytes_approx": 5905580032,
+    "kernel_oom_or_hung_task_evidence_found": false,
+    "active_benchmark_autoscaler_after_cleanup": false
+  },
+  "accepted_soft_summary": {
+    "scheduled_measurement_requests": 32198,
+    "successful_requests": 4677,
+    "recorded_failures": 27521,
+    "error_rate": 0.8547425305919623,
+    "timeouts": 27391,
+    "connection_failures": 130,
+    "generator_drops": 0,
+    "p50_latency_s": 0.8308990040022763,
+    "p95_latency_s": 4.481659000000945,
+    "p99_latency_s": 4.903828684800828,
+    "p99_dispatch_delay_s": 0.004903013708259607,
+    "max_client_inflight": 603,
+    "pod_seconds": 684.9958577079888,
+    "mean_ready": 1.6309425183523543,
+    "max_ready": 9,
+    "cpu_coverage": 0.9285714285714286,
+    "mean_cpu_m": 421.6112556733974,
+    "max_cpu_m": 500.731225,
+    "readiness_deficit_samples": 68,
+    "max_workload_restarts": 18
+  },
+  "interrupted_directories": [
+    "results/live_trace_phase/chaotic_first_comparison/interrupted_runs/holtwinters_host_freeze_20261024T0024Z",
+    "results/live_trace_phase/chaotic_first_comparison/interrupted_runs/holtwinters_host_freeze_20261024T0044Z"
+  ]
+}

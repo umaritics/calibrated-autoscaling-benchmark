@@ -1,0 +1,13 @@
+{
+  "dataset": "chaotic_d1_s1",
+  "arm": "holtwinters",
+  "repeat": 1,
+  "warmup": 120,
+  "duration": 420,
+  "category": "chaotic_first_comparison",
+  "started_utc": "2026-10-23T21:26:06.753740+00:00",
+  "runner_sha256": "b7a994cc4610dc52e9b7f8c1d8000506f6a9b2c89e34269e4c78e0232ab3ecfa",
+  "trace_sha256": "7ab422c4af78eb721df5a366ea8d6c2f2cef22f254b1f772b8024c6b284704d7",
+  "policy_sha256": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8",
+  "workload_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2"
+}

@@ -1,0 +1,141 @@
+{
+  "frozen_utc": "2026-10-23T21:02:43.655360+00:00",
+  "source_path": "data/phpa/phpa-datasets/chaotic_1_base_pods35_chaos_level1.2_seasonality_strength0.4_trend_changes8_noise_level0.7_test.csv",
+  "source_sha256": "0cfb88afe566dd590b5b79ca78c80cc21c7790e25a61a371fb31d48096dca70c",
+  "selected_indices_inclusive": [
+    284,
+    325
+  ],
+  "replay_path": "data/live_traces/chaotic_d1_s1.csv",
+  "replay_sha256": "7ab422c4af78eb721df5a366ea8d6c2f2cef22f254b1f772b8024c6b284704d7",
+  "expected_schedule_sha256": "9fd1dc67dae6fb66f190fbbca352e10fd7115b58ea82e9a4c07c6edbf6f6c30f",
+  "mapping": {
+    "time": "Each observed 900-second source interval becomes one constant 10-second replay bin (90x acceleration).",
+    "amplitude": "target_rps = 20 + 100 * (pod_count - 11) / (100 - 11)",
+    "minimum_rps": 20.0,
+    "maximum_rps": 120.0,
+    "interpolation": "none",
+    "mapping_interpretation": "controller-independent experimental demand proxy, not observed HTTP traffic",
+    "warmup_seconds": 120,
+    "warmup_rps": 4,
+    "measurement_seconds": 420,
+    "request_timeout_seconds": 5,
+    "maximum_in_flight": 2048,
+    "scheduled_measurement_requests": 32198
+  },
+  "time_scale_assessment": {
+    "source_interval_seconds": 900,
+    "replay_bin_seconds": 10,
+    "acceleration_factor": 90,
+    "metrics_server_resolution_seconds": 15,
+    "phpa_sync_seconds": 10,
+    "nominal_hpa_reconciliation_seconds": 15,
+    "interpretation": "Individual 10-second changes are at or below controller/metrics cadence; the run measures aggregate QoS/capacity under unresolved irregular forcing and cannot support precise per-change reaction-time or prediction claims."
+  },
+  "chaotic_metrics_frozen": {
+    "spike_bin_rule": "target_rps >= 90",
+    "spike_bin_indices": [
+      13,
+      17,
+      18,
+      19,
+      20,
+      23,
+      26,
+      27,
+      28,
+      30,
+      32
+    ],
+    "low_demand_bin_rule": "target_rps <= 40",
+    "low_demand_bin_indices": [
+      37
+    ],
+    "scale_event_rule": "each observed change in desired replicas; direction from signed change",
+    "oscillation_rule": "a reversal when consecutive desired-replica changes have opposite signs and occur within 60 seconds",
+    "possible_thrashing_rule": "at least three such reversals inside any 120-second interval",
+    "excess_low_capacity_rule": "ready-pod-seconds above one replica during frozen low-demand bins",
+    "tracking_rule": "descriptive Pearson correlation of target RPS with ready replicas at lags 0,15,30,45,60 seconds; no causal/predictive interpretation",
+    "undersupply_proxies": "scheduled-request failures in spike bins plus readiness-deficit telemetry samples",
+    "retention_rule": "ready-pod-seconds above one replica in the 60 seconds after each high-to-low major change, reported descriptively"
+  },
+  "application": {
+    "image": "php:8.2-apache",
+    "cpu_request": "200m",
+    "cpu_limit": "500m",
+    "memory_request": "64Mi",
+    "memory_limit": "128Mi",
+    "replica_bounds": [
+      1,
+      20
+    ],
+    "manifest": "manifests/sample-app.yaml",
+    "manifest_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2"
+  },
+  "controllers": {
+    "strawman_hpa": {
+      "cpu_target_percent": 50,
+      "scale_down_stabilization_seconds": 60
+    },
+    "calibrated_hpa": {
+      "cpu_target_percent": 70,
+      "scale_down_stabilization_seconds": 300,
+      "scale_up_policy": "4 pods per 60 seconds"
+    },
+    "holtwinters": {
+      "cpu_target_percent": 50,
+      "sync_period_seconds": 10,
+      "seasonal_periods": 6,
+      "stored_seasons": 4,
+      "alpha": 0.9,
+      "beta": 0.2,
+      "gamma": 0.3
+    }
+  },
+  "controller_policy_sha256": {
+    "strawman_hpa": "b783216b4a26d7fb9303f4bc01ceb711f3a901f4340e98c8d2c247f65e1f8d1c",
+    "calibrated_hpa": "edeac58288e2b49cf8e0d5ca954f450501f7370a694d6552a257ee70308f5fa2",
+    "holtwinters": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8"
+  },
+  "reset": "Delete all HPA/PHPA objects and the app deployment, recreate the unchanged app, restart the PHPA operator only for Holt-Winters, then apply exactly one controller.",
+  "acceptance_thresholds": {
+    "complete_schedule": true,
+    "generator_drops": 0,
+    "p99_dispatch_delay_below_seconds": 0.1,
+    "cpu_coverage_at_least": 0.9,
+    "max_metric_gap_below_seconds": 15,
+    "controller_exclusive": true,
+    "measurement_window_bracketed": true,
+    "scaling_response_observed": true
+  },
+  "run_order_rationale": "User-frozen order: soft HPA, Holt-Winters, tuned HPA.",
+  "runs": [
+    {
+      "sequence": 1,
+      "dataset": "chaotic_d1_s1",
+      "arm": "strawman_hpa",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "chaotic_first_comparison"
+    },
+    {
+      "sequence": 2,
+      "dataset": "chaotic_d1_s1",
+      "arm": "holtwinters",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "chaotic_first_comparison"
+    },
+    {
+      "sequence": 3,
+      "dataset": "chaotic_d1_s1",
+      "arm": "calibrated_hpa",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "chaotic_first_comparison"
+    }
+  ]
+}

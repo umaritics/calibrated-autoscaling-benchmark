@@ -1,0 +1,29 @@
+[
+  {
+    "sequence": 1,
+    "dataset": "chaotic_d1_s1",
+    "arm": "strawman_hpa",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "chaotic_first_comparison"
+  },
+  {
+    "sequence": 2,
+    "dataset": "chaotic_d1_s1",
+    "arm": "holtwinters",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "chaotic_first_comparison"
+  },
+  {
+    "sequence": 3,
+    "dataset": "chaotic_d1_s1",
+    "arm": "calibrated_hpa",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 420,
+    "category": "chaotic_first_comparison"
+  }
+]

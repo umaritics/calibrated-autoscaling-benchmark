@@ -23,6 +23,11 @@
   frozen generator-integrity threshold; it was not rerun. Independent
   reconstruction passed schedule accounting, hashes, denominators, transition
   timing, controller exclusivity, CPU coverage, and pod-second integration.
+- Froze a deterministic D1 chaotic-pattern replay and completed one accepted
+  soft-HPA arm. The host became unresponsive during two separate Holt–Winters
+  attempts, which are retained as incomplete evidence. Tuned HPA was not
+  started, the PHPA was removed during safety cleanup, and no three-controller
+  chaotic comparison is claimed.
 
 ## Current live extension status
 
@@ -34,9 +39,10 @@ generator. Its collector adds explicit command/availability diagnostics, so
 availability classifications are not assumed directly comparable to older NASA
 fields without qualification.
 
-Recommended next milestone: predeclare and execute one chaotic-pattern
-three-controller comparison using the unchanged application, policies,
-acceptance thresholds, and independent-verification framework.
+Recommended next milestone: reproduce the already frozen chaotic protocol on
+a resource-isolated host with explicit host load/memory/I/O abort guards,
+retaining the current accepted and interrupted evidence as a separate safety
+checkpoint.
 
 ## Remaining evidence gaps
 

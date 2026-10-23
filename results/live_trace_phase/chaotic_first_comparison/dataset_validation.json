@@ -1,0 +1,149 @@
+{
+  "generated_utc": "2026-10-23T21:02:43.634129+00:00",
+  "decision": "PASS",
+  "experiment_label": "accelerated D1 synthetic chaotic pod-demand-proxy replay on a benchmark Kubernetes service",
+  "source": {
+    "path": "data/phpa/phpa-datasets/chaotic_1_base_pods35_chaos_level1.2_seasonality_strength0.4_trend_changes8_noise_level0.7_test.csv",
+    "sha256": "0cfb88afe566dd590b5b79ca78c80cc21c7790e25a61a371fb31d48096dca70c",
+    "scenario_id": 1,
+    "rows": 672,
+    "columns": [
+      "timestamp",
+      "pod_count"
+    ],
+    "sampling_interval_seconds": 900,
+    "start": "2024-01-29 00:00:00",
+    "end": "2024-02-04 23:45:00",
+    "value_range": [
+      3,
+      100
+    ],
+    "units": {
+      "timestamp": "UTC-like naive datetime at 15-minute intervals",
+      "pod_count": "synthetic pod-count demand proxy, not observed HTTP arrivals"
+    }
+  },
+  "selection_rule": "Order D1 chaotic test files by numeric scenario ID, then scan every 42-observation window from earliest to latest. Select the first window with CV >= 0.20, peak/mean >= 1.45, amplitude >= 30 pod-count units, >=8 direction reversals after ignoring changes below max(1,5% amplitude), >=6 major adjacent changes of at least 20% amplitude, major changes in >=2 window thirds, amplitude in each 14-row third >=25% of total amplitude, |lag-1 autocorrelation| <=0.85, linear-time R^2 <=0.50, and median spacing between major changes <=8 observations. This selects the earliest materially irregular, non-smooth window without using controller outcomes.",
+  "eligibility_thresholds": {
+    "coefficient_of_variation_min": 0.2,
+    "peak_to_mean_min": 1.45,
+    "amplitude_min": 30,
+    "material_direction_changes_min": 8,
+    "major_changes_min": 6,
+    "major_change_fraction_of_amplitude": 0.2,
+    "major_change_thirds_min": 2,
+    "each_third_amplitude_fraction_min": 0.25,
+    "absolute_lag1_autocorrelation_max": 0.85,
+    "linear_trend_r_squared_max": 0.5,
+    "major_change_median_gap_observations_max": 8
+  },
+  "selected_window": {
+    "observation_indices_inclusive": [
+      284,
+      325
+    ],
+    "rows": 42,
+    "source_start": "2024-01-31 23:00:00",
+    "source_end": "2024-02-01 09:15:00",
+    "source_end_exclusive": "2024-02-01 09:30:00",
+    "source_duration_seconds": 37800,
+    "value_range": [
+      11,
+      100
+    ],
+    "characteristics": {
+      "mean": 61.42857142857143,
+      "standard_deviation": 18.24513681564495,
+      "coefficient_of_variation": 0.29701385513840617,
+      "minimum": 11.0,
+      "maximum": 100.0,
+      "amplitude": 89.0,
+      "peak_to_mean_ratio": 1.627906976744186,
+      "material_direction_changes": 18,
+      "major_change_count": 15,
+      "major_change_indices_within_window": [
+        13,
+        14,
+        17,
+        19,
+        20,
+        23,
+        24,
+        26,
+        27,
+        29,
+        30,
+        33,
+        37,
+        38,
+        41
+      ],
+      "major_change_median_gap_observations": 2.0,
+      "major_change_thirds": [
+        0,
+        1,
+        2
+      ],
+      "third_amplitudes": [
+        41.0,
+        62.0,
+        73.0
+      ],
+      "lag1_autocorrelation": 0.3040583939325457,
+      "linear_trend_r_squared": 0.023808281267382617
+    },
+    "replay_trace_path": "data/live_traces/chaotic_d1_s1.csv",
+    "replay_trace_sha256": "7ab422c4af78eb721df5a366ea8d6c2f2cef22f254b1f772b8024c6b284704d7"
+  },
+  "transformation": {
+    "time": "Each observed 900-second source interval becomes one constant 10-second replay bin (90x acceleration).",
+    "amplitude": "target_rps = 20 + 100 * (pod_count - 11) / (100 - 11)",
+    "minimum_rps": 20.0,
+    "maximum_rps": 120.0,
+    "interpolation": "none",
+    "mapping_interpretation": "controller-independent experimental demand proxy, not observed HTTP traffic",
+    "warmup_seconds": 120,
+    "warmup_rps": 4,
+    "measurement_seconds": 420,
+    "request_timeout_seconds": 5,
+    "maximum_in_flight": 2048,
+    "scheduled_measurement_requests": 32198
+  },
+  "time_scale_assessment": {
+    "source_interval_seconds": 900,
+    "replay_bin_seconds": 10,
+    "acceleration_factor": 90,
+    "metrics_server_resolution_seconds": 15,
+    "phpa_sync_seconds": 10,
+    "nominal_hpa_reconciliation_seconds": 15,
+    "interpretation": "Individual 10-second changes are at or below controller/metrics cadence; the run measures aggregate QoS/capacity under unresolved irregular forcing and cannot support precise per-change reaction-time or prediction claims."
+  },
+  "chaotic_metrics_frozen": {
+    "spike_bin_rule": "target_rps >= 90",
+    "spike_bin_indices": [
+      13,
+      17,
+      18,
+      19,
+      20,
+      23,
+      26,
+      27,
+      28,
+      30,
+      32
+    ],
+    "low_demand_bin_rule": "target_rps <= 40",
+    "low_demand_bin_indices": [
+      37
+    ],
+    "scale_event_rule": "each observed change in desired replicas; direction from signed change",
+    "oscillation_rule": "a reversal when consecutive desired-replica changes have opposite signs and occur within 60 seconds",
+    "possible_thrashing_rule": "at least three such reversals inside any 120-second interval",
+    "excess_low_capacity_rule": "ready-pod-seconds above one replica during frozen low-demand bins",
+    "tracking_rule": "descriptive Pearson correlation of target RPS with ready replicas at lags 0,15,30,45,60 seconds; no causal/predictive interpretation",
+    "undersupply_proxies": "scheduled-request failures in spike bins plus readiness-deficit telemetry samples",
+    "retention_rule": "ready-pod-seconds above one replica in the 60 seconds after each high-to-low major change, reported descriptively"
+  },
+  "expected_schedule_sha256": "9fd1dc67dae6fb66f190fbbca352e10fd7115b58ea82e9a4c07c6edbf6f6c30f"
+}
