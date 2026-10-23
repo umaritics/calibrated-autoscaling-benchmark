@@ -1,0 +1,1084 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/revision": "1",
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"php-apache\",\"namespace\":\"trace-benchmark\"},\"spec\":{\"replicas\":1,\"selector\":{\"matchLabels\":{\"run\":\"php-apache\"}},\"template\":{\"metadata\":{\"labels\":{\"run\":\"php-apache\"}},\"spec\":{\"containers\":[{\"image\":\"php:8.2-apache\",\"livenessProbe\":{\"httpGet\":{\"path\":\"/index.php\",\"port\":80},\"initialDelaySeconds\":15,\"periodSeconds\":10,\"timeoutSeconds\":5},\"name\":\"php-apache\",\"ports\":[{\"containerPort\":80}],\"readinessProbe\":{\"httpGet\":{\"path\":\"/index.php\",\"port\":80},\"initialDelaySeconds\":5,\"periodSeconds\":5,\"timeoutSeconds\":3},\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"128Mi\"},\"requests\":{\"cpu\":\"200m\",\"memory\":\"64Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/var/www/html\",\"name\":\"php-config\"}]}],\"volumes\":[{\"configMap\":{\"name\":\"php-apache-config\"},\"name\":\"php-config\"}]}}}}\n"
+                },
+                "creationTimestamp": "2026-10-23T20:09:34Z",
+                "generation": 15,
+                "name": "php-apache",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "57399",
+                "uid": "00128310-0d76-4b1e-81fe-9254ee878e91"
+            },
+            "spec": {
+                "progressDeadlineSeconds": 600,
+                "replicas": 3,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "run": "php-apache"
+                    }
+                },
+                "strategy": {
+                    "rollingUpdate": {
+                        "maxSurge": "25%",
+                        "maxUnavailable": "25%"
+                    },
+                    "type": "RollingUpdate"
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "run": "php-apache"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "image": "php:8.2-apache",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/index.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 15,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 5
+                                },
+                                "name": "php-apache",
+                                "ports": [
+                                    {
+                                        "containerPort": 80,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/index.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 5,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "500m",
+                                        "memory": "128Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "200m",
+                                        "memory": "64Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/www/html",
+                                        "name": "php-config"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "configMap": {
+                                    "defaultMode": 420,
+                                    "name": "php-apache-config"
+                                },
+                                "name": "php-config"
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 3,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-10-23T20:09:34Z",
+                        "lastUpdateTime": "2026-10-23T20:09:40Z",
+                        "message": "ReplicaSet \"php-apache-68fd8fb4cf\" has successfully progressed.",
+                        "reason": "NewReplicaSetAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    },
+                    {
+                        "lastTransitionTime": "2026-10-23T20:13:10Z",
+                        "lastUpdateTime": "2026-10-23T20:13:10Z",
+                        "message": "Deployment has minimum availability.",
+                        "reason": "MinimumReplicasAvailable",
+                        "status": "True",
+                        "type": "Available"
+                    }
+                ],
+                "observedGeneration": 15,
+                "readyReplicas": 3,
+                "replicas": 3,
+                "updatedReplicas": 3
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-23T20:19:53Z",
+                "generateName": "php-apache-68fd8fb4cf-",
+                "labels": {
+                    "pod-template-hash": "68fd8fb4cf",
+                    "run": "php-apache"
+                },
+                "name": "php-apache-68fd8fb4cf-gvlhs",
+                "namespace": "trace-benchmark",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "php-apache-68fd8fb4cf",
+                        "uid": "2d1ab4d2-9a70-4ff0-b57f-b8edabcf8316"
+                    }
+                ],
+                "resourceVersion": "56324",
+                "uid": "e6a6a20d-7e7e-4e66-bb62-e1f4f898838f"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "image": "php:8.2-apache",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/index.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 15,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 5
+                        },
+                        "name": "php-apache",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/index.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 5,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "200m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "php-config"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-zrjz5",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "calibrated-live-control-plane",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "php-apache-config"
+                        },
+                        "name": "php-config"
+                    },
+                    {
+                        "name": "kube-api-access-zrjz5",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:19:53Z",
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:19:53Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:19:59Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:19:59Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:19:53Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://aac34d60aabef694c60ab88d6460faf9690afe7568b6d0016ac69cee5e7f36d4",
+                        "image": "docker.io/library/php:8.2-apache",
+                        "imageID": "docker.io/library/php@sha256:06617d90f29b57b2aa200a9df03b3bafbfa5c66d2e2913fbb2b5f775a8358465",
+                        "lastState": {},
+                        "name": "php-apache",
+                        "ready": true,
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-23T20:19:53Z"
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "php-config"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-zrjz5",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.20.0.4",
+                "hostIPs": [
+                    {
+                        "ip": "172.20.0.4"
+                    }
+                ],
+                "phase": "Running",
+                "podIP": "10.244.0.193",
+                "podIPs": [
+                    {
+                        "ip": "10.244.0.193"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-10-23T20:19:53Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-23T20:12:02Z",
+                "generateName": "php-apache-68fd8fb4cf-",
+                "labels": {
+                    "pod-template-hash": "68fd8fb4cf",
+                    "run": "php-apache"
+                },
+                "name": "php-apache-68fd8fb4cf-tzqsn",
+                "namespace": "trace-benchmark",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "php-apache-68fd8fb4cf",
+                        "uid": "2d1ab4d2-9a70-4ff0-b57f-b8edabcf8316"
+                    }
+                ],
+                "resourceVersion": "55373",
+                "uid": "c6243168-f049-4389-8644-58eebf018297"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "image": "php:8.2-apache",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/index.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 15,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 5
+                        },
+                        "name": "php-apache",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/index.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 5,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "200m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "php-config"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-2w27t",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "calibrated-live-control-plane",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "php-apache-config"
+                        },
+                        "name": "php-config"
+                    },
+                    {
+                        "name": "kube-api-access-2w27t",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:12:03Z",
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:12:02Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:12:09Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:12:09Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:12:02Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://82825ec977ff9e0c3bb2339b6f6cfb7422252116b30d64400b40f4849c0a82b7",
+                        "image": "docker.io/library/php:8.2-apache",
+                        "imageID": "docker.io/library/php@sha256:06617d90f29b57b2aa200a9df03b3bafbfa5c66d2e2913fbb2b5f775a8358465",
+                        "lastState": {},
+                        "name": "php-apache",
+                        "ready": true,
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-23T20:12:02Z"
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "php-config"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-2w27t",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.20.0.4",
+                "hostIPs": [
+                    {
+                        "ip": "172.20.0.4"
+                    }
+                ],
+                "phase": "Running",
+                "podIP": "10.244.0.183",
+                "podIPs": [
+                    {
+                        "ip": "10.244.0.183"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-10-23T20:12:02Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-23T20:13:23Z",
+                "generateName": "php-apache-68fd8fb4cf-",
+                "labels": {
+                    "pod-template-hash": "68fd8fb4cf",
+                    "run": "php-apache"
+                },
+                "name": "php-apache-68fd8fb4cf-x679n",
+                "namespace": "trace-benchmark",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "php-apache-68fd8fb4cf",
+                        "uid": "2d1ab4d2-9a70-4ff0-b57f-b8edabcf8316"
+                    }
+                ],
+                "resourceVersion": "55608",
+                "uid": "e1350e85-d7fa-4a92-aaba-6e691e3c6a14"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "image": "php:8.2-apache",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/index.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 15,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 5
+                        },
+                        "name": "php-apache",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/index.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "initialDelaySeconds": 5,
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "200m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "php-config"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-vfn8q",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "calibrated-live-control-plane",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "php-apache-config"
+                        },
+                        "name": "php-config"
+                    },
+                    {
+                        "name": "kube-api-access-vfn8q",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:13:24Z",
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:13:23Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:13:30Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:13:30Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-23T20:13:23Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://e788c8be93826940a82d6e5b0e7da72af104476c536ec134ccba3cdfe749c470",
+                        "image": "docker.io/library/php:8.2-apache",
+                        "imageID": "docker.io/library/php@sha256:06617d90f29b57b2aa200a9df03b3bafbfa5c66d2e2913fbb2b5f775a8358465",
+                        "lastState": {},
+                        "name": "php-apache",
+                        "ready": true,
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-23T20:13:23Z"
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "php-config"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-vfn8q",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.20.0.4",
+                "hostIPs": [
+                    {
+                        "ip": "172.20.0.4"
+                    }
+                ],
+                "phase": "Running",
+                "podIP": "10.244.0.188",
+                "podIPs": [
+                    {
+                        "ip": "10.244.0.188"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-10-23T20:13:23Z"
+            }
+        },
+        {
+            "apiVersion": "jamiethompson.me/v1alpha1",
+            "kind": "PredictiveHorizontalPodAutoscaler",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"jamiethompson.me/v1alpha1\",\"kind\":\"PredictiveHorizontalPodAutoscaler\",\"metadata\":{\"annotations\":{},\"name\":\"phpa-holtwinters\",\"namespace\":\"trace-benchmark\"},\"spec\":{\"maxReplicas\":20,\"metrics\":[{\"resource\":{\"name\":\"cpu\",\"target\":{\"averageUtilization\":50,\"type\":\"Utilization\"}},\"type\":\"Resource\"}],\"minReplicas\":1,\"models\":[{\"calculationTimeout\":20000,\"holtWinters\":{\"alpha\":0.9,\"beta\":0.2,\"gamma\":0.3,\"seasonal\":\"additive\",\"seasonalPeriods\":6,\"storedSeasons\":4,\"trend\":\"additive\"},\"name\":\"hw-seasonal\",\"perSyncPeriod\":1,\"type\":\"HoltWinters\"}],\"scaleTargetRef\":{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"name\":\"php-apache\"},\"syncPeriod\":10000}}\n"
+                },
+                "creationTimestamp": "2026-10-23T20:09:41Z",
+                "generation": 1,
+                "name": "phpa-holtwinters",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "57515",
+                "uid": "08ae1022-1050-4abd-9162-9a042024b148"
+            },
+            "spec": {
+                "maxReplicas": 20,
+                "metrics": [
+                    {
+                        "resource": {
+                            "name": "cpu",
+                            "target": {
+                                "averageUtilization": 50,
+                                "type": "Utilization"
+                            }
+                        },
+                        "type": "Resource"
+                    }
+                ],
+                "minReplicas": 1,
+                "models": [
+                    {
+                        "calculationTimeout": 20000,
+                        "holtWinters": {
+                            "alpha": 0.9,
+                            "beta": 0.2,
+                            "gamma": 0.3,
+                            "seasonal": "additive",
+                            "seasonalPeriods": 6,
+                            "storedSeasons": 4,
+                            "trend": "additive"
+                        },
+                        "name": "hw-seasonal",
+                        "perSyncPeriod": 1,
+                        "type": "HoltWinters"
+                    }
+                ],
+                "scaleTargetRef": {
+                    "apiVersion": "apps/v1",
+                    "kind": "Deployment",
+                    "name": "php-apache"
+                },
+                "syncPeriod": 10000
+            },
+            "status": {
+                "currentReplicas": 3,
+                "desiredReplicas": 3,
+                "lastScaleTime": "2026-10-23T20:31:32Z",
+                "reference": "Deployment/php-apache",
+                "scaleDownEventHistory": [
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:29:52Z"
+                    },
+                    {
+                        "replicas": 5,
+                        "time": "2026-10-23T20:30:12Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:30:22Z"
+                    }
+                ],
+                "scaleDownReplicaHistory": [
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:26:42Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:26:52Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:27:02Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:27:12Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:27:22Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:27:32Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:27:42Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:27:52Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:28:02Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:28:12Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:28:22Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:28:32Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:28:42Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:28:52Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:29:02Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:29:12Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:29:22Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:29:32Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:29:42Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:29:52Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:30:02Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:30:12Z"
+                    },
+                    {
+                        "replicas": 1,
+                        "time": "2026-10-23T20:30:22Z"
+                    },
+                    {
+                        "replicas": 1,
+                        "time": "2026-10-23T20:30:32Z"
+                    },
+                    {
+                        "replicas": 1,
+                        "time": "2026-10-23T20:30:42Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:30:52Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:31:02Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:31:12Z"
+                    },
+                    {
+                        "replicas": 2,
+                        "time": "2026-10-23T20:31:22Z"
+                    },
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:31:32Z"
+                    }
+                ],
+                "scaleUpEventHistory": [
+                    {
+                        "replicas": 1,
+                        "time": "2026-10-23T20:19:03Z"
+                    },
+                    {
+                        "replicas": 1,
+                        "time": "2026-10-23T20:19:23Z"
+                    },
+                    {
+                        "replicas": 1,
+                        "time": "2026-10-23T20:19:33Z"
+                    },
+                    {
+                        "replicas": 1,
+                        "time": "2026-10-23T20:19:43Z"
+                    },
+                    {
+                        "replicas": 1,
+                        "time": "2026-10-23T20:19:53Z"
+                    }
+                ],
+                "scaleUpReplicaHistory": [
+                    {
+                        "replicas": 3,
+                        "time": "2026-10-23T20:31:32Z"
+                    }
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

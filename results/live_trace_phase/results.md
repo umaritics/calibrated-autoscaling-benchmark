@@ -1,6 +1,6 @@
 # Live Kubernetes production-trace-derived replay results
 
-Four bounded milestones are retained separately:
+Five bounded milestones are retained separately:
 
 - NASA-derived replay: 8/9 accepted matrix, with 3 soft-HPA, 2 tuned-HPA,
   and 3 Holt–Winters accepted runs. Two tuned-HPA attempts remain
@@ -11,6 +11,9 @@ Four bounded milestones are retained separately:
   `onoff_first_comparison/RESULTS.md`.
 - Growing D1-derived replay: one accepted run per controller; see
   `growing_first_comparison/RESULTS.md`.
+- Stepped D1-derived replay: tuned HPA and Holt–Winters accepted; soft HPA
+  rejected on frozen generator-dispatch integrity; see
+  `stepped_first_comparison/RESULTS.md`.
 
 These are demand replays against the benchmark Kubernetes service, not
 reproductions of either production service or the paper's forecast-MAPE
@@ -36,6 +39,27 @@ more pod-seconds than soft HPA and 84.26% more than tuned HPA. Tuned HPA used
 These are single-run descriptive comparisons; see
 `growing_first_comparison/RESULTS.md` for growth-response definitions and
 limitations.
+
+## Stepped first comparison
+
+The frozen 1,200-second replay maps D1 stepped scenario 62 observations 72–191
+to 20–120 requests/s with no interpolation. It preserves three 400-second
+plateaus and observed up/down boundaries at measurement seconds 400 and 800.
+
+| Controller | Decision | Error | Success p95 / p99 (s) | Pod-s | Mean / max ready | CPU coverage | Dispatch p99 (s) |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Tuned HPA (70%) | ACCEPT | 17.58% | 0.011 / 2.442 | 5872.50 | 4.89 / 7 | 97.50% | 0.0022 |
+| Holt–Winters PHPA | ACCEPT | 1.01% | 0.016 / 1.999 | 13025.00 | 10.85 / 15 | 100.00% | 0.0021 |
+| Soft HPA (50%) | REJECT | 0.89% | 0.790 / 3.407 | 9969.99 | 8.31 / 20 | 100.00% | 0.3148 |
+
+The accepted arms both had zero failures in the 120 seconds after the upward
+step. Tuned HPA increased desired/ready capacity after 40/45 seconds and
+Holt–Winters after 45/50 seconds; neither pre-scaled in the preceding 60
+seconds. On the down-step, tuned HPA's first reduction was delayed 315 seconds,
+consistent with its 300-second stabilization. Holt–Winters reduced after 15
+seconds but entered with much more capacity and accumulated more excess
+ready-pod-seconds. The rejected soft result is retained descriptively but is
+not used for causal controller comparison.
 
 ## Alibaba first comparison
 

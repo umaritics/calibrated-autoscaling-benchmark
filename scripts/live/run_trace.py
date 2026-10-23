@@ -141,7 +141,8 @@ def run(args):
         stop.set();collector.join()
     (out/'final_objects.json').write_text(command(['-n',NS,'get','deploy,pods,hpa,phpa','-o','json']))
     (out/'events.json').write_text(command(['-n',NS,'get','events','-o','json']))
-    (out/'operator.log').write_text(command(['-n','phpa-system','logs','deploy/predictive-horizontal-pod-autoscaler','--since=15m'],check=False))
+    log_window=f"{args.warmup+args.duration+300}s"
+    (out/'operator.log').write_text(command(['-n','phpa-system','logs','deploy/predictive-horizontal-pod-autoscaler',f'--since={log_window}'],check=False))
     metadata.update(finished_utc=datetime.now(timezone.utc).isoformat(),scheduled_requests=len(schedule),elapsed_seconds=time.monotonic()-started)
     (out/'metadata.json').write_text(json.dumps(metadata,indent=2)+'\n')
     (out/'COMPLETE').write_text('collection completed; scientific validity requires verification\n')
@@ -151,5 +152,7 @@ if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--dataset',required=True);p.add_argument('--arm',choices=POLICIES,required=True)
     p.add_argument('--repeat',type=int,default=1);p.add_argument('--warmup',type=int,default=120);p.add_argument('--duration',type=int,default=420)
     p.add_argument('--category',default='runs');args=p.parse_args()
-    assert 0<args.duration<=420
+    # Stepped traces may need a longer predeclared window so a full low plateau
+    # outlasts the unchanged 300 s tuned-HPA scale-down stabilization window.
+    assert 0<args.duration<=1800
     run(args)

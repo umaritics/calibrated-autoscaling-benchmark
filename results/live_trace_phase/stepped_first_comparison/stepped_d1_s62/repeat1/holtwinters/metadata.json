@@ -1,0 +1,16 @@
+{
+  "dataset": "stepped_d1_s62",
+  "arm": "holtwinters",
+  "repeat": 1,
+  "warmup": 120,
+  "duration": 1200,
+  "category": "stepped_first_comparison",
+  "started_utc": "2026-10-23T20:09:31.806061+00:00",
+  "runner_sha256": "b7a994cc4610dc52e9b7f8c1d8000506f6a9b2c89e34269e4c78e0232ab3ecfa",
+  "trace_sha256": "1d8d830e62ee83af2c2e74b03e8c5a9107190959732ee1e7fb52de7d666fa10e",
+  "policy_sha256": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8",
+  "workload_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2",
+  "finished_utc": "2026-10-23T20:31:42.510654+00:00",
+  "scheduled_requests": 85058,
+  "elapsed_seconds": 1320.4967294630005
+}

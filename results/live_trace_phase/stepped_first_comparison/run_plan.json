@@ -1,0 +1,29 @@
+[
+  {
+    "sequence": 1,
+    "dataset": "stepped_d1_s62",
+    "arm": "calibrated_hpa",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 1200,
+    "category": "stepped_first_comparison"
+  },
+  {
+    "sequence": 2,
+    "dataset": "stepped_d1_s62",
+    "arm": "holtwinters",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 1200,
+    "category": "stepped_first_comparison"
+  },
+  {
+    "sequence": 3,
+    "dataset": "stepped_d1_s62",
+    "arm": "strawman_hpa",
+    "repeat": 1,
+    "warmup": 120,
+    "duration": 1200,
+    "category": "stepped_first_comparison"
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "generated_utc": "2026-10-23T20:55:28.731161+00:00",
+  "status": "PARTIAL",
+  "acceptance_criteria_unchanged": true,
+  "cpu_coverage_threshold": 0.9,
+  "checks": {
+    "calibrated_hpa": {
+      "source_trace_hash_frozen": true,
+      "schedule_hash_frozen": true,
+      "schedule_exact": true,
+      "counts_agree": true,
+      "success_population_agrees": true,
+      "error_rate_agrees": true,
+      "timeout_rate_agrees": true,
+      "latencies_agree": true,
+      "dispatch_agrees": true,
+      "pod_seconds_agree": true,
+      "controller_exclusive": true,
+      "measurement_duration_frozen": true
+    },
+    "holtwinters": {
+      "source_trace_hash_frozen": true,
+      "schedule_hash_frozen": true,
+      "schedule_exact": true,
+      "counts_agree": true,
+      "success_population_agrees": true,
+      "error_rate_agrees": true,
+      "timeout_rate_agrees": true,
+      "latencies_agree": true,
+      "dispatch_agrees": true,
+      "pod_seconds_agree": true,
+      "controller_exclusive": true,
+      "measurement_duration_frozen": true
+    },
+    "strawman_hpa": {
+      "source_trace_hash_frozen": true,
+      "schedule_hash_frozen": true,
+      "schedule_exact": true,
+      "counts_agree": true,
+      "success_population_agrees": true,
+      "error_rate_agrees": true,
+      "timeout_rate_agrees": true,
+      "latencies_agree": true,
+      "dispatch_agrees": true,
+      "pod_seconds_agree": true,
+      "controller_exclusive": true,
+      "measurement_duration_frozen": true
+    }
+  },
+  "run_decisions": {
+    "calibrated_hpa": "ACCEPT",
+    "holtwinters": "ACCEPT",
+    "strawman_hpa": "REJECT"
+  }
+}

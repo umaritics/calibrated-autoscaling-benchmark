@@ -1,0 +1,53 @@
+{
+  "captured_utc": "2026-10-23T19:47:14.261635+00:00",
+  "cluster": "calibrated-live",
+  "current_context": "kind-calibrated-live",
+  "checks": {
+    "correct_context": true,
+    "node_ready": true,
+    "all_existing_pods_running": true,
+    "metrics_api_available": true,
+    "workload_pod_metrics_nonempty": true,
+    "phpa_operator_ready": true,
+    "no_active_benchmark_controller": true,
+    "workload_endpoint_idle_healthy": true,
+    "generator_and_analyzer_available": true,
+    "free_disk_above_1_gib": true,
+    "available_memory_above_4_gib": true
+  },
+  "ready_nodes": 1,
+  "node_count": 1,
+  "unready_pods": [],
+  "metrics_api_condition": [
+    {
+      "lastTransitionTime": "2026-10-23T12:52:51Z",
+      "message": "all checks passed",
+      "reason": "Passed",
+      "status": "True",
+      "type": "Available"
+    }
+  ],
+  "node_metrics_items": 1,
+  "workload_pod_metrics_items": 1,
+  "endpoint": {
+    "status": 200,
+    "body": "OK!"
+  },
+  "filesystem": {
+    "total_bytes": 101831528448,
+    "used_bytes": 90560040960,
+    "free_bytes": 6051418112
+  },
+  "memory": {
+    "MemTotal": "20164312 kB",
+    "MemAvailable": "5540532 kB",
+    "SwapTotal": "16777212 kB",
+    "SwapFree": "15465032 kB"
+  },
+  "host_loadavg": [
+    1.58447265625,
+    1.56640625,
+    1.6181640625
+  ],
+  "platform": "Linux-7.0.11-76070011-generic-x86_64-with-glibc2.39"
+}

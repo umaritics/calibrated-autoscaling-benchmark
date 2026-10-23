@@ -1,0 +1,190 @@
+{
+  "generated_utc": "2026-10-23T19:46:47.385870+00:00",
+  "decision": "PASS",
+  "experiment_label": "accelerated D1 synthetic stepped pod-demand-proxy replay on a benchmark Kubernetes service",
+  "source": {
+    "path": "data/phpa/phpa-datasets/stepped_62_min_pods20_max_pods70_step_count5_step_duration10_step_typerandom_transition_noise0.4_test.csv",
+    "sha256": "b390e57626b38cdb55efb1438033e0d5fd90703aa6950c961070ce8d98630201",
+    "scenario_id": 62,
+    "rows": 672,
+    "columns": [
+      "timestamp",
+      "pod_count"
+    ],
+    "sampling_interval_seconds": 900,
+    "start": "2024-01-29 00:00:00",
+    "end": "2024-02-04 23:45:00",
+    "value_range": [
+      18,
+      74
+    ],
+    "filename_parameters": {
+      "minimum": 20,
+      "maximum": 70,
+      "step_count": 5,
+      "duration_hours": 10,
+      "step_type": "random",
+      "transition_noise": 0.4
+    },
+    "units": {
+      "timestamp": "UTC-like naive datetime at 15-minute intervals",
+      "pod_count": "synthetic pod-count demand proxy"
+    }
+  },
+  "selection_rule": "Parse every D1 stepped test filename. A scenario is timing-eligible when one nominal source plateau (step_duration hours \u00d7 four 15-minute observations/hour \u00d7 10 replay seconds/observation) lasts at least 330 seconds, covering the unchanged 300-second tuned-HPA stabilization plus two nominal HPA cycles. Infer the recurring boundary phase that maximizes median absolute adjacent change. Using core medians after a one-quarter-plateau transition guard, require two adjacent opposite-direction changes each at least 20% of the configured min-max amplitude. Choose shortest nominal duration, then lowest scenario ID, then earliest eligible triplet. This controller-independent rule selects scenario 62 and was frozen before any controller run.",
+  "boundary_detection": {
+    "period_observations": 40,
+    "phase_offset": 32,
+    "transition_guard_observations": 10
+  },
+  "selected_window": {
+    "observation_indices_inclusive": [
+      72,
+      191
+    ],
+    "rows": 120,
+    "source_start": "2024-01-29 18:00:00",
+    "source_end": "2024-01-30 23:45:00",
+    "source_end_exclusive": "2024-01-31 00:00:00",
+    "source_duration_seconds": 108000,
+    "value_range": [
+      18,
+      74
+    ],
+    "plateaus": [
+      {
+        "number": 1,
+        "source_indices_inclusive": [
+          72,
+          111
+        ],
+        "source_start": "2024-01-29 18:00:00",
+        "source_end": "2024-01-30 03:45:00",
+        "source_duration_seconds": 36000,
+        "replay_window_seconds": [
+          0,
+          400
+        ],
+        "replay_duration_seconds": 400,
+        "core_median_pod_count": 50.0,
+        "observed_range": [
+          46,
+          51
+        ]
+      },
+      {
+        "number": 2,
+        "source_indices_inclusive": [
+          112,
+          151
+        ],
+        "source_start": "2024-01-30 04:00:00",
+        "source_end": "2024-01-30 13:45:00",
+        "source_duration_seconds": 36000,
+        "replay_window_seconds": [
+          400,
+          800
+        ],
+        "replay_duration_seconds": 400,
+        "core_median_pod_count": 70.0,
+        "observed_range": [
+          64,
+          74
+        ]
+      },
+      {
+        "number": 3,
+        "source_indices_inclusive": [
+          152,
+          191
+        ],
+        "source_start": "2024-01-30 14:00:00",
+        "source_end": "2024-01-30 23:45:00",
+        "source_duration_seconds": 36000,
+        "replay_window_seconds": [
+          800,
+          1200
+        ],
+        "replay_duration_seconds": 400,
+        "core_median_pod_count": 19.0,
+        "observed_range": [
+          18,
+          30
+        ]
+      }
+    ],
+    "transitions": [
+      {
+        "number": 1,
+        "direction": "up",
+        "source_boundary_index": 112,
+        "source_timestamp": "2024-01-30 04:00:00",
+        "measurement_second": 400,
+        "raw_adjacent_change": 23,
+        "core_median_change": 20.0,
+        "mapped_core_median_rps_change": 35.714285714285715,
+        "post_step_window_seconds": [
+          400,
+          520
+        ]
+      },
+      {
+        "number": 2,
+        "direction": "down",
+        "source_boundary_index": 152,
+        "source_timestamp": "2024-01-30 14:00:00",
+        "measurement_second": 800,
+        "raw_adjacent_change": -51,
+        "core_median_change": -51.0,
+        "mapped_core_median_rps_change": -91.07142857142857,
+        "post_step_window_seconds": [
+          800,
+          920
+        ]
+      }
+    ],
+    "transition_count": 2,
+    "directions": [
+      "up",
+      "down"
+    ],
+    "replay_trace_path": "data/live_traces/stepped_d1_s62.csv",
+    "replay_trace_sha256": "1d8d830e62ee83af2c2e74b03e8c5a9107190959732ee1e7fb52de7d666fa10e"
+  },
+  "transformation": {
+    "time": "Each observed 900-second source interval becomes one constant 10-second replay bin (90x acceleration).",
+    "amplitude": "target_rps = 20 + 100 * (pod_count - 18) / (74 - 18)",
+    "minimum_rps": 20.0,
+    "maximum_rps": 120.0,
+    "mapping_interpretation": "controller-independent experimental demand proxy, not observed HTTP traffic",
+    "interpolation": "none; observed values are held constant within each replay bin",
+    "difference_from_growing_onoff": "Same affine 20-120 RPS envelope; stepped uses its frozen selected-window extrema and a longer predeclared measurement to preserve full plateaus.",
+    "warmup_seconds": 120,
+    "warmup_rps": 4,
+    "measurement_seconds": 1200,
+    "request_timeout_seconds": 5,
+    "maximum_in_flight": 2048,
+    "scheduled_measurement_requests": 84578
+  },
+  "time_scale_assessment": {
+    "source_interval_seconds": 900,
+    "replay_bin_seconds": 10,
+    "acceleration_factor": 90,
+    "metrics_server_resolution_seconds": 15,
+    "phpa_sync_seconds": 10,
+    "nominal_hpa_reconciliation_seconds": 15,
+    "plateau_replay_seconds": 400,
+    "interpretation": "Individual noisy 10-second bins are below HPA metric resolution, but each 400-second main plateau spans about 26.7 metric/HPA resolutions, 40 PHPA sync periods, and exceeds tuned-HPA scale-down stabilization by 100 seconds."
+  },
+  "transition_analysis": {
+    "post_up_window_seconds": 120,
+    "post_down_window_seconds": 120,
+    "response_baseline": "last telemetry sample strictly before boundary",
+    "response": "first matching desired/ready replica change from the baseline",
+    "pre_step_capacity_sufficient": "zero failures in the first 30 seconds after an upward step",
+    "down_excess_capacity": "integral of max(ready - final-60-second minimum ready, 0) over the lower plateau",
+    "lag_resolution_warning": "lags closer than the 5-second collector cadence are not distinguishable",
+    "proactivity_rule": "only a desired increase before the observed upward boundary counts as temporal pre-scaling; surplus replicas alone do not"
+  },
+  "expected_schedule_sha256": "3120b888dac1f2da8d00eebe9fe856ffbf3ded977aa9109d0b8e26334f463f6f"
+}

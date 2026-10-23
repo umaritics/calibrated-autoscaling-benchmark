@@ -1,0 +1,189 @@
+{
+  "dataset": "stepped_d1_s62",
+  "arm": "calibrated_hpa",
+  "repeat": 1,
+  "category": "stepped_first_comparison",
+  "warmup": 120,
+  "duration": 1200,
+  "decision": "ACCEPT",
+  "decision_scope": "single-repeat live controller comparison",
+  "source_directory": "results/live_trace_phase/stepped_first_comparison/stepped_d1_s62/repeat1/calibrated_hpa",
+  "sources": {
+    "requests.csv": "results/live_trace_phase/stepped_first_comparison/stepped_d1_s62/repeat1/calibrated_hpa/requests.csv",
+    "metrics.jsonl": "results/live_trace_phase/stepped_first_comparison/stepped_d1_s62/repeat1/calibrated_hpa/metrics.jsonl",
+    "metadata.json": "results/live_trace_phase/stepped_first_comparison/stepped_d1_s62/repeat1/calibrated_hpa/metadata.json",
+    "events.json": "results/live_trace_phase/stepped_first_comparison/stepped_d1_s62/repeat1/calibrated_hpa/events.json",
+    "initial_objects.json": "results/live_trace_phase/stepped_first_comparison/stepped_d1_s62/repeat1/calibrated_hpa/initial_objects.json",
+    "final_objects.json": "results/live_trace_phase/stepped_first_comparison/stepped_d1_s62/repeat1/calibrated_hpa/final_objects.json",
+    "operator.log": "results/live_trace_phase/stepped_first_comparison/stepped_d1_s62/repeat1/calibrated_hpa/operator.log"
+  },
+  "source_sha256": {
+    "requests.csv": "a68b0e6e08653e8d7875ad5dec26d21d372d1dcff7038bc819300716ad6e0225",
+    "metrics.jsonl": "28294ca6352e0957cee5c15ca1c2aaeddefa0207ff82d6a80012ce73003bd90e",
+    "metadata.json": "6ed5dc8a45d22a7e1f705af1f3c6a58e259322e4dcf232699f1b2cb972c737e4",
+    "events.json": "a31f3fdf6b02c846608d776f0fdbb69c14c7b7802e82cb2b55b83574e7906083",
+    "initial_objects.json": "05aaf4b3588f379f1c7e9a0e31c6bf38e9f59afce1d5e1bbdb53507934f00990",
+    "final_objects.json": "39d055eb37a5445bece23aadf0ce7f5b760a1a5c71dd2d5be44b43db26287a64",
+    "operator.log": "876b0b8187301ada9e3ad1f5ab14ca37b9dec79ba9f5322eedffe1ce6d3ae8f2"
+  },
+  "scheduled_requests": 85058,
+  "scheduled_measurement_requests": 84578,
+  "request_records": 85058,
+  "measurement_request_records": 84578,
+  "successful_requests": 69713,
+  "success_requests": 69713,
+  "recorded_failures": 14865,
+  "errors": 14865,
+  "http_failures_by_status": {},
+  "client_exceptions_by_class": {
+    "ClientOSError": 4,
+    "ServerDisconnectedError": 28,
+    "TimeoutError": 14833
+  },
+  "client_exceptions_by_message": {
+    "ClientOSError: [Errno 104] Connection reset by peer": 4,
+    "ServerDisconnectedError: Server disconnected": 28,
+    "TimeoutError: ": 14833
+  },
+  "timeouts": 14833,
+  "connection_failures": 32,
+  "disconnections": 32,
+  "cancellations": 0,
+  "other_failures": 0,
+  "generator_drops": 0,
+  "missing_records": 0,
+  "unexpected_records": 0,
+  "duplicate_records": 0,
+  "invalid_timestamp_records": 0,
+  "inconsistent_latency_records": 0,
+  "error_rate_scheduled_denominator": 0.17575492444843813,
+  "error_rate": 0.17575492444843813,
+  "recorded_error_rate": 0.17575492444843813,
+  "dispatch_delay_s": {
+    "p50": 0.0006798040200237665,
+    "p95": 0.0015291498278813243,
+    "p99": 0.0022295603073899883
+  },
+  "successful_request_latency_s": {
+    "p50": 0.007761198998196,
+    "p95": 0.011010267401434154,
+    "p99": 2.4415180852396685
+  },
+  "p50_latency_s": 0.007761198998196,
+  "p95_latency_s": 0.011010267401434154,
+  "p99_latency_s": 2.4415180852396685,
+  "p95_scheduled_latency_s": 0.011787155503134267,
+  "p99_dispatch_delay_s": 0.0022295603073899883,
+  "intended_replay_duration_s": 1200.0,
+  "actual_request_activity_duration_s": 1199.979507295,
+  "runner_elapsed_s": 1320.309891099001,
+  "offered_request_rate_rps": 70.48166666666667,
+  "actual_dispatch_rate_rps": 70.48331838314594,
+  "achieved_success_rps": 58.094166666666666,
+  "max_client_inflight": 386,
+  "pod_seconds": 5872.499832899995,
+  "desired_pod_seconds": 6057.500010843001,
+  "mean_ready": 4.893749860749996,
+  "max_ready": 7,
+  "final_observed_ready": 2,
+  "cpu_hot_sample_fraction": 0.21794871794871795,
+  "mean_cpu_m": 156.83993268492063,
+  "max_cpu_m": 499.815042,
+  "mean_metric_pod_coverage": 0.969047619047619,
+  "sample_count": 240,
+  "cpu_sample_count": 234,
+  "cpu_coverage": 0.975,
+  "metric_availability_counts": {
+    "available": 234,
+    "empty_response": 6
+  },
+  "max_sample_gap_s": 5.002216733999376,
+  "malformed_metric_records": 0,
+  "max_workload_restarts": 3,
+  "readiness_deficit_samples": 28,
+  "events": {
+    "readiness_probe_failures": 38,
+    "liveness_probe_failures": 13,
+    "container_kill_events": 3
+  },
+  "active_controller": "HorizontalPodAutoscaler",
+  "controller_conflict_observed": false,
+  "scaling_events": [
+    {
+      "elapsed_s": 305.00008351400174,
+      "utc": "2026-10-23T19:52:34.739829+00:00",
+      "from_replicas": 1,
+      "to_replicas": 4
+    },
+    {
+      "elapsed_s": 560.0001113569997,
+      "utc": "2026-10-23T19:56:49.739857+00:00",
+      "from_replicas": 4,
+      "to_replicas": 6
+    },
+    {
+      "elapsed_s": 695.0001000070006,
+      "utc": "2026-10-23T19:59:04.739845+00:00",
+      "from_replicas": 6,
+      "to_replicas": 7
+    },
+    {
+      "elapsed_s": 1235.0001104010007,
+      "utc": "2026-10-23T20:08:04.739856+00:00",
+      "from_replicas": 7,
+      "to_replicas": 5
+    },
+    {
+      "elapsed_s": 1250.0001279429998,
+      "utc": "2026-10-23T20:08:19.739874+00:00",
+      "from_replicas": 5,
+      "to_replicas": 3
+    },
+    {
+      "elapsed_s": 1295.0001208920003,
+      "utc": "2026-10-23T20:09:04.739866+00:00",
+      "from_replicas": 3,
+      "to_replicas": 2
+    }
+  ],
+  "scaling_changes": 6,
+  "checks": {
+    "trace_hash_matches": true,
+    "metadata_schedule_count_exact": true,
+    "all_schedule_records_present": true,
+    "no_unexpected_or_duplicate_records": true,
+    "request_timestamps_valid": true,
+    "complete_marker": true,
+    "no_generator_drops": true,
+    "dispatch_p99_below_100ms": true,
+    "metrics_present": true,
+    "controller_exclusive": true,
+    "metrics_coverage_above_90pct": true,
+    "sample_gap_below_15s": true,
+    "window_bracketed": true,
+    "metric_timestamps_consistent": true,
+    "scaling_response_observed": true
+  },
+  "check_severity": {
+    "reject_if_false": [
+      "trace_hash_matches",
+      "metadata_schedule_count_exact",
+      "all_schedule_records_present",
+      "no_unexpected_or_duplicate_records",
+      "request_timestamps_valid",
+      "no_generator_drops",
+      "dispatch_p99_below_100ms"
+    ],
+    "inconclusive_if_false": [
+      "complete_marker",
+      "metrics_present",
+      "metrics_coverage_above_90pct",
+      "sample_gap_below_15s",
+      "window_bracketed",
+      "metric_timestamps_consistent",
+      "scaling_response_observed",
+      "controller_exclusive"
+    ]
+  },
+  "valid": true
+}

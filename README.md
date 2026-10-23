@@ -131,3 +131,18 @@ pod-demand-proxy replay, not native-timing traffic or a significance result.
 See the [growing comparison report](results/live_trace_phase/growing_first_comparison/RESULTS.md),
 [frozen plan](results/live_trace_phase/growing_first_comparison/frozen_plan.json),
 and [independent verification](results/live_trace_phase/growing_first_comparison/independent_verification.json).
+
+## Stepped-pattern live checkpoint
+
+A deterministic D1 scenario-62 window was replayed for 1,200 seconds so each
+400-second plateau outlasted the tuned HPA's unchanged 300-second scale-down
+stabilization. Tuned HPA and Holt–Winters were accepted; the soft-HPA arm was
+retained but rejected because generator dispatch p99 (0.315 s) exceeded the
+frozen 0.100-second threshold. Among accepted arms, Holt–Winters reduced errors
+from 17.58% to 1.01% but used 121.80% more ready-pod-seconds than tuned HPA.
+Neither controller pre-scaled before the observed upward step, both had zero
+post-step failures, and tuned HPA was competitive at that transition.
+
+See the [stepped comparison report](results/live_trace_phase/stepped_first_comparison/RESULTS.md),
+[frozen plan](results/live_trace_phase/stepped_first_comparison/frozen_plan.json),
+and [independent verification](results/live_trace_phase/stepped_first_comparison/independent_verification.json).

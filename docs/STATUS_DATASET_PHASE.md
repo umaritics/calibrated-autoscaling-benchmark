@@ -17,6 +17,12 @@
   replay. Independent verification passed exact schedule/request accounting,
   source/replay hashes, controller exclusivity, CPU coverage, latency
   populations, failure denominators, and pod-second integration.
+- Executed the predeclared D1 stepped-pattern comparison in tuned HPA,
+  Holt–Winters, soft-HPA order. Tuned HPA and Holt–Winters were accepted. The
+  soft-HPA evidence was retained as `REJECT` because dispatch p99 exceeded the
+  frozen generator-integrity threshold; it was not rerun. Independent
+  reconstruction passed schedule accounting, hashes, denominators, transition
+  timing, controller exclusivity, CPU coverage, and pod-second integration.
 
 ## Current live extension status
 
@@ -28,7 +34,7 @@ generator. Its collector adds explicit command/availability diagnostics, so
 availability classifications are not assumed directly comparable to older NASA
 fields without qualification.
 
-Recommended next milestone: predeclare and execute the stepped-pattern
+Recommended next milestone: predeclare and execute one chaotic-pattern
 three-controller comparison using the unchanged application, policies,
 acceptance thresholds, and independent-verification framework.
 
