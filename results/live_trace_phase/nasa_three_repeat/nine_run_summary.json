@@ -1,0 +1,845 @@
+{
+  "generated_utc": "2026-10-23T15:39:02.308536+00:00",
+  "status": "PARTIAL",
+  "accepted_run_count": 8,
+  "attempt_count": 10,
+  "accepted_runs": [
+    {
+      "repeat": 1,
+      "arm": "strawman_hpa",
+      "label": "Soft HPA (50%)",
+      "attempt": "strawman_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 13117,
+      "error_rate": 0.4974907098800904,
+      "timeout_rate": 0.496341416695399,
+      "p95_latency_s": 2.0361132856000013,
+      "p99_latency_s": 4.355068738559913,
+      "success_rps": 31.23095238095238,
+      "pod_seconds": 1067.4994362354985,
+      "mean_ready": 2.5416653243702343,
+      "max_ready": 6,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 28,
+      "mean_cpu_m": 232.24321160448721,
+      "dispatch_p99_s": 0.002409191077594522,
+      "pod_seconds_per_success": 0.08138289519215511,
+      "generator_drops": 0,
+      "cpu_sample_count": 78,
+      "sample_count": 84
+    },
+    {
+      "repeat": 1,
+      "arm": "calibrated_hpa",
+      "label": "Tuned HPA (70%)",
+      "attempt": "calibrated_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 16682,
+      "error_rate": 0.3609163697659273,
+      "timeout_rate": 0.3602651036279355,
+      "p95_latency_s": 2.4572390952997365,
+      "p99_latency_s": 4.53040524049963,
+      "success_rps": 39.71904761904762,
+      "pod_seconds": 927.499745546,
+      "mean_ready": 2.2083327274904763,
+      "max_ready": 4,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 25,
+      "mean_cpu_m": 222.94647223809534,
+      "dispatch_p99_s": 0.002219680521147893,
+      "pod_seconds_per_success": 0.05559883380565879,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 1,
+      "arm": "holtwinters",
+      "label": "Holt-Winters PHPA",
+      "attempt": "holtwinters",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 20939,
+      "error_rate": 0.19783166685821554,
+      "timeout_rate": 0.19767842776692335,
+      "p95_latency_s": 0.4855582666999431,
+      "p99_latency_s": 4.085563802940276,
+      "success_rps": 49.85476190476191,
+      "pod_seconds": 3497.4971737154983,
+      "mean_ready": 8.32737422313214,
+      "max_ready": 10,
+      "scaling_changes": 2,
+      "readiness_deficit_samples": 10,
+      "mean_cpu_m": 113.36728824642857,
+      "dispatch_p99_s": 0.0022501943186978212,
+      "pod_seconds_per_success": 0.16703267461270827,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 2,
+      "arm": "strawman_hpa",
+      "label": "Soft HPA (50%)",
+      "attempt": "strawman_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 12902,
+      "error_rate": 0.5057273110370456,
+      "timeout_rate": 0.5039267517143623,
+      "p95_latency_s": 1.922144207300011,
+      "p99_latency_s": 4.482562525589874,
+      "success_rps": 30.71904761904762,
+      "pod_seconds": 1367.4976374004987,
+      "mean_ready": 3.255946755715473,
+      "max_ready": 8,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 28,
+      "mean_cpu_m": 231.45079319166675,
+      "dispatch_p99_s": 0.0022172937455877673,
+      "pod_seconds_per_success": 0.10599113605646401,
+      "generator_drops": 0,
+      "cpu_sample_count": 78,
+      "sample_count": 84
+    },
+    {
+      "repeat": 2,
+      "arm": "calibrated_hpa",
+      "label": "Tuned HPA (70%)",
+      "attempt": "calibrated_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 15817,
+      "error_rate": 0.3940543232578631,
+      "timeout_rate": 0.3924453127992951,
+      "p95_latency_s": 2.024587865600551,
+      "p99_latency_s": 4.475158584880265,
+      "success_rps": 37.65952380952381,
+      "pod_seconds": 902.4996489394994,
+      "mean_ready": 2.148808687951189,
+      "max_ready": 4,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 29,
+      "mean_cpu_m": 223.9320064603174,
+      "dispatch_p99_s": 0.0022687035291102113,
+      "pod_seconds_per_success": 0.057058838524340856,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 2,
+      "arm": "holtwinters",
+      "label": "Holt-Winters PHPA",
+      "attempt": "holtwinters",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/holtwinters",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 21258,
+      "error_rate": 0.18561084932766347,
+      "timeout_rate": 0.1854576102363713,
+      "p95_latency_s": 1.6228339104501581,
+      "p99_latency_s": 4.390107080300068,
+      "success_rps": 50.614285714285714,
+      "pod_seconds": 3482.499324181004,
+      "mean_ready": 8.29166505757382,
+      "max_ready": 10,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 11,
+      "mean_cpu_m": 102.82852251904764,
+      "dispatch_p99_s": 0.002237220296996156,
+      "pod_seconds_per_success": 0.1638206474824068,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 3,
+      "arm": "strawman_hpa",
+      "label": "Soft HPA (50%)",
+      "attempt": "strawman_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/strawman_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 17241,
+      "error_rate": 0.3395012067578439,
+      "timeout_rate": 0.33888825039267517,
+      "p95_latency_s": 3.566023954000229,
+      "p99_latency_s": 4.722928132199739,
+      "success_rps": 41.05,
+      "pod_seconds": 1142.499771014499,
+      "mean_ready": 2.7202375500345215,
+      "max_ready": 4,
+      "scaling_changes": 2,
+      "readiness_deficit_samples": 20,
+      "mean_cpu_m": 200.59009117261908,
+      "dispatch_p99_s": 0.0022811658545703038,
+      "pod_seconds_per_success": 0.06626644458062171,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 3,
+      "arm": "holtwinters",
+      "label": "Holt-Winters PHPA",
+      "attempt": "holtwinters",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/holtwinters",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 21985,
+      "error_rate": 0.15775964448530821,
+      "timeout_rate": 0.15745316630272382,
+      "p95_latency_s": 0.49652979559978105,
+      "p99_latency_s": 3.415661253639773,
+      "success_rps": 52.345238095238095,
+      "pod_seconds": 3457.4991037895024,
+      "mean_ready": 8.232140723308339,
+      "max_ready": 10,
+      "scaling_changes": 6,
+      "readiness_deficit_samples": 14,
+      "mean_cpu_m": 98.7759708498866,
+      "dispatch_p99_s": 0.0021959662831665125,
+      "pod_seconds_per_success": 0.1572662771794179,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    }
+  ],
+  "all_attempts": [
+    {
+      "repeat": 1,
+      "arm": "strawman_hpa",
+      "label": "Soft HPA (50%)",
+      "attempt": "strawman_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 13117,
+      "error_rate": 0.4974907098800904,
+      "timeout_rate": 0.496341416695399,
+      "p95_latency_s": 2.0361132856000013,
+      "p99_latency_s": 4.355068738559913,
+      "success_rps": 31.23095238095238,
+      "pod_seconds": 1067.4994362354985,
+      "mean_ready": 2.5416653243702343,
+      "max_ready": 6,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 28,
+      "mean_cpu_m": 232.24321160448721,
+      "dispatch_p99_s": 0.002409191077594522,
+      "pod_seconds_per_success": 0.08138289519215511,
+      "generator_drops": 0,
+      "cpu_sample_count": 78,
+      "sample_count": 84
+    },
+    {
+      "repeat": 1,
+      "arm": "calibrated_hpa",
+      "label": "Tuned HPA (70%)",
+      "attempt": "calibrated_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 16682,
+      "error_rate": 0.3609163697659273,
+      "timeout_rate": 0.3602651036279355,
+      "p95_latency_s": 2.4572390952997365,
+      "p99_latency_s": 4.53040524049963,
+      "success_rps": 39.71904761904762,
+      "pod_seconds": 927.499745546,
+      "mean_ready": 2.2083327274904763,
+      "max_ready": 4,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 25,
+      "mean_cpu_m": 222.94647223809534,
+      "dispatch_p99_s": 0.002219680521147893,
+      "pod_seconds_per_success": 0.05559883380565879,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 1,
+      "arm": "holtwinters",
+      "label": "Holt-Winters PHPA",
+      "attempt": "holtwinters",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 20939,
+      "error_rate": 0.19783166685821554,
+      "timeout_rate": 0.19767842776692335,
+      "p95_latency_s": 0.4855582666999431,
+      "p99_latency_s": 4.085563802940276,
+      "success_rps": 49.85476190476191,
+      "pod_seconds": 3497.4971737154983,
+      "mean_ready": 8.32737422313214,
+      "max_ready": 10,
+      "scaling_changes": 2,
+      "readiness_deficit_samples": 10,
+      "mean_cpu_m": 113.36728824642857,
+      "dispatch_p99_s": 0.0022501943186978212,
+      "pod_seconds_per_success": 0.16703267461270827,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 2,
+      "arm": "strawman_hpa",
+      "label": "Soft HPA (50%)",
+      "attempt": "strawman_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 12902,
+      "error_rate": 0.5057273110370456,
+      "timeout_rate": 0.5039267517143623,
+      "p95_latency_s": 1.922144207300011,
+      "p99_latency_s": 4.482562525589874,
+      "success_rps": 30.71904761904762,
+      "pod_seconds": 1367.4976374004987,
+      "mean_ready": 3.255946755715473,
+      "max_ready": 8,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 28,
+      "mean_cpu_m": 231.45079319166675,
+      "dispatch_p99_s": 0.0022172937455877673,
+      "pod_seconds_per_success": 0.10599113605646401,
+      "generator_drops": 0,
+      "cpu_sample_count": 78,
+      "sample_count": 84
+    },
+    {
+      "repeat": 2,
+      "arm": "calibrated_hpa",
+      "label": "Tuned HPA (70%)",
+      "attempt": "calibrated_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 15817,
+      "error_rate": 0.3940543232578631,
+      "timeout_rate": 0.3924453127992951,
+      "p95_latency_s": 2.024587865600551,
+      "p99_latency_s": 4.475158584880265,
+      "success_rps": 37.65952380952381,
+      "pod_seconds": 902.4996489394994,
+      "mean_ready": 2.148808687951189,
+      "max_ready": 4,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 29,
+      "mean_cpu_m": 223.9320064603174,
+      "dispatch_p99_s": 0.0022687035291102113,
+      "pod_seconds_per_success": 0.057058838524340856,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 2,
+      "arm": "holtwinters",
+      "label": "Holt-Winters PHPA",
+      "attempt": "holtwinters",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/holtwinters",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 21258,
+      "error_rate": 0.18561084932766347,
+      "timeout_rate": 0.1854576102363713,
+      "p95_latency_s": 1.6228339104501581,
+      "p99_latency_s": 4.390107080300068,
+      "success_rps": 50.614285714285714,
+      "pod_seconds": 3482.499324181004,
+      "mean_ready": 8.29166505757382,
+      "max_ready": 10,
+      "scaling_changes": 3,
+      "readiness_deficit_samples": 11,
+      "mean_cpu_m": 102.82852251904764,
+      "dispatch_p99_s": 0.002237220296996156,
+      "pod_seconds_per_success": 0.1638206474824068,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 3,
+      "arm": "strawman_hpa",
+      "label": "Soft HPA (50%)",
+      "attempt": "strawman_hpa",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/strawman_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 17241,
+      "error_rate": 0.3395012067578439,
+      "timeout_rate": 0.33888825039267517,
+      "p95_latency_s": 3.566023954000229,
+      "p99_latency_s": 4.722928132199739,
+      "success_rps": 41.05,
+      "pod_seconds": 1142.499771014499,
+      "mean_ready": 2.7202375500345215,
+      "max_ready": 4,
+      "scaling_changes": 2,
+      "readiness_deficit_samples": 20,
+      "mean_cpu_m": 200.59009117261908,
+      "dispatch_p99_s": 0.0022811658545703038,
+      "pod_seconds_per_success": 0.06626644458062171,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 3,
+      "arm": "calibrated_hpa",
+      "label": "Tuned HPA (70%)",
+      "attempt": "calibrated_hpa",
+      "decision": "INCONCLUSIVE",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 12490,
+      "error_rate": 0.521510937440141,
+      "timeout_rate": 0.5200934758456882,
+      "p95_latency_s": 0.020656096850234323,
+      "p99_latency_s": 4.196507865769713,
+      "success_rps": 29.738095238095237,
+      "pod_seconds": 1139.9995305974999,
+      "mean_ready": 2.714284596660714,
+      "max_ready": 5,
+      "scaling_changes": 2,
+      "readiness_deficit_samples": 31,
+      "mean_cpu_m": 225.68795470066664,
+      "dispatch_p99_s": 0.0021862149915688176,
+      "pod_seconds_per_success": 0.09127298083246596,
+      "generator_drops": 0,
+      "cpu_sample_count": 75,
+      "sample_count": 84
+    },
+    {
+      "repeat": 3,
+      "arm": "holtwinters",
+      "label": "Holt-Winters PHPA",
+      "attempt": "holtwinters",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/holtwinters",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 21985,
+      "error_rate": 0.15775964448530821,
+      "timeout_rate": 0.15745316630272382,
+      "p95_latency_s": 0.49652979559978105,
+      "p99_latency_s": 3.415661253639773,
+      "success_rps": 52.345238095238095,
+      "pod_seconds": 3457.4991037895024,
+      "mean_ready": 8.232140723308339,
+      "max_ready": 10,
+      "scaling_changes": 6,
+      "readiness_deficit_samples": 14,
+      "mean_cpu_m": 98.7759708498866,
+      "dispatch_p99_s": 0.0021959662831665125,
+      "pod_seconds_per_success": 0.1572662771794179,
+      "generator_drops": 0,
+      "cpu_sample_count": 84,
+      "sample_count": 84
+    },
+    {
+      "repeat": 3,
+      "arm": "calibrated_hpa",
+      "label": "Tuned HPA (70%)",
+      "attempt": "calibrated_hpa_inconclusive_attempt1",
+      "decision": "INCONCLUSIVE",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa_inconclusive_attempt1",
+      "scheduled_measurement_requests": 26103,
+      "successful_requests": 12878,
+      "error_rate": 0.5066467455847987,
+      "timeout_rate": 0.4985633835191357,
+      "p95_latency_s": 2.4045387800999793,
+      "p99_latency_s": 4.517805521649561,
+      "success_rps": 30.66190476190476,
+      "pod_seconds": 982.4997035444994,
+      "mean_ready": 2.339285008439284,
+      "max_ready": 4,
+      "scaling_changes": 1,
+      "readiness_deficit_samples": 27,
+      "mean_cpu_m": 232.77814300999995,
+      "dispatch_p99_s": 0.0022238007327302963,
+      "pod_seconds_per_success": 0.07629287960432517,
+      "generator_drops": 0,
+      "cpu_sample_count": 75,
+      "sample_count": 84
+    }
+  ],
+  "aggregate": {
+    "strawman_hpa": {
+      "error_rate": {
+        "n": 3,
+        "mean": 0.44757307589165995,
+        "sample_sd": 0.09368354750548354
+      },
+      "timeout_rate": {
+        "n": 3,
+        "mean": 0.4463854729341455,
+        "sample_sd": 0.09317254943080217
+      },
+      "p95_latency_s": {
+        "n": 3,
+        "mean": 2.508093815633414,
+        "sample_sd": 0.9179647983178651
+      },
+      "p99_latency_s": {
+        "n": 3,
+        "mean": 4.520186465449842,
+        "sample_sd": 0.18679347957090192
+      },
+      "success_rps": {
+        "n": 3,
+        "mean": 34.33333333333333,
+        "sample_sd": 5.822432477465798
+      },
+      "pod_seconds": {
+        "n": 3,
+        "mean": 1192.498948216832,
+        "sample_sd": 156.1238881985768
+      },
+      "mean_ready": {
+        "n": 3,
+        "mean": 2.8392832100400764,
+        "sample_sd": 0.37172354332994484
+      },
+      "max_ready": {
+        "n": 3,
+        "mean": 6.0,
+        "sample_sd": 2.0
+      },
+      "scaling_changes": {
+        "n": 3,
+        "mean": 2.6666666666666665,
+        "sample_sd": 0.5773502691896257
+      },
+      "readiness_deficit_samples": {
+        "n": 3,
+        "mean": 25.333333333333332,
+        "sample_sd": 4.618802153517006
+      },
+      "mean_cpu_m": {
+        "n": 3,
+        "mean": 221.428031989591,
+        "sample_sd": 18.05053502957635
+      },
+      "dispatch_p99_s": {
+        "n": 3,
+        "mean": 0.002302550225917531,
+        "sample_sd": 9.771957332727546e-05
+      },
+      "pod_seconds_per_success": {
+        "n": 3,
+        "mean": 0.0845468252764136,
+        "sample_sd": 0.020050451825240036
+      },
+      "accepted_repeats": [
+        1,
+        2,
+        3
+      ]
+    },
+    "calibrated_hpa": {
+      "error_rate": {
+        "n": 2,
+        "mean": 0.3774853465118952,
+        "sample_sd": 0.023432071628792253
+      },
+      "timeout_rate": {
+        "n": 2,
+        "mean": 0.37635520821361534,
+        "sample_sd": 0.02275484412506991
+      },
+      "p95_latency_s": {
+        "n": 2,
+        "mean": 2.2409134804501436,
+        "sample_sd": 0.30593061840899255
+      },
+      "p99_latency_s": {
+        "n": 2,
+        "mean": 4.502781912689947,
+        "sample_sd": 0.039065284826331134
+      },
+      "success_rps": {
+        "n": 2,
+        "mean": 38.68928571428572,
+        "sample_sd": 1.4563032517294376
+      },
+      "pod_seconds": {
+        "n": 2,
+        "mean": 914.9996972427497,
+        "sample_sd": 17.677737840775382
+      },
+      "mean_ready": {
+        "n": 2,
+        "mean": 2.1785707077208327,
+        "sample_sd": 0.042089852001846076
+      },
+      "max_ready": {
+        "n": 2,
+        "mean": 4.0,
+        "sample_sd": 0.0
+      },
+      "scaling_changes": {
+        "n": 2,
+        "mean": 3.0,
+        "sample_sd": 0.0
+      },
+      "readiness_deficit_samples": {
+        "n": 2,
+        "mean": 27.0,
+        "sample_sd": 2.8284271247461903
+      },
+      "mean_cpu_m": {
+        "n": 2,
+        "mean": 223.4392393492064,
+        "sample_sd": 0.6968779316246365
+      },
+      "dispatch_p99_s": {
+        "n": 2,
+        "mean": 0.0022441920251290524,
+        "sample_sd": 3.466450136431741e-05
+      },
+      "pod_seconds_per_success": {
+        "n": 2,
+        "mean": 0.056328836164999826,
+        "sample_sd": 0.0010323792371444466
+      },
+      "accepted_repeats": [
+        1,
+        2
+      ]
+    },
+    "holtwinters": {
+      "error_rate": {
+        "n": 3,
+        "mean": 0.18040072022372908,
+        "sample_sd": 0.020537790246846047
+      },
+      "timeout_rate": {
+        "n": 3,
+        "mean": 0.1801964014353395,
+        "sample_sd": 0.020622273237978512
+      },
+      "p95_latency_s": {
+        "n": 3,
+        "mean": 0.8683073242499608,
+        "sample_sd": 0.6534622181685739
+      },
+      "p99_latency_s": {
+        "n": 3,
+        "mean": 3.963777378960039,
+        "sample_sd": 0.4985078906831237
+      },
+      "success_rps": {
+        "n": 3,
+        "mean": 50.93809523809524,
+        "sample_sd": 1.2764236638414805
+      },
+      "pod_seconds": {
+        "n": 3,
+        "mean": 3479.1652005620017,
+        "sample_sd": 20.20640207165308
+      },
+      "mean_ready": {
+        "n": 3,
+        "mean": 8.283726668004766,
+        "sample_sd": 0.04811048112298397
+      },
+      "max_ready": {
+        "n": 3,
+        "mean": 10.0,
+        "sample_sd": 0.0
+      },
+      "scaling_changes": {
+        "n": 3,
+        "mean": 3.6666666666666665,
+        "sample_sd": 2.0816659994661326
+      },
+      "readiness_deficit_samples": {
+        "n": 3,
+        "mean": 11.666666666666666,
+        "sample_sd": 2.0816659994661326
+      },
+      "mean_cpu_m": {
+        "n": 3,
+        "mean": 104.99059387178761,
+        "sample_sd": 7.5321013165259
+      },
+      "dispatch_p99_s": {
+        "n": 3,
+        "mean": 0.0022277936329534965,
+        "sample_sd": 2.8316363743003692e-05
+      },
+      "pod_seconds_per_success": {
+        "n": 3,
+        "mean": 0.16270653309151098,
+        "sample_sd": 0.004977606640067691
+      },
+      "accepted_repeats": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "paired_summary": [
+    {
+      "comparison": "strawman_hpa_minus_holtwinters",
+      "metric": "error_rate",
+      "n": 3,
+      "mean": 0.2671723556679309,
+      "sample_sd": 0.07468896732425759
+    },
+    {
+      "comparison": "strawman_hpa_minus_holtwinters",
+      "metric": "timeout_rate",
+      "n": 3,
+      "mean": 0.266189071498806,
+      "sample_sd": 0.07406415938886289
+    },
+    {
+      "comparison": "strawman_hpa_minus_holtwinters",
+      "metric": "p95_latency_s",
+      "n": 3,
+      "mean": 1.639786491383453,
+      "sample_sd": 1.3872459581703627
+    },
+    {
+      "comparison": "strawman_hpa_minus_holtwinters",
+      "metric": "p99_latency_s",
+      "n": 3,
+      "mean": 0.5564090864898028,
+      "sample_sd": 0.6562600082595873
+    },
+    {
+      "comparison": "strawman_hpa_minus_holtwinters",
+      "metric": "success_rps",
+      "n": 3,
+      "mean": -16.604761904761908,
+      "sample_sd": 4.641919319202606
+    },
+    {
+      "comparison": "strawman_hpa_minus_holtwinters",
+      "metric": "pod_seconds",
+      "n": 3,
+      "mean": -2286.6662523451696,
+      "sample_sd": 159.3979315237568
+    },
+    {
+      "comparison": "strawman_hpa_minus_holtwinters",
+      "metric": "pod_seconds_per_success",
+      "n": 3,
+      "mean": -0.07815970781509737,
+      "sample_sd": 0.017808521307753292
+    },
+    {
+      "comparison": "calibrated_hpa_minus_holtwinters",
+      "metric": "error_rate",
+      "n": 2,
+      "mean": 0.1857640884189557,
+      "sample_sd": 0.03207349457628906
+    },
+    {
+      "comparison": "calibrated_hpa_minus_holtwinters",
+      "metric": "timeout_rate",
+      "n": 2,
+      "mean": 0.184787189211968,
+      "sample_sd": 0.031396267072566694
+    },
+    {
+      "comparison": "calibrated_hpa_minus_holtwinters",
+      "metric": "p95_latency_s",
+      "n": 2,
+      "mean": 1.186717391875093,
+      "sample_sd": 1.1101059381830658
+    },
+    {
+      "comparison": "calibrated_hpa_minus_holtwinters",
+      "metric": "p99_latency_s",
+      "n": 2,
+      "mean": 0.2649464710697753,
+      "sample_sd": 0.25440990141221614
+    },
+    {
+      "comparison": "calibrated_hpa_minus_holtwinters",
+      "metric": "success_rps",
+      "n": 2,
+      "mean": -11.545238095238094,
+      "sample_sd": 1.9933676879163604
+    },
+    {
+      "comparison": "calibrated_hpa_minus_holtwinters",
+      "metric": "pod_seconds",
+      "n": 2,
+      "mean": -2574.9985517055015,
+      "sample_sd": 7.072656731718702
+    },
+    {
+      "comparison": "calibrated_hpa_minus_holtwinters",
+      "metric": "pod_seconds_per_success",
+      "n": 2,
+      "mean": -0.1090978248825577,
+      "sample_sd": 0.0033036254023357777
+    },
+    {
+      "comparison": "strawman_hpa_minus_calibrated_hpa",
+      "metric": "error_rate",
+      "n": 2,
+      "mean": 0.12412366394667282,
+      "sample_sd": 0.01760791509678028
+    },
+    {
+      "comparison": "strawman_hpa_minus_calibrated_hpa",
+      "metric": "timeout_rate",
+      "n": 2,
+      "mean": 0.12377887599126533,
+      "sample_sd": 0.01739120229558917
+    },
+    {
+      "comparison": "strawman_hpa_minus_calibrated_hpa",
+      "metric": "p95_latency_s",
+      "n": 2,
+      "mean": -0.2617847340001377,
+      "sample_sd": 0.22534231029748886
+    },
+    {
+      "comparison": "strawman_hpa_minus_calibrated_hpa",
+      "metric": "p99_latency_s",
+      "n": 2,
+      "mean": -0.08396628061505407,
+      "sample_sd": 0.1292170061943698
+    },
+    {
+      "comparison": "strawman_hpa_minus_calibrated_hpa",
+      "metric": "success_rps",
+      "n": 2,
+      "mean": -7.714285714285717,
+      "sample_sd": 1.094331923264895
+    },
+    {
+      "comparison": "strawman_hpa_minus_calibrated_hpa",
+      "metric": "pod_seconds",
+      "n": 2,
+      "mean": 302.4988395752489,
+      "sample_sd": 229.80850022831302
+    },
+    {
+      "comparison": "strawman_hpa_minus_calibrated_hpa",
+      "metric": "pod_seconds_per_success",
+      "n": 2,
+      "mean": 0.037358179459309734,
+      "sample_sd": 0.016368274751080287
+    }
+  ],
+  "limitation": "Repeat 3 tuned HPA remained INCONCLUSIVE after one unchanged retry because CPU telemetry was present in only 75/84 measurement samples."
+}

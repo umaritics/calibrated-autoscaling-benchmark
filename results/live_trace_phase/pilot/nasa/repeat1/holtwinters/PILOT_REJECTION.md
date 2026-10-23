@@ -1,0 +1,1 @@
+Excluded from controller comparisons: the 64-thread client incurred multi-second dispatch delays and generator-capacity drops. Replaced with asynchronous replay; retain these raw measurements as failed instrumentation validation.

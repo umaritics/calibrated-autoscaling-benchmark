@@ -7,6 +7,10 @@
 - Added complete offline evaluation: 600 scenarios, six patterns, five forecast variants, two horizons, train-only period selection, per-scenario errors and paired comparisons.
 - Added all-42-trace online capacity/data-quality analysis and all-36-entry early-detection comparison. These are authors’ runs, not newly executed live trials.
 - Added reproducibility manifests, package versions, methodological documentation and temporal-leakage tests.
+- Executed and independently verified a NASA-derived live replay: three accepted
+  soft-HPA runs, three accepted Holt–Winters runs, and two accepted tuned-HPA
+  runs. Two additional tuned-HPA attempts are retained as `INCONCLUSIVE` under
+  the unchanged 90% CPU-telemetry rule.
 
 ## Live extension limitation
 
@@ -16,7 +20,11 @@ Next live milestone: a healthy dedicated cluster with PHPA and metrics-server, t
 
 ## Remaining evidence gaps
 
-NASA and Alibaba files were not supplied. Acquisition details are in `data/README.md`; preprocessing and paper comparability must be specified before testing the production MAPE claim. No Gemini classifier or exact +37.4% paper comparison was reproduced. No performance/SLA claim is supported by CPU saturation alone.
+The local NASA and bounded Alibaba inputs were acquired after the offline phase.
+The NASA live replay is a benchmark demand transformation, not a reproduction
+of the paper's forecast-MAPE protocol. Alibaba validation and any live execution
+must remain separately reported. No Gemini classifier or exact +37.4% paper
+comparison was reproduced.
 
 See `results/dataset_phase/offline_results.md` and `online_results.md` for computed tables, and `docs/reproduction_report.md` for the original-versus-ours comparison. Historical handoff text describes the pre-extension state.
 

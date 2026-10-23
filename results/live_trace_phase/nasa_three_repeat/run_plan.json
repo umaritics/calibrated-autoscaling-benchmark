@@ -1,0 +1,56 @@
+[
+  {
+    "sequence": 4,
+    "dataset": "nasa",
+    "arm": "calibrated_hpa",
+    "repeat": 2,
+    "warmup": 120,
+    "duration": 420,
+    "category": "nasa_three_repeat"
+  },
+  {
+    "sequence": 5,
+    "dataset": "nasa",
+    "arm": "holtwinters",
+    "repeat": 2,
+    "warmup": 120,
+    "duration": 420,
+    "category": "nasa_three_repeat"
+  },
+  {
+    "sequence": 6,
+    "dataset": "nasa",
+    "arm": "strawman_hpa",
+    "repeat": 2,
+    "warmup": 120,
+    "duration": 420,
+    "category": "nasa_three_repeat"
+  },
+  {
+    "sequence": 7,
+    "dataset": "nasa",
+    "arm": "holtwinters",
+    "repeat": 3,
+    "warmup": 120,
+    "duration": 420,
+    "category": "nasa_three_repeat"
+  },
+  {
+    "sequence": 8,
+    "dataset": "nasa",
+    "arm": "strawman_hpa",
+    "repeat": 3,
+    "warmup": 120,
+    "duration": 420,
+    "category": "nasa_three_repeat"
+  },
+  {
+    "sequence": 9,
+    "dataset": "nasa",
+    "arm": "calibrated_hpa",
+    "repeat": 3,
+    "warmup": 120,
+    "duration": 420,
+    "category": "nasa_three_repeat"
+  }
+]

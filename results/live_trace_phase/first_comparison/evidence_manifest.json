@@ -1,0 +1,252 @@
+{
+  "generated_utc": "2026-10-23T14:02:11.043510+00:00",
+  "calculations": {
+    "request counts, outcomes, latency, throughput, dispatch": [
+      "requests.csv",
+      "trace.csv",
+      "metadata.json"
+    ],
+    "pod-seconds, replicas, CPU, restarts, controller identity": [
+      "metrics.jsonl",
+      "metadata.json"
+    ],
+    "probe failures and container kills": [
+      "events.json",
+      "metadata.json"
+    ],
+    "configuration identity": [
+      "controller.yaml",
+      "initial_objects.json",
+      "final_objects.json",
+      "metadata.json"
+    ],
+    "predictive controller diagnostics": [
+      "operator.log"
+    ]
+  },
+  "runs": {
+    "strawman_hpa": {
+      "COMPLETE": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/COMPLETE",
+        "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+        "bytes": 64
+      },
+      "controller.yaml": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/controller.yaml",
+        "sha256": "b783216b4a26d7fb9303f4bc01ceb711f3a901f4340e98c8d2c247f65e1f8d1c",
+        "bytes": 476
+      },
+      "events.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/events.json",
+        "sha256": "7021a986612545467e96c46295d88a08fb4890133bf761ad4e173b9838de36b7",
+        "bytes": 127329
+      },
+      "final_objects.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/final_objects.json",
+        "sha256": "f669be2f2954dd08dde232a7eaeaa017200ffd5ebe565a5fa0e6128eef5bda19",
+        "bytes": 72781
+      },
+      "initial_objects.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/initial_objects.json",
+        "sha256": "729fa83a64a3303e4b89af6f30723cd7ed99f13ccdd7a6dad3b7e6dfdc6a2e79",
+        "bytes": 20258
+      },
+      "metadata.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/metadata.json",
+        "sha256": "e17d1edf4a26dff106449ab22ab0c9ba6cd0d83c029409848efe10fae6a53d51",
+        "bytes": 657
+      },
+      "metrics.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/metrics.csv",
+        "sha256": "e53e87cad0427edfc0ce29756dd43e90e8d24c63c3c750ba48c355fad43ddcc7",
+        "bytes": 14347
+      },
+      "metrics.jsonl": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/metrics.jsonl",
+        "sha256": "2b5e1ec3bdd09d7b8e9fcfa7f9a2e026541375b6cfef9f85aa56dc669fcef9ca",
+        "bytes": 1864520
+      },
+      "operator.log": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/operator.log",
+        "sha256": "61bdddd8ee9905743bd049bab19137f5e93ea129a95205fb61f5114e1be7ff88",
+        "bytes": 58284
+      },
+      "requests.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/requests.csv",
+        "sha256": "f738f8d9b6becc2d0ef1fdfefcaa9bfb7ddb0660f5a0f8b261937b11d5fd38e9",
+        "bytes": 2589949
+      },
+      "summary.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/summary.json",
+        "sha256": "bb90b912d28eec6c9ba2b1ec91e6da5cab66a040b5eca4491a0c62c6d6811288",
+        "bytes": 5933
+      },
+      "trace.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/trace.csv",
+        "sha256": "9608c0f2c803af80d5247c74d7466dc502718d5e8b01565ecf4e39e40abc8aaf",
+        "bytes": 1403
+      }
+    },
+    "calibrated_hpa": {
+      "COMPLETE": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/COMPLETE",
+        "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+        "bytes": 64
+      },
+      "controller.yaml": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/controller.yaml",
+        "sha256": "edeac58288e2b49cf8e0d5ca954f450501f7370a694d6552a257ee70308f5fa2",
+        "bytes": 697
+      },
+      "events.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/events.json",
+        "sha256": "b33cb0f983a4a4119a55c6f3a558ad3c0be6eef8e6eda6572285a53ffe46bf36",
+        "bytes": 192345
+      },
+      "final_objects.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/final_objects.json",
+        "sha256": "8d2e3050e26ee9f86246932eacc90dc770d4172aa0c55e17a7e8efbf9ff222ae",
+        "bytes": 53071
+      },
+      "initial_objects.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/initial_objects.json",
+        "sha256": "0df1b8b681d051f3ec14d34af480bbb2f616973fb931f2e4b4bbc3b8c5e553ee",
+        "bytes": 20239
+      },
+      "metadata.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metadata.json",
+        "sha256": "7905eb791a78c9797a6bfc0a6dcc5ae58fca38568e74ab60e590603e4b4a618a",
+        "bytes": 663
+      },
+      "metrics.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metrics.csv",
+        "sha256": "59fd72f7a68cd7813c8112f627a2945dda1f6c5fcdc7f4913386180155332cc6",
+        "bytes": 14618
+      },
+      "metrics.jsonl": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metrics.jsonl",
+        "sha256": "34f4fe43cefddef65cf9e48cbe1ba86890771cd5d598d3fffe00a0dd96b03b91",
+        "bytes": 1762273
+      },
+      "operator.log": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/operator.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "requests.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/requests.csv",
+        "sha256": "dc6c139e83f04a26284f99206d365cda1e2254436582aab32aee33181f7ce838",
+        "bytes": 2556820
+      },
+      "summary.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/summary.json",
+        "sha256": "e93d403381aac883fe050ead1a6ca11c38546502ec2e2f777adc84a5d9238579",
+        "bytes": 5860
+      },
+      "trace.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/trace.csv",
+        "sha256": "9608c0f2c803af80d5247c74d7466dc502718d5e8b01565ecf4e39e40abc8aaf",
+        "bytes": 1403
+      }
+    },
+    "holtwinters": {
+      "COMPLETE": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/COMPLETE",
+        "sha256": "f56bbfcb335e9107b7e5287a72e37843fae4a9be6fc734dc2e8ad7b527a002d3",
+        "bytes": 64
+      },
+      "controller.yaml": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/controller.yaml",
+        "sha256": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8",
+        "bytes": 692
+      },
+      "events.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/events.json",
+        "sha256": "31a8ed82465007ab6dbb2bb90795027b4475e1e0d3e06d2522a08263c8418899",
+        "bytes": 230172
+      },
+      "final_objects.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/final_objects.json",
+        "sha256": "3612fcb7a346568f8dbb68710643aa222e727dc96ad875b4eea41a535495abc1",
+        "bytes": 116024
+      },
+      "initial_objects.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/initial_objects.json",
+        "sha256": "b59ae9102e99f16c88b341acc08403d22e36306d00169a70b1a11bf659c8963a",
+        "bytes": 20101
+      },
+      "metadata.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/metadata.json",
+        "sha256": "9ca95390ec5994b407a1f438e247009d0177f01e14f7c7679a12dd23344a8675",
+        "bytes": 660
+      },
+      "metrics.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/metrics.csv",
+        "sha256": "a484c442ca26f9ebe0fb7b9cd13b301a5192eaaaf1a7d0478cc07043adeb95e9",
+        "bytes": 15901
+      },
+      "metrics.jsonl": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/metrics.jsonl",
+        "sha256": "a0aef37ef914fbe5a528de1c068e6377ca02742fc3dc82c1f1c119ccca520363",
+        "bytes": 4000195
+      },
+      "operator.log": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/operator.log",
+        "sha256": "70562510c8c3e89b0f5f20f841c571524b5ce1c1d1ef17970cbad31a17fd2230",
+        "bytes": 122433
+      },
+      "requests.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/requests.csv",
+        "sha256": "f8b8a0521aac4c1091e94c7105b1bf436021351afcce3ebff570f6d9afea8c6e",
+        "bytes": 2520443
+      },
+      "summary.json": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/summary.json",
+        "sha256": "ba5acbeb55d5e1de0fb313bb61775235b9b9a08d73bc80a79ecf62f5c5fe79b5",
+        "bytes": 5791
+      },
+      "trace.csv": {
+        "path": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/trace.csv",
+        "sha256": "9608c0f2c803af80d5247c74d7466dc502718d5e8b01565ecf4e39e40abc8aaf",
+        "bytes": 1403
+      }
+    }
+  },
+  "comparison_artifacts": {
+    "run_plan.json": {
+      "path": "results/live_trace_phase/first_comparison/run_plan.json",
+      "sha256": "1434b27751b427c47316be6658f6ade42f87f1d8045aafc4e072386dddae4e32",
+      "bytes": 514
+    },
+    "PREFLIGHT.md": {
+      "path": "results/live_trace_phase/first_comparison/PREFLIGHT.md",
+      "sha256": "158b1607da3ccddf3e6e7d10f1e90344de2ad77dc301beeb5903dc6d06b024cd",
+      "bytes": 2738
+    },
+    "REPRODUCE.md": {
+      "path": "results/live_trace_phase/first_comparison/REPRODUCE.md",
+      "sha256": "df02b4be70ed7fbe4afd3e33841cd268b765ef9e046a7f3c456338bd55a662eb",
+      "bytes": 1038
+    },
+    "comparison.csv": {
+      "path": "results/live_trace_phase/first_comparison/comparison.csv",
+      "sha256": "bd167966c9dfd194bfac8c5f11038a7e568251b1b9f56f968651e4ad164cf92e",
+      "bytes": 1453
+    },
+    "comparison.json": {
+      "path": "results/live_trace_phase/first_comparison/comparison.json",
+      "sha256": "673f9da79b3c356cde6421ac7a22d0cbce4cf6c7ac5c2965b29946aca5aa0ef4",
+      "bytes": 24052
+    },
+    "environment_metadata.json": {
+      "path": "results/live_trace_phase/first_comparison/environment_metadata.json",
+      "sha256": "8d881745909d64aee8df102d3b6367d0d1f1850599d04070d1e2498d3f84c702",
+      "bytes": 1601
+    },
+    "RESULTS.md": {
+      "path": "results/live_trace_phase/first_comparison/RESULTS.md",
+      "sha256": "398dadcc96c1c0bebbddb9c2ae238950a66bbb1b5be06c9dae529daf278eefd3",
+      "bytes": 3666
+    }
+  }
+}

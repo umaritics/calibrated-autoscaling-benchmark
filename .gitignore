@@ -6,6 +6,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 *.log
+!results/live_trace_phase/**/operator.log
 upstream/workloads-predictional-scaling-operators/
 output/
 *.docx
@@ -15,3 +16,5 @@ output/
 /data.zip
 /data/*
 !/data/README.md
+/live-kubeconfig
+/.tools/

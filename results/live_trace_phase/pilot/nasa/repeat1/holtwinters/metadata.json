@@ -1,0 +1,15 @@
+{
+  "dataset": "nasa",
+  "arm": "holtwinters",
+  "repeat": 1,
+  "warmup": 120,
+  "duration": 120,
+  "category": "pilot",
+  "started_utc": "2026-10-20T21:42:57.375965+00:00",
+  "trace_sha256": "9608c0f2c803af80d5247c74d7466dc502718d5e8b01565ecf4e39e40abc8aaf",
+  "policy_sha256": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8",
+  "workload_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2",
+  "finished_utc": "2026-10-20T21:47:10.082253+00:00",
+  "scheduled_requests": 11021,
+  "elapsed_seconds": 240.810902962
+}

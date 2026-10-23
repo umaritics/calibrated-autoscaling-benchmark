@@ -1,0 +1,16 @@
+HTTP/1.1 206 Partial Content
+Server: AliyunOSS
+Date: Tue, 20 Oct 2026 21:37:43 GMT
+Content-Type: application/gzip
+Content-Length: 16777216
+Connection: keep-alive
+x-oss-request-id: 6AD7DF27CE6D61393704D604
+Content-Range: bytes 0-16777215/29208338602
+Accept-Ranges: bytes
+ETag: "BB46E4814F42373109EA31DE98E99F5D-2786"
+Last-Modified: Thu, 16 Feb 2023 05:09:01 GMT
+x-oss-object-type: Multipart
+x-oss-hash-crc64ecma: 9049074050759038683
+x-oss-storage-class: Standard
+x-oss-server-time: 76
+

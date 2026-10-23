@@ -1,0 +1,49 @@
+{
+  "nasa": {
+    "source": "https://raw.githubusercontent.com/greymd/NASA-HTTP/master/NASA_access_log_Jul95.gz",
+    "original_archive": "https://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html",
+    "source_sha256": "199109ed0f273e095da6ccd5fc9dc4cd8bb58daa06d62135e62090fea9d27488",
+    "parsed_requests": 1891714,
+    "unparsed_lines": 1,
+    "selection": "July 1, 1995 00:00\u201310:30 -0400, first 42 fifteen-minute bins",
+    "source_units": "HTTP requests per 900 seconds",
+    "time_compression": 90,
+    "trace_sha256": "9608c0f2c803af80d5247c74d7466dc502718d5e8b01565ecf4e39e40abc8aaf",
+    "bins": 42,
+    "replay_bin_seconds": 10,
+    "peak_target_rps": 120,
+    "transformation": "target_rps = 120 * source_value / maximum of selected source window; replay-only normalization, not controller input"
+  },
+  "alibaba": {
+    "source": "https://aliopentrace.oss-cn-beijing.aliyuncs.com/v2018Traces/container_usage.tar.gz",
+    "source_prefix_sha256": "726e6240926dc2d7ba53cdfb88a91be8564d124d88d4dec1391e9f745e0a2988",
+    "downloaded_byte_range": [
+      0,
+      16777215
+    ],
+    "archive_total_bytes": 29208338602,
+    "selection": "First nonempty container ID c_1; first 42 observations in timestamp order. All 1018 c_1 rows read before selecting.",
+    "container_rows": 1018,
+    "preceding_anonymous_rows": 3503,
+    "source_units": "cpu_util_percent (official container schema)",
+    "transformation_caveat": "CPU telemetry converted to relative HTTP demand, not original application requests. Irregular observation intervals are mapped to equal 10-second replay bins; no interpolation. One container is not representative of the whole Alibaba cluster.",
+    "prefix_caveat": "HTTP 206 ranged prefix, not a complete gzip archive; no full-archive CRC verification. Complete c_1 records end before prefix truncation.",
+    "trace_sha256": "5bc5d7705562b791602824bc8498866cef92db0a726b48c7c9aeeecccb850e47",
+    "bins": 42,
+    "replay_bin_seconds": 10,
+    "peak_target_rps": 120,
+    "transformation": "target_rps = 120 * source_value / maximum of selected source window; replay-only normalization, not controller input"
+  },
+  "phpa_seasonal": {
+    "source": "https://www.kaggle.com/datasets/cnbrkdmn/phpa-research-datasets",
+    "source_file": "data/phpa/phpa-datasets/seasonal_1_seasonality_period24_seasonality_strength1.1_complexity1_base_level25_noise_level0.3_test.csv",
+    "source_sha256": "0b3bcf0b71503941f4e5ecd573d1fafec665499ad8a8a4fb1aed6ae77f39effd",
+    "selection": "Scenario seasonal_1, first 42 held-out observations; exploratory live check, not a new production dataset",
+    "source_units": "synthetic pod_count",
+    "trace_sha256": "4d73eca908502309796a24d3c3f7a068c2068dd0be8b21a6ff4966a6b381294e",
+    "bins": 42,
+    "replay_bin_seconds": 10,
+    "peak_target_rps": 120,
+    "transformation": "target_rps = 120 * source_value / maximum of selected source window; replay-only normalization, not controller input"
+  }
+}

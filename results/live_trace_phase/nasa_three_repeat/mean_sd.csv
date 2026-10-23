@@ -1,0 +1,40 @@
+arm,label,metric,n,mean,sample_sd
+strawman_hpa,Soft HPA (50%),error_rate,3,0.44757307589165995,0.09368354750548354
+strawman_hpa,Soft HPA (50%),timeout_rate,3,0.4463854729341455,0.09317254943080217
+strawman_hpa,Soft HPA (50%),p95_latency_s,3,2.508093815633414,0.9179647983178651
+strawman_hpa,Soft HPA (50%),p99_latency_s,3,4.520186465449842,0.18679347957090192
+strawman_hpa,Soft HPA (50%),success_rps,3,34.33333333333333,5.822432477465798
+strawman_hpa,Soft HPA (50%),pod_seconds,3,1192.498948216832,156.1238881985768
+strawman_hpa,Soft HPA (50%),mean_ready,3,2.8392832100400764,0.37172354332994484
+strawman_hpa,Soft HPA (50%),max_ready,3,6.0,2.0
+strawman_hpa,Soft HPA (50%),scaling_changes,3,2.6666666666666665,0.5773502691896257
+strawman_hpa,Soft HPA (50%),readiness_deficit_samples,3,25.333333333333332,4.618802153517006
+strawman_hpa,Soft HPA (50%),mean_cpu_m,3,221.428031989591,18.05053502957635
+strawman_hpa,Soft HPA (50%),dispatch_p99_s,3,0.002302550225917531,9.771957332727546e-05
+strawman_hpa,Soft HPA (50%),pod_seconds_per_success,3,0.0845468252764136,0.020050451825240036
+calibrated_hpa,Tuned HPA (70%),error_rate,2,0.3774853465118952,0.023432071628792253
+calibrated_hpa,Tuned HPA (70%),timeout_rate,2,0.37635520821361534,0.02275484412506991
+calibrated_hpa,Tuned HPA (70%),p95_latency_s,2,2.2409134804501436,0.30593061840899255
+calibrated_hpa,Tuned HPA (70%),p99_latency_s,2,4.502781912689947,0.039065284826331134
+calibrated_hpa,Tuned HPA (70%),success_rps,2,38.68928571428572,1.4563032517294376
+calibrated_hpa,Tuned HPA (70%),pod_seconds,2,914.9996972427497,17.677737840775382
+calibrated_hpa,Tuned HPA (70%),mean_ready,2,2.1785707077208327,0.042089852001846076
+calibrated_hpa,Tuned HPA (70%),max_ready,2,4.0,0.0
+calibrated_hpa,Tuned HPA (70%),scaling_changes,2,3.0,0.0
+calibrated_hpa,Tuned HPA (70%),readiness_deficit_samples,2,27.0,2.8284271247461903
+calibrated_hpa,Tuned HPA (70%),mean_cpu_m,2,223.4392393492064,0.6968779316246365
+calibrated_hpa,Tuned HPA (70%),dispatch_p99_s,2,0.0022441920251290524,3.466450136431741e-05
+calibrated_hpa,Tuned HPA (70%),pod_seconds_per_success,2,0.056328836164999826,0.0010323792371444466
+holtwinters,Holt-Winters PHPA,error_rate,3,0.18040072022372908,0.020537790246846047
+holtwinters,Holt-Winters PHPA,timeout_rate,3,0.1801964014353395,0.020622273237978512
+holtwinters,Holt-Winters PHPA,p95_latency_s,3,0.8683073242499608,0.6534622181685739
+holtwinters,Holt-Winters PHPA,p99_latency_s,3,3.963777378960039,0.4985078906831237
+holtwinters,Holt-Winters PHPA,success_rps,3,50.93809523809524,1.2764236638414805
+holtwinters,Holt-Winters PHPA,pod_seconds,3,3479.1652005620017,20.20640207165308
+holtwinters,Holt-Winters PHPA,mean_ready,3,8.283726668004766,0.04811048112298397
+holtwinters,Holt-Winters PHPA,max_ready,3,10.0,0.0
+holtwinters,Holt-Winters PHPA,scaling_changes,3,3.6666666666666665,2.0816659994661326
+holtwinters,Holt-Winters PHPA,readiness_deficit_samples,3,11.666666666666666,2.0816659994661326
+holtwinters,Holt-Winters PHPA,mean_cpu_m,3,104.99059387178761,7.5321013165259
+holtwinters,Holt-Winters PHPA,dispatch_p99_s,3,0.0022277936329534965,2.8316363743003692e-05
+holtwinters,Holt-Winters PHPA,pod_seconds_per_success,3,0.16270653309151098,0.004977606640067691

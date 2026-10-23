@@ -1,0 +1,2003 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-26tcn",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1433",
+                "uid": "d5f784d1-bc61-4e02-a20b-d9e9db8b2a44"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-26tcn to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-26tcn.18e05b159f3bf2cc",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1441",
+                "uid": "0024d21b-8fb3-41ee-b78b-663692f8d97d"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-26tcn",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1435",
+                "uid": "d5f784d1-bc61-4e02-a20b-d9e9db8b2a44"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-26tcn.18e05b15b8989c12",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1459",
+                "uid": "5ae0b27e-fd6c-4d8f-a0a0-a3868344534e"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-26tcn",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1435",
+                "uid": "d5f784d1-bc61-4e02-a20b-d9e9db8b2a44"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-26tcn.18e05b15bae57c23",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1462",
+                "uid": "1c0f8b99-9783-4311-81b0-845d8c0d1afe"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-26tcn",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1435",
+                "uid": "d5f784d1-bc61-4e02-a20b-d9e9db8b2a44"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-26tcn.18e05b15c7366b89",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1469",
+                "uid": "3b74312f-21da-45e7-b4aa-f26dae6590d5"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-5jlj5",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1436",
+                "uid": "f21312a4-5dc2-45fb-a3ff-1f39df189616"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-5jlj5 to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-5jlj5.18e05b159f9799a6",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1451",
+                "uid": "a10d8a1a-a9e5-491d-bfe2-cc61a7dd0485"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-5jlj5",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1443",
+                "uid": "f21312a4-5dc2-45fb-a3ff-1f39df189616"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-5jlj5.18e05b15baf9cf74",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1463",
+                "uid": "3e957c68-066e-4fec-a11e-e001b90b8e8b"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-5jlj5",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1443",
+                "uid": "f21312a4-5dc2-45fb-a3ff-1f39df189616"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-5jlj5.18e05b15bd15d404",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1466",
+                "uid": "769bce58-18a2-4415-b2d3-a6a08f490d91"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-5jlj5",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1443",
+                "uid": "f21312a4-5dc2-45fb-a3ff-1f39df189616"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-5jlj5.18e05b15c9053021",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1471",
+                "uid": "ce7c1bc8-2b8a-4d13-8c6d-52338d58b8e0"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-bkln8",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1439",
+                "uid": "ae3e1a58-94da-445f-9e57-44677215cc8b"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-bkln8 to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-bkln8.18e05b159f998ec7",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1452",
+                "uid": "e2f1fc50-dbf3-4650-855a-f2cc0f3df45b"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-bkln8",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1444",
+                "uid": "ae3e1a58-94da-445f-9e57-44677215cc8b"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-bkln8.18e05b15bbbb6445",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1464",
+                "uid": "f9b2d543-945c-47e5-a4d9-0e889b5040a3"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-bkln8",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1444",
+                "uid": "ae3e1a58-94da-445f-9e57-44677215cc8b"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-bkln8.18e05b15bd2ec020",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1467",
+                "uid": "74f9b137-5db3-4946-b345-e78814adfd70"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-bkln8",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1444",
+                "uid": "ae3e1a58-94da-445f-9e57-44677215cc8b"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-bkln8.18e05b15c9015a01",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1470",
+                "uid": "f298a691-3249-4d88-8a39-6b5e87edd0e9"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-cd7tb",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1276",
+                "uid": "bd629717-c268-4525-89c9-16481c97d4a3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-cd7tb to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-cd7tb.18e05b076886fb55",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1286",
+                "uid": "cbfb7d7f-9057-4c05-b4f9-df5553f6ddbd"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-cd7tb",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1279",
+                "uid": "bd629717-c268-4525-89c9-16481c97d4a3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-cd7tb.18e05b0782dc43a9",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1295",
+                "uid": "2e7955ca-6f79-45bd-8e8b-38643592a0d9"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-cd7tb",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1279",
+                "uid": "bd629717-c268-4525-89c9-16481c97d4a3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-cd7tb.18e05b0783e3ada4",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1298",
+                "uid": "4fc1c680-6c80-46bf-9ad2-ac38e4c9e4d9"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-cd7tb",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1279",
+                "uid": "bd629717-c268-4525-89c9-16481c97d4a3"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-cd7tb.18e05b0789fe0316",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1302",
+                "uid": "f94a647a-1624-4da2-bd6a-80cdeabd16fa"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-gk4fl",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1432",
+                "uid": "dffcd440-4873-4a0c-b956-29a2b99e5069"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-gk4fl to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-gk4fl.18e05b159f3cb7e8",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1446",
+                "uid": "afddafa0-b5fe-4d0f-ada9-c62826300a6d"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-gk4fl",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1437",
+                "uid": "dffcd440-4873-4a0c-b956-29a2b99e5069"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-gk4fl.18e05b15ba700999",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1461",
+                "uid": "55886eca-1c30-4347-af3a-00dd47e05ae2"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-gk4fl",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1437",
+                "uid": "dffcd440-4873-4a0c-b956-29a2b99e5069"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-gk4fl.18e05b15bc0a6817",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1465",
+                "uid": "0177f4be-dc4e-4c49-9c79-864f0bff9ecb"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-gk4fl",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1437",
+                "uid": "dffcd440-4873-4a0c-b956-29a2b99e5069"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-gk4fl.18e05b15cade069a",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1472",
+                "uid": "9bdb1108-2838-4843-9c39-c433685ba26e"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-hj8nr",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1428",
+                "uid": "6620e4c0-328a-4d97-a105-639fbdf5f7a7"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-hj8nr to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-hj8nr.18e05b159ebcc0b1",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1434",
+                "uid": "4d4e2395-c45a-45b5-9c5f-10380ef20751"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-hj8nr",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1429",
+                "uid": "6620e4c0-328a-4d97-a105-639fbdf5f7a7"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-hj8nr.18e05b15b8294c61",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1458",
+                "uid": "ebba3d95-3cfc-4635-ba82-da8417b452e1"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-hj8nr",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1429",
+                "uid": "6620e4c0-328a-4d97-a105-639fbdf5f7a7"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-hj8nr.18e05b15ba1ba15e",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1460",
+                "uid": "a9566c3c-e025-4d5d-8937-d1c511fcd07d"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-hj8nr",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1429",
+                "uid": "6620e4c0-328a-4d97-a105-639fbdf5f7a7"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf-hj8nr.18e05b15c121f559",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1468",
+                "uid": "034e5064-5b95-4297-8c8c-083b1bf6d56e"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-hpktk",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1270",
+                "uid": "1febab67-b388-494d-86e9-68ce84f3a797"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-hpktk to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-hpktk.18e05b076801c889",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1282",
+                "uid": "1338fdc1-9d2d-49af-b426-7aef14281ed3"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-hpktk",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1275",
+                "uid": "1febab67-b388-494d-86e9-68ce84f3a797"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-hpktk.18e05b0782766453",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1293",
+                "uid": "60f612d9-e6d9-465f-88b7-2d653e29056d"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-hpktk",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1275",
+                "uid": "1febab67-b388-494d-86e9-68ce84f3a797"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-hpktk.18e05b0783a1bb5b",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1296",
+                "uid": "c53fe2a6-0194-47dd-8d6b-8c878078996d"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-hpktk",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1275",
+                "uid": "1febab67-b388-494d-86e9-68ce84f3a797"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-hpktk.18e05b07890ec73d",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1300",
+                "uid": "7393e361-0e58-43ee-b7c4-721e669ba404"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:42:59Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-jg9d9",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "975",
+                "uid": "e12a53cd-2bac-4b58-8228-107774f48bce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:42:59Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-jg9d9 to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:42:59Z",
+                "name": "php-apache-68fd8fb4cf-jg9d9.18e05ae259a39491",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "980",
+                "uid": "688131c6-d19d-47e6-99fa-aadb16d07c61"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:43:00Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-jg9d9",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "979",
+                "uid": "e12a53cd-2bac-4b58-8228-107774f48bce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:43:00Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:43:00Z",
+                "name": "php-apache-68fd8fb4cf-jg9d9.18e05ae2776a7a24",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "985",
+                "uid": "9f9c13a5-f8ac-46f5-9475-990aecfadc3f"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:43:00Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-jg9d9",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "979",
+                "uid": "e12a53cd-2bac-4b58-8228-107774f48bce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:43:00Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:43:00Z",
+                "name": "php-apache-68fd8fb4cf-jg9d9.18e05ae27f5a8b0b",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "986",
+                "uid": "ee3548e0-d03b-4dd6-824a-c83f69233fc0"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:43:00Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-jg9d9",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "979",
+                "uid": "e12a53cd-2bac-4b58-8228-107774f48bce"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:43:00Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:43:00Z",
+                "name": "php-apache-68fd8fb4cf-jg9d9.18e05ae283f46f0d",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "987",
+                "uid": "cafcdc94-548a-4070-b957-fafaf73e36ac"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-kr8t6",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1269",
+                "uid": "d919a8c6-87e6-4879-b121-cd39fd833714"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-kr8t6 to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-kr8t6.18e05b076803b45d",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1285",
+                "uid": "cba31587-12f1-42f6-a194-ca85a6f29fba"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-kr8t6",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1274",
+                "uid": "d919a8c6-87e6-4879-b121-cd39fd833714"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-kr8t6.18e05b0782a45e6a",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1294",
+                "uid": "b1ec4aba-56b8-4119-a9bd-777a9d3a5a9f"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-kr8t6",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1274",
+                "uid": "d919a8c6-87e6-4879-b121-cd39fd833714"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-kr8t6.18e05b0783c72ee2",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1297",
+                "uid": "c42866cf-5d93-4c90-8c4a-2f4afefaa503"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-kr8t6",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1274",
+                "uid": "d919a8c6-87e6-4879-b121-cd39fd833714"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-kr8t6.18e05b0789acf8b7",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1301",
+                "uid": "e7f43cef-f780-40e6-a0be-e43ca16a534f"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-w575v",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1267",
+                "uid": "3f09f01f-b79e-4f14-8c37-b8a080fba7d9"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-w575v to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-w575v.18e05b0767e5ceee",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1277",
+                "uid": "f51490f3-69ff-44dc-a8cf-37f611b191ff"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-w575v",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1271",
+                "uid": "3f09f01f-b79e-4f14-8c37-b8a080fba7d9"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Container image \"php:8.2-apache\" already present on machine",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-w575v.18e05b07813ecd3d",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1291",
+                "uid": "2d919c0a-2094-4df3-91cb-390d6eb47add"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-w575v",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1271",
+                "uid": "3f09f01f-b79e-4f14-8c37-b8a080fba7d9"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-w575v.18e05b07820af486",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1292",
+                "uid": "8d10915c-ed45-4885-8909-d17680972c9d"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-w575v",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1271",
+                "uid": "3f09f01f-b79e-4f14-8c37-b8a080fba7d9"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf-w575v.18e05b0787ba503d",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1299",
+                "uid": "486ce63d-22e4-4f4b-8adc-75b0537845ee"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:38:29Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-wjh56",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "564",
+                "uid": "a8a4ee68-dc7b-4592-a2fd-d5ae0035075a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:38:29Z",
+            "message": "Successfully assigned trace-benchmark/php-apache-68fd8fb4cf-wjh56 to calibrated-live-control-plane",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:38:29Z",
+                "name": "php-apache-68fd8fb4cf-wjh56.18e05aa351c7e812",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "571",
+                "uid": "0c6f6816-667c-40a6-8387-1d478de5e08a"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:38:29Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-wjh56",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "569",
+                "uid": "a8a4ee68-dc7b-4592-a2fd-d5ae0035075a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:38:29Z",
+            "message": "Pulling image \"php:8.2-apache\"",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:38:29Z",
+                "name": "php-apache-68fd8fb4cf-wjh56.18e05aa36899aa18",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "579",
+                "uid": "31db8681-7a8a-41ea-a728-4c469cf8d035"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:42:21Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-wjh56",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "569",
+                "uid": "a8a4ee68-dc7b-4592-a2fd-d5ae0035075a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:42:21Z",
+            "message": "Successfully pulled image \"php:8.2-apache\" in 1m35.086s (3m51.928s including waiting). Image size: 175761936 bytes.",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:42:21Z",
+                "name": "php-apache-68fd8fb4cf-wjh56.18e05ad968a40778",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "898",
+                "uid": "fee79ea4-0c78-4b50-94d5-3bbeb71dca03"
+            },
+            "reason": "Pulled",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:42:21Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-wjh56",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "569",
+                "uid": "a8a4ee68-dc7b-4592-a2fd-d5ae0035075a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:42:21Z",
+            "message": "Created container: php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:42:21Z",
+                "name": "php-apache-68fd8fb4cf-wjh56.18e05ad97af1aa02",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "899",
+                "uid": "4520cb42-16ae-4f77-82ac-56d680556aac"
+            },
+            "reason": "Created",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:42:22Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-wjh56",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "569",
+                "uid": "a8a4ee68-dc7b-4592-a2fd-d5ae0035075a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:42:22Z",
+            "message": "Started container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:42:22Z",
+                "name": "php-apache-68fd8fb4cf-wjh56.18e05ad98703d482",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "900",
+                "uid": "3bb025d3-13b0-41e7-b1f5-897386394b05"
+            },
+            "reason": "Started",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:42:57Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-wjh56",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "569",
+                "uid": "a8a4ee68-dc7b-4592-a2fd-d5ae0035075a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:42:57Z",
+            "message": "Stopping container php-apache",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:42:57Z",
+                "name": "php-apache-68fd8fb4cf-wjh56.18e05ae1c9e9a679",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "960",
+                "uid": "aa280d70-d51a-46c8-a41e-0a36e3031278"
+            },
+            "reason": "Killing",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:42:58Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{php-apache}",
+                "kind": "Pod",
+                "name": "php-apache-68fd8fb4cf-wjh56",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "569",
+                "uid": "a8a4ee68-dc7b-4592-a2fd-d5ae0035075a"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:42:58Z",
+            "message": "Readiness probe failed: Get \"http://10.244.0.7:80/index.php\": dial tcp 10.244.0.7:80: connect: connection refused",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:42:58Z",
+                "name": "php-apache-68fd8fb4cf-wjh56.18e05ae20af3eb39",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "965",
+                "uid": "c2f9f1a5-74dd-4548-84d8-c5e85b85452c"
+            },
+            "reason": "Unhealthy",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "calibrated-live-control-plane",
+            "source": {
+                "component": "kubelet",
+                "host": "calibrated-live-control-plane"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:38:29Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "559",
+                "uid": "6e9e5416-0635-46d3-883c-39352cf5eec5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:38:29Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-wjh56",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:38:29Z",
+                "name": "php-apache-68fd8fb4cf.18e05aa350ed506a",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "565",
+                "uid": "df7b2651-1b6c-4b9b-8e94-0b197a74ff86"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:42:59Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "972",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:42:59Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-jg9d9",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:42:59Z",
+                "name": "php-apache-68fd8fb4cf.18e05ae258d4e745",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "978",
+                "uid": "63cb9275-5352-4f6b-a632-d8d8f4494240"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1264",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-w575v",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf.18e05b07678b95cc",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1268",
+                "uid": "5de79d63-7f16-40a0-adf7-22ade822a55e"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1264",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-kr8t6",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf.18e05b0767c3de26",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1273",
+                "uid": "ccf01e0c-c183-426e-b5fe-3d8ea2fac43c"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1264",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-hpktk",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf.18e05b0767ce06f4",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1278",
+                "uid": "fd503a93-5808-450f-ba49-15d9bcc86b38"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1264",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-cd7tb",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache-68fd8fb4cf.18e05b07681a10b6",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1281",
+                "uid": "63243353-306e-4a7f-8e7f-d6f768fe55fc"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1425",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-hj8nr",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf.18e05b159e88941f",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1431",
+                "uid": "9061e311-d321-4745-b20f-1a7f620b6a3d"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1425",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-gk4fl",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf.18e05b159eec9676",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1438",
+                "uid": "c0c0f10f-432e-45cf-b56a-e7327eef908a"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1425",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-26tcn",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf.18e05b159ef0553a",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1442",
+                "uid": "457768eb-f102-4912-9ee7-475cb4e29511"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1425",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Created pod: php-apache-68fd8fb4cf-5jlj5",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf.18e05b159f38ca0d",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1447",
+                "uid": "8f29f54a-874d-4b92-a6e5-9449887eb2e6"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "replicaset-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "ReplicaSet",
+                "name": "php-apache-68fd8fb4cf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1425",
+                "uid": "bb7d3195-218c-4737-8be6-86ad84c0a0bf"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "(combined from similar events): Created pod: php-apache-68fd8fb4cf-bkln8",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache-68fd8fb4cf.18e05b159fd280b1",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1450",
+                "uid": "0b383d7f-a64e-466b-bed8-0a90ef4debd0"
+            },
+            "reason": "SuccessfulCreate",
+            "reportingComponent": "",
+            "reportingInstance": "",
+            "source": {
+                "component": "replicaset-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:38:29Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "php-apache",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "558",
+                "uid": "1f1cb293-508c-4386-82cb-0868cc290ea8"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:38:29Z",
+            "message": "Scaled up replica set php-apache-68fd8fb4cf from 0 to 1",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:38:29Z",
+                "name": "php-apache.18e05aa3500625e2",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "560",
+                "uid": "d85e720d-292c-456e-a1df-f82359169cd7"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:42:59Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "php-apache",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "971",
+                "uid": "53bdb651-2693-4212-a203-ec37fd08c930"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:42:59Z",
+            "message": "Scaled up replica set php-apache-68fd8fb4cf from 0 to 1",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:42:59Z",
+                "name": "php-apache.18e05ae257dbee6b",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "976",
+                "uid": "ec7f38f7-64e3-4144-b215-606570602728"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:45:39Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "php-apache",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1262",
+                "uid": "53bdb651-2693-4212-a203-ec37fd08c930"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:45:39Z",
+            "message": "Scaled up replica set php-apache-68fd8fb4cf from 1 to 5",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:45:39Z",
+                "name": "php-apache.18e05b076600545e",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1265",
+                "uid": "888f3302-4225-465c-a532-a5a2734ce41d"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-10-20T21:46:40Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "php-apache",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1423",
+                "uid": "53bdb651-2693-4212-a203-ec37fd08c930"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-10-20T21:46:40Z",
+            "message": "Scaled up replica set php-apache-68fd8fb4cf from 5 to 10",
+            "metadata": {
+                "creationTimestamp": "2026-10-20T21:46:40Z",
+                "name": "php-apache.18e05b159e110ccf",
+                "namespace": "trace-benchmark",
+                "resourceVersion": "1426",
+                "uid": "4b2207fe-7683-47a2-a240-4da47578bf87"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

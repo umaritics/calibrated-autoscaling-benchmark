@@ -1,0 +1,16 @@
+{
+  "dataset": "nasa",
+  "arm": "holtwinters",
+  "repeat": 3,
+  "warmup": 120,
+  "duration": 420,
+  "category": "nasa_three_repeat",
+  "started_utc": "2026-10-23T14:40:47.920656+00:00",
+  "runner_sha256": "c76c47e3833dab84a303a54e642f9c6b0618a6f5bb72f894987ae23086f9fcba",
+  "trace_sha256": "9608c0f2c803af80d5247c74d7466dc502718d5e8b01565ecf4e39e40abc8aaf",
+  "policy_sha256": "917413dbdb4530ea895667a1d7eaeb5bcf1c73029bec1f011952ca29fe440db8",
+  "workload_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2",
+  "finished_utc": "2026-10-23T14:49:59.796359+00:00",
+  "scheduled_requests": 26583,
+  "elapsed_seconds": 540.685729623
+}

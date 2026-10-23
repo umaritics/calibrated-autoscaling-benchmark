@@ -1,0 +1,17 @@
+{
+  "state": "integrity_stop",
+  "run": {
+    "sequence": 9,
+    "dataset": "nasa",
+    "arm": "calibrated_hpa",
+    "repeat": 3,
+    "warmup": 120,
+    "duration": 420,
+    "category": "nasa_three_repeat"
+  },
+  "decision": "INCONCLUSIVE",
+  "failed_checks": [
+    "metrics_coverage_above_90pct"
+  ],
+  "finished_utc": "2026-10-23T15:18:10.646880+00:00"
+}

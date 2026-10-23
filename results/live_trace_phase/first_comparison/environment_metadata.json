@@ -1,0 +1,44 @@
+{
+  "captured_utc": "2026-10-23T14:02:11.039387+00:00",
+  "cluster": "calibrated-live",
+  "kubernetes_client_server": "v1.32.2",
+  "metrics_server": "v0.7.1",
+  "phpa": "v0.13.2",
+  "node_allocatable_cpu": "8",
+  "node_capacity_memory": "20164312Ki",
+  "host_ram": "19 GiB",
+  "preflight_host_available_memory": "6.0 GiB",
+  "preflight_filesystem_free": "6.0 GiB",
+  "limitations": [
+    "single-node kind cluster",
+    "host contention is not controlled",
+    "limited free disk"
+  ],
+  "resolved_images": {
+    "application": "docker.io/library/php@sha256:06617d90f29b57b2aa200a9df03b3bafbfa5c66d2e2913fbb2b5f775a8358465",
+    "phpa": "docker.io/jthomperoo/predictive-horizontal-pod-autoscaler@sha256:ef5c4555a8581f356bf0dacaa6a6c25ffdf7f26b35157e7d0c7a9d11f9f94cf5"
+  },
+  "runs": {
+    "strawman_hpa": {
+      "started_utc": "2026-10-23T13:32:34.266847+00:00",
+      "finished_utc": "2026-10-23T13:41:43.258811+00:00",
+      "runner_elapsed_s": 540.317283369,
+      "host_load1_mean": 1.9238639621559632,
+      "host_load1_max": 3.03271484375
+    },
+    "calibrated_hpa": {
+      "started_utc": "2026-10-23T13:41:53.814607+00:00",
+      "finished_utc": "2026-10-23T13:51:03.205099+00:00",
+      "runner_elapsed_s": 540.2986439650003,
+      "host_load1_mean": 5.854348838876147,
+      "host_load1_max": 29.78662109375
+    },
+    "holtwinters": {
+      "started_utc": "2026-10-23T13:51:14.373594+00:00",
+      "finished_utc": "2026-10-23T14:00:24.400786+00:00",
+      "runner_elapsed_s": 540.4872500279998,
+      "host_load1_mean": 3.777948502006881,
+      "host_load1_max": 8.548828125
+    }
+  }
+}

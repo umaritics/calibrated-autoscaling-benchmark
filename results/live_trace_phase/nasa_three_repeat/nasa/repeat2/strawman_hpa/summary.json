@@ -1,0 +1,166 @@
+{
+  "dataset": "nasa",
+  "arm": "strawman_hpa",
+  "repeat": 2,
+  "category": "nasa_three_repeat",
+  "warmup": 120,
+  "duration": 420,
+  "decision": "ACCEPT",
+  "decision_scope": "single-repeat live controller comparison",
+  "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa",
+  "sources": {
+    "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/requests.csv",
+    "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/metrics.jsonl",
+    "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/metadata.json",
+    "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/events.json",
+    "initial_objects.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/initial_objects.json",
+    "final_objects.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/final_objects.json",
+    "operator.log": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/operator.log"
+  },
+  "source_sha256": {
+    "requests.csv": "bfb76ad7ee728a66f7ce29b2bd795b66c00e3a8470ea3e2bae5b4c2a517b6485",
+    "metrics.jsonl": "2b2a32a17a7f2d534698ca27fcad34a99e40bd269223af184e2356d291d69139",
+    "metadata.json": "b6671838966873a13c56bd905651525481253c64775c496dc6ffd1fac7995fee",
+    "events.json": "ea02153b7bf45900d8a2239f610e54a7aaaa57ec2f41b64cbcc1b8518c3990f8",
+    "initial_objects.json": "b31b561873b638695a24d5d02a12f4b22c9042215d7630d737dd89ff2447155d",
+    "final_objects.json": "39768e2a69ad7848e50e70d478c6a59afbee43b62cb4f5182601f27d996c0d59",
+    "operator.log": "6d81e388bc2fb57bf1389debfa2c6ae9b73365f9afb3da65db5cbedd0fed6025"
+  },
+  "scheduled_requests": 26583,
+  "scheduled_measurement_requests": 26103,
+  "request_records": 26583,
+  "measurement_request_records": 26103,
+  "successful_requests": 12902,
+  "success_requests": 12902,
+  "recorded_failures": 13201,
+  "errors": 13201,
+  "http_failures_by_status": {},
+  "client_exceptions_by_class": {
+    "ClientOSError": 2,
+    "ServerDisconnectedError": 45,
+    "TimeoutError": 13154
+  },
+  "client_exceptions_by_message": {
+    "ClientOSError: [Errno 104] Connection reset by peer": 2,
+    "ServerDisconnectedError: Server disconnected": 45,
+    "TimeoutError: ": 13154
+  },
+  "timeouts": 13154,
+  "connection_failures": 47,
+  "disconnections": 47,
+  "cancellations": 0,
+  "other_failures": 0,
+  "generator_drops": 0,
+  "missing_records": 0,
+  "unexpected_records": 0,
+  "duplicate_records": 0,
+  "invalid_timestamp_records": 0,
+  "inconsistent_latency_records": 0,
+  "error_rate_scheduled_denominator": 0.5057273110370456,
+  "error_rate": 0.5057273110370456,
+  "recorded_error_rate": 0.5057273110370456,
+  "dispatch_delay_s": {
+    "p50": 0.0007589237745833088,
+    "p95": 0.001935245237007165,
+    "p99": 0.0022172937455877673
+  },
+  "successful_request_latency_s": {
+    "p50": 0.0072549965002508005,
+    "p95": 1.922144207300011,
+    "p99": 4.482562525589874
+  },
+  "p50_latency_s": 0.0072549965002508005,
+  "p95_latency_s": 1.922144207300011,
+  "p99_latency_s": 4.482562525589874,
+  "p95_scheduled_latency_s": 1.9226966328836232,
+  "p99_dispatch_delay_s": 0.0022172937455877673,
+  "intended_replay_duration_s": 420.0,
+  "actual_request_activity_duration_s": 419.9953981130002,
+  "runner_elapsed_s": 540.3484935159995,
+  "offered_request_rate_rps": 62.15,
+  "actual_dispatch_rate_rps": 62.151730726667225,
+  "achieved_success_rps": 30.71904761904762,
+  "max_client_inflight": 601,
+  "pod_seconds": 1367.4976374004987,
+  "desired_pod_seconds": 1537.499709377998,
+  "mean_ready": 3.255946755715473,
+  "max_ready": 8,
+  "final_observed_ready": 4,
+  "cpu_hot_sample_fraction": 0.4230769230769231,
+  "mean_cpu_m": 231.45079319166675,
+  "max_cpu_m": 501.664275,
+  "mean_metric_pod_coverage": 0.8705357142857143,
+  "sample_count": 84,
+  "cpu_sample_count": 78,
+  "max_sample_gap_s": 5.002828515000147,
+  "malformed_metric_records": 0,
+  "max_workload_restarts": 4,
+  "readiness_deficit_samples": 28,
+  "events": {
+    "readiness_probe_failures": 22,
+    "liveness_probe_failures": 6,
+    "container_kill_events": 4
+  },
+  "active_controller": "HorizontalPodAutoscaler",
+  "controller_conflict_observed": false,
+  "scaling_events": [
+    {
+      "elapsed_s": 305.0000879899999,
+      "utc": "2026-10-23T14:36:50.150407+00:00",
+      "from_replicas": 1,
+      "to_replicas": 5
+    },
+    {
+      "elapsed_s": 350.00009745900024,
+      "utc": "2026-10-23T14:37:35.150414+00:00",
+      "from_replicas": 5,
+      "to_replicas": 8
+    },
+    {
+      "elapsed_s": 440.00010941799974,
+      "utc": "2026-10-23T14:39:05.150427+00:00",
+      "from_replicas": 8,
+      "to_replicas": 4
+    }
+  ],
+  "scaling_changes": 3,
+  "checks": {
+    "trace_hash_matches": true,
+    "metadata_schedule_count_exact": true,
+    "all_schedule_records_present": true,
+    "no_unexpected_or_duplicate_records": true,
+    "request_timestamps_valid": true,
+    "complete_marker": true,
+    "no_generator_drops": true,
+    "dispatch_p99_below_100ms": true,
+    "metrics_present": true,
+    "controller_exclusive": true,
+    "metrics_coverage_above_90pct": true,
+    "sample_gap_below_15s": true,
+    "window_bracketed": true,
+    "metric_timestamps_consistent": true,
+    "scaling_response_observed": true
+  },
+  "check_severity": {
+    "reject_if_false": [
+      "trace_hash_matches",
+      "metadata_schedule_count_exact",
+      "all_schedule_records_present",
+      "no_unexpected_or_duplicate_records",
+      "request_timestamps_valid",
+      "no_generator_drops",
+      "dispatch_p99_below_100ms"
+    ],
+    "inconclusive_if_false": [
+      "complete_marker",
+      "metrics_present",
+      "metrics_coverage_above_90pct",
+      "sample_gap_below_15s",
+      "window_bracketed",
+      "metric_timestamps_consistent",
+      "scaling_response_observed",
+      "controller_exclusive"
+    ]
+  },
+  "valid": true
+}

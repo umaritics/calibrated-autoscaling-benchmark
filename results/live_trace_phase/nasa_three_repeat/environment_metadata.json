@@ -1,0 +1,27 @@
+{
+  "captured_date": "2026-10-23",
+  "cluster": "calibrated-live",
+  "kubernetes_client_server": "v1.32.2",
+  "node": "calibrated-live-control-plane",
+  "node_ready": true,
+  "node_pressure": {
+    "memory": false,
+    "disk": false,
+    "pid": false
+  },
+  "node_allocatable_cpu": "8",
+  "metrics_server": "v0.7.1",
+  "phpa": "v0.13.2",
+  "application_image": "php:8.2-apache",
+  "phpa_image": "jthomperoo/predictive-horizontal-pod-autoscaler:v0.13.2",
+  "filesystem_free_before": "6.0 GiB",
+  "filesystem_free_after": "5.9 GiB",
+  "host_and_run_metadata": "Each run's metadata.json and metrics.jsonl retain UTC times, elapsed duration, host load, image/controller objects, and input hashes.",
+  "limitations": [
+    "Single-node kind cluster",
+    "Host contention was observed but not controlled",
+    "Control-plane static pods displayed 0/1 readiness although the node, API, scheduler, metrics, workload, and operator were functional",
+    "Docker socket access was sandbox-blocked; the already-running cluster was verified directly through its Kubernetes API",
+    "Free filesystem space was limited but remained above the 1 GiB orchestration guard"
+  ]
+}

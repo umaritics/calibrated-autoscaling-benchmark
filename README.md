@@ -85,6 +85,20 @@ python3 -m venv .venv
 .venv/bin/python scripts/verify_dataset_results.py
 ```
 
-The authors’ released early-detection arithmetic is reproducible, but earlier scaling does not imply lower capacity: their HW trace holds more time-averaged ready replicas than their HPA trace on every pattern. The release contains inconsistent ready/current counts and only one run per condition, so this is descriptive evidence. No new live trials, NASA/Alibaba evaluation, or latency measurements are claimed.
+The authors’ released early-detection arithmetic is reproducible, but earlier scaling does not imply lower capacity: their HW trace holds more time-averaged ready replicas than their HPA trace on every pattern. The release contains inconsistent ready/current counts and only one run per condition, so this is descriptive evidence.
+
+## NASA-derived live checkpoint
+
+A later live phase replayed one fixed NASA-HTTP-derived demand shape against the
+benchmark Kubernetes service with request-level latency/error collection. It is
+an eight-of-nine accepted matrix: soft HPA 3/3, tuned HPA 2/3, and Holt–Winters
+3/3. Two retained attempts for tuned-HPA repeat 3 are `INCONCLUSIVE` because
+CPU telemetry covered 75/84 samples, below the frozen 90% rule. They are not
+promoted into the aggregates. Because missing metrics overlap service
+instability, the incomplete matrix may favor healthier periods.
+
+See [NASA findings](results/live_trace_phase/nasa_three_repeat/FINDINGS.md),
+[independent verification](results/live_trace_phase/nasa_three_repeat/independent_verification.json),
+and the [evidence manifest](results/live_trace_phase/nasa_three_repeat/evidence_manifest.json).
 
 Offline result: at 15 minutes, persistence has the lowest mean MAE on burst, chaotic, growing and stepped; gradient boosting leads seasonal and onoff. See the [computed pattern/horizon rankings](results/results.md#lowest-mean-mae-among-the-five-evaluated-variants). Forecast rankings alone do not establish autoscaling cost or QoS.

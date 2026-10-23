@@ -1,0 +1,164 @@
+{
+  "dataset": "nasa",
+  "arm": "calibrated_hpa",
+  "repeat": 1,
+  "category": "first_comparison",
+  "warmup": 120,
+  "duration": 420,
+  "decision": "ACCEPT",
+  "decision_scope": "single-repeat live controller comparison",
+  "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa",
+  "sources": {
+    "requests.csv": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/requests.csv",
+    "metrics.jsonl": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metrics.jsonl",
+    "metadata.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metadata.json",
+    "events.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/events.json",
+    "initial_objects.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/initial_objects.json",
+    "final_objects.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/final_objects.json",
+    "operator.log": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/operator.log"
+  },
+  "source_sha256": {
+    "requests.csv": "dc6c139e83f04a26284f99206d365cda1e2254436582aab32aee33181f7ce838",
+    "metrics.jsonl": "34f4fe43cefddef65cf9e48cbe1ba86890771cd5d598d3fffe00a0dd96b03b91",
+    "metadata.json": "7905eb791a78c9797a6bfc0a6dcc5ae58fca38568e74ab60e590603e4b4a618a",
+    "events.json": "b33cb0f983a4a4119a55c6f3a558ad3c0be6eef8e6eda6572285a53ffe46bf36",
+    "initial_objects.json": "0df1b8b681d051f3ec14d34af480bbb2f616973fb931f2e4b4bbc3b8c5e553ee",
+    "final_objects.json": "8d2e3050e26ee9f86246932eacc90dc770d4172aa0c55e17a7e8efbf9ff222ae",
+    "operator.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "scheduled_requests": 26583,
+  "scheduled_measurement_requests": 26103,
+  "request_records": 26583,
+  "measurement_request_records": 26103,
+  "successful_requests": 16682,
+  "success_requests": 16682,
+  "recorded_failures": 9421,
+  "errors": 9421,
+  "http_failures_by_status": {},
+  "client_exceptions_by_class": {
+    "ServerDisconnectedError": 17,
+    "TimeoutError": 9404
+  },
+  "client_exceptions_by_message": {
+    "ServerDisconnectedError: Server disconnected": 17,
+    "TimeoutError: ": 9404
+  },
+  "timeouts": 9404,
+  "connection_failures": 17,
+  "disconnections": 17,
+  "cancellations": 0,
+  "other_failures": 0,
+  "generator_drops": 0,
+  "missing_records": 0,
+  "unexpected_records": 0,
+  "duplicate_records": 0,
+  "invalid_timestamp_records": 0,
+  "inconsistent_latency_records": 0,
+  "error_rate_scheduled_denominator": 0.3609163697659273,
+  "error_rate": 0.3609163697659273,
+  "recorded_error_rate": 0.3609163697659273,
+  "dispatch_delay_s": {
+    "p50": 0.0007693787127607266,
+    "p95": 0.001958112491135466,
+    "p99": 0.002219680521147893
+  },
+  "successful_request_latency_s": {
+    "p50": 0.0074344674999338,
+    "p95": 2.4572390952997365,
+    "p99": 4.53040524049963
+  },
+  "p50_latency_s": 0.0074344674999338,
+  "p95_latency_s": 2.4572390952997365,
+  "p99_latency_s": 4.53040524049963,
+  "p95_scheduled_latency_s": 2.458473157869719,
+  "p99_dispatch_delay_s": 0.002219680521147893,
+  "intended_replay_duration_s": 420.0,
+  "actual_request_activity_duration_s": 419.99570274100006,
+  "runner_elapsed_s": 540.2986439650003,
+  "offered_request_rate_rps": 62.15,
+  "actual_dispatch_rate_rps": 62.15178506127073,
+  "achieved_success_rps": 39.71904761904762,
+  "max_client_inflight": 601,
+  "pod_seconds": 927.499745546,
+  "desired_pod_seconds": 1077.4996226519995,
+  "mean_ready": 2.2083327274904763,
+  "max_ready": 4,
+  "final_observed_ready": 4,
+  "cpu_hot_sample_fraction": 0.4642857142857143,
+  "mean_cpu_m": 222.94647223809534,
+  "max_cpu_m": 500.049133,
+  "mean_metric_pod_coverage": 0.9146825396825398,
+  "sample_count": 84,
+  "cpu_sample_count": 84,
+  "max_sample_gap_s": 5.000179016999937,
+  "malformed_metric_records": 0,
+  "max_workload_restarts": 4,
+  "readiness_deficit_samples": 25,
+  "events": {
+    "readiness_probe_failures": 37,
+    "liveness_probe_failures": 12,
+    "container_kill_events": 4
+  },
+  "active_controller": "HorizontalPodAutoscaler",
+  "controller_conflict_observed": false,
+  "scaling_events": [
+    {
+      "elapsed_s": 135.00025595700026,
+      "utc": "2026-10-23T13:44:17.906728+00:00",
+      "from_replicas": 1,
+      "to_replicas": 2
+    },
+    {
+      "elapsed_s": 305.000137127,
+      "utc": "2026-10-23T13:47:07.906612+00:00",
+      "from_replicas": 2,
+      "to_replicas": 3
+    },
+    {
+      "elapsed_s": 530.0001007870001,
+      "utc": "2026-10-23T13:50:52.906574+00:00",
+      "from_replicas": 3,
+      "to_replicas": 4
+    }
+  ],
+  "scaling_changes": 3,
+  "checks": {
+    "trace_hash_matches": true,
+    "metadata_schedule_count_exact": true,
+    "all_schedule_records_present": true,
+    "no_unexpected_or_duplicate_records": true,
+    "request_timestamps_valid": true,
+    "complete_marker": true,
+    "no_generator_drops": true,
+    "dispatch_p99_below_100ms": true,
+    "metrics_present": true,
+    "controller_exclusive": true,
+    "metrics_coverage_above_90pct": true,
+    "sample_gap_below_15s": true,
+    "window_bracketed": true,
+    "metric_timestamps_consistent": true,
+    "scaling_response_observed": true
+  },
+  "check_severity": {
+    "reject_if_false": [
+      "trace_hash_matches",
+      "metadata_schedule_count_exact",
+      "all_schedule_records_present",
+      "no_unexpected_or_duplicate_records",
+      "request_timestamps_valid",
+      "no_generator_drops",
+      "dispatch_p99_below_100ms"
+    ],
+    "inconclusive_if_false": [
+      "complete_marker",
+      "metrics_present",
+      "metrics_coverage_above_90pct",
+      "sample_gap_below_15s",
+      "window_bracketed",
+      "metric_timestamps_consistent",
+      "scaling_response_observed",
+      "controller_exclusive"
+    ]
+  },
+  "valid": true
+}

@@ -1,0 +1,4603 @@
+{
+  "generated_utc": "2026-10-23T15:31:16.314968+00:00",
+  "classification": {
+    "root_cause": "B",
+    "confidence": "demonstrated for observed empty API responses; ultimate metrics-server internals not captured",
+    "finding": "Genuine CPU metrics API unavailability experienced by both the collector and HPA; no observed collector command failure caused the 18 missing samples.",
+    "instrumentation_limitation": "Legacy records omit kubectl return code/stderr/duration, but each missing payload is a parsed PodMetricsList with items=[] and no error; HPA status independently records metric retrieval failures."
+  },
+  "frozen_acceptance": {
+    "minimum_cpu_coverage": 0.9,
+    "attempt_decisions_unchanged": true,
+    "establishment_evidence": {
+      "where": "scripts/live/analyze_runs.py uses cpu samples >= 0.9 * measurement samples (the check name says above, but equality passes)",
+      "protocol_context": "docs/LIVE_TRACE_PROTOCOL.md requires CPU metric availability verification; scripts/live/verify_first_comparison.py calls the analyzer checks predeclared",
+      "timestamp_bound": "execution_ledger.jsonl records the threshold failure at 2026-10-23T15:08:28.262484+00:00, before the unchanged retry began at 2026-10-23T15:08:58.132338+00:00",
+      "limitation": "The scientific worktree is untracked, so the exact initial creation time is not cryptographically established by Git history."
+    },
+    "cpu_dependent_measures": [
+      "mean_cpu_m",
+      "max_cpu_m",
+      "cpu_hot_sample_fraction",
+      "mean_metric_pod_coverage"
+    ],
+    "independently_verifiable_measures": [
+      "request accounting",
+      "error rate",
+      "successes",
+      "timeouts",
+      "successful-request latency",
+      "ready pod-seconds",
+      "replica observations",
+      "controller identity"
+    ]
+  },
+  "runs": {
+    "accepted_tuned_repeat1": {
+      "label": "accepted_tuned_repeat1",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/requests.csv",
+        "events.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/events.json",
+        "summary.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 16682,
+        "timeouts": 9404,
+        "connection_failures": 17,
+        "error_rate": 0.3609163697659273,
+        "p95_latency_s": 2.4572390952997365,
+        "pod_seconds": 927.499745546,
+        "mean_ready": 2.2083327274904763,
+        "max_ready": 4,
+        "sample_count": 84,
+        "cpu_sample_count": 84,
+        "max_workload_restarts": 4,
+        "readiness_deficit_samples": 25
+      },
+      "cpu_coverage": 1.0,
+      "missing_samples": [],
+      "replica_changes": [
+        {
+          "elapsed_s": 135.00025595700026,
+          "utc": "2026-10-23T13:44:17.906728+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 305.000137127,
+          "utc": "2026-10-23T13:47:07.906612+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 530.0001007870001,
+          "utc": "2026-10-23T13:50:52.906574+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.0000771340001,
+          "utc": "2026-10-23T13:44:22.906550+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 145.00007732800032,
+          "utc": "2026-10-23T13:44:27.906549+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 165.00007645100004,
+          "utc": "2026-10-23T13:44:47.906549+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 170.00008414600006,
+          "utc": "2026-10-23T13:44:52.906558+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 185.00008724500003,
+          "utc": "2026-10-23T13:45:07.906561+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 190.00016115400012,
+          "utc": "2026-10-23T13:45:12.906635+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 230.00009629100032,
+          "utc": "2026-10-23T13:45:52.906569+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 240.0000948930001,
+          "utc": "2026-10-23T13:46:02.906569+00:00",
+          "from": 0,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 255.00008029400033,
+          "utc": "2026-10-23T13:46:17.906553+00:00",
+          "from": 2,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 265.0000908090001,
+          "utc": "2026-10-23T13:46:27.906564+00:00",
+          "from": 1,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 310.00008809500014,
+          "utc": "2026-10-23T13:47:12.906562+00:00",
+          "from": 2,
+          "to": 3,
+          "current_replicas": 3,
+          "desired_replicas": 3
+        },
+        {
+          "elapsed_s": 535.0000768090003,
+          "utc": "2026-10-23T13:50:57.906550+00:00",
+          "from": 3,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 160.00008721600034,
+          "utc": "2026-10-23T13:44:42.906561+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 185.00008724500003,
+          "utc": "2026-10-23T13:45:07.906561+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 205.00008440500005,
+          "utc": "2026-10-23T13:45:27.906557+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 235.00009696999996,
+          "utc": "2026-10-23T13:45:57.906570+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T13:45:43Z",
+          "reason": "Unhealthy",
+          "count": 15,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:45:21Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.18:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:45:21Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T13:44:41Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": read tcp 10.244.0.1:39520->10.244.0.18:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:44:41Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": read tcp 10.244.0.1:39530->10.244.0.18:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:45:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": read tcp 10.244.0.1:43836->10.244.0.18:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:45:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": dial tcp 10.244.0.18:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T13:45:53Z",
+          "reason": "Unhealthy",
+          "count": 15,
+          "message": "Readiness probe failed: Get \"http://10.244.0.19:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:45:53Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.19:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:45:53Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T13:45:05Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.19:80/index.php\": read tcp 10.244.0.1:43860->10.244.0.19:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:45:05Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.19:80/index.php\": dial tcp 10.244.0.19:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T13:45:54Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.19:80/index.php\": read tcp 10.244.0.1:39366->10.244.0.19:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:46:18Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 9,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T13:46:18Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 9,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T13:44:17Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 2; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T13:47:03Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 3; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T13:50:48Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: cpu resource utilization (percentage of request) above target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 25,
+      "missing_bursts": []
+    },
+    "accepted_tuned_repeat2": {
+      "label": "accepted_tuned_repeat2",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/requests.csv",
+        "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/events.json",
+        "summary.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 15817,
+        "timeouts": 10244,
+        "connection_failures": 42,
+        "error_rate": 0.3940543232578631,
+        "p95_latency_s": 2.024587865600551,
+        "pod_seconds": 902.4996489394994,
+        "mean_ready": 2.148808687951189,
+        "max_ready": 4,
+        "sample_count": 84,
+        "cpu_sample_count": 84,
+        "max_workload_restarts": 4,
+        "readiness_deficit_samples": 29
+      },
+      "cpu_coverage": 1.0,
+      "missing_samples": [],
+      "replica_changes": [
+        {
+          "elapsed_s": 135.00009662700086,
+          "utc": "2026-10-23T14:15:36.236018+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 305.00011992800046,
+          "utc": "2026-10-23T14:18:26.236042+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 530.0000902130005,
+          "utc": "2026-10-23T14:22:11.236012+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00008263900054,
+          "utc": "2026-10-23T14:15:41.236004+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 145.00010972900054,
+          "utc": "2026-10-23T14:15:46.236032+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 165.00010078800005,
+          "utc": "2026-10-23T14:16:06.236022+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 170.00009317500007,
+          "utc": "2026-10-23T14:16:11.236014+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 185.0001196610001,
+          "utc": "2026-10-23T14:16:26.236041+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 190.0000946170003,
+          "utc": "2026-10-23T14:16:31.236016+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 210.00008257400077,
+          "utc": "2026-10-23T14:16:51.236004+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 220.00009229700026,
+          "utc": "2026-10-23T14:17:01.236015+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 235.0001143010004,
+          "utc": "2026-10-23T14:17:16.236035+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 240.00010743000075,
+          "utc": "2026-10-23T14:17:21.236029+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 270.0000977740001,
+          "utc": "2026-10-23T14:17:51.236018+00:00",
+          "from": 1,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 310.0000983910004,
+          "utc": "2026-10-23T14:18:31.236021+00:00",
+          "from": 2,
+          "to": 3,
+          "current_replicas": 3,
+          "desired_replicas": 3
+        },
+        {
+          "elapsed_s": 535.0001052470006,
+          "utc": "2026-10-23T14:22:16.236027+00:00",
+          "from": 3,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 165.00010078800005,
+          "utc": "2026-10-23T14:16:06.236022+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 185.0001196610001,
+          "utc": "2026-10-23T14:16:26.236041+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 215.0000985050001,
+          "utc": "2026-10-23T14:16:56.236020+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 235.0001143010004,
+          "utc": "2026-10-23T14:17:16.236035+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T14:17:05Z",
+          "reason": "Unhealthy",
+          "count": 16,
+          "message": "Readiness probe failed: Get \"http://10.244.0.33:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:16:49Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.33:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:16:49Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:16:00Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.33:80/index.php\": EOF"
+        },
+        {
+          "utc": "2026-10-23T14:16:00Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.33:80/index.php\": read tcp 10.244.0.1:50770->10.244.0.33:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:16:50Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.33:80/index.php\": read tcp 10.244.0.1:44960->10.244.0.33:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:17:27Z",
+          "reason": "Unhealthy",
+          "count": 16,
+          "message": "Readiness probe failed: Get \"http://10.244.0.34:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:17:11Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.34:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:17:11Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:16:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.34:80/index.php\": read tcp 10.244.0.1:34060->10.244.0.34:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:16:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.34:80/index.php\": dial tcp 10.244.0.34:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T14:17:13Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.34:80/index.php\": read tcp 10.244.0.1:49068->10.244.0.34:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:18:06Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 11,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T14:18:06Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 11,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T14:15:36Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 2; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T14:18:21Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 3; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T14:22:06Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: cpu resource utilization (percentage of request) above target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 31,
+      "missing_bursts": []
+    },
+    "inconclusive_attempt1": {
+      "label": "inconclusive_attempt1",
+      "decision": "INCONCLUSIVE",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa_inconclusive_attempt1",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa_inconclusive_attempt1/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa_inconclusive_attempt1/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa_inconclusive_attempt1/requests.csv",
+        "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa_inconclusive_attempt1/events.json",
+        "summary.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa_inconclusive_attempt1/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 12878,
+        "timeouts": 13014,
+        "connection_failures": 211,
+        "error_rate": 0.5066467455847987,
+        "p95_latency_s": 2.4045387800999793,
+        "pod_seconds": 982.4997035444994,
+        "mean_ready": 2.339285008439284,
+        "max_ready": 4,
+        "sample_count": 84,
+        "cpu_sample_count": 75,
+        "max_workload_restarts": 4,
+        "readiness_deficit_samples": 27
+      },
+      "cpu_coverage": 0.8928571428571429,
+      "missing_samples": [
+        {
+          "elapsed_s": 175.00013873199987,
+          "utc": "2026-10-23T15:02:20.015041+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.0970921250000174,
+          "request_behavior": {
+            "window_elapsed_s": [
+              172.50013873199987,
+              177.50013873199987
+            ],
+            "requests": 405,
+            "successes": 0,
+            "failures": 405,
+            "timeouts": 405,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 180.0001031820002,
+          "utc": "2026-10-23T15:02:25.015005+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09337789900018834,
+          "request_behavior": {
+            "window_elapsed_s": [
+              177.5001031820002,
+              182.5001031820002
+            ],
+            "requests": 451,
+            "successes": 0,
+            "failures": 451,
+            "timeouts": 451,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 185.0001140940003,
+          "utc": "2026-10-23T15:02:30.015016+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09827159299948107,
+          "request_behavior": {
+            "window_elapsed_s": [
+              182.5001140940003,
+              187.5001140940003
+            ],
+            "requests": 497,
+            "successes": 0,
+            "failures": 497,
+            "timeouts": 497,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 220.00009801899978,
+          "utc": "2026-10-23T15:03:05.015000+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09328310799992323,
+          "request_behavior": {
+            "window_elapsed_s": [
+              217.50009801899978,
+              222.50009801899978
+            ],
+            "requests": 320,
+            "successes": 0,
+            "failures": 320,
+            "timeouts": 320,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 225.00010510599986,
+          "utc": "2026-10-23T15:03:10.015007+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.10408005899989803,
+          "request_behavior": {
+            "window_elapsed_s": [
+              222.50010510599986,
+              227.50010510599986
+            ],
+            "requests": 319,
+            "successes": 0,
+            "failures": 319,
+            "timeouts": 319,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 230.0001102670003,
+          "utc": "2026-10-23T15:03:15.015012+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09628582000004826,
+          "request_behavior": {
+            "window_elapsed_s": [
+              227.5001102670003,
+              232.5001102670003
+            ],
+            "requests": 308,
+            "successes": 0,
+            "failures": 308,
+            "timeouts": 308,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 265.0001368129997,
+          "utc": "2026-10-23T15:03:50.015040+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 3,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09845404299994698,
+          "request_behavior": {
+            "window_elapsed_s": [
+              262.5001368129997,
+              267.5001368129997
+            ],
+            "requests": 237,
+            "successes": 48,
+            "failures": 189,
+            "timeouts": 189,
+            "connection_failures": 0,
+            "successful_latency_p95_s": 4.909332829049345
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 270.0000624719996,
+          "utc": "2026-10-23T15:03:55.014965+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 3,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.0951710550007192,
+          "request_behavior": {
+            "window_elapsed_s": [
+              267.5000624719996,
+              272.5000624719996
+            ],
+            "requests": 243,
+            "successes": 35,
+            "failures": 208,
+            "timeouts": 208,
+            "connection_failures": 0,
+            "successful_latency_p95_s": 4.701853224499609
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 275.0014653170001,
+          "utc": "2026-10-23T15:04:00.016371+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 3,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.10710817400013184,
+          "request_behavior": {
+            "window_elapsed_s": [
+              272.5014653170001,
+              277.5014653170001
+            ],
+            "requests": 247,
+            "successes": 0,
+            "failures": 247,
+            "timeouts": 247,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        }
+      ],
+      "replica_changes": [
+        {
+          "elapsed_s": 305.0000896290003,
+          "utc": "2026-10-23T15:04:30.014992+00:00",
+          "from": 1,
+          "to": 4
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00013116900027,
+          "utc": "2026-10-23T15:01:45.015036+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 175.00013873199987,
+          "utc": "2026-10-23T15:02:20.015041+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 190.00010746499993,
+          "utc": "2026-10-23T15:02:35.015009+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 255.00011093400008,
+          "utc": "2026-10-23T15:03:40.015013+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 265.0001368129997,
+          "utc": "2026-10-23T15:03:50.015040+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 270.0000624719996,
+          "utc": "2026-10-23T15:03:55.014965+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 290.00010052499965,
+          "utc": "2026-10-23T15:04:15.015003+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 310.0001309580002,
+          "utc": "2026-10-23T15:04:35.015036+00:00",
+          "from": 0,
+          "to": 3,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        },
+        {
+          "elapsed_s": 320.00012007700025,
+          "utc": "2026-10-23T15:04:45.015023+00:00",
+          "from": 3,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 170.00010299099995,
+          "utc": "2026-10-23T15:02:15.015004+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 210.00007806200028,
+          "utc": "2026-10-23T15:02:55.014980+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 265.0001368129997,
+          "utc": "2026-10-23T15:03:50.015040+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 315.0001044339997,
+          "utc": "2026-10-23T15:04:40.015008+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T15:03:08Z",
+          "reason": "Unhealthy",
+          "count": 18,
+          "message": "Readiness probe failed: Get \"http://10.244.0.73:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T15:02:53Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.73:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T15:04:33Z",
+          "reason": "Killing",
+          "count": 4,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T15:02:54Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.73:80/index.php\": read tcp 10.244.0.1:59048->10.244.0.73:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T15:04:42Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.75:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T15:04:42Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.76:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T15:03:57Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 4,
+          "message": "failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+        },
+        {
+          "utc": "2026-10-23T15:03:57Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 4,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+        },
+        {
+          "utc": "2026-10-23T15:04:12Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 8,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T15:04:12Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 8,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T15:04:27Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: cpu resource utilization (percentage of request) above target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 30,
+      "missing_bursts": [
+        {
+          "start_elapsed_s": 175.00013873199987,
+          "end_elapsed_s": 185.0001140940003,
+          "start_utc": "2026-10-23T15:02:20.015041+00:00",
+          "end_utc": "2026-10-23T15:02:30.015016+00:00",
+          "samples": 3
+        },
+        {
+          "start_elapsed_s": 220.00009801899978,
+          "end_elapsed_s": 230.0001102670003,
+          "start_utc": "2026-10-23T15:03:05.015000+00:00",
+          "end_utc": "2026-10-23T15:03:15.015012+00:00",
+          "samples": 3
+        },
+        {
+          "start_elapsed_s": 265.0001368129997,
+          "end_elapsed_s": 275.0014653170001,
+          "start_utc": "2026-10-23T15:03:50.015040+00:00",
+          "end_utc": "2026-10-23T15:04:00.016371+00:00",
+          "samples": 3
+        }
+      ]
+    },
+    "inconclusive_attempt2": {
+      "label": "inconclusive_attempt2",
+      "decision": "INCONCLUSIVE",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa/requests.csv",
+        "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa/events.json",
+        "summary.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/calibrated_hpa/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 12490,
+        "timeouts": 13576,
+        "connection_failures": 37,
+        "error_rate": 0.521510937440141,
+        "p95_latency_s": 0.020656096850234323,
+        "pod_seconds": 1139.9995305974999,
+        "mean_ready": 2.714284596660714,
+        "max_ready": 5,
+        "sample_count": 84,
+        "cpu_sample_count": 75,
+        "max_workload_restarts": 4,
+        "readiness_deficit_samples": 31
+      },
+      "cpu_coverage": 0.8928571428571429,
+      "missing_samples": [
+        {
+          "elapsed_s": 160.00011015199925,
+          "utc": "2026-10-23T15:11:46.963741+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09653083500052162,
+          "request_behavior": {
+            "window_elapsed_s": [
+              157.50011015199925,
+              162.50011015199925
+            ],
+            "requests": 464,
+            "successes": 0,
+            "failures": 464,
+            "timeouts": 464,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 165.00012287500067,
+          "utc": "2026-10-23T15:11:51.963754+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09317223200014269,
+          "request_behavior": {
+            "window_elapsed_s": [
+              162.50012287500067,
+              167.50012287500067
+            ],
+            "requests": 447,
+            "successes": 0,
+            "failures": 447,
+            "timeouts": 447,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 170.00009870299982,
+          "utc": "2026-10-23T15:11:56.963730+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09959221700046328,
+          "request_behavior": {
+            "window_elapsed_s": [
+              167.50009870299982,
+              172.50009870299982
+            ],
+            "requests": 426,
+            "successes": 0,
+            "failures": 426,
+            "timeouts": 426,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 205.00009371600026,
+          "utc": "2026-10-23T15:12:31.963723+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.08963245999984792,
+          "request_behavior": {
+            "window_elapsed_s": [
+              202.50009371600026,
+              207.50009371600026
+            ],
+            "requests": 415,
+            "successes": 48,
+            "failures": 367,
+            "timeouts": 357,
+            "connection_failures": 10,
+            "successful_latency_p95_s": 4.895949876799477
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 210.000078604,
+          "utc": "2026-10-23T15:12:36.963708+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09871806199953426,
+          "request_behavior": {
+            "window_elapsed_s": [
+              207.500078604,
+              212.500078604
+            ],
+            "requests": 368,
+            "successes": 0,
+            "failures": 368,
+            "timeouts": 368,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 215.00011270100003,
+          "utc": "2026-10-23T15:12:41.963743+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09837442800017016,
+          "request_behavior": {
+            "window_elapsed_s": [
+              212.50011270100003,
+              217.50011270100003
+            ],
+            "requests": 321,
+            "successes": 0,
+            "failures": 321,
+            "timeouts": 321,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 310.00010724300046,
+          "utc": "2026-10-23T15:14:16.963737+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 4,
+          "current_replicas": 4,
+          "ready_replicas": 1,
+          "container_restarts": 4,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededRescale",
+              "message": "the HPA controller was able to update the target scale to 4"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "True",
+              "reason": "ValidMetricFound",
+              "message": "the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.0989268630000879,
+          "request_behavior": {
+            "window_elapsed_s": [
+              307.50010724300046,
+              312.50010724300046
+            ],
+            "requests": 226,
+            "successes": 35,
+            "failures": 191,
+            "timeouts": 191,
+            "connection_failures": 0,
+            "successful_latency_p95_s": 4.710721271500188
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 315.00012436,
+          "utc": "2026-10-23T15:14:21.963755+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 4,
+          "current_replicas": 4,
+          "ready_replicas": 4,
+          "container_restarts": 4,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededRescale",
+              "message": "the HPA controller was able to update the target scale to 4"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "True",
+              "reason": "ValidMetricFound",
+              "message": "the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09874303600008716,
+          "request_behavior": {
+            "window_elapsed_s": [
+              312.50012436,
+              317.50012436
+            ],
+            "requests": 209,
+            "successes": 101,
+            "failures": 108,
+            "timeouts": 108,
+            "connection_failures": 0,
+            "successful_latency_p95_s": 0.04852002500047092
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 320.00010844700046,
+          "utc": "2026-10-23T15:14:26.963739+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 4,
+          "current_replicas": 4,
+          "ready_replicas": 4,
+          "container_restarts": 4,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededRescale",
+              "message": "the HPA controller was able to update the target scale to 4"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "True",
+              "reason": "ValidMetricFound",
+              "message": "the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09753973499937274,
+          "request_behavior": {
+            "window_elapsed_s": [
+              317.50010844700046,
+              322.50010844700046
+            ],
+            "requests": 190,
+            "successes": 144,
+            "failures": 46,
+            "timeouts": 46,
+            "connection_failures": 0,
+            "successful_latency_p95_s": 0.011539194050692458
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        }
+      ],
+      "replica_changes": [
+        {
+          "elapsed_s": 310.00010724300046,
+          "utc": "2026-10-23T15:14:16.963737+00:00",
+          "from": 1,
+          "to": 4
+        },
+        {
+          "elapsed_s": 355.00011591600014,
+          "utc": "2026-10-23T15:15:01.963746+00:00",
+          "from": 4,
+          "to": 5
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00008063600035,
+          "utc": "2026-10-23T15:11:26.963710+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 160.00011015199925,
+          "utc": "2026-10-23T15:11:46.963741+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 175.00011586099936,
+          "utc": "2026-10-23T15:12:01.963746+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 210.000078604,
+          "utc": "2026-10-23T15:12:36.963708+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 225.00008054200043,
+          "utc": "2026-10-23T15:12:51.963711+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 275.00012356799925,
+          "utc": "2026-10-23T15:13:41.963754+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 290.0001191369993,
+          "utc": "2026-10-23T15:13:56.963753+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 310.00010724300046,
+          "utc": "2026-10-23T15:14:16.963737+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        },
+        {
+          "elapsed_s": 315.00012436,
+          "utc": "2026-10-23T15:14:21.963755+00:00",
+          "from": 1,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        },
+        {
+          "elapsed_s": 330.00005711300037,
+          "utc": "2026-10-23T15:14:36.963688+00:00",
+          "from": 4,
+          "to": 3,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        },
+        {
+          "elapsed_s": 350.00011744199946,
+          "utc": "2026-10-23T15:14:56.963748+00:00",
+          "from": 3,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        },
+        {
+          "elapsed_s": 360.0000882860004,
+          "utc": "2026-10-23T15:15:06.963719+00:00",
+          "from": 4,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 155.0000804049996,
+          "utc": "2026-10-23T15:11:41.963711+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 205.00009371600026,
+          "utc": "2026-10-23T15:12:31.963723+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 255.00010694699995,
+          "utc": "2026-10-23T15:13:21.963737+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 305.0000887829992,
+          "utc": "2026-10-23T15:14:11.963720+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T15:12:51Z",
+          "reason": "Unhealthy",
+          "count": 16,
+          "message": "Readiness probe failed: Get \"http://10.244.0.77:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T15:12:25Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.77:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T15:14:05Z",
+          "reason": "Killing",
+          "count": 4,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T15:11:36Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.77:80/index.php\": read tcp 10.244.0.1:33276->10.244.0.77:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T15:11:36Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.77:80/index.php\": dial tcp 10.244.0.77:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T15:12:26Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.77:80/index.php\": read tcp 10.244.0.1:42760->10.244.0.77:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T15:14:28Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 4,
+          "message": "failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+        },
+        {
+          "utc": "2026-10-23T15:12:43Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 3,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+        },
+        {
+          "utc": "2026-10-23T15:13:58Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 10,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T15:13:43Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 9,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T15:14:13Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T15:14:58Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 5; reason: cpu resource utilization (percentage of request) above target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 36,
+      "missing_bursts": [
+        {
+          "start_elapsed_s": 160.00011015199925,
+          "end_elapsed_s": 170.00009870299982,
+          "start_utc": "2026-10-23T15:11:46.963741+00:00",
+          "end_utc": "2026-10-23T15:11:56.963730+00:00",
+          "samples": 3
+        },
+        {
+          "start_elapsed_s": 205.00009371600026,
+          "end_elapsed_s": 215.00011270100003,
+          "start_utc": "2026-10-23T15:12:31.963723+00:00",
+          "end_utc": "2026-10-23T15:12:41.963743+00:00",
+          "samples": 3
+        },
+        {
+          "start_elapsed_s": 310.00010724300046,
+          "end_elapsed_s": 320.00010844700046,
+          "start_utc": "2026-10-23T15:14:16.963737+00:00",
+          "end_utc": "2026-10-23T15:14:26.963739+00:00",
+          "samples": 3
+        }
+      ]
+    }
+  },
+  "accepted_run_comparison": {
+    "soft_repeat1": {
+      "label": "soft_repeat1",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/requests.csv",
+        "events.json": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/events.json",
+        "summary.json": "results/live_trace_phase/first_comparison/nasa/repeat1/strawman_hpa/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 13117,
+        "timeouts": 12956,
+        "connection_failures": 30,
+        "error_rate": 0.4974907098800904,
+        "p95_latency_s": 2.0361132856000013,
+        "pod_seconds": 1067.4994362354985,
+        "mean_ready": 2.5416653243702343,
+        "max_ready": 6,
+        "sample_count": 84,
+        "cpu_sample_count": 78,
+        "max_workload_restarts": 4,
+        "readiness_deficit_samples": 28
+      },
+      "cpu_coverage": 0.9285714285714286,
+      "missing_samples": [
+        {
+          "elapsed_s": 170.00010389,
+          "utc": "2026-10-23T13:35:32.941650+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09743856600016443,
+          "request_behavior": {
+            "window_elapsed_s": [
+              167.50010389,
+              172.50010389
+            ],
+            "requests": 426,
+            "successes": 0,
+            "failures": 426,
+            "timeouts": 426,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 175.00007540000024,
+          "utc": "2026-10-23T13:35:37.941618+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09932439900012469,
+          "request_behavior": {
+            "window_elapsed_s": [
+              172.50007540000024,
+              177.50007540000024
+            ],
+            "requests": 405,
+            "successes": 0,
+            "failures": 405,
+            "timeouts": 405,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 180.00008492799998,
+          "utc": "2026-10-23T13:35:42.941630+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09976207400040948,
+          "request_behavior": {
+            "window_elapsed_s": [
+              177.50008492799998,
+              182.50008492799998
+            ],
+            "requests": 451,
+            "successes": 0,
+            "failures": 451,
+            "timeouts": 451,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 215.00011861400026,
+          "utc": "2026-10-23T13:36:17.941662+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09744805099990117,
+          "request_behavior": {
+            "window_elapsed_s": [
+              212.50011861400026,
+              217.50011861400026
+            ],
+            "requests": 321,
+            "successes": 0,
+            "failures": 321,
+            "timeouts": 321,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 220.00007954900002,
+          "utc": "2026-10-23T13:36:22.941623+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.1444122390003031,
+          "request_behavior": {
+            "window_elapsed_s": [
+              217.50007954900002,
+              222.50007954900002
+            ],
+            "requests": 320,
+            "successes": 0,
+            "failures": 320,
+            "timeouts": 320,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 225.00012043800007,
+          "utc": "2026-10-23T13:36:27.941665+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09560528400015755,
+          "request_behavior": {
+            "window_elapsed_s": [
+              222.50012043800007,
+              227.50012043800007
+            ],
+            "requests": 319,
+            "successes": 0,
+            "failures": 319,
+            "timeouts": 319,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        }
+      ],
+      "replica_changes": [
+        {
+          "elapsed_s": 305.00012621500036,
+          "utc": "2026-10-23T13:37:47.941672+00:00",
+          "from": 1,
+          "to": 5
+        },
+        {
+          "elapsed_s": 380.00009804,
+          "utc": "2026-10-23T13:39:02.941643+00:00",
+          "from": 5,
+          "to": 4
+        },
+        {
+          "elapsed_s": 530.0001041220003,
+          "utc": "2026-10-23T13:41:32.941651+00:00",
+          "from": 4,
+          "to": 6
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.0001250370001,
+          "utc": "2026-10-23T13:35:02.941671+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 170.00010389,
+          "utc": "2026-10-23T13:35:32.941650+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 185.00007614000015,
+          "utc": "2026-10-23T13:35:47.941619+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 240.00008407300038,
+          "utc": "2026-10-23T13:36:42.941628+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 255.0001149740001,
+          "utc": "2026-10-23T13:36:57.941661+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 270.0000989080004,
+          "utc": "2026-10-23T13:37:12.941645+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 285.00008625400005,
+          "utc": "2026-10-23T13:37:27.941631+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 310.0000914940001,
+          "utc": "2026-10-23T13:37:52.941637+00:00",
+          "from": 0,
+          "to": 4,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 320.0000741800004,
+          "utc": "2026-10-23T13:38:02.941618+00:00",
+          "from": 4,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 380.00009804,
+          "utc": "2026-10-23T13:39:02.941643+00:00",
+          "from": 5,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        },
+        {
+          "elapsed_s": 535.0001282570001,
+          "utc": "2026-10-23T13:41:37.941677+00:00",
+          "from": 4,
+          "to": 6,
+          "current_replicas": 6,
+          "desired_replicas": 6
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 165.000087419,
+          "utc": "2026-10-23T13:35:27.941632+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 215.00011861400026,
+          "utc": "2026-10-23T13:36:17.941662+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 265.0000851,
+          "utc": "2026-10-23T13:37:07.941630+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 315.00008892200003,
+          "utc": "2026-10-23T13:37:57.941634+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T13:38:58Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Stopping container php-apache"
+        },
+        {
+          "utc": "2026-10-23T13:36:22Z",
+          "reason": "Unhealthy",
+          "count": 17,
+          "message": "Readiness probe failed: Get \"http://10.244.0.11:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:36:11Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.11:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:37:51Z",
+          "reason": "Killing",
+          "count": 4,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T13:35:22Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.11:80/index.php\": EOF"
+        },
+        {
+          "utc": "2026-10-23T13:35:22Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.11:80/index.php\": read tcp 10.244.0.1:56492->10.244.0.11:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:36:28Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 3,
+          "message": "failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+        },
+        {
+          "utc": "2026-10-23T13:36:28Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 3,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+        },
+        {
+          "utc": "2026-10-23T13:38:13Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 9,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T13:38:13Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 9,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T13:37:43Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 5; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T13:38:58Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: All metrics below target"
+        },
+        {
+          "utc": "2026-10-23T13:41:28Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 6; reason: cpu resource utilization (percentage of request) above target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 34,
+      "missing_bursts": [
+        {
+          "start_elapsed_s": 170.00010389,
+          "end_elapsed_s": 180.00008492799998,
+          "start_utc": "2026-10-23T13:35:32.941650+00:00",
+          "end_utc": "2026-10-23T13:35:42.941630+00:00",
+          "samples": 3
+        },
+        {
+          "start_elapsed_s": 215.00011861400026,
+          "end_elapsed_s": 225.00012043800007,
+          "start_utc": "2026-10-23T13:36:17.941662+00:00",
+          "end_utc": "2026-10-23T13:36:27.941665+00:00",
+          "samples": 3
+        }
+      ]
+    },
+    "tuned_repeat1": {
+      "label": "tuned_repeat1",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/requests.csv",
+        "events.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/events.json",
+        "summary.json": "results/live_trace_phase/first_comparison/nasa/repeat1/calibrated_hpa/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 16682,
+        "timeouts": 9404,
+        "connection_failures": 17,
+        "error_rate": 0.3609163697659273,
+        "p95_latency_s": 2.4572390952997365,
+        "pod_seconds": 927.499745546,
+        "mean_ready": 2.2083327274904763,
+        "max_ready": 4,
+        "sample_count": 84,
+        "cpu_sample_count": 84,
+        "max_workload_restarts": 4,
+        "readiness_deficit_samples": 25
+      },
+      "cpu_coverage": 1.0,
+      "missing_samples": [],
+      "replica_changes": [
+        {
+          "elapsed_s": 135.00025595700026,
+          "utc": "2026-10-23T13:44:17.906728+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 305.000137127,
+          "utc": "2026-10-23T13:47:07.906612+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 530.0001007870001,
+          "utc": "2026-10-23T13:50:52.906574+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.0000771340001,
+          "utc": "2026-10-23T13:44:22.906550+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 145.00007732800032,
+          "utc": "2026-10-23T13:44:27.906549+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 165.00007645100004,
+          "utc": "2026-10-23T13:44:47.906549+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 170.00008414600006,
+          "utc": "2026-10-23T13:44:52.906558+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 185.00008724500003,
+          "utc": "2026-10-23T13:45:07.906561+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 190.00016115400012,
+          "utc": "2026-10-23T13:45:12.906635+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 230.00009629100032,
+          "utc": "2026-10-23T13:45:52.906569+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 240.0000948930001,
+          "utc": "2026-10-23T13:46:02.906569+00:00",
+          "from": 0,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 255.00008029400033,
+          "utc": "2026-10-23T13:46:17.906553+00:00",
+          "from": 2,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 265.0000908090001,
+          "utc": "2026-10-23T13:46:27.906564+00:00",
+          "from": 1,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 310.00008809500014,
+          "utc": "2026-10-23T13:47:12.906562+00:00",
+          "from": 2,
+          "to": 3,
+          "current_replicas": 3,
+          "desired_replicas": 3
+        },
+        {
+          "elapsed_s": 535.0000768090003,
+          "utc": "2026-10-23T13:50:57.906550+00:00",
+          "from": 3,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 160.00008721600034,
+          "utc": "2026-10-23T13:44:42.906561+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 185.00008724500003,
+          "utc": "2026-10-23T13:45:07.906561+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 205.00008440500005,
+          "utc": "2026-10-23T13:45:27.906557+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 235.00009696999996,
+          "utc": "2026-10-23T13:45:57.906570+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T13:45:43Z",
+          "reason": "Unhealthy",
+          "count": 15,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:45:21Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.18:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:45:21Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T13:44:41Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": read tcp 10.244.0.1:39520->10.244.0.18:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:44:41Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": read tcp 10.244.0.1:39530->10.244.0.18:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:45:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": read tcp 10.244.0.1:43836->10.244.0.18:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:45:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.18:80/index.php\": dial tcp 10.244.0.18:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T13:45:53Z",
+          "reason": "Unhealthy",
+          "count": 15,
+          "message": "Readiness probe failed: Get \"http://10.244.0.19:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:45:53Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.19:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:45:53Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T13:45:05Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.19:80/index.php\": read tcp 10.244.0.1:43860->10.244.0.19:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:45:05Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.19:80/index.php\": dial tcp 10.244.0.19:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T13:45:54Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.19:80/index.php\": read tcp 10.244.0.1:39366->10.244.0.19:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:46:18Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 9,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T13:46:18Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 9,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T13:44:17Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 2; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T13:47:03Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 3; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T13:50:48Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: cpu resource utilization (percentage of request) above target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 25,
+      "missing_bursts": []
+    },
+    "holtwinters_repeat1": {
+      "label": "holtwinters_repeat1",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/requests.csv",
+        "events.json": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/events.json",
+        "summary.json": "results/live_trace_phase/first_comparison/nasa/repeat1/holtwinters/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 20939,
+        "timeouts": 5160,
+        "connection_failures": 4,
+        "error_rate": 0.19783166685821554,
+        "p95_latency_s": 0.4855582666999431,
+        "pod_seconds": 3497.4971737154983,
+        "mean_ready": 8.32737422313214,
+        "max_ready": 10,
+        "sample_count": 84,
+        "cpu_sample_count": 84,
+        "max_workload_restarts": 1,
+        "readiness_deficit_samples": 10
+      },
+      "cpu_coverage": 1.0,
+      "missing_samples": [],
+      "replica_changes": [
+        {
+          "elapsed_s": 155.00012994300005,
+          "utc": "2026-10-23T13:53:58.913692+00:00",
+          "from": 1,
+          "to": 5
+        },
+        {
+          "elapsed_s": 215.00014004700006,
+          "utc": "2026-10-23T13:54:58.913700+00:00",
+          "from": 5,
+          "to": 10
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00007309300008,
+          "utc": "2026-10-23T13:53:43.913632+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 160.00035783800013,
+          "utc": "2026-10-23T13:54:03.913918+00:00",
+          "from": 0,
+          "to": 4,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 170.00008516300022,
+          "utc": "2026-10-23T13:54:13.913646+00:00",
+          "from": 4,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 180.00010210300024,
+          "utc": "2026-10-23T13:54:23.913665+00:00",
+          "from": 5,
+          "to": 1,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 185.00047403500002,
+          "utc": "2026-10-23T13:54:28.914036+00:00",
+          "from": 1,
+          "to": 3,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 190.00011973900018,
+          "utc": "2026-10-23T13:54:33.913681+00:00",
+          "from": 3,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 195.00011910600006,
+          "utc": "2026-10-23T13:54:38.913679+00:00",
+          "from": 5,
+          "to": 4,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 200.00010456100017,
+          "utc": "2026-10-23T13:54:43.913665+00:00",
+          "from": 4,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 220.0001098460002,
+          "utc": "2026-10-23T13:55:03.913674+00:00",
+          "from": 5,
+          "to": 10,
+          "current_replicas": 10,
+          "desired_replicas": 10
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 165.00101445100017,
+          "utc": "2026-10-23T13:54:08.914576+00:00",
+          "from": 0,
+          "to": 1
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T13:54:38Z",
+          "reason": "Unhealthy",
+          "count": 10,
+          "message": "Readiness probe failed: Get \"http://10.244.0.22:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:31Z",
+          "reason": "Unhealthy",
+          "count": 4,
+          "message": "Liveness probe failed: Get \"http://10.244.0.22:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:01Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T13:54:03Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.22:80/index.php\": read tcp 10.244.0.1:46330->10.244.0.22:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T13:54:03Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.22:80/index.php\": dial tcp 10.244.0.22:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T13:54:27Z",
+          "reason": "Unhealthy",
+          "count": 5,
+          "message": "Readiness probe failed: Get \"http://10.244.0.26:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:19Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Liveness probe failed: Get \"http://10.244.0.26:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:22Z",
+          "reason": "Unhealthy",
+          "count": 4,
+          "message": "Readiness probe failed: Get \"http://10.244.0.27:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:19Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Liveness probe failed: Get \"http://10.244.0.27:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:22Z",
+          "reason": "Unhealthy",
+          "count": 4,
+          "message": "Readiness probe failed: Get \"http://10.244.0.25:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:19Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Liveness probe failed: Get \"http://10.244.0.25:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:27Z",
+          "reason": "Unhealthy",
+          "count": 5,
+          "message": "Readiness probe failed: Get \"http://10.244.0.24:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T13:54:29Z",
+          "reason": "Unhealthy",
+          "count": 2,
+          "message": "Liveness probe failed: Get \"http://10.244.0.24:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 0,
+      "missing_bursts": []
+    },
+    "strawman_hpa_repeat2": {
+      "label": "strawman_hpa_repeat2",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/requests.csv",
+        "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/events.json",
+        "summary.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/strawman_hpa/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 12902,
+        "timeouts": 13154,
+        "connection_failures": 47,
+        "error_rate": 0.5057273110370456,
+        "p95_latency_s": 1.922144207300011,
+        "pod_seconds": 1367.4976374004987,
+        "mean_ready": 3.255946755715473,
+        "max_ready": 8,
+        "sample_count": 84,
+        "cpu_sample_count": 78,
+        "max_workload_restarts": 4,
+        "readiness_deficit_samples": 28
+      },
+      "cpu_coverage": 0.9285714285714286,
+      "missing_samples": [
+        {
+          "elapsed_s": 170.0021198180002,
+          "utc": "2026-10-23T14:34:35.152439+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09498571799940692,
+          "request_behavior": {
+            "window_elapsed_s": [
+              167.5021198180002,
+              172.5021198180002
+            ],
+            "requests": 427,
+            "successes": 0,
+            "failures": 427,
+            "timeouts": 427,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 175.00201042699973,
+          "utc": "2026-10-23T14:34:40.152327+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09462065600018832,
+          "request_behavior": {
+            "window_elapsed_s": [
+              172.50201042699973,
+              177.50201042699973
+            ],
+            "requests": 405,
+            "successes": 0,
+            "failures": 405,
+            "timeouts": 405,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 180.00068879900027,
+          "utc": "2026-10-23T14:34:45.151007+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 1,
+          "container_restarts": 1,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.10045825599991076,
+          "request_behavior": {
+            "window_elapsed_s": [
+              177.50068879900027,
+              182.50068879900027
+            ],
+            "requests": 451,
+            "successes": 0,
+            "failures": 451,
+            "timeouts": 451,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 215.0000879170002,
+          "utc": "2026-10-23T14:35:20.150406+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09591959199951816,
+          "request_behavior": {
+            "window_elapsed_s": [
+              212.5000879170002,
+              217.5000879170002
+            ],
+            "requests": 321,
+            "successes": 0,
+            "failures": 321,
+            "timeouts": 321,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 220.00013259600019,
+          "utc": "2026-10-23T14:35:25.150451+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09655066799950873,
+          "request_behavior": {
+            "window_elapsed_s": [
+              217.50013259600019,
+              222.50013259600019
+            ],
+            "requests": 320,
+            "successes": 0,
+            "failures": 320,
+            "timeouts": 320,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        },
+        {
+          "elapsed_s": 225.00008343299942,
+          "utc": "2026-10-23T14:35:30.150401+00:00",
+          "metric_availability": "empty_response",
+          "metric_pods": 0,
+          "desired_replicas": 1,
+          "current_replicas": 1,
+          "ready_replicas": 0,
+          "container_restarts": 2,
+          "hpa_conditions": [
+            {
+              "type": "AbleToScale",
+              "status": "True",
+              "reason": "SucceededGetScale",
+              "message": "the HPA controller was able to get the target's current scale"
+            },
+            {
+              "type": "ScalingActive",
+              "status": "False",
+              "reason": "FailedGetResourceMetric",
+              "message": "the HPA was unable to compute the replica count: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+            },
+            {
+              "type": "ScalingLimited",
+              "status": "False",
+              "reason": "DesiredWithinRange",
+              "message": "the desired count is within the acceptable range"
+            }
+          ],
+          "collection_seconds": 0.09670817000005627,
+          "request_behavior": {
+            "window_elapsed_s": [
+              222.50008343299942,
+              227.50008343299942
+            ],
+            "requests": 319,
+            "successes": 0,
+            "failures": 319,
+            "timeouts": 319,
+            "connection_failures": 0,
+            "successful_latency_p95_s": null
+          },
+          "collector_evidence": {
+            "response_kind": "PodMetricsList",
+            "api_version": "metrics.k8s.io/v1beta1",
+            "explicit_error": null,
+            "command_metadata_retained": false
+          }
+        }
+      ],
+      "replica_changes": [
+        {
+          "elapsed_s": 305.0000879899999,
+          "utc": "2026-10-23T14:36:50.150407+00:00",
+          "from": 1,
+          "to": 5
+        },
+        {
+          "elapsed_s": 350.00009745900024,
+          "utc": "2026-10-23T14:37:35.150414+00:00",
+          "from": 5,
+          "to": 8
+        },
+        {
+          "elapsed_s": 440.00010941799974,
+          "utc": "2026-10-23T14:39:05.150427+00:00",
+          "from": 8,
+          "to": 4
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00009911799953,
+          "utc": "2026-10-23T14:34:05.150417+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 170.0021198180002,
+          "utc": "2026-10-23T14:34:35.152439+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 185.0000843509997,
+          "utc": "2026-10-23T14:34:50.150402+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 245.00006699799997,
+          "utc": "2026-10-23T14:35:50.150386+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 260.0000893589995,
+          "utc": "2026-10-23T14:36:05.150407+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 270.00008988399986,
+          "utc": "2026-10-23T14:36:15.150408+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 285.0000858989997,
+          "utc": "2026-10-23T14:36:30.150404+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 310.0000895029998,
+          "utc": "2026-10-23T14:36:55.150408+00:00",
+          "from": 0,
+          "to": 4,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 320.0000779490001,
+          "utc": "2026-10-23T14:37:05.150395+00:00",
+          "from": 4,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 355.000076714,
+          "utc": "2026-10-23T14:37:40.150394+00:00",
+          "from": 5,
+          "to": 8,
+          "current_replicas": 8,
+          "desired_replicas": 8
+        },
+        {
+          "elapsed_s": 440.00010941799974,
+          "utc": "2026-10-23T14:39:05.150427+00:00",
+          "from": 8,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 165.00008731399976,
+          "utc": "2026-10-23T14:34:30.150404+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 215.0000879170002,
+          "utc": "2026-10-23T14:35:20.150406+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 265.00008700299986,
+          "utc": "2026-10-23T14:36:10.150405+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 315.00291801799995,
+          "utc": "2026-10-23T14:37:00.153235+00:00",
+          "from": 3,
+          "to": 4
+        },
+        {
+          "elapsed_s": 440.00010941799974,
+          "utc": "2026-10-23T14:39:05.150427+00:00",
+          "from": 4,
+          "to": 0
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T14:35:29Z",
+          "reason": "Unhealthy",
+          "count": 17,
+          "message": "Readiness probe failed: Get \"http://10.244.0.48:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:35:12Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.48:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:36:52Z",
+          "reason": "Killing",
+          "count": 4,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:34:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.48:80/index.php\": EOF"
+        },
+        {
+          "utc": "2026-10-23T14:35:14Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.48:80/index.php\": read tcp 10.244.0.1:55612->10.244.0.48:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:39:00Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Stopping container php-apache"
+        },
+        {
+          "utc": "2026-10-23T14:39:01Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.48:80/index.php\": dial tcp 10.244.0.48:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T14:37:00Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.52:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:39:00Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Stopping container php-apache"
+        },
+        {
+          "utc": "2026-10-23T14:37:00Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.50:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:39:00Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Stopping container php-apache"
+        },
+        {
+          "utc": "2026-10-23T14:39:00Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Stopping container php-apache"
+        },
+        {
+          "utc": "2026-10-23T14:35:30Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 3,
+          "message": "failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+        },
+        {
+          "utc": "2026-10-23T14:35:30Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 3,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API"
+        },
+        {
+          "utc": "2026-10-23T14:37:15Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 10,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T14:37:15Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 10,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T14:36:45Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 5; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T14:37:30Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 8; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T14:39:00Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: All metrics below target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 34,
+      "missing_bursts": [
+        {
+          "start_elapsed_s": 170.0021198180002,
+          "end_elapsed_s": 180.00068879900027,
+          "start_utc": "2026-10-23T14:34:35.152439+00:00",
+          "end_utc": "2026-10-23T14:34:45.151007+00:00",
+          "samples": 3
+        },
+        {
+          "start_elapsed_s": 215.0000879170002,
+          "end_elapsed_s": 225.00008343299942,
+          "start_utc": "2026-10-23T14:35:20.150406+00:00",
+          "end_utc": "2026-10-23T14:35:30.150401+00:00",
+          "samples": 3
+        }
+      ]
+    },
+    "calibrated_hpa_repeat2": {
+      "label": "calibrated_hpa_repeat2",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/requests.csv",
+        "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/events.json",
+        "summary.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/calibrated_hpa/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 15817,
+        "timeouts": 10244,
+        "connection_failures": 42,
+        "error_rate": 0.3940543232578631,
+        "p95_latency_s": 2.024587865600551,
+        "pod_seconds": 902.4996489394994,
+        "mean_ready": 2.148808687951189,
+        "max_ready": 4,
+        "sample_count": 84,
+        "cpu_sample_count": 84,
+        "max_workload_restarts": 4,
+        "readiness_deficit_samples": 29
+      },
+      "cpu_coverage": 1.0,
+      "missing_samples": [],
+      "replica_changes": [
+        {
+          "elapsed_s": 135.00009662700086,
+          "utc": "2026-10-23T14:15:36.236018+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 305.00011992800046,
+          "utc": "2026-10-23T14:18:26.236042+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 530.0000902130005,
+          "utc": "2026-10-23T14:22:11.236012+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00008263900054,
+          "utc": "2026-10-23T14:15:41.236004+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 145.00010972900054,
+          "utc": "2026-10-23T14:15:46.236032+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 165.00010078800005,
+          "utc": "2026-10-23T14:16:06.236022+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 170.00009317500007,
+          "utc": "2026-10-23T14:16:11.236014+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 185.0001196610001,
+          "utc": "2026-10-23T14:16:26.236041+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 190.0000946170003,
+          "utc": "2026-10-23T14:16:31.236016+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 210.00008257400077,
+          "utc": "2026-10-23T14:16:51.236004+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 220.00009229700026,
+          "utc": "2026-10-23T14:17:01.236015+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 235.0001143010004,
+          "utc": "2026-10-23T14:17:16.236035+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 240.00010743000075,
+          "utc": "2026-10-23T14:17:21.236029+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 270.0000977740001,
+          "utc": "2026-10-23T14:17:51.236018+00:00",
+          "from": 1,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 310.0000983910004,
+          "utc": "2026-10-23T14:18:31.236021+00:00",
+          "from": 2,
+          "to": 3,
+          "current_replicas": 3,
+          "desired_replicas": 3
+        },
+        {
+          "elapsed_s": 535.0001052470006,
+          "utc": "2026-10-23T14:22:16.236027+00:00",
+          "from": 3,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 165.00010078800005,
+          "utc": "2026-10-23T14:16:06.236022+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 185.0001196610001,
+          "utc": "2026-10-23T14:16:26.236041+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 215.0000985050001,
+          "utc": "2026-10-23T14:16:56.236020+00:00",
+          "from": 2,
+          "to": 3
+        },
+        {
+          "elapsed_s": 235.0001143010004,
+          "utc": "2026-10-23T14:17:16.236035+00:00",
+          "from": 3,
+          "to": 4
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T14:17:05Z",
+          "reason": "Unhealthy",
+          "count": 16,
+          "message": "Readiness probe failed: Get \"http://10.244.0.33:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:16:49Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.33:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:16:49Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:16:00Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.33:80/index.php\": EOF"
+        },
+        {
+          "utc": "2026-10-23T14:16:00Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.33:80/index.php\": read tcp 10.244.0.1:50770->10.244.0.33:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:16:50Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.33:80/index.php\": read tcp 10.244.0.1:44960->10.244.0.33:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:17:27Z",
+          "reason": "Unhealthy",
+          "count": 16,
+          "message": "Readiness probe failed: Get \"http://10.244.0.34:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:17:11Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.34:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:17:11Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:16:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.34:80/index.php\": read tcp 10.244.0.1:34060->10.244.0.34:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:16:23Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.34:80/index.php\": dial tcp 10.244.0.34:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T14:17:13Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.34:80/index.php\": read tcp 10.244.0.1:49068->10.244.0.34:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:18:06Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 11,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T14:18:06Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 11,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T14:15:36Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 2; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T14:18:21Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 3; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T14:22:06Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: cpu resource utilization (percentage of request) above target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 31,
+      "missing_bursts": []
+    },
+    "holtwinters_repeat2": {
+      "label": "holtwinters_repeat2",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/holtwinters",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/holtwinters/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/holtwinters/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/holtwinters/requests.csv",
+        "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/holtwinters/events.json",
+        "summary.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat2/holtwinters/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 21258,
+        "timeouts": 4841,
+        "connection_failures": 4,
+        "error_rate": 0.18561084932766347,
+        "p95_latency_s": 1.6228339104501581,
+        "pod_seconds": 3482.499324181004,
+        "mean_ready": 8.29166505757382,
+        "max_ready": 10,
+        "sample_count": 84,
+        "cpu_sample_count": 84,
+        "max_workload_restarts": 1,
+        "readiness_deficit_samples": 11
+      },
+      "cpu_coverage": 1.0,
+      "missing_samples": [],
+      "replica_changes": [
+        {
+          "elapsed_s": 155.00009121099993,
+          "utc": "2026-10-23T14:25:08.193293+00:00",
+          "from": 1,
+          "to": 5
+        },
+        {
+          "elapsed_s": 215.00009278999914,
+          "utc": "2026-10-23T14:26:08.193295+00:00",
+          "from": 5,
+          "to": 10
+        },
+        {
+          "elapsed_s": 535.0000901959993,
+          "utc": "2026-10-23T14:31:28.193293+00:00",
+          "from": 10,
+          "to": 8
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00015922399962,
+          "utc": "2026-10-23T14:24:53.193361+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 1,
+          "desired_replicas": 1
+        },
+        {
+          "elapsed_s": 160.00007886499952,
+          "utc": "2026-10-23T14:25:13.193280+00:00",
+          "from": 0,
+          "to": 4,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 170.00010127199948,
+          "utc": "2026-10-23T14:25:23.193303+00:00",
+          "from": 4,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 180.00008596799944,
+          "utc": "2026-10-23T14:25:33.193287+00:00",
+          "from": 5,
+          "to": 2,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 185.00009086799946,
+          "utc": "2026-10-23T14:25:38.193292+00:00",
+          "from": 2,
+          "to": 3,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 190.00015315699966,
+          "utc": "2026-10-23T14:25:43.193355+00:00",
+          "from": 3,
+          "to": 4,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 200.00013373299953,
+          "utc": "2026-10-23T14:25:53.193336+00:00",
+          "from": 4,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 220.0000942029992,
+          "utc": "2026-10-23T14:26:13.193297+00:00",
+          "from": 5,
+          "to": 10,
+          "current_replicas": 10,
+          "desired_replicas": 10
+        },
+        {
+          "elapsed_s": 535.0000901959993,
+          "utc": "2026-10-23T14:31:28.193293+00:00",
+          "from": 10,
+          "to": 8,
+          "current_replicas": 8,
+          "desired_replicas": 8
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 160.00007886499952,
+          "utc": "2026-10-23T14:25:13.193280+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 535.0000901959993,
+          "utc": "2026-10-23T14:31:28.193293+00:00",
+          "from": 1,
+          "to": 0
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T14:25:32Z",
+          "reason": "Unhealthy",
+          "count": 4,
+          "message": "Readiness probe failed: Get \"http://10.244.0.40:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:25:29Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Liveness probe failed: Get \"http://10.244.0.40:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:31:24Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Stopping container php-apache"
+        },
+        {
+          "utc": "2026-10-23T14:25:42Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Readiness probe failed: Get \"http://10.244.0.39:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:25:39Z",
+          "reason": "Unhealthy",
+          "count": 2,
+          "message": "Liveness probe failed: Get \"http://10.244.0.39:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:25:37Z",
+          "reason": "Unhealthy",
+          "count": 5,
+          "message": "Readiness probe failed: Get \"http://10.244.0.41:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:25:29Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Liveness probe failed: Get \"http://10.244.0.41:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:25:49Z",
+          "reason": "Unhealthy",
+          "count": 11,
+          "message": "Readiness probe failed: Get \"http://10.244.0.37:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:25:40Z",
+          "reason": "Unhealthy",
+          "count": 4,
+          "message": "Liveness probe failed: Get \"http://10.244.0.37:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:25:10Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:25:11Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.37:80/index.php\": EOF"
+        },
+        {
+          "utc": "2026-10-23T14:25:11Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.37:80/index.php\": read tcp 10.244.0.1:34846->10.244.0.37:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:31:24Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Stopping container php-apache"
+        },
+        {
+          "utc": "2026-10-23T14:25:39Z",
+          "reason": "Unhealthy",
+          "count": 3,
+          "message": "Readiness probe failed: Get \"http://10.244.0.42:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 0,
+      "missing_bursts": []
+    },
+    "strawman_hpa_repeat3": {
+      "label": "strawman_hpa_repeat3",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/strawman_hpa",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/strawman_hpa/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/strawman_hpa/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/strawman_hpa/requests.csv",
+        "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/strawman_hpa/events.json",
+        "summary.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/strawman_hpa/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 17241,
+        "timeouts": 8846,
+        "connection_failures": 16,
+        "error_rate": 0.3395012067578439,
+        "p95_latency_s": 3.566023954000229,
+        "pod_seconds": 1142.499771014499,
+        "mean_ready": 2.7202375500345215,
+        "max_ready": 4,
+        "sample_count": 84,
+        "cpu_sample_count": 84,
+        "max_workload_restarts": 3,
+        "readiness_deficit_samples": 20
+      },
+      "cpu_coverage": 1.0,
+      "missing_samples": [],
+      "replica_changes": [
+        {
+          "elapsed_s": 135.00008597400029,
+          "utc": "2026-10-23T14:52:27.073530+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 320.0000820770001,
+          "utc": "2026-10-23T14:55:32.073525+00:00",
+          "from": 2,
+          "to": 4
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00008604600043,
+          "utc": "2026-10-23T14:52:32.073530+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 145.00009288800084,
+          "utc": "2026-10-23T14:52:37.073536+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 160.0000848610007,
+          "utc": "2026-10-23T14:52:52.073528+00:00",
+          "from": 1,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 165.00007984700005,
+          "utc": "2026-10-23T14:52:57.073523+00:00",
+          "from": 2,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 180.00007731300047,
+          "utc": "2026-10-23T14:53:12.073520+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 190.00007863200062,
+          "utc": "2026-10-23T14:53:22.073521+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 195.00008009400062,
+          "utc": "2026-10-23T14:53:27.073524+00:00",
+          "from": 1,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 210.0000961530004,
+          "utc": "2026-10-23T14:53:42.073541+00:00",
+          "from": 2,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 215.00007819200073,
+          "utc": "2026-10-23T14:53:47.073521+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 225.0000828710008,
+          "utc": "2026-10-23T14:53:57.073526+00:00",
+          "from": 0,
+          "to": 1,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 250.00007600000026,
+          "utc": "2026-10-23T14:54:22.073519+00:00",
+          "from": 1,
+          "to": 2,
+          "current_replicas": 2,
+          "desired_replicas": 2
+        },
+        {
+          "elapsed_s": 325.0000890900001,
+          "utc": "2026-10-23T14:55:37.073533+00:00",
+          "from": 2,
+          "to": 4,
+          "current_replicas": 4,
+          "desired_replicas": 4
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 185.00007721900056,
+          "utc": "2026-10-23T14:53:17.073521+00:00",
+          "from": 0,
+          "to": 1
+        },
+        {
+          "elapsed_s": 235.00008255400007,
+          "utc": "2026-10-23T14:54:07.073526+00:00",
+          "from": 1,
+          "to": 2
+        },
+        {
+          "elapsed_s": 245.00008121700012,
+          "utc": "2026-10-23T14:54:17.073524+00:00",
+          "from": 2,
+          "to": 3
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T14:54:18Z",
+          "reason": "Unhealthy",
+          "count": 16,
+          "message": "Readiness probe failed: Get \"http://10.244.0.69:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:54:02Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.69:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:54:02Z",
+          "reason": "Killing",
+          "count": 2,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:53:13Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.69:80/index.php\": read tcp 10.244.0.1:33878->10.244.0.69:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:53:13Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.69:80/index.php\": dial tcp 10.244.0.69:80: connect: connection refused"
+        },
+        {
+          "utc": "2026-10-23T14:54:03Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.69:80/index.php\": read tcp 10.244.0.1:49544->10.244.0.69:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:54:04Z",
+          "reason": "Unhealthy",
+          "count": 19,
+          "message": "Readiness probe failed: Get \"http://10.244.0.68:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:54:00Z",
+          "reason": "Unhealthy",
+          "count": 6,
+          "message": "Liveness probe failed: Get \"http://10.244.0.68:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:54:10Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:54:42Z",
+          "reason": "FailedGetResourceMetric",
+          "count": 11,
+          "message": "failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T14:54:42Z",
+          "reason": "FailedComputeMetricsReplicas",
+          "count": 11,
+          "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)"
+        },
+        {
+          "utc": "2026-10-23T14:52:27Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 2; reason: cpu resource utilization (percentage of request) above target"
+        },
+        {
+          "utc": "2026-10-23T14:55:27Z",
+          "reason": "SuccessfulRescale",
+          "count": 1,
+          "message": "New size: 4; reason: cpu resource utilization (percentage of request) above target"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 28,
+      "missing_bursts": []
+    },
+    "holtwinters_repeat3": {
+      "label": "holtwinters_repeat3",
+      "decision": "ACCEPT",
+      "source_directory": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/holtwinters",
+      "sources": {
+        "metadata.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/holtwinters/metadata.json",
+        "metrics.jsonl": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/holtwinters/metrics.jsonl",
+        "requests.csv": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/holtwinters/requests.csv",
+        "events.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/holtwinters/events.json",
+        "summary.json": "results/live_trace_phase/nasa_three_repeat/nasa/repeat3/holtwinters/summary.json"
+      },
+      "summary": {
+        "scheduled_measurement_requests": 26103,
+        "successful_requests": 21985,
+        "timeouts": 4110,
+        "connection_failures": 8,
+        "error_rate": 0.15775964448530821,
+        "p95_latency_s": 0.49652979559978105,
+        "pod_seconds": 3457.4991037895024,
+        "mean_ready": 8.232140723308339,
+        "max_ready": 10,
+        "sample_count": 84,
+        "cpu_sample_count": 84,
+        "max_workload_restarts": 1,
+        "readiness_deficit_samples": 14
+      },
+      "cpu_coverage": 1.0,
+      "missing_samples": [],
+      "replica_changes": [
+        {
+          "elapsed_s": 140.00007847799952,
+          "utc": "2026-10-23T14:43:19.110729+00:00",
+          "from": 1,
+          "to": 3
+        },
+        {
+          "elapsed_s": 160.00012366400006,
+          "utc": "2026-10-23T14:43:39.110775+00:00",
+          "from": 3,
+          "to": 5
+        },
+        {
+          "elapsed_s": 205.00008752099984,
+          "utc": "2026-10-23T14:44:24.110739+00:00",
+          "from": 5,
+          "to": 7
+        },
+        {
+          "elapsed_s": 225.00011472499955,
+          "utc": "2026-10-23T14:44:44.110766+00:00",
+          "from": 7,
+          "to": 8
+        },
+        {
+          "elapsed_s": 235.000113778,
+          "utc": "2026-10-23T14:44:54.110765+00:00",
+          "from": 8,
+          "to": 9
+        },
+        {
+          "elapsed_s": 245.00016336299996,
+          "utc": "2026-10-23T14:45:04.110814+00:00",
+          "from": 9,
+          "to": 10
+        }
+      ],
+      "readiness_transitions": [
+        {
+          "elapsed_s": 140.00007847799952,
+          "utc": "2026-10-23T14:43:19.110729+00:00",
+          "from": 1,
+          "to": 0,
+          "current_replicas": 3,
+          "desired_replicas": 3
+        },
+        {
+          "elapsed_s": 150.00007436799933,
+          "utc": "2026-10-23T14:43:29.110724+00:00",
+          "from": 0,
+          "to": 2,
+          "current_replicas": 3,
+          "desired_replicas": 3
+        },
+        {
+          "elapsed_s": 170.00009107499955,
+          "utc": "2026-10-23T14:43:49.110743+00:00",
+          "from": 2,
+          "to": 3,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 185.0001149509999,
+          "utc": "2026-10-23T14:44:04.110767+00:00",
+          "from": 3,
+          "to": 4,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 190.00011179400008,
+          "utc": "2026-10-23T14:44:09.110763+00:00",
+          "from": 4,
+          "to": 5,
+          "current_replicas": 5,
+          "desired_replicas": 5
+        },
+        {
+          "elapsed_s": 210.00008728299963,
+          "utc": "2026-10-23T14:44:29.110739+00:00",
+          "from": 5,
+          "to": 7,
+          "current_replicas": 7,
+          "desired_replicas": 7
+        },
+        {
+          "elapsed_s": 230.00009884700012,
+          "utc": "2026-10-23T14:44:49.110751+00:00",
+          "from": 7,
+          "to": 8,
+          "current_replicas": 8,
+          "desired_replicas": 8
+        },
+        {
+          "elapsed_s": 240.00009714399948,
+          "utc": "2026-10-23T14:44:59.110749+00:00",
+          "from": 8,
+          "to": 9,
+          "current_replicas": 9,
+          "desired_replicas": 9
+        },
+        {
+          "elapsed_s": 250.00009311899976,
+          "utc": "2026-10-23T14:45:09.110744+00:00",
+          "from": 9,
+          "to": 10,
+          "current_replicas": 10,
+          "desired_replicas": 10
+        }
+      ],
+      "restart_changes": [
+        {
+          "elapsed_s": 165.0000814289997,
+          "utc": "2026-10-23T14:43:44.110732+00:00",
+          "from": 0,
+          "to": 1
+        }
+      ],
+      "relevant_events": [
+        {
+          "utc": "2026-10-23T14:44:02Z",
+          "reason": "Unhealthy",
+          "count": 7,
+          "message": "Readiness probe failed: Get \"http://10.244.0.59:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:43:54Z",
+          "reason": "Unhealthy",
+          "count": 2,
+          "message": "Liveness probe failed: Get \"http://10.244.0.59:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:43:34Z",
+          "reason": "Unhealthy",
+          "count": 7,
+          "message": "Readiness probe failed: Get \"http://10.244.0.57:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:43:36Z",
+          "reason": "Unhealthy",
+          "count": 3,
+          "message": "Liveness probe failed: Get \"http://10.244.0.57:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:43:36Z",
+          "reason": "Killing",
+          "count": 1,
+          "message": "Container php-apache failed liveness probe, will be restarted"
+        },
+        {
+          "utc": "2026-10-23T14:43:38Z",
+          "reason": "Unhealthy",
+          "count": 1,
+          "message": "Readiness probe failed: Get \"http://10.244.0.57:80/index.php\": read tcp 10.244.0.1:44770->10.244.0.57:80: read: connection reset by peer"
+        },
+        {
+          "utc": "2026-10-23T14:44:02Z",
+          "reason": "Unhealthy",
+          "count": 7,
+          "message": "Readiness probe failed: Get \"http://10.244.0.60:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        },
+        {
+          "utc": "2026-10-23T14:43:54Z",
+          "reason": "Unhealthy",
+          "count": 2,
+          "message": "Liveness probe failed: Get \"http://10.244.0.60:80/index.php\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)"
+        }
+      ],
+      "hpa_metric_failure_snapshots": 0,
+      "missing_bursts": []
+    }
+  },
+  "selection_bias_risk": {
+    "present": true,
+    "reason": "Metric loss co-occurs with readiness loss, restarts, HPA metric failures, and high request-failure periods; excluding solely on coverage can preferentially remove unstable executions. Coincidence supports risk, not sole causation."
+  },
+  "provenance": {
+    "protocol": "docs/LIVE_TRACE_PROTOCOL.md",
+    "collector": "scripts/live/run_trace.py",
+    "analyzer": "scripts/live/analyze_runs.py",
+    "existing_verification": "results/live_trace_phase/nasa_three_repeat/independent_verification.json"
+  }
+}
