@@ -1,6 +1,6 @@
 {
   "status": "COMPLETE",
-  "generated_utc": "2026-10-23T23:48:31.750103+00:00",
+  "generated_utc": "2026-10-23T23:50:12.774787+00:00",
   "checks": {
     "source_hash_matches_frozen": true,
     "replay_hash_matches_frozen": true,
@@ -9,6 +9,7 @@
     "controller_order_matches_frozen": true,
     "smoke_v2_gate_passed": true,
     "protocol_components_match_freeze": true,
+    "allowedcpus_only_was_unrestricted": true,
     "watchdog_completed_without_abort": true,
     "every_run_independently_matches": true,
     "every_affinity_monitor_passed": true,

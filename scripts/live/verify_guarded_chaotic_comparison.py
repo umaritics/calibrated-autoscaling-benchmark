@@ -131,6 +131,7 @@ def main():
     source_path = ROOT / plan["source_path"]
     smoke_gate = json.loads((REVISION / "smoke_gate.json").read_text())
     protocol_record = json.loads((REVISION / "safety_protocol_v2.json").read_text())
+    allowed_only_probe = json.loads((REVISION / "allowedcpus_only_probe.json").read_text())
     sessions = sorted(OUT.glob("watchdog_session_20*"))
     if len(sessions) != 1:
         raise RuntimeError(f"expected one research watchdog session, found {len(sessions)}")
@@ -175,6 +176,7 @@ def main():
             protocol_record["protocol_sha256"] and digest(ROOT / protocol_record["affinity_monitor_path"])["sha256"] ==
             protocol_record["affinity_monitor_sha256_at_freeze"] and
             digest(ROOT / protocol_record["resource_policy_path"])["sha256"] == protocol_record["resource_policy_sha256"],
+        "allowedcpus_only_was_unrestricted": allowed_only_probe["sched_getaffinity"] == list(range(8)),
         "watchdog_completed_without_abort": (session / "watchdog_complete.json").exists() and
             not (session / "safety_abort.json").exists(),
         "every_run_independently_matches": all(all(value for value in checks.values()) for checks in run_checks.values()),
@@ -219,6 +221,8 @@ def main():
 Status: **{status} — guarded three-controller matrix executed once**.
 
 Task 12's smoke attempt 3 remains failed. Protocol v2 prospectively replaced its unavailable user-scope cpuset-file observation with direct kernel scheduler-affinity read-back while retaining all cgroup budgets, watchdog thresholds, workload parameters, and scientific thresholds. See `affinity_revision_v2/SAFETY_PROTOCOL_V2.md`.
+
+A bounded fresh scope matching Task 12's systemd properties but deliberately omitting `taskset` retained scheduler affinity `[0,1,2,3,4,5,6,7]`. This confirms that `AllowedCPUs=4-5` alone was not enforced in the non-cpuset-delegated user scope; Task 12 did not merely read the wrong file. The expired Task 12 PID was not inspected or represented as live evidence. See `affinity_revision_v2/allowedcpus_only_probe.json`.
 
 | Controller | Decision | Success | p50 ms | p95 ms | p99 ms | Pod-seconds | Pod-s/success | Mean ready | Max ready |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|

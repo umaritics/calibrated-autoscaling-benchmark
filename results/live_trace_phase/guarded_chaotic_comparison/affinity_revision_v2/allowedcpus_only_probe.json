@@ -1,0 +1,16 @@
+{
+  "captured_utc": "2026-10-23T23:49:51+00:00",
+  "purpose": "Determine actual scheduler affinity in a fresh equivalent user scope when AllowedCPUs=4-5 is requested without taskset.",
+  "load": "none; bounded diagnostic process only",
+  "requested_systemd_properties": {
+    "AllowedCPUs": "4-5",
+    "CPUQuota": "100%",
+    "MemoryMax": "768M",
+    "MemorySwapMax": "0",
+    "TasksMax": "512"
+  },
+  "pid": 71152,
+  "live_cgroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/run-ra0a72d630efb41c2bfb690b31e34c57c.scope",
+  "sched_getaffinity": [0, 1, 2, 3, 4, 5, 6, 7],
+  "conclusion": "AllowedCPUs alone was not kernel-enforced in the non-cpuset-delegated user scope; the live process retained unrestricted affinity across all online logical CPUs. The expired Task 12 PID was not reused or claimed as live evidence."
+}

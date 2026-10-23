@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-23T23:48:31.775852+00:00",
+  "generated_utc": "2026-10-23T23:50:12.800120+00:00",
   "algorithm": "sha256",
   "status": "COMPLETE",
   "files": {
@@ -8,8 +8,8 @@
       "bytes": 87
     },
     "results/live_trace_phase/guarded_chaotic_comparison/FINDINGS.md": {
-      "sha256": "a41338f7b50df0b9078086b38e5801cd6b49950036cf80e072e82afa035e3a2f",
-      "bytes": 2073
+      "sha256": "4ec877cca18676bdfff4ed035bcda7142f9e339df6185542d86638c03a401791",
+      "bytes": 2494
     },
     "results/live_trace_phase/guarded_chaotic_comparison/PREFLIGHT.md": {
       "sha256": "ea8fc38d469ee1028072581afb99ab5a9a1b9dcae421862a288c17de05aabfdc",
@@ -30,6 +30,10 @@
     "results/live_trace_phase/guarded_chaotic_comparison/affinity_revision_v2/SAFETY_PROTOCOL_V2.md": {
       "sha256": "79a2cc3d40c4dd22198d4da95a04dda97a47427f9165b6828be9cd5e391c19fe",
       "bytes": 3378
+    },
+    "results/live_trace_phase/guarded_chaotic_comparison/affinity_revision_v2/allowedcpus_only_probe.json": {
+      "sha256": "0cc0178509623258e33081068bfa2ef518415e2f54090cb8ed105e1fe18c4555",
+      "bytes": 835
     },
     "results/live_trace_phase/guarded_chaotic_comparison/affinity_revision_v2/cpu_affinity_diagnosis.json": {
       "sha256": "4a7d3c919c65efb80e0fe1b1a10a3842e01d6e92c453dccf0318c441ccf27925",
@@ -224,7 +228,7 @@
       "bytes": 3857
     },
     "results/live_trace_phase/guarded_chaotic_comparison/focused_test_results.json": {
-      "sha256": "8e7010b9e923e452cb1f92384a3b6fe27f599351a8cfc4b59946075359fc453e",
+      "sha256": "881988f8b8c8ff8b6382f7b52b2fa5d196f0bfb131ce30b0c68f90b4004122e5",
       "bytes": 5836
     },
     "results/live_trace_phase/guarded_chaotic_comparison/frozen_plan.json": {
@@ -232,8 +236,8 @@
       "bytes": 2974
     },
     "results/live_trace_phase/guarded_chaotic_comparison/independent_verification.json": {
-      "sha256": "3165cb091588c49ac380728e2f64ef495c83b7cfe3a223ac571874da2c5b234f",
-      "bytes": 5329
+      "sha256": "380fe7adbdda71c28bd8b1248e3e23e462de5a7bbf0f2964acbc6429a1989362",
+      "bytes": 5376
     },
     "results/live_trace_phase/guarded_chaotic_comparison/pilot_guarded_smoke/guarded_smoke/repeat1/calibrated_hpa/FAILED.txt": {
       "sha256": "35613b1350de636638fffcf2e123159ea1126706194e7e0d1bff632a0b3aa894",
@@ -510,8 +514,8 @@
       "bytes": 7797
     },
     "scripts/live/verify_guarded_chaotic_comparison.py": {
-      "sha256": "ee2345d76bf5ae604de4de8aa95dac18bb9eeb9a291b57965d442fdc61c0a99f",
-      "bytes": 15982
+      "sha256": "44a8a39cc98e68f3a3e0d84618d1ca74f8c58b0a8f7ab249b8d56e27dd64d0a8",
+      "bytes": 16599
     },
     "tests/test_safety_watchdog.py": {
       "sha256": "013143cab1ed75fa66c6d2ad4c44d64a4722cdd2b0062d164f33245af44c7a7c",

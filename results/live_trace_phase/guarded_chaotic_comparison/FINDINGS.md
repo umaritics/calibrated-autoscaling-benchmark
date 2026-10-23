@@ -4,6 +4,8 @@ Status: **COMPLETE — guarded three-controller matrix executed once**.
 
 Task 12's smoke attempt 3 remains failed. Protocol v2 prospectively replaced its unavailable user-scope cpuset-file observation with direct kernel scheduler-affinity read-back while retaining all cgroup budgets, watchdog thresholds, workload parameters, and scientific thresholds. See `affinity_revision_v2/SAFETY_PROTOCOL_V2.md`.
 
+A bounded fresh scope matching Task 12's systemd properties but deliberately omitting `taskset` retained scheduler affinity `[0,1,2,3,4,5,6,7]`. This confirms that `AllowedCPUs=4-5` alone was not enforced in the non-cpuset-delegated user scope; Task 12 did not merely read the wrong file. The expired Task 12 PID was not inspected or represented as live evidence. See `affinity_revision_v2/allowedcpus_only_probe.json`.
+
 | Controller | Decision | Success | p50 ms | p95 ms | p99 ms | Pod-seconds | Pod-s/success | Mean ready | Max ready |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | calibrated_hpa | ACCEPT | 12532/12532 | 7.516 | 11.188 | 13.587 | 990.000 | 0.078998 | 2.357 | 3 |
