@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "frozen_utc": "2026-10-23T22:53:30.263928+00:00",
+  "experiment_label": "lower-intensity resource-guarded D1 chaotic variant",
+  "scientific_separation": "New intensity variant; never pool with or relabel the hazardous 20-120 RPS experiment.",
+  "source_path": "data/phpa/phpa-datasets/chaotic_1_base_pods35_chaos_level1.2_seasonality_strength0.4_trend_changes8_noise_level0.7_test.csv",
+  "source_sha256": "0cfb88afe566dd590b5b79ca78c80cc21c7790e25a61a371fb31d48096dca70c",
+  "selected_indices_inclusive": [
+    284,
+    325
+  ],
+  "selection_provenance": "Reuses the prior controller-independent D1 scenario/window selection only; no old outcomes entered the new affine mapping.",
+  "replay_path": "data/live_traces/chaotic_guarded_d1_s1.csv",
+  "replay_sha256": "3e8d234b021e53446b9c9d8b2891bd3bce5205724cf4c3ef2c6c9d57e6043ed0",
+  "expected_schedule_sha256": "79db2b7c2e8ca93c3f40dcfed88154a7da76eb66e8a6686a69ced4d05096639d",
+  "transformation": {
+    "formula": "target_rps = 10 + 35 * (pod_count - 11) / (100 - 11)",
+    "minimum_rps": 10.0,
+    "maximum_rps": 45.0,
+    "relative_fluctuations": "Affine mapping preserves order, normalized deviations, extrema locations, and relative range position.",
+    "time_mapping": "Each 900-second source observation is held for one 10-second replay bin (90x acceleration).",
+    "warmup_seconds": 120,
+    "warmup_rps": 4,
+    "measurement_seconds": 420,
+    "request_timeout_seconds": 5,
+    "maximum_in_flight": 256,
+    "scheduled_measurement_requests": 12532
+  },
+  "resource_policy": "configs/guarded_chaotic_safety.json",
+  "application": {
+    "image": "php:8.2-apache",
+    "cpu_request": "200m",
+    "cpu_limit": "500m",
+    "memory_request": "64Mi",
+    "memory_limit": "128Mi",
+    "replica_bounds": [
+      1,
+      20
+    ]
+  },
+  "acceptance_thresholds_unchanged": {
+    "complete_schedule": true,
+    "generator_drops": 0,
+    "p99_dispatch_delay_below_seconds": 0.1,
+    "cpu_coverage_at_least": 0.9,
+    "max_metric_gap_below_seconds": 15,
+    "controller_exclusive": true,
+    "measurement_window_bracketed": true,
+    "scaling_response_observed": true
+  },
+  "order": [
+    "calibrated_hpa",
+    "holtwinters",
+    "strawman_hpa"
+  ],
+  "runs": [
+    {
+      "sequence": 1,
+      "dataset": "chaotic_guarded_d1_s1",
+      "arm": "calibrated_hpa",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "guarded_chaotic_comparison",
+      "max_inflight": 256
+    },
+    {
+      "sequence": 2,
+      "dataset": "chaotic_guarded_d1_s1",
+      "arm": "holtwinters",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "guarded_chaotic_comparison",
+      "max_inflight": 256
+    },
+    {
+      "sequence": 3,
+      "dataset": "chaotic_guarded_d1_s1",
+      "arm": "strawman_hpa",
+      "repeat": 1,
+      "warmup": 120,
+      "duration": 420,
+      "category": "guarded_chaotic_comparison",
+      "max_inflight": 256
+    }
+  ]
+}

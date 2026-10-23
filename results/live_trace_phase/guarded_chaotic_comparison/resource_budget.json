@@ -1,0 +1,258 @@
+{
+  "decision": "PASS",
+  "checks": {
+    "cpu_capacity_known": true,
+    "memory_headroom_above_4_gib": true,
+    "swap_pressure_below_1_gib": true,
+    "disk_headroom_above_4_gib": true,
+    "docker_limits_requested_match": true,
+    "docker_cgroup_limits_actual_match": true,
+    "cluster_query_healthy": true,
+    "metrics_server_healthy": true,
+    "watchdog_present": true,
+    "no_active_benchmark_runner": true
+  },
+  "host": {
+    "captured_utc": "2026-10-23T23:00:57.299994+00:00",
+    "platform": "Linux-7.0.11-76070011-generic-x86_64-with-glibc2.39",
+    "physical_cores": 4,
+    "logical_cpus": 8,
+    "load_average": [
+      2.23388671875,
+      1.92626953125,
+      1.58251953125
+    ],
+    "disk": {
+      "total_bytes": 101831528448,
+      "used_bytes": 90844725248,
+      "free_bytes": 5766733824
+    },
+    "MemTotal": 20648255488,
+    "MemAvailable": 11970449408,
+    "SwapTotal": 17179865088,
+    "SwapFree": 17179865088,
+    "pressure": {
+      "cpu": [
+        "some avg10=0.50 avg60=0.36 avg300=0.32 total=48061426",
+        "full avg10=0.00 avg60=0.00 avg300=0.00 total=0"
+      ],
+      "memory": [
+        "some avg10=0.00 avg60=0.00 avg300=0.00 total=2920",
+        "full avg10=0.00 avg60=0.00 avg300=0.00 total=2675"
+      ],
+      "io": [
+        "some avg10=0.00 avg60=0.00 avg300=0.00 total=21702912",
+        "full avg10=0.00 avg60=0.00 avg300=0.00 total=18506065"
+      ]
+    }
+  },
+  "resource_policy": "configs/guarded_chaotic_safety.json",
+  "docker_engine": {
+    "ServerVersion": "29.6.2",
+    "NCPU": 8,
+    "MemTotal": 20648255488,
+    "CgroupDriver": "systemd",
+    "CgroupVersion": "2",
+    "MemoryLimit": true,
+    "SwapLimit": true,
+    "CpuCfsQuota": true,
+    "CPUSet": true,
+    "PidsLimit": true,
+    "DockerRootDir": "/var/lib/docker"
+  },
+  "docker_host_config": {
+    "returncode": 0,
+    "stdout": "{\"Binds\":[\"/lib/modules:/lib/modules:ro\"],\"ContainerIDFile\":\"\",\"LogConfig\":{\"Type\":\"json-file\",\"Config\":{}},\"NetworkMode\":\"kind\",\"PortBindings\":{\"30080/tcp\":[{\"HostIp\":\"127.0.0.1\",\"HostPort\":\"18080\"}],\"6443/tcp\":[{\"HostIp\":\"127.0.0.1\",\"HostPort\":\"33717\"}]},\"RestartPolicy\":{\"Name\":\"on-failure\",\"MaximumRetryCount\":1},\"AutoRemove\":false,\"VolumeDriver\":\"\",\"VolumesFrom\":null,\"ConsoleSize\":[0,0],\"CapAdd\":null,\"CapDrop\":null,\"CgroupnsMode\":\"private\",\"Dns\":[],\"DnsOptions\":[],\"DnsSearch\":[],\"ExtraHosts\":null,\"GroupAdd\":null,\"IpcMode\":\"private\",\"Cgroup\":\"\",\"Links\":null,\"OomScoreAdj\":0,\"PidMode\":\"\",\"Privileged\":true,\"PublishAllPorts\":false,\"ReadonlyRootfs\":false,\"SecurityOpt\":[\"seccomp=unconfined\",\"apparmor=unconfined\",\"label=disable\"],\"Tmpfs\":{\"/run\":\"\",\"/tmp\":\"\"},\"UTSMode\":\"\",\"UsernsMode\":\"\",\"ShmSize\":67108864,\"Runtime\":\"runc\",\"Isolation\":\"\",\"CpuShares\":0,\"Memory\":8589934592,\"NanoCpus\":0,\"CgroupParent\":\"\",\"BlkioWeight\":0,\"BlkioWeightDevice\":[],\"BlkioDeviceReadBps\":[],\"BlkioDeviceWriteBps\":[],\"BlkioDeviceReadIOps\":[],\"BlkioDeviceWriteIOps\":[],\"CpuPeriod\":0,\"CpuQuota\":0,\"CpuRealtimePeriod\":0,\"CpuRealtimeRuntime\":0,\"CpusetCpus\":\"0-3\",\"CpusetMems\":\"\",\"Devices\":[],\"DeviceCgroupRules\":null,\"DeviceRequests\":null,\"MemoryReservation\":0,\"MemorySwap\":8589934592,\"MemorySwappiness\":null,\"OomKillDisable\":null,\"PidsLimit\":4096,\"Ulimits\":[],\"CpuCount\":0,\"CpuPercent\":0,\"IOMaximumIOps\":0,\"IOMaximumBandwidth\":0,\"MaskedPaths\":null,\"ReadonlyPaths\":null,\"Init\":false}",
+    "stderr": ""
+  },
+  "actual_kind_cgroup": {
+    "returncode": 0,
+    "stdout": "0-3,8589934592,0,4096",
+    "stderr": ""
+  },
+  "cluster_pod_inventory": [
+    {
+      "namespace": "kube-system",
+      "name": "coredns-668d6bf9bc-dl7gp",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "coredns": {
+          "limits": {
+            "memory": "170Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "70Mi"
+          }
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "name": "coredns-668d6bf9bc-j4xps",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "coredns": {
+          "limits": {
+            "memory": "170Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "70Mi"
+          }
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "name": "etcd-calibrated-live-control-plane",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "etcd": {
+          "requests": {
+            "cpu": "100m",
+            "memory": "100Mi"
+          }
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kindnet-dft7r",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "kindnet-cni": {
+          "limits": {
+            "cpu": "100m",
+            "memory": "50Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "50Mi"
+          }
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-apiserver-calibrated-live-control-plane",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "kube-apiserver": {
+          "requests": {
+            "cpu": "250m"
+          }
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-controller-manager-calibrated-live-control-plane",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "kube-controller-manager": {
+          "requests": {
+            "cpu": "200m"
+          }
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-proxy-lnz9m",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "kube-proxy": {}
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "name": "kube-scheduler-calibrated-live-control-plane",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "kube-scheduler": {
+          "requests": {
+            "cpu": "100m"
+          }
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "name": "metrics-server-75696c7b58-rmvbh",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "metrics-server": {
+          "requests": {
+            "cpu": "100m",
+            "memory": "200Mi"
+          }
+        }
+      }
+    },
+    {
+      "namespace": "local-path-storage",
+      "name": "local-path-provisioner-7dc846544d-whsf5",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "local-path-provisioner": {}
+      }
+    },
+    {
+      "namespace": "phpa-system",
+      "name": "predictive-horizontal-pod-autoscaler-9f5756764-9kxf4",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "predictive-horizontal-pod-autoscaler": {}
+      }
+    },
+    {
+      "namespace": "trace-benchmark",
+      "name": "php-apache-68fd8fb4cf-q74kk",
+      "phase": "Running",
+      "ready": true,
+      "resources": {
+        "php-apache": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "128Mi"
+          },
+          "requests": {
+            "cpu": "200m",
+            "memory": "64Mi"
+          }
+        }
+      }
+    }
+  ],
+  "cluster_query": {
+    "returncode": 0,
+    "stderr": ""
+  },
+  "metrics_query": {
+    "nodes": {
+      "returncode": 0,
+      "stdout": "NAME                            CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   \ncalibrated-live-control-plane   65m          0%       1193Mi          6%",
+      "stderr": ""
+    },
+    "pods": {
+      "returncode": 0,
+      "stdout": "NAMESPACE            NAME                                                    CPU(cores)   MEMORY(bytes)   \nkube-system          coredns-668d6bf9bc-dl7gp                                1m           56Mi            \nkube-system          coredns-668d6bf9bc-j4xps                                1m           15Mi            \nkube-system          etcd-calibrated-live-control-plane                      10m          84Mi            \nkube-system          kindnet-dft7r                                           1m           15Mi            \nkube-system          kube-apiserver-calibrated-live-control-plane            19m          296Mi           \nkube-system          kube-controller-manager-calibrated-live-control-plane   9m           118Mi           \nkube-system          kube-proxy-lnz9m                                        1m           67Mi            \nkube-system          kube-scheduler-calibrated-live-control-plane            4m           74Mi            \nkube-system          metrics-server-75696c7b58-rmvbh                         2m           23Mi            \nlocal-path-storage   local-path-provisioner-7dc846544d-whsf5                 1m           9Mi             \nphpa-system          predictive-horizontal-pod-autoscaler-9f5756764-9kxf4    1m           90Mi            \ntrace-benchmark      php-apache-68fd8fb4cf-q74kk                             2m           12Mi",
+      "stderr": ""
+    }
+  },
+  "running_benchmark_processes": [],
+  "previous_boot_relevant_kernel_lines": [],
+  "freeze_cause_conclusion": "UNPROVEN; no matching OOM, lockup, or I/O fault establishes a cause."
+}

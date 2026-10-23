@@ -1,0 +1,10 @@
+{
+  "status": "BLOCKED",
+  "rows": [],
+  "reason": "SMOKE_RESOURCE_LIMIT_VERIFICATION_FAILED",
+  "run_dispositions": {
+    "calibrated_hpa": "NOT_RUN_SAFETY_GATE",
+    "holtwinters": "NOT_RUN_SAFETY_GATE",
+    "strawman_hpa": "NOT_RUN_SAFETY_GATE"
+  }
+}

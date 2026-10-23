@@ -1,0 +1,29 @@
+{
+  "scope": "infrastructure smoke only; not controller research evidence",
+  "attempt": 2,
+  "started_or_finished_utc": "2026-10-23T22:55:48.537951+00:00",
+  "decision": "FAIL",
+  "checks": {
+    "generator_completed": true,
+    "actual_requests_reached_service": true,
+    "all_measurement_requests_recorded": true,
+    "metrics_collected": true,
+    "watchdog_collected_host_pressure": true,
+    "watchdog_did_not_abort": true,
+    "generator_cgroup_limits_actual_match": false,
+    "dispatch_timing_healthy": true,
+    "host_memory_stayed_above_threshold": true,
+    "disk_stayed_above_threshold": true
+  },
+  "successful_measurement_requests": 90,
+  "measurement_records": 90,
+  "watchdog_samples": 25,
+  "actual_generator_cgroup": {
+    "cpu.max": "100000 100000",
+    "memory.max": "805306368",
+    "memory.swap.max": "0",
+    "pids.max": "512"
+  },
+  "stdout": "results/live_trace_phase/guarded_chaotic_comparison/pilot_guarded_smoke/guarded_smoke/repeat2/calibrated_hpa\n",
+  "stderr": ""
+}

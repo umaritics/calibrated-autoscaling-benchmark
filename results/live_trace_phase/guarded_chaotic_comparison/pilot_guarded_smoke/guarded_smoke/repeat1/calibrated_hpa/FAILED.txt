@@ -1,0 +1,1 @@
+['-n', 'trace-benchmark', 'rollout', 'status', 'deploy/php-apache', '--timeout=120s']: command failed

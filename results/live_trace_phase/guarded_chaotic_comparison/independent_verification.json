@@ -1,0 +1,46 @@
+{
+  "status": "BLOCKED",
+  "reason": "SMOKE_RESOURCE_LIMIT_VERIFICATION_FAILED",
+  "generated_utc": "2026-10-23T23:01:00.198669+00:00",
+  "checks": {
+    "replay_hash_matches_frozen": true,
+    "schedule_hash_matches_frozen": true,
+    "measurement_count_matches_frozen": true,
+    "maximum_rate_is_45_rps": true,
+    "maximum_in_flight_is_256": true,
+    "balanced_order_frozen": true,
+    "kind_hard_limits_verified": true,
+    "preflight_passed": true,
+    "smoke_requests_independently_recomputed": true,
+    "smoke_watchdog_stayed_active": true,
+    "smoke_gate_failed_as_recorded": true,
+    "failed_smoke_latches_orchestrator_block": true,
+    "research_matrix_not_started_after_failed_gate": true,
+    "full_test_suite_passed": true
+  },
+  "host_pressure_smoke_attempt3": {
+    "samples": 25,
+    "max_load1": 1.95703125,
+    "max_cpu_utilization_percent": 11.834690043832186,
+    "min_memory_available_bytes": 11930963968,
+    "max_swap_used_bytes": 0,
+    "max_cpu_psi_some_avg10": 1.25,
+    "max_memory_psi_full_avg10": 0.0,
+    "max_io_psi_full_avg10": 0.0,
+    "min_disk_free_bytes": 5767966720
+  },
+  "run_dispositions": {
+    "calibrated_hpa": "NOT_RUN_SAFETY_GATE",
+    "holtwinters": "NOT_RUN_SAFETY_GATE",
+    "strawman_hpa": "NOT_RUN_SAFETY_GATE"
+  },
+  "smoke_attempts": {
+    "attempt1": "SAFETY_ABORTED_FALSE_POSITIVE_DURING_RESET",
+    "attempt2": "FAIL_CPU_AFFINITY_NOT_OBSERVED_ALL_OTHER_CHECKS_PASS",
+    "attempt3": "FAIL_SAME_LIMIT_VERIFICATION_AFTER_ATTEMPT2_COMPLETION_WAS_NOT_YET_VISIBLE_TO_CALLER"
+  },
+  "independent_smoke": {
+    "measurement_records": 90,
+    "successful_requests": 90
+  }
+}

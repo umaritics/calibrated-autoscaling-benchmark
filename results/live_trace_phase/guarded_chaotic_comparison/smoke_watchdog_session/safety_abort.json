@@ -1,0 +1,50 @@
+{
+  "decision": "SAFETY_ABORTED",
+  "detected_utc": "2026-10-23T22:54:16.130580+00:00",
+  "reasons": [
+    "workload_unhealthy"
+  ],
+  "sample": {
+    "utc": "2026-10-23T22:54:15.987244+00:00",
+    "monotonic_seconds": 4175.994724752,
+    "load1": 1.92626953125,
+    "cpu_utilization_percent": 6.104468219005664,
+    "memory_available_bytes": 11983765504,
+    "swap_used_bytes": 0,
+    "disk_free_bytes": 5769412608,
+    "cpu_psi_some_avg10": 1.1,
+    "memory_psi_full_avg10": 0.0,
+    "io_psi_full_avg10": 0.0,
+    "generator_in_flight": 0,
+    "generator_active": true,
+    "workload": {
+      "query_ok": true,
+      "ready_replicas": 0,
+      "available_replicas": 0,
+      "replicas": 1
+    },
+    "violations": [
+      "workload_unhealthy"
+    ],
+    "consecutive_counts": {
+      "workload_unhealthy": 3
+    }
+  },
+  "termination": {
+    "attempted": true,
+    "term_sent": true,
+    "forced": false,
+    "pid": 36516,
+    "pgid": 36516,
+    "clean_exit": true
+  },
+  "runtime_state": {
+    "active": true,
+    "pid": 36516,
+    "pgid": 36516,
+    "cgroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/run-r5043fda74de84cf5b80d54d4d5dbb048.scope",
+    "in_flight": 0,
+    "run_directory": "results/live_trace_phase/guarded_chaotic_comparison/pilot_guarded_smoke/guarded_smoke/repeat1/calibrated_hpa",
+    "updated_utc": "2026-10-23T22:54:15.770681+00:00"
+  }
+}

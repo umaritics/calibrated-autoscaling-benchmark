@@ -181,3 +181,27 @@ three-controller chaotic comparison or scaling conclusion is claimed.
 See the [safety-stop report](results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md),
 [frozen plan](results/live_trace_phase/chaotic_first_comparison/frozen_plan.json),
 and [checkpoint](results/live_trace_phase/chaotic_first_comparison/safety_checkpoint.json).
+
+## Resource-guarded chaotic variant
+
+A separate lower-intensity D1 variant was frozen at 10–45 RPS with a 256
+in-flight ceiling (12,532 measurement requests), retaining the selected
+scenario-1 window, relative fluctuations, 120-second warmup, and 420-second
+measurement. The benchmark kind node was pinned to CPUs 0–3 and hard-limited
+to 8 GiB RAM, zero swap, and 4096 PIDs. The request generator was placed in an
+independent transient cgroup with a verified one-CPU quota, 768 MiB RAM, zero
+swap, and 512-task limits, while an independent watchdog sampled host pressure
+every two seconds and could stop the generator process group.
+
+The low-intensity smoke delivered all 90 measurement requests successfully and
+kept the host responsive, but the transient user scope did not expose the
+predeclared CPU-affinity value needed to verify every requested limit. The
+safety gate therefore failed and no tuned-HPA, Holt–Winters, or soft-HPA
+research arm was started. No QoS, capacity, or scaling comparison is claimed.
+This variant remains scientifically separate from the hazardous 20–120 RPS
+run.
+
+See the [guarded findings](results/live_trace_phase/guarded_chaotic_comparison/FINDINGS.md),
+[resource budget](results/live_trace_phase/guarded_chaotic_comparison/resource_budget.json),
+[frozen plan](results/live_trace_phase/guarded_chaotic_comparison/frozen_plan.json),
+and [independent verification](results/live_trace_phase/guarded_chaotic_comparison/independent_verification.json).

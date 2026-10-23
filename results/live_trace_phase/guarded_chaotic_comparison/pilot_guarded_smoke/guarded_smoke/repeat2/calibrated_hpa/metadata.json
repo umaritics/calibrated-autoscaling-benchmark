@@ -1,0 +1,18 @@
+{
+  "dataset": "guarded_smoke",
+  "arm": "calibrated_hpa",
+  "repeat": 2,
+  "warmup": 10,
+  "duration": 30,
+  "category": "guarded_chaotic_comparison/pilot_guarded_smoke",
+  "max_inflight": 32,
+  "runtime_state": "results/live_trace_phase/guarded_chaotic_comparison/smoke_watchdog_session_attempt2/active_run.json",
+  "started_utc": "2026-10-23T22:54:57.475823+00:00",
+  "runner_sha256": "4e098e9fed9ae626039b899d6f6883b18bd8e64f684b6838eb33ed498ff09290",
+  "trace_sha256": "b9c08f47b773af407319043ecef99b2777254afe21013151df2a09bdbd170aae",
+  "policy_sha256": "edeac58288e2b49cf8e0d5ca954f450501f7370a694d6552a257ee70308f5fa2",
+  "workload_sha256": "6934a851ae0e46a32331e1140235604f00e9a7a23e044dd2b7d255ffd1bf8ea2",
+  "finished_utc": "2026-10-23T22:55:47.086802+00:00",
+  "scheduled_requests": 130,
+  "elapsed_seconds": 40.307005211000615
+}

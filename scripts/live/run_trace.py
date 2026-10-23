@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Run one real Kubernetes controller arm with open-loop HTTP trace replay."""
-import argparse,asyncio,csv,hashlib,json,os,re,subprocess,threading,time,urllib.request,urllib.error
+import argparse,asyncio,csv,hashlib,json,os,re,signal,subprocess,threading,time,urllib.request,urllib.error
 import aiohttp
 from datetime import datetime,timezone
 from pathlib import Path
@@ -85,13 +85,35 @@ def run(args):
     trace=ROOT/'data/live_traces'/f'{args.dataset}.csv'
     with trace.open() as f:rows=list(csv.DictReader(f))
     (out/'trace.csv').write_bytes(trace.read_bytes())
-    metadata=vars(args)|{'started_utc':datetime.now(timezone.utc).isoformat(),'runner_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'trace_sha256':hashlib.sha256(trace.read_bytes()).hexdigest(),
+    def portable_arg(value):
+        if isinstance(value,Path):
+            return str(value.relative_to(ROOT)) if value.is_relative_to(ROOT) else str(value)
+        return value
+    metadata={key:portable_arg(value) for key,value in vars(args).items()}|{'started_utc':datetime.now(timezone.utc).isoformat(),'runner_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'trace_sha256':hashlib.sha256(trace.read_bytes()).hexdigest(),
                         'policy_sha256':hashlib.sha256((ROOT/'policies'/POLICIES[args.arm]).read_bytes()).hexdigest(),
                         'workload_sha256':hashlib.sha256((ROOT/'manifests/sample-app.yaml').read_bytes()).hexdigest()}
     (out/'metadata.json').write_text(json.dumps(metadata,indent=2))
+    shutdown=threading.Event();inflight={'count':0};state_path=args.runtime_state;state_stop=threading.Event()
+    runtime={'active':False,'phase':'reset'}
+    def write_state(active=None):
+        if not state_path:return
+        if active is not None:runtime['active']=active
+        state_path.parent.mkdir(parents=True,exist_ok=True)
+        cg=Path('/proc/self/cgroup').read_text().strip().split(':')[-1]
+        value={'active':runtime['active'],'phase':runtime['phase'],'pid':os.getpid(),'pgid':os.getpgrp(),'cgroup':cg,
+               'in_flight':inflight['count'],'run_directory':str(out.relative_to(ROOT)),
+               'updated_utc':datetime.now(timezone.utc).isoformat()}
+        temporary=state_path.with_suffix('.tmp');temporary.write_text(json.dumps(value)+'\n');temporary.replace(state_path)
+    def request_stop(signum,frame):shutdown.set();write_state()
+    signal.signal(signal.SIGTERM,request_stop);signal.signal(signal.SIGINT,request_stop);write_state()
+    def publish_state():
+        while not state_stop.wait(.25):write_state()
+    state_thread=threading.Thread(target=publish_state,daemon=True);state_thread.start()
     try:reset(args.arm,out)
     except Exception as e:
+        state_stop.set();state_thread.join();write_state(False)
         (out/'FAILED.txt').write_text(str(e));raise
+    runtime.update(active=True,phase='replay');write_state()
     started=time.monotonic();stop=threading.Event();errors=[]
     def collect():
         with (out/'metrics.jsonl').open('w') as f:
@@ -121,6 +143,7 @@ def run(args):
             connector=aiohttp.TCPConnector(limit=0,force_close=True)
             async with aiohttp.ClientSession(connector=connector,timeout=aiohttp.ClientTimeout(total=5,ceil_threshold=10)) as client:
                 async def request(planned,phase):
+                    inflight['count']+=1
                     dispatch=time.monotonic()-started;status=0;error=''
                     try:
                         async with client.get('http://127.0.0.1:18080/index.php') as r:
@@ -129,12 +152,15 @@ def run(args):
                     except Exception as e:error=type(e).__name__+': '+str(e)
                     complete=time.monotonic()-started
                     writer.writerow([planned,dispatch,complete,complete-dispatch,status,error,phase])
+                    inflight['count']-=1
                 for planned,phase in schedule:
+                    if shutdown.is_set():break
                     await asyncio.sleep(max(0,started+planned-time.monotonic()))
-                    if len(tasks)<2048:
+                    if shutdown.is_set():break
+                    if len(tasks)<args.max_inflight:
                         task=asyncio.create_task(request(planned,phase));tasks.add(task);task.add_done_callback(tasks.discard)
                     else:writer.writerow([planned,time.monotonic()-started,time.monotonic()-started,0,0,'generator_capacity_drop',phase])
-                await asyncio.sleep(max(0,started+args.warmup+args.duration-time.monotonic()))
+                if not shutdown.is_set():await asyncio.sleep(max(0,started+args.warmup+args.duration-time.monotonic()))
                 if tasks:await asyncio.gather(*tasks)
     try:asyncio.run(replay())
     finally:
@@ -145,13 +171,19 @@ def run(args):
     (out/'operator.log').write_text(command(['-n','phpa-system','logs','deploy/predictive-horizontal-pod-autoscaler',f'--since={log_window}'],check=False))
     metadata.update(finished_utc=datetime.now(timezone.utc).isoformat(),scheduled_requests=len(schedule),elapsed_seconds=time.monotonic()-started)
     (out/'metadata.json').write_text(json.dumps(metadata,indent=2)+'\n')
+    runtime['phase']='finished';state_stop.set();state_thread.join();write_state(False)
+    if shutdown.is_set():
+        (out/'INTERRUPTED.json').write_text(json.dumps({'decision':'SAFETY_ABORTED','utc':datetime.now(timezone.utc).isoformat()},indent=2)+'\n')
+        raise SystemExit(75)
     (out/'COMPLETE').write_text('collection completed; scientific validity requires verification\n')
     print(str(out),flush=True)
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--dataset',required=True);p.add_argument('--arm',choices=POLICIES,required=True)
     p.add_argument('--repeat',type=int,default=1);p.add_argument('--warmup',type=int,default=120);p.add_argument('--duration',type=int,default=420)
-    p.add_argument('--category',default='runs');args=p.parse_args()
+    p.add_argument('--category',default='runs')
+    p.add_argument('--max-inflight',type=int,default=2048);p.add_argument('--runtime-state',type=Path)
+    args=p.parse_args()
     # Stepped traces may need a longer predeclared window so a full low plateau
     # outlasts the unchanged 300 s tuned-HPA scale-down stabilization window.
     assert 0<args.duration<=1800

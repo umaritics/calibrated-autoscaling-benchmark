@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "sample_interval_seconds": 2.0,
+  "sustained_samples": 3,
+  "graceful_stop_seconds": 10.0,
+  "thresholds": {
+    "load1_max": 6.0,
+    "cpu_utilization_percent_max": 92.0,
+    "memory_available_bytes_min": 4294967296,
+    "memory_psi_full_avg10_max": 1.0,
+    "io_psi_full_avg10_max": 5.0,
+    "cpu_psi_some_avg10_max": 60.0,
+    "swap_used_bytes_max": 1073741824,
+    "disk_free_bytes_min": 4294967296,
+    "generator_in_flight_max": 240,
+    "workload_ready_replicas_min": 1
+  },
+  "budgets": {
+    "kind_container": {
+      "name": "calibrated-live-control-plane",
+      "cpuset_cpus": "0-3",
+      "memory_max_bytes": 8589934592,
+      "memory_swap_max_bytes": 0,
+      "pids_max": 4096
+    },
+    "generator_scope": {
+      "allowed_cpus": "4-5",
+      "cpu_quota_percent": 100,
+      "memory_max_bytes": 805306368,
+      "memory_swap_max_bytes": 0,
+      "tasks_max": 512,
+      "maximum_in_flight": 256
+    },
+    "host_reserve": {
+      "logical_cpus_excluded_from_kind": "4-7",
+      "minimum_memory_headroom_bytes_from_hard_caps": 11274289152,
+      "note": "Residual capacity, not a host-wide reservation: kind is pinned to CPUs 0-3; the generator is restricted to CPUs 4-5 and one CPU of quota. The desktop and OS retain access to CPUs 4-7 and memory outside the two hard caps. The watchdog protects this residual budget."
+    }
+  }
+}

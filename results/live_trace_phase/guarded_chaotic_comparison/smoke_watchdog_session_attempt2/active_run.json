@@ -1,0 +1,1 @@
+{"active": false, "phase": "finished", "pid": 37208, "pgid": 37208, "cgroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/run-re29d49bc13ac45bda082b36f771e8657.scope", "in_flight": 0, "run_directory": "results/live_trace_phase/guarded_chaotic_comparison/pilot_guarded_smoke/guarded_smoke/repeat2/calibrated_hpa", "updated_utc": "2026-10-23T22:55:47.087234+00:00"}

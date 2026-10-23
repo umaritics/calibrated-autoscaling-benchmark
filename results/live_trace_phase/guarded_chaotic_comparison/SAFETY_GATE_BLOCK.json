@@ -1,0 +1,8 @@
+{
+  "blocked_utc": "2026-10-23T22:57:03.942189+00:00",
+  "reason": "SMOKE_RESOURCE_LIMIT_VERIFICATION_FAILED",
+  "failed_check": "generator_cgroup_limits_actual_match",
+  "effect": "The research orchestrator must not launch any guarded chaotic controller arm.",
+  "research_arms_started": false,
+  "resolution_required": "Establish and independently verify the requested CPU-affinity control in a fresh predeclared safety protocol; do not weaken this gate post hoc."
+}

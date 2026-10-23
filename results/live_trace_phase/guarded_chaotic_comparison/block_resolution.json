@@ -1,0 +1,12 @@
+{
+  "resolved_blocked_utc": "2026-10-23T22:54:16.130835+00:00",
+  "resolved_utc": "2026-10-23T22:56:30+00:00",
+  "scope": "smoke attempt 1 only",
+  "finding": "False-positive workload-health trigger during the intentional deployment reset, before request generation.",
+  "corrective_action": "run_trace now marks workload active only after reset, rollout readiness, policy installation, and endpoint readiness complete.",
+  "evidence_preserved": [
+    "smoke_watchdog_session/safety_abort.json",
+    "pilot_guarded_smoke/guarded_smoke/repeat1/calibrated_hpa"
+  ],
+  "research_arm_retry_authorized": false
+}

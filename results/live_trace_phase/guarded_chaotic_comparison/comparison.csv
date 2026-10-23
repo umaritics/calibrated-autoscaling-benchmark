@@ -1,0 +1,1 @@
+arm,decision,error_rate,p95_latency_s,p99_latency_s,throughput_rps,pod_seconds,pod_seconds_per_success,mean_ready,max_ready,cpu_coverage,mean_cpu_m,max_cpu_m,scale_up_events,scale_down_events,replica_oscillations
