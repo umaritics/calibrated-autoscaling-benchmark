@@ -17,12 +17,23 @@ python3 -m venv .venv
 
 The pipeline requires all 600 scenario pairs; it does not silently sample. Outputs include all five models at both horizons and all 42 online traces. No Kubernetes or external API access is required after dependencies and data are present.
 
-## Not supplied
+## Production-source datasets (local only)
 
 - NASA: obtain July and August 1995 HTTP log archives (`NASA_access_log_Jul95.gz`, `NASA_access_log_Aug95.gz`) from the [NASA-HTTP archive page](https://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html), placing them in `data/nasa/`. That old page has internally inconsistent duration/request-count descriptions; compute counts from actual logs. Record missing intervals separately from zero traffic.
 - Alibaba: use the [2018 trace documentation](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-v2018), obtain `container_usage.csv` through its download instructions/survey, and place it in `data/alibaba/`. A documented time/container subset is acceptable. The original paper’s exact release, subset, aggregation and split must be established before claiming reproduction of its MAPE.
 
-Neither production dataset is in the supplied archive or evaluated by this pipeline. Do not substitute synthetic errors for production errors.
+Neither production dataset is in the supplied Kaggle archive and neither raw
+source is committed. They were evaluated by the separate
+`scripts/real_world_forecasting.py` pipeline after legitimate local acquisition;
+the committed series, predictions, metrics, preprocessing metadata, source
+hashes, and reproduction instructions are under
+`results/real_world_forecasting/`. Do not substitute synthetic errors for
+production errors or equate this independent protocol with the paper's MAPE.
+
+```bash
+.venv/bin/python scripts/real_world_forecasting.py
+.venv/bin/python scripts/verify_real_world_forecasting.py
+```
 
 ## Independent Kaggle source verification
 

@@ -87,24 +87,9 @@ Authors’ Kaggle online release reports Holt–Winters early-detection vs HPA (
 
 ## Files read
 
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat1\seasonal\strawman_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat1\seasonal\holtwinters.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat1\seasonal\calibrated_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat1\burst\strawman_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat1\burst\holtwinters.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat1\burst\calibrated_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat2\seasonal\strawman_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat2\seasonal\holtwinters.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat2\seasonal\calibrated_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat2\burst\strawman_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat2\burst\holtwinters.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat2\burst\calibrated_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\seasonal\strawman_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\seasonal\holtwinters.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\seasonal\calibrated_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\burst\strawman_hpa.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\burst\holtwinters.csv`
-- ok: `U:\University\Semester 7\Cloud\Research\_repo_clean\results\runs\repeat3\burst\calibrated_hpa.csv`
+- ok: `results/runs/repeat1/{seasonal,burst}/{strawman_hpa,holtwinters,calibrated_hpa}.csv`
+- ok: `results/runs/repeat2/{seasonal,burst}/{strawman_hpa,holtwinters,calibrated_hpa}.csv`
+- ok: `results/runs/repeat3/{seasonal,burst}/{strawman_hpa,holtwinters,calibrated_hpa}.csv`
 
 ## Dataset phase extension (separate evidence)
 

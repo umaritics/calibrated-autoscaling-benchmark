@@ -1,5 +1,9 @@
 # Integrated cross-pattern research comparison
 
+**Final disposition:** this index is complete for the saved evidence, with the
+documented repetition and protocol limitations below. It is not an exhaustive
+repeated six-pattern study.
+
 This report consolidates verified summary files without rerunning any workload.
 Four evidence classes remain separate because their protocols and units differ:
 

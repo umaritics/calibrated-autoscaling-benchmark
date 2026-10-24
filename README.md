@@ -1,216 +1,150 @@
 # Calibrated Autoscaling Benchmark
 
-**When Does a Conservatively Tuned Reactive Baseline Beat a Predictive Autoscaler?**
+**Final handoff status: COMPLETE WITH DOCUMENTED LIMITATIONS.**
 
-Course research (FAST-NUCES Cloud Computing): reproduce the online core of
-Duman & Eken (*J. Systems & Software*, 2026), then measure how a lightweight
-Holt–Winters predictor compares to a soft 50% HPA and to a **conservatively tuned**
-70% HPA on capacity (pod-seconds).
+This repository asks: **under which workload patterns does lightweight
+predictive autoscaling outperform a soft reactive HPA, and how much does that
+advantage change when the reactive baseline is conservatively tuned?** It
+compares the paper-aligned 50% CPU HPA, a 70% CPU / slow-scale-down HPA, and a
+Holt–Winters predictive HPA using offline forecasts, released traces, and live
+Kubernetes replays.
+
+The bounded handoff is complete: saved evidence, source hashes, acceptance
+decisions, forecasting outputs, reproduction instructions, and limitations are
+published. It is **not** an exhaustive repeated six-pattern production study.
+Most newer live patterns have one accepted run per controller; rejected,
+inconclusive, and interrupted attempts remain visible.
 
 | | |
 |---|---|
 | Students | Muhammad Usman Al Haq (23i-0585), Muhammad Umar (23i-0782) |
-| Paper | https://doi.org/10.1016/j.jss.2026.112861 |
-| Upstream harness | https://github.com/syswe/workloads-predictional-scaling-operators |
+| Course | FAST-NUCES Cloud Computing research |
+| Base paper | Duman & Eken, *From Reactive to Predictive…*, JSS (2026), <https://doi.org/10.1016/j.jss.2026.112861> |
+| Upstream online harness | <https://github.com/syswe/workloads-predictional-scaling-operators> |
 
-## Submit these documents
+## Executive research summary
 
-- [`docs/reproduction_report.md`](docs/reproduction_report.md)
-- [`docs/methodology.md`](docs/methodology.md)
-- [`results/results.md`](results/results.md) — tables with mean ± SD, paired diffs, Cohen’s d
+The predictor's advantage depends on whether extra capacity prevents overload.
+In the NASA-derived and on/off overload replays, Holt–Winters materially reduced
+request errors and successful-request latency, but consumed much more capacity.
+In the accepted tuned-versus-predictive stepped comparison, it reduced errors
+from 17.58% to 1.01% at a 121.80% pod-second penalty. These are descriptive
+results, not significance claims.
 
-## Repository layout
+When all controllers already served the workload without errors, predictive
+overprovisioning did not help observed QoS. Tuned HPA used the least capacity in
+the growing replay (1,572.50 pod-s) and guarded chaotic replay (990.00 pod-s).
+In the Alibaba-derived replay, soft HPA used slightly less than tuned HPA
+(1,277.50 versus 1,317.50 pod-s); both beat Holt–Winters (1,422.50 pod-s). The
+older seasonal/burst study also found that tuning reversed Holt–Winters' capacity
+advantage over the soft HPA, but those runs did not record request QoS.
 
-```
-policies/          Strawman HPA, tuned HPA (ours), Holt–Winters PHPA
-manifests/         Sample app, load generator, metrics-server
-scripts/           Experiment wrapper, analysis, upstream setup
-results/           Measured CSVs (18 runs) + summary tables
-docs/              Reproduction report + methodology
-docs/course/       Proposal, development plan, literature matrix
-upstream/          Instructions only (clone is gitignored)
-```
+No local transition measurement proves genuine anticipation. Earlier response
+can also result from higher starting replicas, controller cadence, or aggressive
+scaling. The evidence supports a **capacity–QoS tradeoff conditioned on workload
+stress and baseline calibration**, not “predictive always wins” or “reactive
+always wins.”
 
-## Main finding (3 repeats, cost/capacity only)
+## Verified live coverage
 
-Holt–Winters uses **fewer pod-seconds** than the authors’ **50% HPA**.
-A **70% conservatively tuned HPA** uses even fewer pod-seconds than Holt–Winters
-on seasonal (all 3 repeats). Burst shows the same direction on average but high variance.
-The tuned arm is also more **saturated** (higher hot fraction) — so this is **not**
-an SLA / latency claim.
+`n` counts accepted repetitions. Error and latency were not collected in the
+historical seasonal/burst study. The original and guarded chaotic protocols are
+scientifically separate and are never pooled.
 
-| Pattern | Strawman HPA | Holt–Winters | Tuned HPA 70% | HW adv. vs strawman | HW adv. vs tuned |
-|---|---:|---:|---:|---:|---:|
-| seasonal | 943 ± 94 | 767 ± 40 | 583 ± 80 | +176 ± 92 | −184 ± 42 |
-| burst | 1088 ± 275 | 728 ± 46 | 653 ± 25 | +360 ± 265 | −75 ± 62 |
+| Workload | Soft HPA | Tuned HPA | Holt–Winters | Main disposition |
+|---|---:|---:|---:|---|
+| Seasonal, historical | n=3 | n=3 | n=3 | Capacity/CPU only |
+| Burst, historical | n=3 | n=3 | n=3 | Capacity/CPU only |
+| NASA-derived | n=3 | n=2 | n=3 | Two tuned repeat-3 attempts inconclusive |
+| Alibaba-derived | n=1 | n=1 | n=1 | All accepted, zero request errors |
+| On/off | n=1 | n=1 | n=1 | All accepted; overload observed |
+| Growing | n=1 | n=1 | n=1 | All accepted, zero request errors |
+| Stepped | rejected | n=1 | n=1 | Soft arm failed frozen dispatch-integrity threshold |
+| Chaotic, original 20–120 RPS | n=1 | not run | 0 | Two predictive attempts interrupted by host freezes |
+| Guarded chaotic, 10–45 RPS | n=1 | n=1 | n=1 | All accepted, zero request errors |
 
-Units: pod-seconds (mean ± SD). Lower = less capacity held.
+The authoritative measurements and limitations are in
+[`results/live_trace_phase/results.md`](results/live_trace_phase/results.md).
+The definitive experiment inventory is in
+[`docs/STATUS_DATASET_PHASE.md`](docs/STATUS_DATASET_PHASE.md).
 
-Paper / Kaggle online early-detection (HW vs HPA, not re-measured by us): seasonal 30.8 s, burst 20.5 s earlier.
+## Forecasting evidence
 
-## Quick start (reproduce)
+- **D1 synthetic:** all 600 scenarios across burst, chaotic, growing, on/off,
+  seasonal, and stepped; five model variants; rolling 15- and 60-minute
+  horizons. Persistence had the lowest 15-minute mean MAE on four patterns;
+  GBDT led seasonal and on/off. See
+  [`results/dataset_phase/offline_results.md`](results/dataset_phase/offline_results.md).
+- **D2 released online traces:** all 42 traces and 36 early-detection records
+  audited. Released Holt–Winters first-desired-increase advantages range from
+  20.48 to 40.93 seconds. This reproduces arithmetic on authors' data, not new
+  live evidence. See
+  [`results/dataset_phase/online_results.md`](results/dataset_phase/online_results.md).
+- **NASA raw log:** 7,938 complete five-minute request-count bins, chronological
+  60/20/20 split. Best GBDT MAE/RMSE/WAPE: 36.3206/47.8176/18.5139% at five
+  minutes and 50.8335/66.6083/25.8498% at 60 minutes.
+- **Alibaba raw prefix:** 3,489 native ten-second mean CPU-utilization points,
+  chronological 60/20/20 split. Best GBDT MAE/RMSE/WAPE:
+  1.7249/2.1295/14.4921% at ten seconds and 1.7271/2.1328/14.5218% at 60
+  seconds. NASA request counts and Alibaba CPU percentages are different targets
+  and are not compared numerically.
 
-1. Enable Kubernetes in Docker Desktop (≥4 CPU, ≥8 GB RAM).
-2. Install `kubectl`, `helm`, Python 3.10+.
-3. Install the PHPA operator (see `upstream/README.md`).
-4. From this repo:
+The paper's NASA/Alibaba sub-2% MAPE values were **not reproduced**: exact
+machines, split, horizon, features, and zero-target rule are unavailable, and
+our targets/protocol differ. Full results are in
+[`results/real_world_forecasting/RESULTS.md`](results/real_world_forecasting/RESULTS.md).
 
-```bash
-./scripts/setup_from_upstream.sh
-cd upstream/workloads-predictional-scaling-operators
-python3 -m venv .venv && source .venv/bin/activate
-pip install numpy pandas matplotlib
-./scripts/run_our_arm.sh 1 seasonal strawman_hpa
-python scripts/analyze_our_results.py
-```
+## Controllers
 
-## License
+- Soft HPA: 50% target CPU, 60-second scale-down stabilization, 1–20 replicas.
+- Tuned HPA: 70% target CPU, 300-second scale-down stabilization, scale-up capped
+  at four pods per 60 seconds, 1–20 replicas.
+- Holt–Winters PHPA: 50% target CPU; alpha 0.9, beta 0.2, gamma 0.3;
+  `seasonalPeriods=6`, `storedSeasons=4`, ten-second sync, 1–20 replicas.
 
-MIT. Upstream harness and operator retain their original licenses.
+Exact manifests are under [`policies/`](policies/).
 
-## Dataset extension
+## Reproduce and verify
 
-Both supplied Kaggle datasets are retained locally under `data/` (raw files and ZIP excluded from Git). The extension evaluates **all 600 synthetic scenarios across six patterns**, using five forecast variants at 15- and 60-minute horizons, and audits **all 42 authors’ online traces**. The original 18 live runs above remain separate evidence.
-
-- [Offline metrics and paired comparisons](results/dataset_phase/offline_results.md)
-- [Released online trace audit](results/dataset_phase/online_results.md)
-- [Data layout and acquisition](data/README.md)
-- [Status and remaining live/production-data work](docs/STATUS_DATASET_PHASE.md)
+Create the research environment and run the lightweight checks:
 
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements-datasets.txt
 .venv/bin/python -m unittest discover -s tests -v
-.venv/bin/python scripts/evaluate_datasets.py
 .venv/bin/python scripts/verify_dataset_results.py
+.venv/bin/python scripts/verify_real_world_forecasting.py
 ```
 
-The authors’ released early-detection arithmetic is reproducible, but earlier scaling does not imply lower capacity: their HW trace holds more time-averaged ready replicas than their HPA trace on every pattern. The release contains inconsistent ready/current counts and only one run per condition, so this is descriptive evidence.
+The last verifier refreshes its verification JSON/manifest. Dataset acquisition,
+local-only files, exact forecast commands, and live prerequisites are documented
+in [`data/README.md`](data/README.md),
+[`docs/reproduction_report.md`](docs/reproduction_report.md), and each live
+experiment's `REPRODUCE.md`. Accepted live runs are intentionally not overwritten;
+do not launch them merely to verify the committed evidence.
 
-## NASA-derived live checkpoint
+## Submission map
 
-A later live phase replayed one fixed NASA-HTTP-derived demand shape against the
-benchmark Kubernetes service with request-level latency/error collection. It is
-an eight-of-nine accepted matrix: soft HPA 3/3, tuned HPA 2/3, and Holt–Winters
-3/3. Two retained attempts for tuned-HPA repeat 3 are `INCONCLUSIVE` because
-CPU telemetry covered 75/84 samples, below the frozen 90% rule. They are not
-promoted into the aggregates. Because missing metrics overlap service
-instability, the incomplete matrix may favor healthier periods.
+- [Final handoff and experiment inventory](docs/STATUS_DATASET_PHASE.md)
+- [Reproduction report and paper comparison](docs/reproduction_report.md)
+- [Methodology and validity threats](docs/methodology.md)
+- [Integrated live results](results/live_trace_phase/results.md)
+- [Historical seasonal/burst results](results/results.md)
+- [Offline D1 and released D2 results](results/dataset_phase/offline_results.md)
+- [NASA/Alibaba forecast results](results/real_world_forecasting/RESULTS.md)
+- [Local evidence-retention policy](docs/LOCAL_EVIDENCE_RETENTION.md)
 
-See [NASA findings](results/live_trace_phase/nasa_three_repeat/FINDINGS.md),
-[independent verification](results/live_trace_phase/nasa_three_repeat/independent_verification.json),
-and the [evidence manifest](results/live_trace_phase/nasa_three_repeat/evidence_manifest.json).
+## Repository layout
 
-## Alibaba-derived live checkpoint
+```text
+policies/       Controller definitions
+manifests/      Kubernetes application and infrastructure manifests
+scripts/        Evaluation, live-run, safety, and verification code
+results/        Raw retained measurements, summaries, hashes, and manifests
+docs/           Methodology, reproduction, status, and course documents
+data/           Acquisition instructions; large/raw sources are gitignored
+```
 
-One frozen, three-controller comparison is complete and all arms passed the
-acceptance framework. The input is the first 42 observations of `c_1` found in
-a 16 MiB byte-range prefix of Alibaba Cluster Trace v2018. It is neither random
-nor representative. The transformation maps irregular CPU-utilization samples
-to equal ten-second HTTP-demand bins, so this is an explicitly time-warped
-benchmark replay, not Alibaba workload reproduction.
+## License
 
-All arms recorded 14,420/14,420 successful measurement requests. Pod-seconds
-were 1277.50 (soft HPA), 1317.50 (tuned HPA), and 1422.50 (Holt–Winters).
-With one repetition, these values are descriptive only. See the
-[comparison report](results/live_trace_phase/alibaba_first_comparison/RESULTS.md)
-and [dataset audit](results/live_trace_phase/alibaba_first_comparison/DATASET_VALIDATION.md).
-
-Offline result: at 15 minutes, persistence has the lowest mean MAE on burst, chaotic, growing and stepped; gradient boosting leads seasonal and onoff. See the [computed pattern/horizon rankings](results/results.md#lowest-mean-mae-among-the-five-evaluated-variants). Forecast rankings alone do not establish autoscaling cost or QoS.
-
-## Genuine NASA/Alibaba forecasting evaluation
-
-The raw July NASA log and the bounded Alibaba container-usage prefix now have a
-separate leakage-safe forecasting evaluation. NASA contributes 7,938 complete
-5-minute request-count bins; Alibaba contributes a deterministic 3,489-point
-native 10-second CPU series formed only where at least 20 complete-prefix
-containers have real observations. No Alibaba gap is filled or mapped to an
-artificial interval.
-
-Across persistence, moving average, exponential smoothing, and histogram GBDT,
-GBDT has the lowest held-out MAE at both horizons. NASA GBDT MAE is 36.3206 at
-5 minutes and 50.8335 at 60 minutes (requests/5 minutes). Alibaba GBDT MAE is
-1.7249 at 10 seconds and 1.7271 at 60 seconds (CPU percentage points). These
-targets are not comparable to each other. The authors' real-world MAPE values
-are also not directly comparable because their exact split, horizon, features,
-zero rule, and Alibaba machine selection are unavailable.
-
-See the [full forecast results](results/real_world_forecasting/RESULTS.md),
-[paper comparison](results/real_world_forecasting/PAPER_COMPARISON.md), and
-[independent verification](results/real_world_forecasting/independent_verification.json).
-
-## Growing-pattern live checkpoint
-
-One frozen D1-derived growing replay was executed once per controller, with all
-three arms accepted by the established analyzer and independent verifier. All
-92,199 measurement requests succeeded. Pod-seconds were 1,927.50 (soft HPA),
-1,572.50 (tuned HPA), and 2,897.50 (Holt–Winters). Holt–Winters responded
-earliest at the predeclared sustained-growth threshold, but held substantially
-more capacity; this is descriptive evidence from one 90×-accelerated synthetic
-pod-demand-proxy replay, not native-timing traffic or a significance result.
-
-See the [growing comparison report](results/live_trace_phase/growing_first_comparison/RESULTS.md),
-[frozen plan](results/live_trace_phase/growing_first_comparison/frozen_plan.json),
-and [independent verification](results/live_trace_phase/growing_first_comparison/independent_verification.json).
-
-## Stepped-pattern live checkpoint
-
-A deterministic D1 scenario-62 window was replayed for 1,200 seconds so each
-400-second plateau outlasted the tuned HPA's unchanged 300-second scale-down
-stabilization. Tuned HPA and Holt–Winters were accepted; the soft-HPA arm was
-retained but rejected because generator dispatch p99 (0.315 s) exceeded the
-frozen 0.100-second threshold. Among accepted arms, Holt–Winters reduced errors
-from 17.58% to 1.01% but used 121.80% more ready-pod-seconds than tuned HPA.
-Neither controller pre-scaled before the observed upward step, both had zero
-post-step failures, and tuned HPA was competitive at that transition.
-
-See the [stepped comparison report](results/live_trace_phase/stepped_first_comparison/RESULTS.md),
-[frozen plan](results/live_trace_phase/stepped_first_comparison/frozen_plan.json),
-and [independent verification](results/live_trace_phase/stepped_first_comparison/independent_verification.json).
-
-## Chaotic-pattern safety checkpoint
-
-A deterministic D1 scenario-1 window (indices 284–325) was frozen before
-execution and mapped to the established 20–120 RPS, 420-second protocol. The
-soft-HPA arm completed and passed the evidence-integrity analyzer, but 85.47%
-of scheduled requests failed and host one-minute load reached 106.35. The host
-then became unresponsive during two separate Holt–Winters attempts. Both
-partial attempts are retained and excluded; tuned HPA was not started. No
-three-controller chaotic comparison or scaling conclusion is claimed.
-
-See the [safety-stop report](results/live_trace_phase/chaotic_first_comparison/SAFETY_STOP.md),
-[frozen plan](results/live_trace_phase/chaotic_first_comparison/frozen_plan.json),
-and [checkpoint](results/live_trace_phase/chaotic_first_comparison/safety_checkpoint.json).
-
-## Resource-guarded chaotic variant
-
-A separate lower-intensity D1 variant was frozen at 10–45 RPS with a 256
-in-flight ceiling (12,532 measurement requests), retaining the selected
-scenario-1 window, relative fluctuations, 120-second warmup, and 420-second
-measurement. The benchmark kind node was pinned to CPUs 0–3 and hard-limited
-to 8 GiB RAM, zero swap, and 4096 PIDs. The request generator was placed in an
-independent transient cgroup with a verified one-CPU quota, 768 MiB RAM, zero
-swap, and 512-task limits, while an independent watchdog sampled host pressure
-every two seconds and could stop the generator process group.
-
-Task 12's low-intensity smoke delivered all 90 measurement requests but remains
-failed because the user scope did not expose its predeclared cpuset file. A
-prospective v2 protocol established why: the user slice delegates memory and
-PID controllers, not cpuset. The corrected mechanism uses scheduler affinity
-with independent `sched_getaffinity` and per-thread `/proc` read-back while
-retaining every cgroup budget and watchdog threshold. A fresh smoke passed
-90/90 requests and 1,671 affinity observations.
-
-The frozen matrix then ran exactly once in its predeclared order. All three
-arms were independently verified `ACCEPT` with 12,532/12,532 successes, zero
-timeouts/drops, and 100% CPU coverage. Tuned HPA used 990.000 pod-seconds, soft
-HPA 1185.000, and Holt–Winters 1342.499. The watchdog completed 809 samples
-without an abort. This single-repeat 10–45 RPS variant remains scientifically
-separate from the hazardous 20–120 RPS run; CPUs 4–5 are logical siblings of
-kind CPUs 0–1, so physical-core isolation is not claimed.
-
-See the [guarded findings](results/live_trace_phase/guarded_chaotic_comparison/FINDINGS.md),
-[resource budget](results/live_trace_phase/guarded_chaotic_comparison/resource_budget.json),
-[frozen plan](results/live_trace_phase/guarded_chaotic_comparison/frozen_plan.json),
-[safety protocol v2](results/live_trace_phase/guarded_chaotic_comparison/affinity_revision_v2/SAFETY_PROTOCOL_V2.md),
-and [independent verification](results/live_trace_phase/guarded_chaotic_comparison/independent_verification.json).
+MIT. Upstream datasets, harnesses, and operators retain their own licenses.

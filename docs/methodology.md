@@ -148,3 +148,45 @@ frozen in `results/real_world_forecasting/evaluation_protocol.json`.
 
 Forecast accuracy does not imply improved pod-seconds, service quality, or
 scale timing. NASA request counts and Alibaba CPU percentages are never pooled.
+
+## 12. Cross-pattern live design and acceptance
+
+The later QoS-capable harness schedules a frozen request stream, records every
+scheduled request, samples Kubernetes state, and applies predeclared integrity
+rules. Error and timeout rates use all scheduled measurement requests; latency
+percentiles use successful requests only. Ready-pod-seconds are integrated over
+the measurement window. A run with poor service can still be accepted when its
+accounting and instrumentation are valid; conversely, a favorable outcome is
+excluded when an integrity threshold fails.
+
+NASA, Alibaba-derived, on/off, growing, stepped, and chaotic transformations
+are documented beside their evidence. Raw pod-seconds are compared only among
+controllers sharing the same frozen schedule and duration. The original
+20–120 RPS chaotic attempt and guarded 10–45 RPS variant are distinct protocols,
+not repetitions. Rejected, inconclusive, interrupted, and not-run arms are not
+used in accepted aggregates.
+
+## 13. Statistical interpretation and validity
+
+Mean ± sample SD is reported only for genuine repeated groups: historical
+seasonal/burst capacity runs (n=3 each), NASA soft/Holt–Winters (n=3), and NASA
+tuned HPA (n=2). NASA paired differences use only matched accepted repeats.
+The D1 SD describes variation across 100 different scenarios per pattern, not
+execution repeatability. Every other live group has n=1 and receives descriptive
+values only; no significance test is calculated.
+
+The final research interpretation is conditional. Prediction improved observed
+QoS under NASA-derived, on/off, and accepted stepped overload, at a large
+capacity penalty. Tuned HPA was more efficient when all arms already achieved
+zero request errors in growing and guarded chaotic; soft HPA was slightly leaner
+than tuned in Alibaba-derived. Historical seasonal/burst results show a capacity
+reversal after HPA tuning, but lack request QoS. No local transition proves
+anticipation because starting replicas, cadence, and aggressiveness are plausible
+alternatives.
+
+Material threats include fixed run order, uncontrolled host contention,
+single-node kind scheduling, startup/cold-state effects, probe-driven restarts,
+temporal compression, workload-specific affine mappings, different intensity
+envelopes, an unretuned predictor, and absent per-request backend identity.
+Results do not generalize to production clusters or establish that either
+controller family always wins.

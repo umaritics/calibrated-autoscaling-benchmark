@@ -1,4 +1,4 @@
-# Initial reproduction report
+# Final reproduction and paper-comparison report
 
 ## Paper
 - Title: From Reactive to Predictive: A Pattern-Aware Framework for Kubernetes Autoscaling with Large Language Model Integration
@@ -192,3 +192,46 @@ focused tests cover parsing, aggregation, duplicate/missing handling,
 chronological splits, leakage, alignment, and metric arithmetic. The independent
 verifier recomputes metrics without importing the evaluator and checks source
 hashes, boundaries, native continuity, common targets, and row alignment.
+
+## Final handoff verification and reproduction entry points
+
+The final handoff was verified without starting Docker/Kubernetes or rerunning
+the expensive 600-scenario evaluation. The lightweight verification commands
+are:
+
+```bash
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python scripts/verify_dataset_results.py
+.venv/bin/python scripts/verify_real_world_forecasting.py
+```
+
+The final audit observed 37 passing tests. The dataset verifier checked all
+6,000 scenario/model/horizon rows, 1,200 independently recomputed persistence
+errors, 42 released-trace integrals, and 36 timing matches. The real-world
+verifier passed 55 checks over 18,224 saved predictions and 16 metric groups.
+All 263 unique saved-artifact path/hash entries extracted from the nine evidence
+manifests matched their current files.
+
+Some live manifests also retain the digest of code as it existed when that
+experiment was finalized. Later guarded-safety work legitimately changed
+`scripts/live/run_trace.py`, so an older manifest's code digest is recovered by
+checking out its Git commit; it is not expected to equal the current working-tree
+script. This distinction does not affect the immutable raw/run artifact hashes.
+
+Exact commands for live phases are in each
+`results/live_trace_phase/*/REPRODUCE.md`. They describe a fresh evidence
+destination: the committed accepted arms are guarded against overwrite. The
+authoritative experiment counts and dispositions are in
+[`STATUS_DATASET_PHASE.md`](STATUS_DATASET_PHASE.md).
+
+## Raw-data availability and legitimate acquisition
+
+Large or licensed inputs remain local and gitignored. `data/README.md` identifies
+the Kaggle D1/D2 pages, NASA-HTTP archive, and Alibaba Cluster Trace repository,
+plus the expected local layout. Committed manifests record source/subset hashes.
+The Kaggle identity audit matched 1,288 downloaded files byte-for-byte. The NASA
+forecast uses the retained July log (with August inventoried as a companion),
+and the Alibaba forecast/live phases use documented bounded prefixes rather than
+claiming full-trace representativeness. Generated series, predictions, metrics,
+and metadata are committed so the numerical handoff remains inspectable without
+redistributing giant raw archives.
