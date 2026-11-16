@@ -133,6 +133,8 @@ do not launch them merely to verify the committed evidence.
 - [Offline D1 and released D2 results](results/dataset_phase/offline_results.md)
 - [NASA/Alibaba forecast results](results/real_world_forecasting/RESULTS.md)
 - [Local evidence-retention policy](docs/LOCAL_EVIDENCE_RETENTION.md)
+- [LaTeX article (Overleaf manual copy)](FA26_Grp36_23i0585_23i0782_calibrated_autoscaling_benchmark/main.tex)
+- [Future work: Azure traces](docs/FUTURE_AZURE.md) (not in current paper)
 
 ## Repository layout
 
